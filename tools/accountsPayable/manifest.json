@@ -1,0 +1,314 @@
+[
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-POST-postSubmit",
+    "description": "[Accounts Payable] POST /supplierInvoiceRequests/{ID}/submit — Submits a single supplier invoice instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/supplierInvoiceRequests/{ID}/submit",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-POST-postSubmit.js"
+  },
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-GET-get_type_viewContent",
+    "description": "[Accounts Payable] GET /supplierInvoiceRequests/{ID}/attachments/{subresourceID}?type=viewContent — \n\n<b>Secured by:</b> Process: Supplier Invoice - Request, View: Supplier Invoice Request\n\n<b>Scope:</b> Supplier Accounts\n\nContains attachment(s)",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/supplierInvoiceRequests/{ID}/attachments/{subresourceID}?type=viewContent",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-GET-get_type_viewContent.js"
+  },
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-GET-getSupplierInvoiceRequests",
+    "description": "[Accounts Payable] GET /supplierInvoiceRequests — Retrieves a collection of supplier invoices.",
+    "schema": [
+      {
+        "name": "company",
+        "type": "string",
+        "description": "The company for the Common Financial Dimensions. This is for internal use only on a REST API.",
+        "required": false
+      },
+      {
+        "name": "fromDueDate",
+        "type": "string",
+        "description": "The  beginning date of the payment due period for this supplier invoice request. Use the MM/DD/YYYY format. Example: When the payment term is Net 30, the due date value is the day from this invoice date.",
+        "required": false
+      },
+      {
+        "name": "fromInvoiceDate",
+        "type": "string",
+        "description": "The date on or after which the supplier invoice is created using the MM/DD/YYYY format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requester",
+        "type": "string",
+        "description": "The ID of the worker generating the supplier invoice request.",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "The status of the supplier invoice request. This is for internal use only on a REST API.",
+        "required": false
+      },
+      {
+        "name": "supplier",
+        "type": "string",
+        "description": "The supplier on the business documents.",
+        "required": false
+      },
+      {
+        "name": "toDueDate",
+        "type": "string",
+        "description": "The end date of the payment due period for this supplier invoice request. Use the MM/DD/YYYY format. Example: When the payment term is Net 30, the due date value is 30 days from the invoice date.",
+        "required": false
+      },
+      {
+        "name": "toInvoiceDate",
+        "type": "string",
+        "description": "The date on or before which the supplier invoice is created using the MM/DD/YYYY format.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/supplierInvoiceRequests",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-GET-getSupplierInvoiceRequests.js"
+  },
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-POST-postSupplierInvoiceRequests",
+    "description": "[Accounts Payable] POST /supplierInvoiceRequests — Creates the supplier invoice as specified in the request.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/supplierInvoiceRequests",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-POST-postSupplierInvoiceRequests.js"
+  },
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-GET-getAttachments",
+    "description": "[Accounts Payable] GET /supplierInvoiceRequests/{ID}/attachments/{subresourceID} — Retrieves a single attachment instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/supplierInvoiceRequests/{ID}/attachments/{subresourceID}",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-GET-getAttachments.js"
+  },
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-GET-getAttachments_type_viewContent",
+    "description": "[Accounts Payable] GET /supplierInvoiceRequests/{ID}/attachments?type=viewContent — \n\n<b>Secured by:</b> Process: Supplier Invoice - Request, View: Supplier Invoice Request\n\n<b>Scope:</b> Supplier Accounts\n\nContains attachment(s)",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/supplierInvoiceRequests/{ID}/attachments?type=viewContent",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-GET-getAttachments_type_viewContent.js"
+  },
+  {
+    "name": "AccountsPayable-SendSupplierInvoiceAttachmentsForScanning-POST-postSendSupplierInvoiceAttachmentsForScanning",
+    "description": "[Accounts Payable] POST /sendSupplierInvoiceAttachmentsForScanning — Sends supplier invoice attachments for scanning.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/sendSupplierInvoiceAttachmentsForScanning",
+    "operationId": null,
+    "file": "AccountsPayable-SendSupplierInvoiceAttachmentsForScanning-POST-postSendSupplierInvoiceAttachmentsForScanning.js"
+  },
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-GET-getLines",
+    "description": "[Accounts Payable] GET /supplierInvoiceRequests/{ID}/lines — Retrieves a collection of supplier invoice lines.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/supplierInvoiceRequests/{ID}/lines",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-GET-getLines.js"
+  },
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-GET-getSupplierInvoiceRequests_1",
+    "description": "[Accounts Payable] GET /supplierInvoiceRequests/{ID} — Retrieves a single supplier invoice instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/supplierInvoiceRequests/{ID}",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-GET-getSupplierInvoiceRequests_1.js"
+  },
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-GET-getAttachments_1",
+    "description": "[Accounts Payable] GET /supplierInvoiceRequests/{ID}/attachments — Retrieves a collection of attachments for the specified supplier invoice.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/supplierInvoiceRequests/{ID}/attachments",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-GET-getAttachments_1.js"
+  },
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-POST-postAttachments",
+    "description": "[Accounts Payable] POST /supplierInvoiceRequests/{ID}/attachments — Creates a new attachment for the supplier invoice.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/supplierInvoiceRequests/{ID}/attachments",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-POST-postAttachments.js"
+  },
+  {
+    "name": "AccountsPayable-SupplierInvoiceRequests-GET-getLines_1",
+    "description": "[Accounts Payable] GET /supplierInvoiceRequests/{ID}/lines/{subresourceID} — Retrieves a single supplier invoice line instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/supplierInvoiceRequests/{ID}/lines/{subresourceID}",
+    "operationId": null,
+    "file": "AccountsPayable-SupplierInvoiceRequests-GET-getLines_1.js"
+  }
+]

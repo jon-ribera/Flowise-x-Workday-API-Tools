@@ -1,0 +1,240 @@
+[
+  {
+    "name": "Connect-MessageTemplates-GET-getMessageTemplates",
+    "description": "[Connect] GET /messageTemplates/{ID} — Retrieves a message template with the specific ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/messageTemplates/{ID}",
+    "operationId": null,
+    "file": "Connect-MessageTemplates-GET-getMessageTemplates.js"
+  },
+  {
+    "name": "Connect-MessageTemplates-PUT-putMessageTemplates",
+    "description": "[Connect] PUT /messageTemplates/{ID} — Updates an existing message template instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/messageTemplates/{ID}",
+    "operationId": null,
+    "file": "Connect-MessageTemplates-PUT-putMessageTemplates.js"
+  },
+  {
+    "name": "Connect-MessageTemplates-PATCH-patchMessageTemplates",
+    "description": "[Connect] PATCH /messageTemplates/{ID} — Partially updates an existing message template instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/messageTemplates/{ID}",
+    "operationId": null,
+    "file": "Connect-MessageTemplates-PATCH-patchMessageTemplates.js"
+  },
+  {
+    "name": "Connect-NotificationTypes-GET-getNotificationTypes",
+    "description": "[Connect] GET /notificationTypes — Retrieves a collection of notification types.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/notificationTypes",
+    "operationId": null,
+    "file": "Connect-NotificationTypes-GET-getNotificationTypes.js"
+  },
+  {
+    "name": "Connect-Values-GET-getAudienceType",
+    "description": "[Connect] GET /values/AudiencePromptGroup/audienceType/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Administer Audience, Administer Campaigns\n\n<b>Scope:</b> Learning Core, System",
+    "schema": [
+      {
+        "name": "audienceTypeParm",
+        "type": "string",
+        "description": "query parameter: audienceTypeParm",
+        "required": false
+      },
+      {
+        "name": "connectType",
+        "type": "string",
+        "description": "query parameter: connectType",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/AudiencePromptGroup/audienceType/",
+    "operationId": null,
+    "file": "Connect-Values-GET-getAudienceType.js"
+  },
+  {
+    "name": "Connect-SendMessage-POST-postSendMessage",
+    "description": "[Connect] POST /sendMessage — \n\n<b>Secured by:</b> Administer Communications\n\n<b>Scope:</b> System",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/sendMessage",
+    "operationId": null,
+    "file": "Connect-SendMessage-POST-postSendMessage.js"
+  },
+  {
+    "name": "Connect-NotificationTypes-GET-getNotificationTypes_1",
+    "description": "[Connect] GET /notificationTypes/{ID} — Retrieves a notification type.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/notificationTypes/{ID}",
+    "operationId": null,
+    "file": "Connect-NotificationTypes-GET-getNotificationTypes_1.js"
+  },
+  {
+    "name": "Connect-MessageTemplates-GET-getMessageTemplates_1",
+    "description": "[Connect] GET /messageTemplates — Retrieves a collection of message templates.",
+    "schema": [
+      {
+        "name": "inactive",
+        "type": "boolean",
+        "description": "query parameter: inactive",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "description": "query parameter: name",
+        "required": false
+      },
+      {
+        "name": "notificationType",
+        "type": "string",
+        "description": "query parameter: notificationType",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/messageTemplates",
+    "operationId": null,
+    "file": "Connect-MessageTemplates-GET-getMessageTemplates_1.js"
+  },
+  {
+    "name": "Connect-MessageTemplates-POST-postMessageTemplates",
+    "description": "[Connect] POST /messageTemplates — \n\n<b>Secured by:</b> Set Up: Message Templates\n\n<b>Scope:</b> Learning Core, System",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/messageTemplates",
+    "operationId": null,
+    "file": "Connect-MessageTemplates-POST-postMessageTemplates.js"
+  },
+  {
+    "name": "Connect-Values-GET-getSelection",
+    "description": "[Connect] GET /values/AudiencePromptGroup/selection/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Administer Audience, Administer Campaigns\n\n<b>Scope:</b> Learning Core, System",
+    "schema": [
+      {
+        "name": "audienceTypeParm",
+        "type": "string",
+        "description": "query parameter: audienceTypeParm",
+        "required": false
+      },
+      {
+        "name": "connectType",
+        "type": "string",
+        "description": "query parameter: connectType",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/AudiencePromptGroup/selection/",
+    "operationId": null,
+    "file": "Connect-Values-GET-getSelection.js"
+  }
+]

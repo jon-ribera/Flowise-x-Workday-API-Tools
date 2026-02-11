@@ -1,0 +1,296 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Custom Object Data (Single-Instance) service enables applications to access and manage single-instance custom objects.\n\nCustom objects are extensions of existing Workday business objects. Example: The Worker object can be extended to include a custom object named Parking Space. If a worker can have only 1 assigned parking space, it is a single-instance custom object. To see the custom object definition in Workday, run the View Custom Object task. You can also run the Custom Object Definitions report  to see all custom object definitions for a business object.",
+    "version": "v2",
+    "title": "Custom Object Data (Single-Instance)",
+    "x-workday-confidence-level": "Production",
+    "x-workday-internal-source": "nonxo",
+    "x-workday-internal-routing": "Public"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/customObject/v2",
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "security": [
+    {
+      "OAuth2": []
+    }
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "Custom Objects",
+      "description": "Provides the ability to create, update, and delete data for a single-instance  custom object.\nThe field types vary based on the custom object definition. To understand the required format of a request body when creating or updating a custom object, first call the GET method on a custom object instance created in Workday."
+    }
+  ],
+  "paths": {
+    "/customObjects/{customObjectAlias}": {
+      "parameters": [
+        {
+          "name": "customObjectAlias",
+          "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task.",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "post": {
+        "tags": [
+          "Custom Objects"
+        ],
+        "summary": "Create a new, or update an existing instance of a custom object.",
+        "description": "In the request body, include the extended Workday object ID that the custom object is attached to. To specify the custom object fields, you can use the response data model from calling GET /customObjects/{customObjectAlias}/{ID} on an existing custom object instance. You can also see the custom object definition in the View Custom Object task.\n\nTo create a custom object instance for multiple Workday business objects, specify the query parameter bulk=true. In the request body, specify an array containing the custom object instance for each Workday business object ID. \n\nTo update an existing custom object instance, specify the query parameter updateIfExists=true. In the request body, specify the custom fields to update. \n\nSecured by: Dependent on Security Domain configured for the Custom Object\nScope: Dependent on Security Domain configured for the Custom Object.",
+        "parameters": [
+          {
+            "name": "updateIfExists",
+            "in": "query",
+            "description": "If true, updates the custom object instance if it exists. If false, returns an error if the object exists. The default is false. If the object does not exist, a new object is created regardless of this setting.",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "bulk",
+            "in": "query",
+            "description": "If true, creates or updates the specified array of custom object instances in the request body. If false, creates the specified custom object instance (without an array). The default is false. ",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "customObjectRequestBody",
+            "in": "body",
+            "description": "The custom object instance to be persisted. If bulk=true, specify a JSON array containing the custom object instances, with a maximum of 100. If bulk=false (default), specify a JSON object.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customData"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Custom object collection created or updated.",
+            "schema": {
+              "$ref": "#/definitions/responseObject"
+            }
+          },
+          "201": {
+            "description": "Custom object created or updated.",
+            "schema": {
+              "$ref": "#/definitions/responseObject"
+            }
+          }
+        }
+      }
+    },
+    "/customObjects/{customObjectAlias}/{customObjectID}": {
+      "parameters": [
+        {
+          "name": "customObjectAlias",
+          "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task. ",
+          "in": "path",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "customObjectID",
+          "description": "The Workday ID of the extended Workday object instance or the custom object instance.",
+          "type": "string",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Custom Objects"
+        ],
+        "summary": "Retrieves a custom object instance.",
+        "description": "Retrieves the custom object instance with the specified ID. Specify either the extended Workday object ID or the custom object ID. \nExample: Assume that parkingSpaces is the customObjectAlias for the Parking Spaces custom object, and 12345 is the Workday ID of the worker with the parking space. To get the Parking Space instance for that worker, call GET /customObjects/parkingSpaces/12345.\n\nSecured by: Dependent on Security Domain configured for the Custom Object\nScope: Dependent on Security Domain configured for the Custom Object.",
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/customObjectInstance"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Custom Objects"
+        ],
+        "summary": "Updates  a custom object instance.",
+        "description": "Updates an existing custom object instance with the specified ID. Specify either the extended Workday object ID or the custom object ID. \nExample: Assume that parkingSpaces is the customObjectAlias for the Parking Spaces custom object, and 12345 is the Workday ID of the worker with the parking space. To update the Parking Space instance for that worker, call PUT /customObjects/parkingSpaces/12345. Include the fields you want to update in the request body.\n\nSecured by: Dependent on Security Domain configured for the Custom Object\nScope: Dependent on Security Domain configured for the Custom Object.",
+        "parameters": [
+          {
+            "name": "customObjectRequestBody",
+            "in": "body",
+            "description": "The custom object fields to be updated.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customObjectFields"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Custom object updated",
+            "schema": {
+              "$ref": "#/definitions/responseObject"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Custom Objects"
+        ],
+        "summary": "Deletes a custom object instance.",
+        "description": "Deletes an existing custom object instance with the specified ID.  Specify either the extended Workday object ID or the custom object ID.\nSecured by: Dependent on Security Domain configured for the Custom Object\nScope: Dependent on Security Domain configured for the Custom Object.",
+        "responses": {
+          "200": {
+            "description": "Custom object deleted.",
+            "schema": {
+              "$ref": "#/definitions/responseObject"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "customObjectInstance": {
+      "description": "Contains the extended business object instance and custom object fields.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/customObjectInstanceId"
+        },
+        {
+          "$ref": "#/definitions/customData"
+        }
+      ]
+    },
+    "customObjectInstanceId": {
+      "type": "object",
+      "description": "The custom object instance ID.",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "customObjectFields": {
+      "type": "object",
+      "description": "Contains the custom fields of the custom object.",
+      "properties": {
+        "textField": {
+          "type": "string"
+        },
+        "integerField": {
+          "type": "number"
+        },
+        "booleanField": {
+          "type": "boolean"
+        },
+        "dateField": {
+          "type": "string",
+          "example": "yyyy-mm-dd"
+        },
+        "decimalField": {
+          "type": "number"
+        },
+        "currencyField": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string",
+              "example": "USD"
+            },
+            "value": {
+              "type": "number",
+              "example": 9.99
+            }
+          }
+        },
+        "customListSingleInstance": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "id": "listValue"
+          }
+        },
+        "customListMultiInstance": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          "example": [
+            {
+              "id": "listValue1"
+            },
+            {
+              "id": "listValue2"
+            }
+          ]
+        }
+      }
+    },
+    "customData": {
+      "description": "Contains custom object fields.",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "extendedWorkdayObjectType (eg worker)": {
+              "$ref": "#/definitions/instance"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/customObjectFields"
+        }
+      ]
+    },
+    "instance": {
+      "type": "object",
+      "description": "The Workday business object instance ID.",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "responseObject": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

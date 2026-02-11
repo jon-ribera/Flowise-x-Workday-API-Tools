@@ -1,0 +1,1783 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Student Recruiting service enables applications to access recruitment information.",
+    "version": "v1",
+    "title": "studentRecruiting",
+    "x-workday-confidence-level": "Production",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "de37943cec3c100021e4303d4335050f"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/studentRecruiting/v1",
+  "tags": [
+    {
+      "name": "academicRequirementEvaluation",
+      "description": "Provides the ability to evaluate potential transfer credit for prospective students and evaluate the resulting academic requirements.",
+      "x-workday-confidence-level": "Production"
+    },
+    {
+      "name": "Prompt Values",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/values/academicRequirementEvaluation/unitType/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirement Evaluation\n\n<b>Scope:</b> Admissions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicLevel",
+          "in": "query",
+          "description": "The academic level of the program of study.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the program of study.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "effectiveDate",
+          "in": "query",
+          "description": "The date to filter programs of study that are effective, using the yyyy-mm-dd format.",
+          "required": false,
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "programOfStudyType",
+          "in": "query",
+          "description": "The program type of the program of study.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/values/academicRequirementEvaluation/educationalInstitution/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves all educational institutions.\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirement Evaluation\n\n<b>Scope:</b> Admissions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicLevel",
+          "in": "query",
+          "description": "The academic level of the program of study.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the program of study.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "effectiveDate",
+          "in": "query",
+          "description": "The date to filter programs of study that are effective, using the yyyy-mm-dd format.",
+          "required": false,
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "programOfStudyType",
+          "in": "query",
+          "description": "The program type of the program of study.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/values/academicRequirementEvaluation/externalCourse/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves the external courses for the educational institution you specify.\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirement Evaluation\n\n<b>Scope:</b> Admissions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicLevel",
+          "in": "query",
+          "description": "The academic level of the program of study.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the program of study.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "effectiveDate",
+          "in": "query",
+          "description": "The date to filter programs of study that are effective, using the yyyy-mm-dd format.",
+          "required": false,
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "programOfStudyType",
+          "in": "query",
+          "description": "The program type of the program of study.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/values/academicRequirementEvaluation/externalGradingScheme/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves the educational institution grading schemes for the educational institution you specify.\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirement Evaluation\n\n<b>Scope:</b> Admissions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicLevel",
+          "in": "query",
+          "description": "The academic level of the program of study.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the program of study.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "effectiveDate",
+          "in": "query",
+          "description": "The date to filter programs of study that are effective, using the yyyy-mm-dd format.",
+          "required": false,
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "programOfStudyType",
+          "in": "query",
+          "description": "The program type of the program of study.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/academicRequirementEvaluation": {
+      "post": {
+        "tags": [
+          "academicRequirementEvaluation"
+        ],
+        "summary": "Calculates evaluation results for potential transfer credit and academic progress.",
+        "description": "Creates a single evaluation results instance with the specified data.\nIn the request body, specify at least these required fields: primaryProgramOfStudy {id}, {startDate}, transcripts[].\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirement Evaluation\n\n<b>Scope:</b> Admissions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "academicRequirementEvaluation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/academicRequirementEvaluation_8f686916585510000ed2f5f48d1f0000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/academicRequirementEvaluation_8f686916585510000ed2f5f48d1f0000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/academicRequirementEvaluation/programsOfStudy/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves all programs of study. You can filter the programs of study by academic unit, academic level, program type, and effective date.\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirement Evaluation\n\n<b>Scope:</b> Admissions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicLevel",
+          "in": "query",
+          "description": "The academic level of the program of study.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the program of study.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "effectiveDate",
+          "in": "query",
+          "description": "The date to filter programs of study that are effective, using the yyyy-mm-dd format.",
+          "required": false,
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "programOfStudyType",
+          "in": "query",
+          "description": "The program type of the program of study.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "evaluationResults_cfe3b8d39cfd10007858ffc15e2f0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/evaluationResultsOfHypotheticalAcademicProgress_cfe3b8d39cfd1000784d33ac8c400000"
+        },
+        {}
+      ],
+      "description": "The evaluation results for potential transfer credit and academic requirements.",
+      "x-readOnly": true
+    },
+    "programOfStudy_5aaa764b6cd5100014be93c599950000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the primary program of study."
+    },
+    "transcripts_427700a3ff851000209a9ac7d5620000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/hypotheticalTranscript_427700a3ff85100020d3efa3b4e70000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Hypothetical External Transcript (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "additionalProgramsOfStudy_5aaa764b6cd5100014be932b96b50000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/additionalProgramsOfStudy_f876c729a9341000170e349798640000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Program of Study Representation"
+            }
+          }
+        }
+      ]
+    },
+    "academicRequirementEvaluation_8f686916585510000ed2f5f48d1f0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "programOfStudy",
+            "startDate"
+          ],
+          "properties": {
+            "evaluationResults": {
+              "$ref": "#/definitions/evaluationResults_cfe3b8d39cfd10007858ffc15e2f0000"
+            },
+            "programOfStudy": {
+              "$ref": "#/definitions/programOfStudy_5aaa764b6cd5100014be93c599950000"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The hypothetical start date using the yyyy-mm-dd format.",
+              "x-workday-type": "Date"
+            },
+            "transcripts": {
+              "type": "array",
+              "description": "The input external transcripts for evaluation.",
+              "items": {
+                "$ref": "#/definitions/transcripts_427700a3ff851000209a9ac7d5620000"
+              },
+              "x-workday-type": "Multi-instance",
+              "x-conditionally-required": true
+            },
+            "additionalProgramsOfStudy": {
+              "type": "array",
+              "description": "The Workday IDs of the additional programs of study.",
+              "items": {
+                "$ref": "#/definitions/additionalProgramsOfStudy_5aaa764b6cd5100014be932b96b50000"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "grade_0b12603a90f710002182f9ece36f0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The grade received for the registration."
+    },
+    "course_0b12603a90f710002014a80684bd0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The reference of the course for the registration."
+    },
+    "unusedRegistrations_0b12603a90f710002014a76c885d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "units": {
+              "type": "number",
+              "example": 999999.99,
+              "description": "The number of units for the registration.",
+              "x-workday-type": "Numeric"
+            },
+            "reason": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reason why the registration is unused.",
+              "x-workday-type": "Text"
+            },
+            "grade": {
+              "$ref": "#/definitions/grade_0b12603a90f710002182f9ece36f0000"
+            },
+            "course": {
+              "$ref": "#/definitions/course_0b12603a90f710002014a80684bd0000"
+            }
+          }
+        }
+      ]
+    },
+    "course_427700a3ff8510002c95fe9dfd750000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the course."
+    },
+    "gradingScheme_536102b6462010000839a9a646e70003": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the grading scheme on the course record."
+    },
+    "unitType_536102b6462010000839a9a646e70000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the unit type on the course record."
+    },
+    "courseRecord_427700a3ff851000225f55f0695d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "attemptedUnits",
+            "earnedUnits",
+            "grade",
+            "startDate",
+            "unitType"
+          ],
+          "properties": {
+            "grade": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The grade on the course record.",
+              "x-workday-type": "Text"
+            },
+            "gradePoints": {
+              "type": "number",
+              "example": 9.99,
+              "description": "The grade points on the course record.",
+              "x-workday-type": "Numeric",
+              "x-conditionally-required": true
+            },
+            "courseId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The course ID of the course.",
+              "x-workday-type": "Text"
+            },
+            "courseTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The title of the course.",
+              "x-workday-type": "Text"
+            },
+            "course": {
+              "$ref": "#/definitions/course_427700a3ff8510002c95fe9dfd750000"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The start date of the course using the yyyy-mm-dd format.",
+              "x-workday-type": "Date"
+            },
+            "gradingScheme": {
+              "$ref": "#/definitions/gradingScheme_536102b6462010000839a9a646e70003"
+            },
+            "attemptedUnits": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The attempted units on the course record.",
+              "x-workday-type": "Numeric"
+            },
+            "earnedUnits": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The earned units on the course record.",
+              "x-workday-type": "Numeric"
+            },
+            "unitType": {
+              "$ref": "#/definitions/unitType_536102b6462010000839a9a646e70000"
+            }
+          }
+        }
+      ]
+    },
+    "courseworkNotGranted_cfe3b8d39cfd100078c00b09beba0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "courseTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The title of the external course.",
+              "x-workday-type": "Text"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The start date of the external course using the yyyy-mm-dd format.",
+              "x-workday-type": "Date"
+            },
+            "attemptedUnits": {
+              "type": "number",
+              "example": 999999.99,
+              "description": "The attempted units on the external course record.",
+              "x-workday-type": "Numeric"
+            },
+            "grade": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The grade on the external course record.",
+              "x-workday-type": "Text"
+            },
+            "courseId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The course ID of the external course.",
+              "x-workday-type": "Text"
+            },
+            "educationalInstitution": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The educational institution of the external course record.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "educationalInstitution_427700a3ff85100020d3efa3b4e70001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the educational insitution."
+    },
+    "courseRecords_427700a3ff85100022313a7a78e20000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/courseRecord_427700a3ff851000225f55f0695d0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Hypothetical External Course Record (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "hypotheticalTranscript_427700a3ff85100020d3efa3b4e70000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "educationalInstitution"
+          ],
+          "properties": {
+            "educationalInstitution": {
+              "$ref": "#/definitions/educationalInstitution_427700a3ff85100020d3efa3b4e70001"
+            },
+            "courseRecords": {
+              "type": "array",
+              "description": "The course records on the external transcript.",
+              "items": {
+                "$ref": "#/definitions/courseRecords_427700a3ff85100022313a7a78e20000"
+              },
+              "x-workday-type": "Multi-instance",
+              "x-conditionally-required": true
+            }
+          }
+        }
+      ]
+    },
+    "requirementReferences_80fcaed8e08410002bf45c228ca90000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "programAcademicProgress_2fc109c8461a10002ccd9a1a5adc0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "unitsSatisfying": {
+              "type": "number",
+              "example": 999999.999,
+              "description": "The number of units satisfied for the student's hypothetical academic progress for the program of study.",
+              "x-workday-type": "Numeric"
+            },
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The status of the student's hypothetical academic progress for the program of study.",
+              "x-workday-type": "Text"
+            },
+            "remainingSummary": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The remaining number of units to complete the student's academic progress for the program of study.",
+              "x-workday-type": "Text"
+            },
+            "unitsDefined": {
+              "type": "number",
+              "example": 999999.999,
+              "description": "The number of units required for the student's hypothetical academic progress for the program of study.",
+              "x-workday-type": "Numeric"
+            }
+          }
+        }
+      ]
+    },
+    "potentialTransferCredit_01511b5176401000160ee93f7f950000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/transferCredit_01511b51764010001652b0b6788d0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Hypothetical Transfer Credit Registration (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "hypotheticalAcademicProgress_4c9a2a90968810001cfd01d492600000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/hypotheticalAcademicProgress_4c9a2a90968810001cd3327b83ec0000"
+        },
+        {}
+      ],
+      "description": "The hypothetical academic progress for the student."
+    },
+    "noTransferCredit_cfe3b8d39cfd1000784d33ac8c400001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/courseworkNotGranted_cfe3b8d39cfd100078c00b09beba0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student External Transcript Course Record (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "evaluationResultsOfHypotheticalAcademicProgress_cfe3b8d39cfd1000784d33ac8c400000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "noTransferCredit"
+          ],
+          "properties": {
+            "potentialTransferCredit": {
+              "type": "array",
+              "description": "The potential transfer credit from courses on the external transcripts.",
+              "items": {
+                "$ref": "#/definitions/potentialTransferCredit_01511b5176401000160ee93f7f950000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "hypotheticalAcademicProgress": {
+              "$ref": "#/definitions/hypotheticalAcademicProgress_4c9a2a90968810001cfd01d492600000"
+            },
+            "noTransferCredit": {
+              "type": "array",
+              "description": "The courses on the external transcripts that don't have potential transfer credit.",
+              "items": {
+                "$ref": "#/definitions/noTransferCredit_cfe3b8d39cfd1000784d33ac8c400001"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "internalCourse_01511b51764010001652b0b6788d0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the internal course for the potential transfer credit."
+    },
+    "grade_01511b5176401000169bbbf6d3100000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The potential grade of the potential transfer credit."
+    },
+    "originatingCoursework_f7e65e2f3da210002c8b7fbd963d0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/originatingCoursework_f7e65e2f3da210002cf6d94bbc8a0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student External Transcript Course Record (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "transferCredit_01511b51764010001652b0b6788d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "notCountedEquivalentCourse": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, another attempt of an equivalent course counts towards academic progress and GPA calculations, according to the course equivalency group and the course repeat policy.",
+              "x-workday-type": "Boolean"
+            },
+            "internalCourse": {
+              "$ref": "#/definitions/internalCourse_01511b51764010001652b0b6788d0001"
+            },
+            "grade": {
+              "$ref": "#/definitions/grade_01511b5176401000169bbbf6d3100000"
+            },
+            "units": {
+              "type": "number",
+              "example": 999999.99,
+              "description": "The potential units of the potential transfer credit.",
+              "x-workday-type": "Numeric"
+            },
+            "notCountedRepeatCourse": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, another attempt of this internal course counts towards academic progress and GPA calculations, according to the course repeat policy.",
+              "x-workday-type": "Boolean"
+            },
+            "originatingCoursework": {
+              "type": "array",
+              "description": "The courses on the external transcript that have potential transfer credit.",
+              "items": {
+                "$ref": "#/definitions/originatingCoursework_f7e65e2f3da210002c8b7fbd963d0000"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "grade_f1c9598f7a3910001bbb638abbbc0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The grade received for the registration."
+    },
+    "course_f1c9598f7a3910001bbb638abbbc0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The reference of the course for the registration."
+    },
+    "studentRegistrations_f1c9598f7a3910001bbb625408d50000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "grade": {
+              "$ref": "#/definitions/grade_f1c9598f7a3910001bbb638abbbc0001"
+            },
+            "course": {
+              "$ref": "#/definitions/course_f1c9598f7a3910001bbb638abbbc0000"
+            },
+            "units": {
+              "type": "number",
+              "example": 999999.99,
+              "description": "The number of units for the registration.",
+              "x-workday-type": "Numeric"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "additionalProgramsOfStudy_f876c729a9341000170e349798640000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "totalAcademicProgress_53899da132c4100018f2f5e1b81a0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/totalAcademicProgress_53899da132c41000191ba286c94f0000"
+        },
+        {}
+      ],
+      "description": "The summary of the student's hypothetical academic progress."
+    },
+    "programAcademicProgressSummary_4c9a2a90968810001f0935d9a14d0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/programAcademicProgressSummary_806b1fb298ef1000545029b7c3630000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Hypothetical Program Academic Progress Result"
+            }
+          }
+        }
+      ]
+    },
+    "academicRequirementAreas_ac5a10c8c57010001e5dd235d7c80000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicRequirementAreas_d18a0f7a87461000080b72a66fea0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Requirement Area Assignment (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "unusedRegistrations_0b12603a90f710002015eb10073e0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/unusedRegistrations_0b12603a90f710002014a76c885d0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Registration"
+            }
+          }
+        }
+      ]
+    },
+    "hypotheticalAcademicProgress_4c9a2a90968810001cd3327b83ec0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "totalAcademicProgress": {
+              "$ref": "#/definitions/totalAcademicProgress_53899da132c4100018f2f5e1b81a0000"
+            },
+            "programAcademicProgressSummary": {
+              "type": "array",
+              "description": "The evaluation of the hypothetical academic progress for the program of study for the student.",
+              "items": {
+                "$ref": "#/definitions/programAcademicProgressSummary_4c9a2a90968810001f0935d9a14d0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "academicRequirementAreas": {
+              "type": "array",
+              "description": "The academic requirement areas for the academic unit and level or program of study.",
+              "items": {
+                "$ref": "#/definitions/academicRequirementAreas_ac5a10c8c57010001e5dd235d7c80000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "cumulativeGPA": {
+              "type": "number",
+              "example": 999.999999,
+              "description": "The hypothetical cumulative GPA for the student.",
+              "x-workday-type": "Numeric"
+            },
+            "unusedRegistrations": {
+              "type": "array",
+              "description": "The registrations that aren't used to satisfy any academic requirements for the student.",
+              "items": {
+                "$ref": "#/definitions/unusedRegistrations_0b12603a90f710002015eb10073e0000"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "configuredFor_806b1fb298ef100055f5eb3643e00000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The node of the academic structure that the academic requirements are configured for. Example: Academic unit and level, academic area, or program of study."
+    },
+    "requirementsEffective_806b1fb298ef100055f5ea9c8eab0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "configuredFor": {
+              "$ref": "#/definitions/configuredFor_806b1fb298ef100055f5eb3643e00000"
+            },
+            "effectiveOn": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date that determines the academic requirements that are effective for the student, using the yyyy-mm-dd format.",
+              "x-workday-type": "Date"
+            }
+          }
+        }
+      ]
+    },
+    "eligibilityRule_71c60e6737e310001f3b6763b0e00000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "meaning": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The meaning of the eligibility rule for the academic requirement.",
+              "x-workday-type": "Rich Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Student Eligibility Rule"
+            }
+          }
+        }
+      ]
+    },
+    "programOfStudy_806b1fb298ef1000545029b7c3630001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The program of study used to evaluate the hypothetical academic progress for the student."
+    },
+    "requirementsEffective_806b1fb298ef100055f6f2a749e80000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/requirementsEffective_806b1fb298ef100055f5ea9c8eab0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Requirements Effective Line (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "requirementsNotAssigned_80fcaed8e08410002bdec371566e0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/requirementReferences_80fcaed8e08410002bf45c228ca90000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Requirement"
+            }
+          }
+        }
+      ]
+    },
+    "programAcademicProgress_2fc109c8461a10002ca07b219eac0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/programAcademicProgress_2fc109c8461a10002ccd9a1a5adc0000"
+        },
+        {}
+      ],
+      "description": "The summary of the student's hypothetical academic progress for the program of study."
+    },
+    "academicRequirements_985562b789761000222d629e57070000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicRequirementAssignment_985562b7897610002283ae0441750000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Academic Requirement Assignment (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "programAcademicProgressSummary_806b1fb298ef1000545029b7c3630000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "programGpa": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The hypothetical GPA for the program of study for the student.",
+              "x-workday-type": "Numeric"
+            },
+            "programOfStudy": {
+              "$ref": "#/definitions/programOfStudy_806b1fb298ef1000545029b7c3630001"
+            },
+            "requirementsEffective": {
+              "type": "array",
+              "description": "The configuration of the academic requirements that apply to the student.",
+              "items": {
+                "$ref": "#/definitions/requirementsEffective_806b1fb298ef100055f6f2a749e80000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "requirementsNotAssigned": {
+              "type": "array",
+              "description": "The academic requirements that aren't assigned to the prospect.",
+              "items": {
+                "$ref": "#/definitions/requirementsNotAssigned_80fcaed8e08410002bdec371566e0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "programAcademicProgress": {
+              "$ref": "#/definitions/programAcademicProgress_2fc109c8461a10002ca07b219eac0000"
+            },
+            "academicRequirements": {
+              "type": "array",
+              "description": "The assigned academic requirements for the student.",
+              "items": {
+                "$ref": "#/definitions/academicRequirements_985562b789761000222d629e57070000"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "educationalInstitution_f7e65e2f3da210002cf6d9e561780000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the educational institution of the external course record."
+    },
+    "course_f7e65e2f3da210002da7f26734440000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the external course."
+    },
+    "originatingCoursework_f7e65e2f3da210002cf6d94bbc8a0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "educationalInstitution": {
+              "$ref": "#/definitions/educationalInstitution_f7e65e2f3da210002cf6d9e561780000"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The start date of the external course using the yyyy-mm-dd format.",
+              "x-workday-type": "Date"
+            },
+            "courseTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The title of the external course.",
+              "x-workday-type": "Text"
+            },
+            "course": {
+              "$ref": "#/definitions/course_f7e65e2f3da210002da7f26734440000"
+            }
+          }
+        }
+      ]
+    },
+    "requirementArea_d18a0f7a87461000080b72a66fea0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The reference of the academic requirement area."
+    },
+    "remainingRequirements_d18a0f7a874610000d41b951b17d0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/requirementReferences_80fcaed8e08410002bf45c228ca90000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Requirement"
+            }
+          }
+        }
+      ]
+    },
+    "academicRequirementAreas_d18a0f7a87461000080b72a66fea0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "requirementArea": {
+              "$ref": "#/definitions/requirementArea_d18a0f7a87461000080b72a66fea0001"
+            },
+            "remainingRequirements": {
+              "type": "array",
+              "description": "The academic requirements for the academic requirement area that are not fully satisfied.",
+              "items": {
+                "$ref": "#/definitions/remainingRequirements_d18a0f7a874610000d41b951b17d0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The status of the progress for the academic requirement area.",
+              "x-workday-type": "Text"
+            },
+            "unitsDefined": {
+              "type": "number",
+              "example": 999999.999,
+              "description": "The number of units configured for the academic requirement area assigned to the student.",
+              "x-workday-type": "Numeric"
+            },
+            "remainingRequiredUnits": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The number of units remaining for the student to satisfy the academic requirement area.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "registrationsSatisfying_4ca101346e1e10001ae2d4235ad90000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/studentRegistrations_f1c9598f7a3910001bbb625408d50000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Registration"
+            }
+          }
+        }
+      ]
+    },
+    "eligibilityRule_985562b78976100022a7088e8ef30000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/eligibilityRule_71c60e6737e310001f3b6763b0e00000"
+        },
+        {}
+      ],
+      "description": "The eligibility rule for the academic requirement."
+    },
+    "academicRequirement_985562b7897610002283ae0441750001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The academic requirement for the student."
+    },
+    "academicRequirementAssignment_985562b7897610002283ae0441750000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "registrationsSatisfying": {
+              "type": "array",
+              "description": "The registrations satisfying the academic requirement for the student.",
+              "items": {
+                "$ref": "#/definitions/registrationsSatisfying_4ca101346e1e10001ae2d4235ad90000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The status of the completion of the academic requirement for the student.",
+              "x-workday-type": "Text"
+            },
+            "remaining": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The remaining units, registrations, or activities required to satisfy the academic requirement.",
+              "x-workday-type": "Text"
+            },
+            "eligibilityRule": {
+              "$ref": "#/definitions/eligibilityRule_985562b78976100022a7088e8ef30000"
+            },
+            "academicRequirement": {
+              "$ref": "#/definitions/academicRequirement_985562b7897610002283ae0441750001"
+            }
+          }
+        }
+      ]
+    },
+    "totalAcademicProgress_53899da132c41000191ba286c94f0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "remainingSummary": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The remaining number of units to complete the academic progress for the student.",
+              "x-workday-type": "Text"
+            },
+            "unitsDefined": {
+              "type": "number",
+              "example": 999999.999,
+              "description": "The number of units defined for the Total Academic Requirement for the student.",
+              "x-workday-type": "Numeric"
+            },
+            "unitsSatisfying": {
+              "type": "number",
+              "example": 999999.999,
+              "description": "The number of units earned from completed courses that are used toward the total academic requirement of the student.",
+              "x-workday-type": "Numeric"
+            },
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The status of the student's hypothetical academic progress.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

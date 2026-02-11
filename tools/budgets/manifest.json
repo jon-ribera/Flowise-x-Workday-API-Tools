@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Budgets-RunBudgetCheck-POST-postRunBudgetCheck",
+    "description": "[Budgets] POST /runBudgetCheck — Creates a budget check for transactions.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/runBudgetCheck",
+    "operationId": null,
+    "file": "Budgets-RunBudgetCheck-POST-postRunBudgetCheck.js"
+  }
+]

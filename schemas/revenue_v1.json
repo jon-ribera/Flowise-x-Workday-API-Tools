@@ -1,0 +1,1019 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The revenue service enables applications to access Workday Financials Revenue data.",
+    "version": "v1",
+    "title": "revenue",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "ba74f44bc90e107329f63af2c0a7003f"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/revenue/v1",
+  "tags": [
+    {
+      "name": "billableTransactions",
+      "description": "All Billable Transactions not invoiced in Workday."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/billableTransactions/{ID}/billingRateApplication": {
+      "get": {
+        "tags": [
+          "billableTransactions"
+        ],
+        "summary": "Retrieves a collection of billing rate applications for the specified billable transaction.",
+        "description": "Retrieves all billing rate applications for the specified billable project transaction.\n\n<b>Secured by:</b> Manage: Project Details, Process: Project Billing - View\n\n<b>Scope:</b> Project Billing, Project Tracking",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/billingRateApplication_3d4d69e01dcc10001665940600ca00a1"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/billableTransactions/{ID}": {
+      "get": {
+        "tags": [
+          "billableTransactions"
+        ],
+        "summary": "Retrieves a single billable transaction instance.",
+        "description": "Retrieves a billable project transaction with the specified ID.\n\n<b>Secured by:</b> Manage: Project Details, Process: Project Billing - View\n\n<b>Scope:</b> Project Billing, Project Tracking",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/viewBillableTransaction_8ddea882065e100006b6b409b1b4008e"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA37 | Request doesn't contain valid Document_Status_ID, use Awaiting Review, Ready to Bill, On Hold, or Do Not Bill.\nA49 | You can't modify amounts on transactions with a Billed status.\nA55 | You can't modify amounts on transactions with a Do Not Bill status.\nA71 | You can't modify amounts on transactions with a Approval In Process status.\nA1383 | You can't update transactions with a Closed status",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "patch": {
+        "tags": [
+          "billableTransactions"
+        ],
+        "summary": "Partially updates an existing billable transaction instance.",
+        "description": "Partially updates an existing billable project transaction instance with the specified ID and the specified data in the request body.\n\nThis endpoint is equivalent to the Manage Project Billing Transactions task in Workday.\n\n<b>Secured by:</b> Manage: Project Details, Process: Project Billing - Core\n\n<b>Scope:</b> Project Billing, Project Tracking",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "editBillableTransaction",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/editBillableTransaction_8ddea882065e100013bba4b3308300b4"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/editBillableTransaction_8ddea882065e100013bba4b3308300b4"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA37 | Request doesn't contain valid Document_Status_ID, use Awaiting Review, Ready to Bill, On Hold, or Do Not Bill.\nA49 | You can't modify amounts on transactions with a Billed status.\nA55 | You can't modify amounts on transactions with a Do Not Bill status.\nA71 | You can't modify amounts on transactions with a Approval In Process status.\nA1383 | You can't update transactions with a Closed status",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/billableTransactions/{ID}/billingRateApplication/{subresourceID}": {
+      "get": {
+        "tags": [
+          "billableTransactions"
+        ],
+        "summary": "Retrieves a single billing rate application instance.",
+        "description": "Retrieves a billing rate application with the specified subresource ID for the specified billable project transaction.\n\n<b>Secured by:</b> Manage: Project Details, Process: Project Billing - View\n\n<b>Scope:</b> Project Billing, Project Tracking",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/billingRateApplication_3d4d69e01dcc10001665940600ca00a1"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/billableTransactions": {
+      "get": {
+        "tags": [
+          "billableTransactions"
+        ],
+        "summary": "Retrieves a collection of billable transactions.",
+        "description": "Retrieves all billable project transactions.\n\nYou must filter the billable transactions by one of the following: customer {id}, project {id}, or transactionSource {id}.\n\n<b>Secured by:</b> Manage: Project Details, Process: Project Billing - View\n\n<b>Scope:</b> Project Billing, Project Tracking",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "billingStatus",
+            "in": "query",
+            "description": "Filters the billable transactions by status. Specify the Workday ID of the status. You can specify multiple status query parameters.\n\nValid values:\n\n* 3d46fe27ed464f9aaaddcd510731c5f0 - Approval In Process\n\n* b8f58d21282249c9b8ad2391adb3ef9d - Awaiting Review\n\n* 62a1b884a62d448899b34628026efcae - Billed\n\n* 275424eaf82743ed8d17d755cd8d91a7 - Billing In Progress\n\n* 743da2a9c0fc45d0843702e7385a79ff - Do Not Bill\n\n* 2cc0607f96b4433f860134953788caab - On Hold\n\n* 46328a05acf110000b5601a2b76a008b - Partially Billed\n\n* 8c4f33a55c774494a07ec40dd3b6b44f - Ready To Bill\n\n* aeb6a01a4a8a4a2780582fc5c665ef57 - Unbillable",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "customer",
+            "in": "query",
+            "description": "The Workday ID of the customer associated with the project for the billable transaction. To get a valid ID, you can call GET /customers in the Customer Accounts REST service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "description": "Filters the billable transactions with transaction date on or after the specified date. Use the yyyy-mm-dd format.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "phase",
+            "in": "query",
+            "description": "The Workday ID of the project phase associated with the billable transaction for the time entry. To get a valid ID, call GET /planPhases in the Projects REST service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "project",
+            "in": "query",
+            "description": "The Workday ID of the project associated with the billable transactions. To get a valid ID, you can call GET /projects in the Projects REST service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "spendCategory",
+            "in": "query",
+            "description": "The Workday ID of the spend category for the billable transaction associated with the expense report line.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "task",
+            "in": "query",
+            "description": "The Workday ID of the project task associated with the billable transaction for the time entry.  To get a valid ID, call GET /planTasks in the Projects REST service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "timeCode",
+            "in": "query",
+            "description": "The Workday ID of the time code for the billable transaction associated with the time entry.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "description": "Filters the billable transactions with transaction date on or before the specified date. Use the yyyy-mm-dd format.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "transactionSource",
+            "in": "query",
+            "description": "Filters the billable transactions by transaction source. Specify the Workday ID of the transaction source.\n\nValid values:\n\n* 3c4a245325f44745b13a4553c4810524 - Expense\n\n* 381908377f9c100005d7078e86a2003e - Misc Expense\n\n* 6b404c3fa9f34512b0490da5f4237573 - Supplier Invoice\n\n* 7a55a775b63b4b9b8a5b3722fc1e4556 - Time",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "worker",
+            "in": "query",
+            "description": "The Workday ID of the worker associated with the billable transaction. To get a valid ID, call GET /workers in the Staffing service.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/viewBillableTransaction_8ddea882065e100006b6b409b1b4008e"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA37 | Request doesn't contain valid Document_Status_ID, use Awaiting Review, Ready to Bill, On Hold, or Do Not Bill.\nA49 | You can't modify amounts on transactions with a Billed status.\nA55 | You can't modify amounts on transactions with a Do Not Bill status.\nA71 | You can't modify amounts on transactions with a Approval In Process status.\nA1383 | You can't update transactions with a Closed status",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "adjustmentReason_f572211fb69510000af1efb6fc260016": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The purpose for the amount change on this billable transaction."
+    },
+    "billingStatus_32f06174ed841000162d26cfb2160076": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The current billing status of the transaction."
+    },
+    "editBillableTransaction_8ddea882065e100013bba4b3308300b4": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "reasonForChange": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reason for the rate change for the billable transaction.",
+              "x-workday-type": "Text"
+            },
+            "amountToBill": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The amount to bill for a billable transaction, excluding applicable tax.",
+              "x-workday-type": "Currency"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The memo for the project billable transaction.",
+              "x-workday-type": "Text"
+            },
+            "adjustmentReason": {
+              "$ref": "#/definitions/adjustmentReason_f572211fb69510000af1efb6fc260016"
+            },
+            "hoursToBill": {
+              "type": "number",
+              "example": 99999999999.99,
+              "description": "The actual hours available to bill for the billable transaction. Note: This field returns a value if it has any billing recommendation; even Do Not Bill.",
+              "x-workday-type": "Numeric"
+            },
+            "zeroAmountToBill": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the billable transaction has a zero rate.",
+              "x-workday-type": "Boolean"
+            },
+            "billingStatus": {
+              "$ref": "#/definitions/billingStatus_32f06174ed841000162d26cfb2160076"
+            },
+            "rateToBill": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The actual rate that the billable transaction is billed at.",
+              "x-workday-type": "Currency"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Billable Transaction"
+            }
+          }
+        }
+      ]
+    },
+    "billingStatus_8ddea882065e100006b6b42acb1f008f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The current billing status of the transaction."
+    },
+    "category_8ddea882065e100006b6b45cc6c30094": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The spend category for the billable transaction associated with the expense report line."
+    },
+    "expenseDescriptor_24877ab6f6e4100007ceac86316f00ca": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The expense item for the billable transaction associated with the expense report line."
+    },
+    "project_8ddea882065e1000139deaad4d1f00b1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The project associated with the billable transaction."
+    },
+    "transactionSource_8ddea882065e1000139deac2bff700b2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The transaction source for the billable transaction."
+    },
+    "resourceProvider_32ea74fca4f3100013f567a61d010122": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The resource provider for the billable transaction."
+    },
+    "worker_32ea74fca4f310001367ea0391ae0115": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The worker associated with the billable transaction."
+    },
+    "revenueStatus_daf7104c63ca10000acf246aea691263": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The revenue recognition status for this billable transaction."
+    },
+    "customer_6c59ece2a7ed10001ed985eb8bc5011b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The customer associated with the project for the billable transaction."
+    },
+    "projectRole_184b770a949c1000116a331d71ff0020": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The project role for the billable transaction that's associated with a time sheet line or a time block."
+    },
+    "adjustmentReason_184b770a949c1000116a33034b3d001f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The purpose for the amount change on this billable transaction."
+    },
+    "projectTask_184b770a949c1000116a3327928e0021": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The project task associated with the billable transaction for the time entry."
+    },
+    "viewBillableTransaction_8ddea882065e100006b6b409b1b4008e": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "previouslyInvoiced": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the billable transaction has been previously invoiced.",
+              "x-workday-type": "Boolean"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The memo for the project billable transaction.",
+              "x-workday-type": "Text"
+            },
+            "invoiceDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description for the supplier invoice line item, expense report line item, or usage-based transaction.",
+              "x-workday-type": "Text"
+            },
+            "hoursToBill": {
+              "type": "number",
+              "example": 99999999999.99,
+              "description": "The actual hours available to bill for the billable transaction. Note: This field returns a value if it has any billing recommendation; even Do Not Bill.",
+              "x-workday-type": "Numeric"
+            },
+            "zeroAmountToBill": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the billable transaction has a zero rate.",
+              "x-workday-type": "Boolean"
+            },
+            "billableRate": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The original rate to bill the customer.",
+              "x-workday-type": "Currency"
+            },
+            "billingStatus": {
+              "$ref": "#/definitions/billingStatus_8ddea882065e100006b6b42acb1f008f"
+            },
+            "rateToBill": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The actual rate that the billable transaction is billed at.",
+              "x-workday-type": "Currency"
+            },
+            "reasonForChange": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reason for the rate change for the billable transaction.",
+              "x-workday-type": "Text"
+            },
+            "category": {
+              "$ref": "#/definitions/category_8ddea882065e100006b6b45cc6c30094"
+            },
+            "expenseDescriptor": {
+              "$ref": "#/definitions/expenseDescriptor_24877ab6f6e4100007ceac86316f00ca"
+            },
+            "project": {
+              "$ref": "#/definitions/project_8ddea882065e1000139deaad4d1f00b1"
+            },
+            "transactionDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date of the billable transaction.",
+              "x-workday-type": "Date"
+            },
+            "amountToBill": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The amount to bill for a billable transaction, excluding applicable tax.",
+              "x-workday-type": "Currency"
+            },
+            "transactionSource": {
+              "$ref": "#/definitions/transactionSource_8ddea882065e1000139deac2bff700b2"
+            },
+            "resourceProvider": {
+              "$ref": "#/definitions/resourceProvider_32ea74fca4f3100013f567a61d010122"
+            },
+            "billableHours": {
+              "type": "number",
+              "example": 99999999999.99,
+              "description": "The original hours to bill the customer. Note: This field returns a value if it has any billing recommendation; even Do Not Bill.",
+              "x-workday-type": "Numeric"
+            },
+            "worker": {
+              "$ref": "#/definitions/worker_32ea74fca4f310001367ea0391ae0115"
+            },
+            "adjustmentCount": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The count of the billing rate application for the billable transaction.",
+              "x-workday-type": "Numeric"
+            },
+            "revenueStatus": {
+              "$ref": "#/definitions/revenueStatus_daf7104c63ca10000acf246aea691263"
+            },
+            "customer": {
+              "$ref": "#/definitions/customer_6c59ece2a7ed10001ed985eb8bc5011b"
+            },
+            "billableAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The original amount to bill the customer, excluding extended amounts on tax only customer invoices.",
+              "x-workday-type": "Currency"
+            },
+            "projectRole": {
+              "$ref": "#/definitions/projectRole_184b770a949c1000116a331d71ff0020"
+            },
+            "adjustmentReason": {
+              "$ref": "#/definitions/adjustmentReason_184b770a949c1000116a33034b3d001f"
+            },
+            "projectTask": {
+              "$ref": "#/definitions/projectTask_184b770a949c1000116a3327928e0021"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Billable Transaction"
+            }
+          }
+        }
+      ]
+    },
+    "billingRateApplication_3d4d69e01dcc10001665940600ca00a1": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "quantityToBill": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The units applied to the billing rate rule break on this transaction.",
+              "x-workday-type": "Numeric"
+            },
+            "rateStartingAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The starting rate amount, before adjustment for the billable transaction.",
+              "x-workday-type": "Currency"
+            },
+            "rateAdjustmentAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The total rate adjustment amount for the billable transaction.",
+              "x-workday-type": "Currency"
+            },
+            "applicationOrder": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The order of application for the billing rate.",
+              "x-workday-type": "Numeric"
+            },
+            "rateEndingAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The ending rate amount, after adjustment for the billable transaction.",
+              "x-workday-type": "Currency"
+            },
+            "reasonForChange": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The purpose for the change for this billing rate.",
+              "x-workday-type": "Text"
+            },
+            "billingRateRuleType": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The type of rate rule for the billing rate application.",
+              "x-workday-type": "Text"
+            },
+            "ruleName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The billing rate rule name for the billing rate transaction.",
+              "x-workday-type": "Text"
+            },
+            "amountToBill": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The total amount in the base currency of the billing schedule applied to the billing rate rule break of the billable transaction the billing rate application is for.",
+              "x-workday-type": "Currency"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

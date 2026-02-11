@@ -1,0 +1,319 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The graph service enables applications to access Graph API resources.",
+    "version": "v1",
+    "title": "graph",
+    "x-workday-confidence-level": "Production",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "33146819ad1010001dccaf33da510001"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/graph/v1",
+  "tags": [
+    {
+      "name": "versions",
+      "description": "Provides the ability to get version information for Graph API."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/versions": {
+      "get": {
+        "tags": [
+          "versions"
+        ],
+        "summary": "Retrieves all supported Graph API versions.",
+        "description": "Retrieves all supported Graph API versions.\n\n<b>Secured by:</b> REST API Public",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "includeTest",
+            "in": "query",
+            "description": "For Internal Use Only",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/graphApiVersion_b744544b1950100013879375b29d0000"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/versions/{ID}": {
+      "get": {
+        "tags": [
+          "versions"
+        ],
+        "summary": "Retrieves all supported Graph API versions.",
+        "description": "Retrieves all supported Graph API versions.\n\n<b>Secured by:</b> REST API Public",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/graphApiVersion_b744544b1950100013879375b29d0000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "graphApiVersion_b744544b1950100013879375b29d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Version Descriptor",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

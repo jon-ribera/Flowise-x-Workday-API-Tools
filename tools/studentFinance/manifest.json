@@ -1,0 +1,212 @@
+[
+  {
+    "name": "StudentFinance-Students-GET-getStudents",
+    "description": "[Student Finance] GET /students — Retrieves a collection of students.",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "query parameter: academicLevel",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "Derived Academic Units.",
+        "required": false
+      },
+      {
+        "name": "activeOnly",
+        "type": "boolean",
+        "description": "Only return active students.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "programOfStudy",
+        "type": "string",
+        "description": "For students who haven't matriculated, the program of study they either applied to or have been admitted to. For matriculated students, the primary program of study from their reporting record.",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "description": "A fuzzy search string that matches student IDs and names. Example: search=bri%20book returns the student Brian Booker.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/students",
+    "operationId": null,
+    "file": "StudentFinance-Students-GET-getStudents.js"
+  },
+  {
+    "name": "StudentFinance-Students-GET-getStudents_1",
+    "description": "[Student Finance] GET /students/{ID} — Retrieves a student instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}",
+    "operationId": null,
+    "file": "StudentFinance-Students-GET-getStudents_1.js"
+  },
+  {
+    "name": "StudentFinance-Students-GET-getPayments",
+    "description": "[Student Finance] GET /students/{ID}/payments/{subresourceID} — Retrieves a single student payment instance for the specified student ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}/payments/{subresourceID}",
+    "operationId": null,
+    "file": "StudentFinance-Students-GET-getPayments.js"
+  },
+  {
+    "name": "StudentFinance-Students-PATCH-patchPayments",
+    "description": "[Student Finance] PATCH /students/{ID}/payments/{subresourceID} — Partially updates an existing student payment for the student instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/students/{ID}/payments/{subresourceID}",
+    "operationId": null,
+    "file": "StudentFinance-Students-PATCH-patchPayments.js"
+  },
+  {
+    "name": "StudentFinance-Students-GET-getPayments_1",
+    "description": "[Student Finance] GET /students/{ID}/payments — Retrieves a collection of student payments.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "academicPeriod",
+        "type": "string",
+        "description": "The academic period associated with this object. When the object is associated with both a starting and an ending academic period, such as a financial aid period record, this report field returns the starting academic period.",
+        "required": false
+      },
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "Limit student payments to payments made on or after this date, using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "institutionalAcademicUnit",
+        "type": "string",
+        "description": "The academic unit, an organizational type for academic appointments.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "paymentItem",
+        "type": "string",
+        "description": "The student payment item that is associated with the student payment.",
+        "required": false
+      },
+      {
+        "name": "paymentReference",
+        "type": "string",
+        "description": "The check number or EFT number associated with a student payment.",
+        "required": false
+      },
+      {
+        "name": "paymentType",
+        "type": "string",
+        "description": "The payment type for the reporting transaction.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "Limit student payments to payments made on or before this date, using the yyyy-mm-dd format.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}/payments",
+    "operationId": null,
+    "file": "StudentFinance-Students-GET-getPayments_1.js"
+  },
+  {
+    "name": "StudentFinance-Students-POST-postPayments",
+    "description": "[Student Finance] POST /students/{ID}/payments — Creates a student payment.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/students/{ID}/payments",
+    "operationId": null,
+    "file": "StudentFinance-Students-POST-postPayments.js"
+  }
+]

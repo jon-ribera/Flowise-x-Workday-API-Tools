@@ -1,0 +1,1973 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the REST API documentation for Workday Expenses. You can use the APIs and supported operations documented here to extend the functionality of Workday Expenses.",
+    "version": "v1",
+    "title": "expense",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "ba74f44bc90e107329f6385203f2003a"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/expense/v1",
+  "tags": [
+    {
+      "name": "entries",
+      "description": "The Quick Expense that you can create, modify or submit. This can be an expense with a minimal set of fields."
+    },
+    {
+      "name": "expenseItems",
+      "description": "The expense items that can be used on expense report lines."
+    },
+    {
+      "name": "reports",
+      "description": "The expense reports that you can create, modify, or submit."
+    },
+    {
+      "name": "Prompt Values",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/values/bespokePrompt/expenseGroup/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Automated Expenses+TG-TG, Self-Service: Automated Expenses.\n\n<b>Scope:</b> Expenses",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "expenseReportLine",
+          "in": "query",
+          "description": "Specifies the Expense Report Line instance that can be applied as a restriction to expense items.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/reports/{ID}": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Retrieves a single instance of an Expense Report.",
+        "description": "Retrieves details of an Expense Report referenced by its Workday Identifier (WID).\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/reportServiceRepresentation_8a2cd1fe55c610001050b1dcb7ae00c7"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/expenseItems/{ID}": {
+      "get": {
+        "tags": [
+          "expenseItems"
+        ],
+        "summary": "Retrieves a single instance of an expense item.",
+        "description": "Retrieves details of an Expense Item referenced by its Workday Identifier (WID).\n\n<b>Secured by:</b> Access Expense Item (Segmented), View: Expense Item\n\n<b>Scope:</b> Expenses",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/expenseItemsServiceRepresentation_978f4a3fe47110001a3243426e540060"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/entries/{ID}": {
+      "get": {
+        "tags": [
+          "entries"
+        ],
+        "summary": "Retrieves a single instance of a Quick Expense.",
+        "description": "Retrieves a Quick Expense with the specified WID.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/expenseEntryServiceRepresentation_04ce195ed8e1100006b9abb50a91009b"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "put": {
+        "tags": [
+          "entries"
+        ],
+        "summary": "Updates an existing Quick Expense instance.",
+        "description": "Updates an existing Quick Expense instance with the specified WID. Replaces the existing instance with the specified data in the request body.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "entryServicePUTRepresentation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/entryServicePUTRepresentation_66c3ac49ebb710001d691bc579b30022"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating file.",
+            "schema": {
+              "$ref": "#/definitions/entryServicePUTRepresentation_66c3ac49ebb710001d691bc579b30022"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1881 | Select a valid file extension type.\n- | This quick expense cannot be modified because the expense status is not new.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "delete": {
+        "tags": [
+          "entries"
+        ],
+        "description": "Deletes a Quick Expense with the specified WID.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Deleting resource."
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nOnly quick expenses can be deleted.\n\nThis quick expense is on an expense report line and can not be deleted.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "patch": {
+        "tags": [
+          "entries"
+        ],
+        "description": "Partially updates an existing Quick Expense with the specified WID for the fields provided in the request body.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "entryServicePUTRepresentation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/entryServicePUTRepresentation_66c3ac49ebb710001d691bc579b30022"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating file.",
+            "schema": {
+              "$ref": "#/definitions/entryServicePUTRepresentation_66c3ac49ebb710001d691bc579b30022"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1881 | Select a valid file extension type.\n- | This quick expense cannot be modified because the expense status is not new.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/bespokePrompt/expenseItem/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Automated Expenses+TG-TG, Self-Service: Automated Expenses.\n\n<b>Scope:</b> Expenses",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "expenseReportLine",
+          "in": "query",
+          "description": "Specifies the Expense Report Line instance that can be applied as a restriction to expense items.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/reports": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Retrieves a collection of expense reports.",
+        "description": "Retrieves a collection of expense reports. You can filter the reports by memo, status, and date.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "expenseReportMemo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "expenseReportStatus",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/reportServiceRepresentation_8a2cd1fe55c610001050b1dcb7ae00c7"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      },
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "description": "\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "reportPostServiceRepresentation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/reportPostServiceRepresentation_15633761a1ba100008f9c55e17020036"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/reportPostServiceRepresentation_15633761a1ba100008f9c55e17020036"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/reports/{ID}/lines": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Creates a collection of expense report lines.",
+        "description": "Creates an expense report line for an expense report with the specified ID. You can also create lines from Credit Card Transactions, Quick Expenses, or Travel Booking Records.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "postExpenseReportLineRepresentation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/postExpenseReportLineRepresentation_1830200d28b6100004253cd94f0b0025"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/postExpenseReportLineRepresentation_1830200d28b6100004253cd94f0b0025"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nCan only add Expenses to Expense Reports that are in Draft Status\n\nStatus of Credit Card Transaction to be added must be New\n\nStatus of Quick Expense to be added must be New\n\nStatus of Travel Booking Record to be added must be New",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/reports/{ID}/submit": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "description": "\n\n<b>Secured by:</b> Submit Expense Report (REST API)\n\n<b>Scope:</b> Expenses",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "submitExpenseReportRepresentation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/submitExpenseReportRepresentation_104b24418b4010000cbe2b6be1762d9a"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/submitExpenseReportRepresentation_104b24418b4010000cbe2b6be1762d9a"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nCan only submit Expense Reports that are in Draft Status.\n\n[Custom exception message for expense report exception]",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/entries": {
+      "get": {
+        "tags": [
+          "entries"
+        ],
+        "summary": "Retrieves a collection of Quick Expenses.",
+        "description": "Retrieves a collection of Quick Expenses for a user by the date in an ascending order. You can filter the entries by entry type, status, and date.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "entryType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "expenseEntryStatus",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/expenseEntryServiceRepresentation_04ce195ed8e1100006b9abb50a91009b"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "entries"
+        ],
+        "description": "Creates a Quick Expense instance. In the request body, you must specify the required TransactionDate field.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "entryServiceRepresentation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/entryServiceRepresentation_f953826a7423100009260722651a0031"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/entryServiceRepresentation_f953826a7423100009260722651a0031"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1881 | Select a valid file extension type.\n- | Expense transaction date is required.\n- | Receipt scanning is unavailable in your locale. You can still attach your receipt to the quick expense without submitting it for scanning.\n- | There must be exactly 1 attachment for receipt scanning.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/entries/{ID}/attachments": {
+      "post": {
+        "tags": [
+          "entries"
+        ],
+        "summary": "Creates new attachments for the existing expense entry.",
+        "description": "Creates attachments for the existing expense entry with the specified ID. Maximum file size is 32 MB.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "expenseEntryImage",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/expenseEntryImage_0359e103f67510000bc3d59813370009"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/expenseEntryImage_0359e103f67510000bc3d59813370009"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1881 | Select a valid file extension type.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/expenseItems": {
+      "get": {
+        "tags": [
+          "expenseItems"
+        ],
+        "summary": "Retrieves a collection of expense items.",
+        "description": "Retrieves a collection of expense items. When you don't specify the search string, Workday retrieves all expense items.\n\n<b>Secured by:</b> Access Expense Item (Segmented), View: Expense Item\n\n<b>Scope:</b> Expenses",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "disallowFixedItems",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/expenseItemsServiceRepresentation_978f4a3fe47110001a3243426e540060"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "payee_9dcae422ca6e1000129b1e7ba3b50065": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Payee CRF for the Expense Report"
+    },
+    "worktag_9dcae422ca6e100009fb17cb0b99004c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagsRepresentation_9dcae422ca6e10001a79bedac77f00a3"
+        },
+        {}
+      ],
+      "description": "Worktag field for creating expense report"
+    },
+    "company_7debfd10616e100004ba993bbe7f0039": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The company used for Common Financial Dimensions. This is for internal use only on a REST API."
+    },
+    "reportPostServiceRepresentation_15633761a1ba100008f9c55e17020036": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "expenseReportMemo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Memo label to be used for REST API",
+              "x-workday-type": "Text"
+            },
+            "payee": {
+              "$ref": "#/definitions/payee_9dcae422ca6e1000129b1e7ba3b50065"
+            },
+            "worktag": {
+              "$ref": "#/definitions/worktag_9dcae422ca6e100009fb17cb0b99004c"
+            },
+            "creationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Creation Date label to be used for REST API",
+              "x-workday-type": "Date"
+            },
+            "company": {
+              "$ref": "#/definitions/company_7debfd10616e100004ba993bbe7f0039"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "expenseReportStatus_8a2cd1fe55c61000112cf72d4dc900d8": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Status label to be used for REST API"
+    },
+    "reportServiceRepresentation_8a2cd1fe55c610001050b1dcb7ae00c7": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "expenseReportMemo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Memo label to be used for REST API",
+              "x-workday-type": "Text"
+            },
+            "creationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Creation Date label to be used for REST API",
+              "x-workday-type": "Date"
+            },
+            "expenseReportStatus": {
+              "$ref": "#/definitions/expenseReportStatus_8a2cd1fe55c61000112cf72d4dc900d8"
+            },
+            "totalAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "Total Amount for the Expense Report",
+              "x-workday-type": "Currency"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "travelBookingRecord_bace579f29e310000ecf23eea67f00ba": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Travel Booking Record for Expense Report Line"
+    },
+    "expenseItem_dce1c1d299a110000cf4000e5823003c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Expense Item Field of the Expense Report Line"
+    },
+    "quickExpense_bace579f29e310000ef5e3b010ac00c7": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Manual Entry for Expense Report Line"
+    },
+    "creditCardTransaction_bace579f29e310000ee58b02ffcc00c0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Credit Card Transaction for Expense Report Line"
+    },
+    "postExpenseReportLineRepresentation_1830200d28b6100004253cd94f0b0025": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Date the Expense Report Line was created",
+              "x-workday-type": "Date"
+            },
+            "travelBookingRecord": {
+              "$ref": "#/definitions/travelBookingRecord_bace579f29e310000ecf23eea67f00ba"
+            },
+            "expenseItem": {
+              "$ref": "#/definitions/expenseItem_dce1c1d299a110000cf4000e5823003c"
+            },
+            "quickExpense": {
+              "$ref": "#/definitions/quickExpense_bace579f29e310000ef5e3b010ac00c7"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Memo for the Expense Report Line",
+              "x-workday-type": "Text"
+            },
+            "totalAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "Total amount to be reimbursed to the requestee",
+              "x-workday-type": "Currency"
+            },
+            "creditCardTransaction": {
+              "$ref": "#/definitions/creditCardTransaction_bace579f29e310000ee58b02ffcc00c0"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "expenseReport_057f258f13f11000155ba26caf1700e0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Expense Report for Expense Report Event"
+    },
+    "submitExpenseReportRepresentation_104b24418b4010000cbe2b6be1762d9a": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "expenseReport": {
+              "$ref": "#/definitions/expenseReport_057f258f13f11000155ba26caf1700e0"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "expenseItemsServiceRepresentation_978f4a3fe47110001a3243426e540060": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "contentType_0359e103f67510000bc3d7d49e1d000a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Content type of the attachment"
+    },
+    "expenseEntryImage_0359e103f67510000bc3d59813370009": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "fileLength": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "File length of the attachment",
+              "x-workday-type": "Numeric"
+            },
+            "contentType": {
+              "$ref": "#/definitions/contentType_0359e103f67510000bc3d7d49e1d000a"
+            },
+            "fileName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "File name of the attachment",
+              "maxLength": 255,
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "expenseItem_73c1b93c159310000d98116fe03d0012": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Expense Item Entry"
+    },
+    "attachments_ee84b43886b4100009b0d9480ae4128e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/expenseEntryImage_0359e103f67510000bc3d59813370009"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Attachment Representation (Blobitory)"
+            }
+          }
+        }
+      ]
+    },
+    "scanStatus_0855dbb1e2cf1000096a2875ecca0080": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "CRF for reporting OCR scan status in REST API."
+    },
+    "entryServiceRepresentation_f953826a7423100009260722651a0031": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "expenseItem": {
+              "$ref": "#/definitions/expenseItem_73c1b93c159310000d98116fe03d0012"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Date of Expense Entry",
+              "x-workday-type": "Date"
+            },
+            "merchant": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Expense Merchant Name",
+              "x-workday-type": "Text"
+            },
+            "attachments": {
+              "type": "array",
+              "description": "CRF for Entries REST operation to expose Attachment related to Optical Character Recognition",
+              "items": {
+                "$ref": "#/definitions/attachments_ee84b43886b4100009b0d9480ae4128e"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "hasOCRReceipt": {
+              "type": "boolean",
+              "example": true,
+              "description": "Boolean value indicating whether the Mobile Expense has an OCR image.",
+              "x-workday-type": "Boolean"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Memo for the Entry",
+              "x-workday-type": "Text"
+            },
+            "amount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "Amount for Expense Entry",
+              "x-workday-type": "Currency"
+            },
+            "scanStatus": {
+              "$ref": "#/definitions/scanStatus_0855dbb1e2cf1000096a2875ecca0080"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "worktagsRepresentation_9dcae422ca6e10001a79bedac77f00a3": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Accounting Worktag"
+            }
+          }
+        }
+      ]
+    },
+    "attachments_04ce195ed8e1100008202fceb4ac00a1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/expenseEntryImage_0359e103f67510000bc3d59813370009"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Attachment Representation (Blobitory)"
+            }
+          }
+        }
+      ]
+    },
+    "expenseItem_04ce195ed8e1100008202ffbad0800a4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Expense Item Entry"
+    },
+    "expenseEntryStatus_7db380b67cfa100007fce08f3c4200f2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Expense Status"
+    },
+    "entryType_7955a503742f1000117f1e32913906c4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Identifies the class type of the expense instance."
+    },
+    "scanStatus_04ce195ed8e1100008202fa8279800a0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "CRF for reporting OCR scan status in REST API."
+    },
+    "expenseEntryServiceRepresentation_04ce195ed8e1100006b9abb50a91009b": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "attachments": {
+              "type": "array",
+              "description": "CRF for Entries REST operation to expose Attachment related to Optical Character Recognition",
+              "items": {
+                "$ref": "#/definitions/attachments_04ce195ed8e1100008202fceb4ac00a1"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "merchant": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Expense Merchant Name",
+              "x-workday-type": "Text"
+            },
+            "hasOCRReceipt": {
+              "type": "boolean",
+              "example": true,
+              "description": "Boolean value indicating whether the Mobile Expense has an OCR image.",
+              "x-workday-type": "Boolean"
+            },
+            "expenseItem": {
+              "$ref": "#/definitions/expenseItem_04ce195ed8e1100008202ffbad0800a4"
+            },
+            "amount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "Amount for Expense Entry",
+              "x-workday-type": "Currency"
+            },
+            "expenseEntryStatus": {
+              "$ref": "#/definitions/expenseEntryStatus_7db380b67cfa100007fce08f3c4200f2"
+            },
+            "entryType": {
+              "$ref": "#/definitions/entryType_7955a503742f1000117f1e32913906c4"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Memo for the Entry",
+              "x-workday-type": "Text"
+            },
+            "scanStatus": {
+              "$ref": "#/definitions/scanStatus_04ce195ed8e1100008202fa8279800a0"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Date of Expense Entry",
+              "x-workday-type": "Date"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "image_66c3ac49ebb710001d691be881660026": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Image associated with expense entry"
+    },
+    "attachments_275a6001d79c100013bd5915491f12ee": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/expenseEntryImage_0359e103f67510000bc3d59813370009"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Attachment Representation (Blobitory)"
+            }
+          }
+        }
+      ]
+    },
+    "expenseItem_5363b1faa0fa100002082ebc1c20007f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Expense Item Entry"
+    },
+    "entryServicePUTRepresentation_66c3ac49ebb710001d691bc579b30022": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "date"
+          ],
+          "properties": {
+            "image": {
+              "$ref": "#/definitions/image_66c3ac49ebb710001d691be881660026"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Memo for the Entry",
+              "x-workday-type": "Text"
+            },
+            "amount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "Amount for Expense Entry",
+              "x-workday-type": "Currency"
+            },
+            "attachments": {
+              "type": "array",
+              "description": "CRF for Entries REST operation to expose Attachment related to Optical Character Recognition",
+              "items": {
+                "$ref": "#/definitions/attachments_275a6001d79c100013bd5915491f12ee"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "merchant": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Expense Merchant Name",
+              "x-workday-type": "Text"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Date of Expense Entry",
+              "x-workday-type": "Date"
+            },
+            "expenseItem": {
+              "$ref": "#/definitions/expenseItem_5363b1faa0fa100002082ebc1c20007f"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

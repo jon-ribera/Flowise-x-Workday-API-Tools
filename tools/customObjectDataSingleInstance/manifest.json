@@ -1,0 +1,108 @@
+[
+  {
+    "name": "CustomObjectDataSingleInstance-CustomObjects-POST-postCustomObjects",
+    "description": "[Custom Object Data (single-instance)] POST /customObjects/{customObjectAlias} — Create a new, or update an existing instance of a custom object.",
+    "schema": [
+      {
+        "name": "customObjectAlias",
+        "type": "string",
+        "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task.",
+        "required": true
+      },
+      {
+        "name": "updateIfExists",
+        "type": "boolean",
+        "description": "If true, updates the custom object instance if it exists. If false, returns an error if the object exists. The default is false. If the object does not exist, a new object is created regardless of this setting.",
+        "required": false
+      },
+      {
+        "name": "bulk",
+        "type": "boolean",
+        "description": "If true, creates or updates the specified array of custom object instances in the request body. If false, creates the specified custom object instance (without an array). The default is false. ",
+        "required": false
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "The custom object instance to be persisted. If bulk=true, specify a JSON array containing the custom object instances, with a maximum of 100. If bulk=false (default), specify a JSON object.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/customObjects/{customObjectAlias}",
+    "operationId": null,
+    "file": "CustomObjectDataSingleInstance-CustomObjects-POST-postCustomObjects.js"
+  },
+  {
+    "name": "CustomObjectDataSingleInstance-CustomObjects-GET-getCustomObjects",
+    "description": "[Custom Object Data (single-instance)] GET /customObjects/{customObjectAlias}/{customObjectID} — Retrieves a custom object instance.",
+    "schema": [
+      {
+        "name": "customObjectAlias",
+        "type": "string",
+        "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task. ",
+        "required": true
+      },
+      {
+        "name": "customObjectID",
+        "type": "string",
+        "description": "The Workday ID of the extended Workday object instance or the custom object instance.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/customObjects/{customObjectAlias}/{customObjectID}",
+    "operationId": null,
+    "file": "CustomObjectDataSingleInstance-CustomObjects-GET-getCustomObjects.js"
+  },
+  {
+    "name": "CustomObjectDataSingleInstance-CustomObjects-PUT-putCustomObjects",
+    "description": "[Custom Object Data (single-instance)] PUT /customObjects/{customObjectAlias}/{customObjectID} — Updates  a custom object instance.",
+    "schema": [
+      {
+        "name": "customObjectAlias",
+        "type": "string",
+        "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task. ",
+        "required": true
+      },
+      {
+        "name": "customObjectID",
+        "type": "string",
+        "description": "The Workday ID of the extended Workday object instance or the custom object instance.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "The custom object fields to be updated.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/customObjects/{customObjectAlias}/{customObjectID}",
+    "operationId": null,
+    "file": "CustomObjectDataSingleInstance-CustomObjects-PUT-putCustomObjects.js"
+  },
+  {
+    "name": "CustomObjectDataSingleInstance-CustomObjects-DELETE-deleteCustomObjects",
+    "description": "[Custom Object Data (single-instance)] DELETE /customObjects/{customObjectAlias}/{customObjectID} — Deletes a custom object instance.",
+    "schema": [
+      {
+        "name": "customObjectAlias",
+        "type": "string",
+        "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task. ",
+        "required": true
+      },
+      {
+        "name": "customObjectID",
+        "type": "string",
+        "description": "The Workday ID of the extended Workday object instance or the custom object instance.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/customObjects/{customObjectAlias}/{customObjectID}",
+    "operationId": null,
+    "file": "CustomObjectDataSingleInstance-CustomObjects-DELETE-deleteCustomObjects.js"
+  }
+]

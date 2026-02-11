@@ -1,0 +1,1881 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Student Curriculum service enables you to get information about student courses, course subjects and course sections.",
+    "version": "v1",
+    "title": "studentCurriculum",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "de37943cec3c1000220cdcddba4f051e"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/studentCurriculum/v1",
+  "tags": [
+    {
+      "name": "courseSections",
+      "description": "This resource returns all course sections or a collection of course subjects filtered by query parameters."
+    },
+    {
+      "name": "courseSubjects",
+      "description": "This resource returns all course subjects or a collection of course subjects filtered by query parameters."
+    },
+    {
+      "name": "courses",
+      "description": "This resource returns all courses or a collection of course subjects filtered by query parameters."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/courses/{ID}": {
+      "get": {
+        "tags": [
+          "courses"
+        ],
+        "summary": "Retrieves a single course instance.",
+        "description": "Retrieves a course with the specified ID.\n\n<b>Secured by:</b> Manage: Curriculum Management\n\n<b>Scope:</b> Student Records",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/courseDetail_f9288e2e4a831000103b2afacbff0138"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/courseSections": {
+      "get": {
+        "tags": [
+          "courseSections"
+        ],
+        "summary": "Retrieves a collection of course sections.",
+        "description": "Retrieves a collection of course sections.\n\n<b>Secured by:</b> Manage: Curriculum Management\n\n<b>Scope:</b> Student Records",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "academicLevel",
+            "in": "query",
+            "description": "The academic level used by the course section. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicLevels from studentAcademicFoundation service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "academicPeriod",
+            "in": "query",
+            "description": "The starting academic period of the course section. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicPeriods from studentAcademicFoundation service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "campusLocation",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "course",
+            "in": "query",
+            "description": "The course for the course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courses.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "courseSubject",
+            "in": "query",
+            "description": "The subject for the course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courseSubjects.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "deliveryMode",
+            "in": "query",
+            "description": "The delivery mode for the course section.You can specify using the Workday ID or Reference ID. You can use the following values: Correspondence, Hybrid, In-Person, Online, Other Distance Mode.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "instructionalFormat",
+            "in": "query",
+            "description": "The instructional format for the course section. You can specify using the Workday ID or Reference ID. You can use the following values: Clinical, Combination, Discussion, Experiential, Independent Study, Internship, Laboratory, Lecture, Recitation, Research, Seminar, Service Learning, Studio, Thesis, Workshop.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offeringAcademicUnit",
+            "in": "query",
+            "description": "The academic unit that offers this course section. You can specify multiple academicUnit query parameters using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "owningAcademicUnit",
+            "in": "query",
+            "description": "The academic unit that owns this course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "owningInstitutionalAcademicUnit",
+            "in": "query",
+            "description": "The institutional academic unit that owns this course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The section status of the course section. You can specify using the Workday ID or Reference ID. You can use the following values: Preliminary, Open, Closed, Waitlist, Hold, Canceled.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/courseSectionSummary_f9288e2e4a8310000b99e23464f50117"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/courseSections/{ID}": {
+      "get": {
+        "tags": [
+          "courseSections"
+        ],
+        "summary": "Retrieves a single course section instance.",
+        "description": "Retrieves a course section with the specified ID.\n\n<b>Secured by:</b> Manage: Curriculum Management\n\n<b>Scope:</b> Student Records",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/courseSectionDetail_27c28e08896f100009e452cb8c79014c"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/courses": {
+      "get": {
+        "tags": [
+          "courses"
+        ],
+        "summary": "Retrieves a collection of courses.",
+        "description": "Retrieves a collection of courses.\n\n<b>Secured by:</b> Manage: Curriculum Management\n\n<b>Scope:</b> Student Records",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "academicLevel",
+            "in": "query",
+            "description": "The academic level used by the courses. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicLevels from studentAcademicFoundation service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "academicUnit",
+            "in": "query",
+            "description": "The academic unit used by the course. You can specify multiple academicUnit query parameters using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "courseSubject",
+            "in": "query",
+            "description": "The subject for the course. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courseSubjects.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "effectiveDate",
+            "in": "query",
+            "description": "The effective date of the Course's effective-dated fields: competencies, academicLevel, typicalPeriodsOffered, academicUnits, allowedLocations, owningInstitutionalAcademicUnit, tags, description, eligibilityRule, instructionalFormats, learningOutcomes, and title. Format for input is as such: YYYY-MM-DD.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "institutionalAcademicUnit",
+            "in": "query",
+            "description": "The institution academic unit used by the courses. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/courseSummary_f9288e2e4a831000161d7de7881f0178"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/courseSubjects": {
+      "get": {
+        "tags": [
+          "courseSubjects"
+        ],
+        "description": "Retrieves a collection of course subjects.\n\n<b>Secured by:</b> Manage: Curriculum Management\n\n<b>Scope:</b> Student Records",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "inactive",
+            "in": "query",
+            "description": "Indicates if a Course Subject is inactive.",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "institutionalAcademicUnit",
+            "in": "query",
+            "description": "The Institution Academic Units.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/courseSubject_cb9016d7f65210002a5204bf01f400fe"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/courseSubjects/{ID}": {
+      "get": {
+        "tags": [
+          "courseSubjects"
+        ],
+        "description": "Retrieves a collection of course subjects.\n\n<b>Secured by:</b> Manage: Curriculum Management\n\n<b>Scope:</b> Student Records",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/courseSubject_cb9016d7f65210002a5204bf01f400fe"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "instructionalFormat_27c28e08896f100009e4535bcf240151": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The instructional format for the course section.You can specify using the Workday ID or Reference ID. You can use the following values: Clinical, Combination, Discussion, Experiential, Independent Study, Internship, Laboratory, Lecture, Recitation, Research, Seminar, Service Learning, Studio, Thesis, Workshop."
+    },
+    "components_27c28e08896f100009e4534d8b10014f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/courseSectionComponent_27c28e08896f100010c183252ae70178"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Section Component"
+            }
+          }
+        }
+      ]
+    },
+    "cluster_27c28e08896f1000124e5b8766d30180": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Course Section Cluster the Course Section is a part of"
+    },
+    "learningOutcomes_27c28e08896f10001743bdbd47b501d9": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/learningOutcome_27c28e08896f1000170fbf6dc42b0195"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Outcome"
+            }
+          }
+        }
+      ]
+    },
+    "academicPeriod_27c28e08896f100009e45328a70a014d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The starting academic period of the course section. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicPeriods from studentAcademicFoundation service."
+    },
+    "owningInstitutionalAcademicUnit_27c28e08896f1000124e5bc4ad520184": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {}
+      ],
+      "description": "The institutional academic unit that owns this course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service."
+    },
+    "courseSubject_27c28e08896f100009e45395f1920155": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The subject for the course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courseSubjects."
+    },
+    "campusLocations_27c28e08896f100009e453afddb70159": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/locationRepresentation_dc1471014374100024bfba7527b403d2"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Location"
+            }
+          }
+        }
+      ]
+    },
+    "status_27c28e08896f100009e45334a0eb014e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The section status of the course section. You can specify using the Workday ID or Reference ID. You can use the following values: Preliminary, Open, Closed, Waitlist, Hold, Canceled."
+    },
+    "eligibilityRule_27c28e08896f1000124e5b9e0b480181": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/eligibilityRule_55f30e0afafa10001a4ac1a92138029a"
+        },
+        {}
+      ],
+      "description": "The Student Eligibility Rule for Course Section"
+    },
+    "tags_27c28e08896f100009e4538eeeeb0154": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/courseTag_27c28e08896f10000f706951e7a5015f"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Course Tag"
+            }
+          }
+        }
+      ]
+    },
+    "deliveryMode_27c28e08896f100009e4537a44010153": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The delivery mode for the course section.You can specify using the Workday ID or Reference ID. You can use the following values: Correspondence, Hybrid, In-Person, Online, Other Distance Mode."
+    },
+    "academicLevel_27c28e08896f100009e453b616f4015a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The academic level used by the course section. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicLevels from studentAcademicFoundation service."
+    },
+    "owningAcademicUnit_27c28e08896f1000124e5bbbf4340183": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {}
+      ],
+      "description": "The academic unit that owns this course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service."
+    },
+    "instuctors_27c28e08896f100009e45355098d0150": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/instructor_4409652f281910002c1226dc856a0120"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Appointee"
+            }
+          }
+        }
+      ]
+    },
+    "course_27c28e08896f100009e453a9390a0158": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The course for the course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courses."
+    },
+    "offeringAcademicUnits_27c28e08896f1000124e5bb3ae720182": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Unit  \nExample(s): Academic_Unit_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "competencies_27c28e08896f1000124e5b5b1a55017e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/competency_dc1471014374100012d80a8e3abb022c"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for \\~Competency\\~"
+            }
+          }
+        }
+      ]
+    },
+    "courseSectionDetail_27c28e08896f100009e452cb8c79014c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "instructionalFormat": {
+              "$ref": "#/definitions/instructionalFormat_27c28e08896f100009e4535bcf240151"
+            },
+            "components": {
+              "type": "array",
+              "description": "The location and meeting pattern for the course section. When a course section has more than 1 location and meeting pattern, the components are displayed chronologically.",
+              "items": {
+                "$ref": "#/definitions/components_27c28e08896f100009e4534d8b10014f"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "cluster": {
+              "$ref": "#/definitions/cluster_27c28e08896f1000124e5b8766d30180"
+            },
+            "learningOutcomes": {
+              "type": "array",
+              "description": "The Learning Outcomes that can be earned through this course section.",
+              "items": {
+                "$ref": "#/definitions/learningOutcomes_27c28e08896f10001743bdbd47b501d9"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "academicPeriod": {
+              "$ref": "#/definitions/academicPeriod_27c28e08896f100009e45328a70a014d"
+            },
+            "owningInstitutionalAcademicUnit": {
+              "$ref": "#/definitions/owningInstitutionalAcademicUnit_27c28e08896f1000124e5bc4ad520184"
+            },
+            "courseSubject": {
+              "$ref": "#/definitions/courseSubject_27c28e08896f100009e45395f1920155"
+            },
+            "campusLocations": {
+              "type": "array",
+              "description": "Campus Locations at which the Course Section is offered.",
+              "items": {
+                "$ref": "#/definitions/campusLocations_27c28e08896f100009e453afddb70159"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "capacity": {
+              "type": "integer",
+              "example": "34",
+              "description": "The enrollment capacity for the course section.",
+              "x-workday-type": "Numeric"
+            },
+            "status": {
+              "$ref": "#/definitions/status_27c28e08896f100009e45334a0eb014e"
+            },
+            "eligibilityRule": {
+              "$ref": "#/definitions/eligibilityRule_27c28e08896f1000124e5b9e0b480181"
+            },
+            "tags": {
+              "type": "array",
+              "description": "These are the Course Tags for the Course Section.",
+              "items": {
+                "$ref": "#/definitions/tags_27c28e08896f100009e4538eeeeb0154"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "deliveryMode": {
+              "$ref": "#/definitions/deliveryMode_27c28e08896f100009e4537a44010153"
+            },
+            "academicLevel": {
+              "$ref": "#/definitions/academicLevel_27c28e08896f100009e453b616f4015a"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2020-01-06T13:00:00.000Z",
+              "description": "The Start Date of the Course Section",
+              "x-workday-type": "Date"
+            },
+            "hidden": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if the Course Section is set as hidden.",
+              "x-workday-type": "Boolean"
+            },
+            "owningAcademicUnit": {
+              "$ref": "#/definitions/owningAcademicUnit_27c28e08896f1000124e5bbbf4340183"
+            },
+            "instuctors": {
+              "type": "array",
+              "description": "Instructors for the Course Section.",
+              "items": {
+                "$ref": "#/definitions/instuctors_27c28e08896f100009e45355098d0150"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "course": {
+              "$ref": "#/definitions/course_27c28e08896f100009e453a9390a0158"
+            },
+            "endDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2020-05-15T12:00:00.000Z",
+              "description": "The End Date of the Course Section",
+              "x-workday-type": "Date"
+            },
+            "offeringAcademicUnits": {
+              "type": "array",
+              "description": "The academic unit that offers this course section. You can specify multiple academicUnit query parameters using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+              "items": {
+                "$ref": "#/definitions/offeringAcademicUnits_27c28e08896f1000124e5bb3ae720182"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "competencies": {
+              "type": "array",
+              "description": "The \\~Competencies\\~ that can be earned through this course section.",
+              "items": {
+                "$ref": "#/definitions/competencies_27c28e08896f1000124e5b5b1a55017e"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "owningAcademicUnit_f9288e2e4a8310000b99e278c37c0126": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {}
+      ],
+      "description": "The academic unit that owns this course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service."
+    },
+    "status_f9288e2e4a8310000b99e26ec1ab0122": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The section status of the course section. You can specify using the Workday ID or Reference ID. You can use the following values: Preliminary, Open, Closed, Waitlist, Hold, Canceled."
+    },
+    "academicLevel_f9288e2e4a8310000b99e2c355c6012c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The academic level used by the course section. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicLevels from studentAcademicFoundation service."
+    },
+    "owningInstitutionalAcademicUnit_f9288e2e4a8310000b99e2763bb80125": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {}
+      ],
+      "description": "The institutional academic unit that owns this course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service."
+    },
+    "deliveryMode_61c908f25efc100014e1f39ee7480117": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The delivery mode for the course section.You can specify using the Workday ID or Reference ID. You can use the following values: Correspondence, Hybrid, In-Person, Online, Other Distance Mode."
+    },
+    "courseSubject_f9288e2e4a8310000b99e2605143011b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The subject for the course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courseSubjects."
+    },
+    "course_f9288e2e4a8310000b99e24c4ba90118": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The course for the course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courses."
+    },
+    "academicPeriod_f9288e2e4a8310000b99e271e2950123": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The starting academic period of the course section. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicPeriods from studentAcademicFoundation service."
+    },
+    "offeringAcademicUnits_f9288e2e4a8310000b99e27af1830127": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Unit  \nExample(s): Academic_Unit_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "campusLocations_1fb8f88068e2100017f830bbcf9052f4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/locationRepresentation_dc1471014374100024bfba7527b403d2"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Location"
+            }
+          }
+        }
+      ]
+    },
+    "instructionalFormat_f9288e2e4a8310000be08c6247a30131": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The instructional format for the course section. You can specify using the Workday ID or Reference ID. You can use the following values: Clinical, Combination, Discussion, Experiential, Independent Study, Internship, Laboratory, Lecture, Recitation, Research, Seminar, Service Learning, Studio, Thesis, Workshop."
+    },
+    "courseSectionSummary_f9288e2e4a8310000b99e23464f50117": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "owningAcademicUnit": {
+              "$ref": "#/definitions/owningAcademicUnit_f9288e2e4a8310000b99e278c37c0126"
+            },
+            "status": {
+              "$ref": "#/definitions/status_f9288e2e4a8310000b99e26ec1ab0122"
+            },
+            "academicLevel": {
+              "$ref": "#/definitions/academicLevel_f9288e2e4a8310000b99e2c355c6012c"
+            },
+            "owningInstitutionalAcademicUnit": {
+              "$ref": "#/definitions/owningInstitutionalAcademicUnit_f9288e2e4a8310000b99e2763bb80125"
+            },
+            "deliveryMode": {
+              "$ref": "#/definitions/deliveryMode_61c908f25efc100014e1f39ee7480117"
+            },
+            "courseSubject": {
+              "$ref": "#/definitions/courseSubject_f9288e2e4a8310000b99e2605143011b"
+            },
+            "course": {
+              "$ref": "#/definitions/course_f9288e2e4a8310000b99e24c4ba90118"
+            },
+            "academicPeriod": {
+              "$ref": "#/definitions/academicPeriod_f9288e2e4a8310000b99e271e2950123"
+            },
+            "offeringAcademicUnits": {
+              "type": "array",
+              "description": "The academic unit that offers this course section. You can specify multiple academicUnit query parameters using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+              "items": {
+                "$ref": "#/definitions/offeringAcademicUnits_f9288e2e4a8310000b99e27af1830127"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "campusLocations": {
+              "type": "array",
+              "description": "Campus Locations at which the Course Section is offered.",
+              "items": {
+                "$ref": "#/definitions/campusLocations_1fb8f88068e2100017f830bbcf9052f4"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "instructionalFormat": {
+              "$ref": "#/definitions/instructionalFormat_f9288e2e4a8310000be08c6247a30131"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "institutionalAcademicUnits_cb9016d7f65210002a520514195b0103": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Unit  \nExample(s): Academic_Unit_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "courseSubject_cb9016d7f65210002a5204bf01f400fe": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "abbreviation": {
+              "type": "string",
+              "example": "ACCT",
+              "description": "The abbreviation for a Course Subject.",
+              "x-workday-type": "Text"
+            },
+            "institutionalAcademicUnits": {
+              "type": "array",
+              "description": "The Institution Academic Units.",
+              "items": {
+                "$ref": "#/definitions/institutionalAcademicUnits_cb9016d7f65210002a520514195b0103"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicates if a Course Subject is inactive.",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "competencies_f9288e2e4a83100011bfc3f43478015b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/competency_dc1471014374100012d80a8e3abb022c"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for \\~Competency\\~"
+            }
+          }
+        }
+      ]
+    },
+    "institutionalAcademicUnit_f9288e2e4a831000120a068ab6b70162": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {}
+      ],
+      "description": "The institution academic unit used by the courses.You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service."
+    },
+    "learningOutcomes_f9288e2e4a83100011bfc3ff0923015c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/learningOutcome_27c28e08896f1000170fbf6dc42b0195"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Outcome"
+            }
+          }
+        }
+      ]
+    },
+    "tags_f9288e2e4a83100011bfc3deeb0f015a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/courseTag_27c28e08896f10000f706951e7a5015f"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Course Tag"
+            }
+          }
+        }
+      ]
+    },
+    "academicUnits_f9288e2e4a831000103b2b8865e30140": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Unit  \nExample(s): Academic_Unit_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "typicalPeriodsOffered_f9288e2e4a831000103b2b9e92e40141": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicPeriodType_dc14710143741000134c86d58ca50230"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Period Type"
+            }
+          }
+        }
+      ]
+    },
+    "instructionalFormats_f9288e2e4a831000103b2b50259b013a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/instructionalFormat_f9288e2e4a83100010110605d8180136"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Instructional Format"
+            }
+          }
+        }
+      ]
+    },
+    "academicLevel_f9288e2e4a831000103b2bc664770142": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicLevel_e225e3becd72100016fcd384ba1901f4"
+        },
+        {}
+      ],
+      "description": "The academic level used by the courses. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicLevels from studentAcademicFoundation service."
+    },
+    "courseSubject_f9288e2e4a831000103b2b74d3c9013d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The subject for the course. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courseSubjects."
+    },
+    "allowedLocations_f9288e2e4a831000103b2b811123013f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/locationRepresentation_dc1471014374100024bfba7527b403d2"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Location"
+            }
+          }
+        }
+      ]
+    },
+    "eligibilityRule_f9288e2e4a831000103b2b5881da013b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/eligibilityRule_55f30e0afafa10001a4ac1a92138029a"
+        },
+        {}
+      ],
+      "description": "The rule that determines if a Student is able to enroll in a course."
+    },
+    "courseDetail_f9288e2e4a831000103b2afacbff0138": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "competencies": {
+              "type": "array",
+              "description": "The \\~Competencies\\~ that can be earned through this course.",
+              "items": {
+                "$ref": "#/definitions/competencies_f9288e2e4a83100011bfc3f43478015b"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "listingNumber": {
+              "type": "string",
+              "example": "101",
+              "description": "The course number of the course listing.",
+              "x-workday-type": "Text"
+            },
+            "institutionalAcademicUnit": {
+              "$ref": "#/definitions/institutionalAcademicUnit_f9288e2e4a831000120a068ab6b70162"
+            },
+            "learningOutcomes": {
+              "type": "array",
+              "description": "The Learning Outcomes that can be earned through this course.",
+              "items": {
+                "$ref": "#/definitions/learningOutcomes_f9288e2e4a83100011bfc3ff0923015c"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "tags": {
+              "type": "array",
+              "description": "The course tags of the course listing.",
+              "items": {
+                "$ref": "#/definitions/tags_f9288e2e4a83100011bfc3deeb0f015a"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "academicUnits": {
+              "type": "array",
+              "description": "The academic unit used by the course. You can specify multiple academicUnit query parameters using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+              "items": {
+                "$ref": "#/definitions/academicUnits_f9288e2e4a831000103b2b8865e30140"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "typicalPeriodsOffered": {
+              "type": "array",
+              "description": "The academic period offered types of the course listing.",
+              "items": {
+                "$ref": "#/definitions/typicalPeriodsOffered_f9288e2e4a831000103b2b9e92e40141"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "title": {
+              "type": "string",
+              "example": "Financial Accounting",
+              "description": "The course title from the course definition associated with this student course.",
+              "x-workday-type": "Text"
+            },
+            "instructionalFormats": {
+              "type": "array",
+              "description": "The instructional formats of the course listing.",
+              "items": {
+                "$ref": "#/definitions/instructionalFormats_f9288e2e4a831000103b2b50259b013a"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "academicLevel": {
+              "$ref": "#/definitions/academicLevel_f9288e2e4a831000103b2bc664770142"
+            },
+            "description": {
+              "type": "string",
+              "example": "Theory, procedures, practices relating to financial accounting.",
+              "description": "The course description from the course definition associated with this student course.",
+              "x-workday-type": "Rich Text"
+            },
+            "courseSubject": {
+              "$ref": "#/definitions/courseSubject_f9288e2e4a831000103b2b74d3c9013d"
+            },
+            "allowedLocations": {
+              "type": "array",
+              "description": "The allowed campus locations of the course listing.",
+              "items": {
+                "$ref": "#/definitions/allowedLocations_f9288e2e4a831000103b2b811123013f"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "eligibilityRule": {
+              "$ref": "#/definitions/eligibilityRule_f9288e2e4a831000103b2b5881da013b"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "academicLevel_f9288e2e4a831000161d7e0c7e18017d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicLevel_e225e3becd72100016fcd384ba1901f4"
+        },
+        {}
+      ],
+      "description": "The academic level used by the courses. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicLevels from studentAcademicFoundation service."
+    },
+    "institutionalAcademicUnit_f9288e2e4a83100016480f60b7f80189": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {}
+      ],
+      "description": "The institution academic unit used by the courses. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service."
+    },
+    "academicUnits_f9288e2e4a831000161d7e10d97a017f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_e225e3becd721000173d7c93a87e01f7"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Unit  \nExample(s): Academic_Unit_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "courseSubject_f9288e2e4a831000161d7e171a620182": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The subject for the course. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courseSubjects."
+    },
+    "courseSummary_f9288e2e4a831000161d7de7881f0178": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "academicLevel": {
+              "$ref": "#/definitions/academicLevel_f9288e2e4a831000161d7e0c7e18017d"
+            },
+            "institutionalAcademicUnit": {
+              "$ref": "#/definitions/institutionalAcademicUnit_f9288e2e4a83100016480f60b7f80189"
+            },
+            "academicUnits": {
+              "type": "array",
+              "description": "The academic unit used by the course. You can specify multiple academicUnit query parameters using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+              "items": {
+                "$ref": "#/definitions/academicUnits_f9288e2e4a831000161d7e10d97a017f"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "courseSubject": {
+              "$ref": "#/definitions/courseSubject_f9288e2e4a831000161d7e171a620182"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "learningOutcome_27c28e08896f1000170fbf6dc42b0195": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "instructionalFormat_f9288e2e4a83100010110605d8180136": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "instructor_4409652f281910002c1226dc856a0120": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "academicUnit_e225e3becd721000173d7c93a87e01f7": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "AMU",
+              "description": "The name of the Academic Unit, as of the effective date.",
+              "x-workday-type": "Text"
+            },
+            "institution": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the Academic Unit is designated as an institution, as of the effective date.",
+              "x-workday-type": "Boolean"
+            },
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the Academic Unit is inactive, as of the effective date.",
+              "x-workday-type": "Boolean"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Unit  \nExample(s): Academic_Unit_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "courseTag_27c28e08896f10000f706951e7a5015f": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "eligibilityRule_55f30e0afafa10001a4ac1a92138029a": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "eligibilityRuleMeaning": {
+              "type": "string",
+              "example": "Student has completed all  of the following course(s): ACCT 101A - Financial Accounting  with grade greater than or equal to C.",
+              "description": "The meaning of the eligibility rule.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "academicPeriodType_dc14710143741000134c86d58ca50230": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "competency_dc1471014374100012d80a8e3abb022c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "academicLevel_e225e3becd72100016fcd384ba1901f4": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Level  \nExample(s): Academic_Level_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "locationRepresentation_dc1471014374100024bfba7527b403d2": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "meetingPattern_27c28e08896f100010c183660d28017a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/meetingPattern_6178f36de93c10002b86c2eaeac00000"
+        },
+        {}
+      ],
+      "description": "Meeting Pattern for a Section Component"
+    },
+    "courseSectionComponent_27c28e08896f100010c183252ae70178": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "example": "PH-200",
+              "description": "Location Display ID of the Activity Offering Component.",
+              "x-workday-type": "Text"
+            },
+            "meetingPattern": {
+              "$ref": "#/definitions/meetingPattern_27c28e08896f100010c183660d28017a"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Student Course Section Component"
+            }
+          }
+        }
+      ]
+    },
+    "meetingPattern_6178f36de93c10002b86c2eaeac00000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "name": "StudentEngagement-Students-GET-getHolds",
+    "description": "[Student Engagement] GET /students/{ID}/holds — DEPRECATED. Retrieves a collection of student holds assigned to the specified student ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "holdType",
+        "type": "string",
+        "description": "Filter for holds matching these hold types.",
+        "required": false
+      },
+      {
+        "name": "reason",
+        "type": "string",
+        "description": "Filter for holds matching this hold reason.",
+        "required": false
+      },
+      {
+        "name": "showInactive",
+        "type": "boolean",
+        "description": "Parameter that will include inactive holds along with the active ones.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}/holds",
+    "operationId": null,
+    "file": "StudentEngagement-Students-GET-getHolds.js"
+  },
+  {
+    "name": "StudentEngagement-Students-GET-getStudents",
+    "description": "[Student Engagement] GET /students — Retrieves a collection of students.",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "query parameter: academicLevel",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "Derived Academic Units.",
+        "required": false
+      },
+      {
+        "name": "activeOnly",
+        "type": "boolean",
+        "description": "Only return active students.",
+        "required": false
+      },
+      {
+        "name": "programOfStudy",
+        "type": "string",
+        "description": "For students who haven't matriculated, the program of study they either applied to or have been admitted to. For matriculated students, the primary program of study from their reporting record.",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "description": "A fuzzy search string that matches student IDs and names. Example: search=bri%20book returns the student Brian Booker.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/students",
+    "operationId": null,
+    "file": "StudentEngagement-Students-GET-getStudents.js"
+  },
+  {
+    "name": "StudentEngagement-Students-GET-getStudents_1",
+    "description": "[Student Engagement] GET /students/{ID} — Retrieves a student instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}",
+    "operationId": null,
+    "file": "StudentEngagement-Students-GET-getStudents_1.js"
+  },
+  {
+    "name": "StudentEngagement-Students-GET-getHolds_1",
+    "description": "[Student Engagement] GET /students/{ID}/holds/{subresourceID} — DEPRECATED. Retrieves a single student hold instance for the specified student.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}/holds/{subresourceID}",
+    "operationId": null,
+    "file": "StudentEngagement-Students-GET-getHolds_1.js"
+  }
+]

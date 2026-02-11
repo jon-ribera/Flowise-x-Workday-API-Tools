@@ -1,0 +1,248 @@
+[
+  {
+    "name": "StudentRecruiting-Values-GET-getUnitType",
+    "description": "[Student Recruiting] GET /values/academicRequirementEvaluation/unitType/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirement Evaluation\n\n<b>Scope:</b> Admissions",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "The academic level of the program of study.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the program of study.",
+        "required": false
+      },
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "The date to filter programs of study that are effective, using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "programOfStudyType",
+        "type": "string",
+        "description": "The program type of the program of study.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/academicRequirementEvaluation/unitType/",
+    "operationId": null,
+    "file": "StudentRecruiting-Values-GET-getUnitType.js"
+  },
+  {
+    "name": "StudentRecruiting-Values-GET-getEducationalInstitution",
+    "description": "[Student Recruiting] GET /values/academicRequirementEvaluation/educationalInstitution/ — Retrieves all educational institutions.\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirement Evaluation\n\n<b>Scope:</b> Admissions",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "The academic level of the program of study.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the program of study.",
+        "required": false
+      },
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "The date to filter programs of study that are effective, using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "programOfStudyType",
+        "type": "string",
+        "description": "The program type of the program of study.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/academicRequirementEvaluation/educationalInstitution/",
+    "operationId": null,
+    "file": "StudentRecruiting-Values-GET-getEducationalInstitution.js"
+  },
+  {
+    "name": "StudentRecruiting-Values-GET-getExternalCourse",
+    "description": "[Student Recruiting] GET /values/academicRequirementEvaluation/externalCourse/ — Retrieves the external courses for the educational institution you specify.\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirement Evaluation\n\n<b>Scope:</b> Admissions",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "The academic level of the program of study.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the program of study.",
+        "required": false
+      },
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "The date to filter programs of study that are effective, using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "programOfStudyType",
+        "type": "string",
+        "description": "The program type of the program of study.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/academicRequirementEvaluation/externalCourse/",
+    "operationId": null,
+    "file": "StudentRecruiting-Values-GET-getExternalCourse.js"
+  },
+  {
+    "name": "StudentRecruiting-Values-GET-getExternalGradingScheme",
+    "description": "[Student Recruiting] GET /values/academicRequirementEvaluation/externalGradingScheme/ — Retrieves the educational institution grading schemes for the educational institution you specify.\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirement Evaluation\n\n<b>Scope:</b> Admission",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "The academic level of the program of study.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the program of study.",
+        "required": false
+      },
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "The date to filter programs of study that are effective, using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "programOfStudyType",
+        "type": "string",
+        "description": "The program type of the program of study.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/academicRequirementEvaluation/externalGradingScheme/",
+    "operationId": null,
+    "file": "StudentRecruiting-Values-GET-getExternalGradingScheme.js"
+  },
+  {
+    "name": "StudentRecruiting-AcademicRequirementEvaluation-POST-postAcademicRequirementEvaluation",
+    "description": "[Student Recruiting] POST /academicRequirementEvaluation — Calculates evaluation results for potential transfer credit and academic progress.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/academicRequirementEvaluation",
+    "operationId": null,
+    "file": "StudentRecruiting-AcademicRequirementEvaluation-POST-postAcademicRequirementEvaluation.js"
+  },
+  {
+    "name": "StudentRecruiting-Values-GET-getProgramsOfStudy",
+    "description": "[Student Recruiting] GET /values/academicRequirementEvaluation/programsOfStudy/ — Retrieves all programs of study. You can filter the programs of study by academic unit, academic level, program type, and effective date.\n\n<b>Secured by:</b> Manage: Student Prospect Academic Requirem",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "The academic level of the program of study.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the program of study.",
+        "required": false
+      },
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "The date to filter programs of study that are effective, using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "programOfStudyType",
+        "type": "string",
+        "description": "The program type of the program of study.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/academicRequirementEvaluation/programsOfStudy/",
+    "operationId": null,
+    "file": "StudentRecruiting-Values-GET-getProgramsOfStudy.js"
+  }
+]

@@ -1,0 +1,714 @@
+[
+  {
+    "name": "Payroll-Jobs-GET-getPayGroup",
+    "description": "[Payroll] GET /jobs/{ID}/payGroup/{subresourceID} — Retrieves a single pay group instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobs/{ID}/payGroup/{subresourceID}",
+    "operationId": null,
+    "file": "Payroll-Jobs-GET-getPayGroup.js"
+  },
+  {
+    "name": "Payroll-Jobs-GET-getPayGroup_1",
+    "description": "[Payroll] GET /jobs/{ID}/payGroup — Retrieves the pay group for a specified job ID. This method always returns 1 pay group.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "effective",
+        "type": "string",
+        "description": "The effective date of the pay group, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobs/{ID}/payGroup",
+    "operationId": null,
+    "file": "Payroll-Jobs-GET-getPayGroup_1.js"
+  },
+  {
+    "name": "Payroll-PayGroups-GET-getPayGroups",
+    "description": "[Payroll] GET /payGroups/{ID} — Retrieves a single pay group instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/payGroups/{ID}",
+    "operationId": null,
+    "file": "Payroll-PayGroups-GET-getPayGroups.js"
+  },
+  {
+    "name": "Payroll-Values-GET-getCompanyInstances",
+    "description": "[Payroll] GET /values/taxRatesGroup/companyInstances/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Tax Filing/W-2s (Run) - USA\n\n<b>Scope:</b> USA Payroll",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/taxRatesGroup/companyInstances/",
+    "operationId": null,
+    "file": "Payroll-Values-GET-getCompanyInstances.js"
+  },
+  {
+    "name": "Payroll-Values-GET-getWorktags",
+    "description": "[Payroll] GET /values/payrollInputsGroup/worktags/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Worker Data: Payroll Public API (Payroll Input)\n\n<b>Scope:</b> Core Payroll",
+    "schema": [
+      {
+        "name": "endDate",
+        "type": "string",
+        "description": "The end date for the positions, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "payComponent",
+        "type": "string",
+        "description": "The pay component for the worktags. You can use a returned id from GET/values/payrollInputsGroup/payComponents.",
+        "required": false
+      },
+      {
+        "name": "startDate",
+        "type": "string",
+        "description": "The start date for the positions, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker. You can use a returned id from GET /workers in the Staffing service.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/payrollInputsGroup/worktags/",
+    "operationId": null,
+    "file": "Payroll-Values-GET-getWorktags.js"
+  },
+  {
+    "name": "Payroll-PayGroupDetails-GET-getPayGroupDetails",
+    "description": "[Payroll] GET /payGroupDetails/{ID} — Retrieves a single pay group detail instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/payGroupDetails/{ID}",
+    "operationId": null,
+    "file": "Payroll-PayGroupDetails-GET-getPayGroupDetails.js"
+  },
+  {
+    "name": "Payroll-Jobs-GET-getJobs",
+    "description": "[Payroll] GET /jobs — Retrieves a collection of jobs.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobs",
+    "operationId": null,
+    "file": "Payroll-Jobs-GET-getJobs.js"
+  },
+  {
+    "name": "Payroll-MinimumWageRates-GET-getMinimumWageRates",
+    "description": "[Payroll] GET /minimumWageRates — Retrieves a collection of minimum wage rates.",
+    "schema": [
+      {
+        "name": "asOfDate",
+        "type": "string",
+        "description": "The minimum wage rates that are effective on the date specified using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "description": "The Workday ID of the country for the minimum wages rates. You can use a returned id from GET /values/minimumWageRatesGroup/countries. You can specify 1 country query parameter. Example: country=country.",
+        "required": false
+      },
+      {
+        "name": "includeLocalTaxAuthorities",
+        "type": "boolean",
+        "description": "If true, returns minimum wage rates for local tax authorities, such as cities and counties, in addition to federal and state rates. If false (default), only returns federal and state minimum wage rates.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "taxAuthority",
+        "type": "string",
+        "description": "The Workday ID of the payroll tax authority for the minimum wages rates. You can use a returned id from GET /values/minimumWageRatesGroup/taxAuthorities. You can specify 1 or more tax authority query parameters. Example: taxAuthority=taxAuthority1&taxAuthority=taxAuthority2.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/minimumWageRates",
+    "operationId": null,
+    "file": "Payroll-MinimumWageRates-GET-getMinimumWageRates.js"
+  },
+  {
+    "name": "Payroll-Values-GET-getRunCategories",
+    "description": "[Payroll] GET /values/payrollInputsGroup/runCategories/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Worker Data: Payroll Public API (Payroll Input)\n\n<b>Scope:</b> Core Payroll",
+    "schema": [
+      {
+        "name": "endDate",
+        "type": "string",
+        "description": "The end date for the positions, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "payComponent",
+        "type": "string",
+        "description": "The pay component for the worktags. You can use a returned id from GET/values/payrollInputsGroup/payComponents.",
+        "required": false
+      },
+      {
+        "name": "startDate",
+        "type": "string",
+        "description": "The start date for the positions, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker. You can use a returned id from GET /workers in the Staffing service.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/payrollInputsGroup/runCategories/",
+    "operationId": null,
+    "file": "Payroll-Values-GET-getRunCategories.js"
+  },
+  {
+    "name": "Payroll-PayGroupDetails-GET-getPayGroupDetails_1",
+    "description": "[Payroll] GET /payGroupDetails — Retrieves a collection of pay group details.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "runCategories",
+        "type": "string",
+        "description": "One or more Workday IDs of run categories for the pay group. You can use returned ids from GET /values/payrollInputsGroup/runCategories.You can specify 1 or more runCategories query parameters, example: runCategories=category1&runCategories=category2",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/payGroupDetails",
+    "operationId": null,
+    "file": "Payroll-PayGroupDetails-GET-getPayGroupDetails_1.js"
+  },
+  {
+    "name": "Payroll-Jobs-GET-getJobs_1",
+    "description": "[Payroll] GET /jobs/{ID} — Retrieves a single job instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobs/{ID}",
+    "operationId": null,
+    "file": "Payroll-Jobs-GET-getJobs_1.js"
+  },
+  {
+    "name": "Payroll-Values-GET-getPositions",
+    "description": "[Payroll] GET /values/payrollInputsGroup/positions/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Worker Data: Payroll Public API (Payroll Input)\n\n<b>Scope:</b> Core Payroll",
+    "schema": [
+      {
+        "name": "endDate",
+        "type": "string",
+        "description": "The end date for the positions, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "payComponent",
+        "type": "string",
+        "description": "The pay component for the worktags. You can use a returned id from GET/values/payrollInputsGroup/payComponents.",
+        "required": false
+      },
+      {
+        "name": "startDate",
+        "type": "string",
+        "description": "The start date for the positions, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker. You can use a returned id from GET /workers in the Staffing service.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/payrollInputsGroup/positions/",
+    "operationId": null,
+    "file": "Payroll-Values-GET-getPositions.js"
+  },
+  {
+    "name": "Payroll-PayrollInputs-GET-getPayrollInputs",
+    "description": "[Payroll] GET /payrollInputs/{ID} — Retrieves a single payroll input instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/payrollInputs/{ID}",
+    "operationId": null,
+    "file": "Payroll-PayrollInputs-GET-getPayrollInputs.js"
+  },
+  {
+    "name": "Payroll-PayrollInputs-PATCH-patchPayrollInputs",
+    "description": "[Payroll] PATCH /payrollInputs/{ID} — Partially updates an existing payroll input instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/payrollInputs/{ID}",
+    "operationId": null,
+    "file": "Payroll-PayrollInputs-PATCH-patchPayrollInputs.js"
+  },
+  {
+    "name": "Payroll-PayrollInputs-DELETE-deletePayrollInputs",
+    "description": "[Payroll] DELETE /payrollInputs/{ID} — Deletes an existing payroll input instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/payrollInputs/{ID}",
+    "operationId": null,
+    "file": "Payroll-PayrollInputs-DELETE-deletePayrollInputs.js"
+  },
+  {
+    "name": "Payroll-MinimumWageRates-GET-getMinimumWageRates_1",
+    "description": "[Payroll] GET /minimumWageRates/{ID} — Retrieves a collection of minimum wage rates.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/minimumWageRates/{ID}",
+    "operationId": null,
+    "file": "Payroll-MinimumWageRates-GET-getMinimumWageRates_1.js"
+  },
+  {
+    "name": "Payroll-Values-GET-getTaxAuthorities",
+    "description": "[Payroll] GET /values/minimumWageRatesGroup/taxAuthorities/ — Retrieves a list of tax authorities available for use as query parameters in the /minimumWageRates endpoint.\n\n<b>Secured by:</b> Set Up: Payroll (Minimum Wages View) - CAN, Set Up: Payroll (Minimum Wa",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "The Workday ID of the country for the tax authorities. You can use a returned id from GET /values/minimumWageRatesGroup/countries. You can specify 1 country query parameter. Example: country=country.",
+        "required": false
+      },
+      {
+        "name": "includeLocalTaxAuthorities",
+        "type": "boolean",
+        "description": "If true, returns local tax authorities, such as cities and counties, in addition to federal and state tax authorities. If false (default), only returns federal and state tax authorities.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/minimumWageRatesGroup/taxAuthorities/",
+    "operationId": null,
+    "file": "Payroll-Values-GET-getTaxAuthorities.js"
+  },
+  {
+    "name": "Payroll-PayrollInputs-GET-getPayrollInputs_1",
+    "description": "[Payroll] GET /payrollInputs — Retrieves a collection of payroll inputs. At least 1 query parameter is required to get data.",
+    "schema": [
+      {
+        "name": "endDate",
+        "type": "string",
+        "description": "The end date filter which returns payroll inputs that are active on or before the end date, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "payComponent",
+        "type": "string",
+        "description": "The Workday ID of the pay component for the payroll input. You can use a returned id from GET /values/payrollInputsGroup/payComponents.",
+        "required": false
+      },
+      {
+        "name": "startDate",
+        "type": "string",
+        "description": "The start date filter which returns payroll inputs that are active on or after the start date, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of worker for the payroll input. You can use a returned id from GET /workers in the Staffing service.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/payrollInputs",
+    "operationId": null,
+    "file": "Payroll-PayrollInputs-GET-getPayrollInputs_1.js"
+  },
+  {
+    "name": "Payroll-PayrollInputs-POST-postPayrollInputs",
+    "description": "[Payroll] POST /payrollInputs — Creates payroll inputs.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/payrollInputs",
+    "operationId": null,
+    "file": "Payroll-PayrollInputs-POST-postPayrollInputs.js"
+  },
+  {
+    "name": "Payroll-Values-GET-getStateInstances",
+    "description": "[Payroll] GET /values/taxRatesGroup/stateInstances/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Tax Filing/W-2s (Run) - USA\n\n<b>Scope:</b> USA Payroll",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/taxRatesGroup/stateInstances/",
+    "operationId": null,
+    "file": "Payroll-Values-GET-getStateInstances.js"
+  },
+  {
+    "name": "Payroll-Values-GET-getCountries",
+    "description": "[Payroll] GET /values/minimumWageRatesGroup/countries/ — Retrieves a list of all countries available as query parameters in the /minimumWageRates endpoint.\n\n<b>Secured by:</b> Set Up: Payroll (Minimum Wages View) - CAN, Set Up: Payroll (Minimum Wages View) ",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "The Workday ID of the country for the tax authorities. You can use a returned id from GET /values/minimumWageRatesGroup/countries. You can specify 1 country query parameter. Example: country=country.",
+        "required": false
+      },
+      {
+        "name": "includeLocalTaxAuthorities",
+        "type": "boolean",
+        "description": "If true, returns local tax authorities, such as cities and counties, in addition to federal and state tax authorities. If false (default), only returns federal and state tax authorities.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/minimumWageRatesGroup/countries/",
+    "operationId": null,
+    "file": "Payroll-Values-GET-getCountries.js"
+  },
+  {
+    "name": "Payroll-TaxRates-GET-getTaxRates",
+    "description": "[Payroll] GET /taxRates — Retrieves a single or a collection of company SUI rates.",
+    "schema": [
+      {
+        "name": "company",
+        "type": "string",
+        "description": "The company reference ID or WID that represents 1 or more companies. Example: company=comp1&company=comp2&company=cb550da820584750aae8f807882fa79a",
+        "required": false
+      },
+      {
+        "name": "effective",
+        "type": "string",
+        "description": "The effective date for the SUI rate, using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "payrollStateAuthorityTaxCode",
+        "type": "string",
+        "description": "The FIPS code or WID that represents 1 or more states. Example: payrollStateAuthorityTaxCode=06&payrollStateAuthorityTaxCode=3b3d378d5f4a48b8b3ac46fee0703226&payrollStateAuthorityTaxCode=48",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/taxRates",
+    "operationId": null,
+    "file": "Payroll-TaxRates-GET-getTaxRates.js"
+  },
+  {
+    "name": "Payroll-TaxRates-POST-postTaxRates",
+    "description": "[Payroll] POST /taxRates — Creates a single or a collection of Company SUI Rates.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/taxRates",
+    "operationId": null,
+    "file": "Payroll-TaxRates-POST-postTaxRates.js"
+  },
+  {
+    "name": "Payroll-Values-GET-getPayComponents",
+    "description": "[Payroll] GET /values/payrollInputsGroup/payComponents/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Worker Data: Payroll Public API (Payroll Input)\n\n<b>Scope:</b> Core Payroll",
+    "schema": [
+      {
+        "name": "endDate",
+        "type": "string",
+        "description": "The end date for the positions, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "payComponent",
+        "type": "string",
+        "description": "The pay component for the worktags. You can use a returned id from GET/values/payrollInputsGroup/payComponents.",
+        "required": false
+      },
+      {
+        "name": "startDate",
+        "type": "string",
+        "description": "The start date for the positions, using the date format yyyy-mm-dd.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker. You can use a returned id from GET /workers in the Staffing service.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/payrollInputsGroup/payComponents/",
+    "operationId": null,
+    "file": "Payroll-Values-GET-getPayComponents.js"
+  },
+  {
+    "name": "Payroll-PayGroups-GET-getPayGroups_1",
+    "description": "[Payroll] GET /payGroups — Retrieves a collection of pay groups.",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "The Workday ID of the country or territory of the pay group. You can use a returned country id from any of the payGroups endpoints in this Payroll API.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/payGroups",
+    "operationId": null,
+    "file": "Payroll-PayGroups-GET-getPayGroups_1.js"
+  }
+]

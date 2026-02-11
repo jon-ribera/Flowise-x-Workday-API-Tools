@@ -1,0 +1,2357 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Learning service enables applications to access Workday Learning data and functionality.",
+    "version": "v1",
+    "title": "learning",
+    "x-workday-confidence-level": "Production",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "e18da11f0b211000086b1f332f3b010a"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/learning/v1",
+  "tags": [
+    {
+      "name": "content",
+      "description": "Provides access to information about learning content.",
+      "x-workday-confidence-level": "Production"
+    },
+    {
+      "name": "manageDigitalCourses",
+      "description": "Provides the ability to create and update digital courses. These REST APIs are secured to the Set Up for Learning Service domain.",
+      "x-workday-confidence-level": "Production"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/content": {
+      "get": {
+        "tags": [
+          "content"
+        ],
+        "summary": "Retrieves a collection of learning content.",
+        "description": "Retrieves all learning content.\n\n<b>Secured by:</b> Learning Access, Manage: Learning Content, Manage: Learning Course Enrollments, Self-Service: Learning Instructor, Self-Service: On the Job Training, Set Up: Learning Catalog\n\n<b>Scope:</b> Learning Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "contentType",
+            "in": "query",
+            "description": "The type of learning content. The learning catalog comprises programs, blended and digital courses, course offerings for blended courses, and stand-alone lessons.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "lastUpdated",
+            "in": "query",
+            "description": "When specified, only Learning Content updated since the specified datetime will be returned in the response.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "lifecycleStatus",
+            "in": "query",
+            "description": "The current status of the learning content. Possible value is Active or Inactive.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "skills",
+            "in": "query",
+            "description": "The skills associated with this learning content.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "topics",
+            "in": "query",
+            "description": "The group of learning elements that this learning content belongs. Example: Compliance.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/contentDetails_0811b9b5960e10002b44aac5710d0000"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/content/{ID}/lessons": {
+      "get": {
+        "tags": [
+          "content"
+        ],
+        "summary": "Retrieves a collection of lessons for a learning content.",
+        "description": "Retrieves all lessons for a learning content.\n\n<b>Secured by:</b> Learning Access, Manage: Learning Content, Manage: Learning Course Enrollments, Self-Service: Learning Instructor, Self-Service: On the Job Training, Set Up: Learning Catalog\n\n<b>Scope:</b> Learning Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/lessonDetails_fa3972d1d81710001d74187e188a0000"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/manageDigitalCourses": {
+      "post": {
+        "tags": [
+          "manageDigitalCourses"
+        ],
+        "summary": "Provides the ability to create and update digital courses. These REST APIs are secured to the initiating actions of the BP.",
+        "description": "Additional Information\n\nWhen updating courses, you must include all fields in your request, as the system removes the omitted fields from the courses. Example: If your course has 2 lessons and you only include 1 in the update, the omitted lesson will be removed.\n\nYou can access the fields that are not available in the API using the user interface. API-supported fields are available in the schema. For subsequent updates after a POST request, our system will retain the manual changes done for the unsupported fields.\n\n<b>Secured by:</b> Manage Learning Course (REST Service)\n\n<b>Scope:</b> Learning Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "manageDigitalCourse",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manageDigitalCourse_088aaa26b7ca10000a98c7ce93430000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/manageDigitalCourse_088aaa26b7ca10000a98c7ce93430000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA2677 | Content ID [contentID]: The Title [title] is already in use. Specify different content or update existing.\nA2678 | Content ID [contentID]: The ID [contentID] is already in use. Specify different content or update existing.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/content/{ID}": {
+      "get": {
+        "tags": [
+          "content"
+        ],
+        "summary": "Retrieves a single learning content instance",
+        "description": "Retrieves a learning content with the specified ID.\n\n<b>Secured by:</b> Learning Access, Manage: Learning Content, Manage: Learning Course Enrollments, Self-Service: Learning Instructor, Self-Service: On the Job Training, Set Up: Learning Catalog\n\n<b>Scope:</b> Learning Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/contentDetails_0811b9b5960e10002b44aac5710d0000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/content/{ID}/lessons/{subresourceID}": {
+      "get": {
+        "tags": [
+          "content"
+        ],
+        "summary": "Retrieves a single lesson for a learning content instance",
+        "description": "Retrieves a lesson for a learning content with the specified ID.\n\n<b>Secured by:</b> Learning Access, Manage: Learning Content, Manage: Learning Course Enrollments, Self-Service: Learning Instructor, Self-Service: On the Job Training, Set Up: Learning Catalog\n\n<b>Scope:</b> Learning Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/lessonDetails_fa3972d1d81710001d74187e188a0000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "topics_088aaa26b7ca10000aedc6a6c7b70008": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/learningTopics_088aaa26b7ca10000b83a362f92c0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Topic (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "availabilityStatus_9e2969871a93100022746d1e66430001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of the learning course event."
+    },
+    "lifecycleStatus_834949c35f2410000a5d491f62790000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/learningContentLifecycleStatus_2760cc3b1968100023424b8385b50000"
+        },
+        {}
+      ],
+      "description": "The status of the learning course event."
+    },
+    "contactPersons_5148badb969b100036f05ae3826c0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/workerReference_c028dfc3c552100017db3346ca9b0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for \\~Worker\\~"
+            }
+          }
+        }
+      ]
+    },
+    "securityCategories_5148badb969b100036f05ae3826c0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/securityCategory_088aaa26b7ca10000c466333ee520000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Security Category"
+            }
+          }
+        }
+      ]
+    },
+    "languages_cca0a6fa9f1610001226ab7fabd30000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/courseUserLanguage_088aaa26b7ca10000c39a57564c40000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for User Language"
+            }
+          }
+        }
+      ]
+    },
+    "course_088aaa26b7ca10000c21af245d740000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/course_088aaa26b7ca10000c207f98a1050000"
+        },
+        {}
+      ],
+      "description": "The learning course of the learning course event."
+    },
+    "imageData_6351e480a48c100014577686d8ee0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/contentImageData_70ce6cfc27da10001642de8820640000"
+        },
+        {}
+      ],
+      "description": "Thumbnail image for learning content"
+    },
+    "duration_088aaa26b7ca10000aedc6a6c7b70001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/contentDurationData_14bbe1bdfd83100016926f056a9d0000"
+        },
+        {}
+      ],
+      "description": "The learning content duration of the learning course event."
+    },
+    "lessons_088aaa26b7ca10000aedc6a6c7b70000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/courseLessonDerived_088aaa26b7ca10000b1e2db42ca30000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Course Lesson (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "manageDigitalCourse_088aaa26b7ca10000a98c7ce93430000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "availabilityStatus",
+            "description",
+            "lessons",
+            "title",
+            "topics"
+          ],
+          "properties": {
+            "topics": {
+              "type": "array",
+              "description": "The topics of the learning course event.",
+              "items": {
+                "$ref": "#/definitions/topics_088aaa26b7ca10000aedc6a6c7b70008"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "title": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The course title of the learning course event.",
+              "x-workday-type": "Text"
+            },
+            "enforceLessonOrder": {
+              "type": "boolean",
+              "example": true,
+              "description": "The value of the enforce content order of the learning course event.",
+              "x-workday-type": "Boolean"
+            },
+            "availabilityStatus": {
+              "$ref": "#/definitions/availabilityStatus_9e2969871a93100022746d1e66430001"
+            },
+            "lifecycleStatus": {
+              "$ref": "#/definitions/lifecycleStatus_834949c35f2410000a5d491f62790000"
+            },
+            "contactPersons": {
+              "type": "array",
+              "description": "The contact persons for the learning course proposed by the learning course event.",
+              "items": {
+                "$ref": "#/definitions/contactPersons_5148badb969b100036f05ae3826c0000"
+              },
+              "x-workday-type": "Multi-instance",
+              "x-workday-confidence-level": "Production"
+            },
+            "securityCategories": {
+              "type": "array",
+              "description": "The security categories of the learning course event.",
+              "items": {
+                "$ref": "#/definitions/securityCategories_5148badb969b100036f05ae3826c0001"
+              },
+              "x-workday-type": "Multi-instance",
+              "x-workday-confidence-level": "Production"
+            },
+            "languages": {
+              "type": "array",
+              "description": "The language of the learning course event.",
+              "items": {
+                "$ref": "#/definitions/languages_cca0a6fa9f1610001226ab7fabd30000"
+              },
+              "x-workday-type": "Multi-instance",
+              "x-workday-confidence-level": "Production"
+            },
+            "course": {
+              "$ref": "#/definitions/course_088aaa26b7ca10000c21af245d740000"
+            },
+            "imageData": {
+              "$ref": "#/definitions/imageData_6351e480a48c100014577686d8ee0000"
+            },
+            "excludeFromRecommendations": {
+              "type": "boolean",
+              "example": true,
+              "description": "The value of the exclude from recommendations of the learning course event.",
+              "x-workday-type": "Boolean"
+            },
+            "courseNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The course number of the learning course event.",
+              "x-workday-type": "Text"
+            },
+            "duration": {
+              "$ref": "#/definitions/duration_088aaa26b7ca10000aedc6a6c7b70001"
+            },
+            "lessons": {
+              "type": "array",
+              "description": "The course lessons of the learning course event.",
+              "items": {
+                "$ref": "#/definitions/lessons_088aaa26b7ca10000aedc6a6c7b70000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "excludeFromSearchAndBrowse": {
+              "type": "boolean",
+              "example": true,
+              "description": "The value of the exclude from search and browse of the learning course event.",
+              "x-workday-type": "Boolean"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the learning course event.",
+              "x-workday-type": "Rich Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "learningCatalogs_661e11e975e61000dfa39ec6e6c10000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/learningCatalog_661e11e975e61000dfad0385d49d0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Catalog"
+            }
+          }
+        }
+      ]
+    },
+    "languages_661e11e975e61000c5692058b2b20001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/contentLanguages_661e11e975e61000c5d12f26e0050000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for User Language"
+            }
+          }
+        }
+      ]
+    },
+    "skills_661e11e975e61000c5692058b2b20000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/skillsForLearningContent_661e11e975e61000c5ec47c1aebc0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Local Skill Item"
+            }
+          }
+        }
+      ]
+    },
+    "topics_661e11e975e61000c5692058b2b20002": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/topics_661e11e975e61000c5f3db5a79d70000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Topic"
+            }
+          }
+        }
+      ]
+    },
+    "skillLevel_661e11e975e61000c5691fbf16ff0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/contentSkillLevel_661e11e975e61000c5de3b48c21d0000"
+        },
+        {}
+      ],
+      "description": "The expected skill level of learners in this learning content. You can tag skills to your course."
+    },
+    "contentProvider_661e11e975e61000c5691fbf16ff0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/contentProvider_661e11e975e61000c5ba215640420000"
+        },
+        {}
+      ],
+      "description": "Indicates the company that provided the learning content."
+    },
+    "deliveryMode_457de18ec8d910002c4407f67f770000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/deliveryMode_457de18ec8d910002c7adbb9f7450000"
+        },
+        {}
+      ],
+      "description": "The delivery mode of the learning content. Examples: In-Person, Self-Directed, Hybrid."
+    },
+    "contactPersons_e812edcafed6100012a84c20d4290000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/contactPersons_e812edcafed6100012e99bbafd7a0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for \\~Worker\\~"
+            }
+          }
+        }
+      ]
+    },
+    "lifecycleStatus_2760cc3b19681000234b6c3e0d570000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/learningContentLifecycleStatus_2760cc3b1968100023424b8385b50000"
+        },
+        {}
+      ],
+      "description": "The status of the learning content. Possible value is active or inactive."
+    },
+    "image_6d4eafa780aa100022931b2b4a610000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/publicThumbnailRepresentation_6d4eafa780aa10002285ebcb13100000"
+        },
+        {}
+      ],
+      "description": "The details of the Image of the Learning Content"
+    },
+    "securityCategories_2c366a2e92e9100020a3683113ff0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/securityCategories_2c366a2e92e91000209858bb0e480000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Security Category"
+            }
+          }
+        }
+      ]
+    },
+    "accessType_79184e52d16a10001ceff9f734830000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/accessType_79184e52d16a10001d4c3a2c25330000"
+        },
+        {}
+      ],
+      "description": "The type of access to the learning content. Example: Requires Enrollment, On Demand."
+    },
+    "duration_ac72acf75e281000183f159d48690000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/courseDurationData_ac72acf75e281000192a9d7b0ac30000"
+        },
+        {}
+      ],
+      "description": "The duration of the learning content."
+    },
+    "contentType_ad48a72c0b95100018e0a67a0ec60000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/contentUnitType_ad48a72c0b95100018df143d32320000"
+        },
+        {}
+      ],
+      "description": "The type of learning content.  The learning catalog comprises programs, blended and digital courses, course offerings for blended courses, and stand-alone lessons."
+    },
+    "availabilityStatus_4063f7df65631000155f0dc3ebc80000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/availabilityStatus_4063f7df65631000155d54ba0aa80000"
+        },
+        {}
+      ],
+      "description": "Indicates whether the course is Open for enrollment or waitlisting, In Progress (not currently available), or Closed."
+    },
+    "contentDetails_0811b9b5960e10002b44aac5710d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "learningCatalogs": {
+              "type": "array",
+              "description": "The catalog for the topic associated with the learning content.",
+              "items": {
+                "$ref": "#/definitions/learningCatalogs_661e11e975e61000dfa39ec6e6c10000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "languages": {
+              "type": "array",
+              "description": "The languages that this content is available in.",
+              "items": {
+                "$ref": "#/definitions/languages_661e11e975e61000c5692058b2b20001"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "skills": {
+              "type": "array",
+              "description": "The skills associated with this learning content.",
+              "items": {
+                "$ref": "#/definitions/skills_661e11e975e61000c5692058b2b20000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "topics": {
+              "type": "array",
+              "description": "The group of learning elements that this learning content belongs. Example: Compliance.",
+              "items": {
+                "$ref": "#/definitions/topics_661e11e975e61000c5692058b2b20002"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "skillLevel": {
+              "$ref": "#/definitions/skillLevel_661e11e975e61000c5691fbf16ff0001"
+            },
+            "contentProvider": {
+              "$ref": "#/definitions/contentProvider_661e11e975e61000c5691fbf16ff0000"
+            },
+            "excludeFromRecommendations": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicates if the Learning Content is excluded from recommendations.",
+              "x-workday-type": "Boolean"
+            },
+            "deliveryMode": {
+              "$ref": "#/definitions/deliveryMode_457de18ec8d910002c4407f67f770000"
+            },
+            "contentURL": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The shareable link to a learning content item. You can use this field to direct users to a specific learning content item.",
+              "x-workday-type": "Text"
+            },
+            "createdOnDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The day on which the learning content was created.",
+              "x-workday-type": "Date"
+            },
+            "ratingCount": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The number of ratings for the learning content.",
+              "x-workday-type": "Numeric"
+            },
+            "version": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The version number of the learning content.",
+              "x-workday-type": "Text"
+            },
+            "averageRating": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The average rating of the learning content by learners who complete the content.",
+              "x-workday-type": "Numeric"
+            },
+            "excludeFromSearchAndBrowse": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicates if the learning content is excluded from Global Search results and the Browse Learning Content report.",
+              "x-workday-type": "Boolean"
+            },
+            "contactPersons": {
+              "type": "array",
+              "description": "The people to contact for more information about the learning content.",
+              "items": {
+                "$ref": "#/definitions/contactPersons_e812edcafed6100012a84c20d4290000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "popularity": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The view or enrollment count of the Learning Content.",
+              "x-workday-type": "Numeric"
+            },
+            "lifecycleStatus": {
+              "$ref": "#/definitions/lifecycleStatus_2760cc3b19681000234b6c3e0d570000"
+            },
+            "image": {
+              "$ref": "#/definitions/image_6d4eafa780aa100022931b2b4a610000"
+            },
+            "securityCategories": {
+              "type": "array",
+              "description": "The security category that restricts access to the course, offering or program using segmented security.",
+              "items": {
+                "$ref": "#/definitions/securityCategories_2c366a2e92e9100020a3683113ff0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "accessType": {
+              "$ref": "#/definitions/accessType_79184e52d16a10001ceff9f734830000"
+            },
+            "duration": {
+              "$ref": "#/definitions/duration_ac72acf75e281000183f159d48690000"
+            },
+            "contentType": {
+              "$ref": "#/definitions/contentType_ad48a72c0b95100018e0a67a0ec60000"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the learning content.",
+              "x-workday-type": "Rich Text"
+            },
+            "availabilityStatus": {
+              "$ref": "#/definitions/availabilityStatus_4063f7df65631000155f0dc3ebc80000"
+            },
+            "contentNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The number of the learning content. This report field returns data only for courses, course offerings, and programs.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "lessonIdentifier_27d871da9fd01000227ce7eba2e00000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/lessonIdentifier_c908b22de6e610001848acd350440000"
+        },
+        {}
+      ],
+      "description": "The identifier for the lesson in the content. Use this field when you update the lesson."
+    },
+    "contentType_27d871da9fd010002250e487eb9d0003": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/lessonContentType_b935868be02a10000e1edabce0d00000"
+        },
+        {}
+      ],
+      "description": "The type of the lesson in a course."
+    },
+    "instructorLedData_fa3972d1d81710001edb43592ce00000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/instructorLedLessonFields_fa3972d1d81710001ed7637c67300000"
+        },
+        {}
+      ],
+      "description": "The details of the instructor-led in-person or virtual classroom lesson in a blended course or a course offering. This field will return data only for the In Person Classroom (Instructor Led) and Virtual Classroom (Instructor Led) lesson types."
+    },
+    "mediaData_d090b5f72502100010f81ae60d730000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/mediaLessonFields_27d871da9fd010002435253d0ea90000"
+        },
+        {}
+      ],
+      "description": "The details of the media lesson. This field will return data only for the media lesson type."
+    },
+    "trainingActivityData_d090b5f725021000110a992145490000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/trainingActivityLessonFields_27d871da9fd0100025ca813f650d0000"
+        },
+        {}
+      ],
+      "description": "The details of the training activity lesson in a blended course or a course offering. This field will return data only for the training activity lesson type."
+    },
+    "externalContentData_27d871da9fd0100022f36d5fb64e0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/externalLessonFields_27d871da9fd0100023246e3549760000"
+        },
+        {}
+      ],
+      "description": "The details of the external content lesson. This field will return data only for the external content lesson type."
+    },
+    "surveyData_27d871da9fd010002523e76598920000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/surveyLessonFields_27d871da9fd01000251eaf3f957f0000"
+        },
+        {}
+      ],
+      "description": "The details of the survey lesson. This field will return data only for the survey lesson type."
+    },
+    "lessonDetails_fa3972d1d81710001d74187e188a0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "lessonIdentifier": {
+              "$ref": "#/definitions/lessonIdentifier_27d871da9fd01000227ce7eba2e00000"
+            },
+            "contentType": {
+              "$ref": "#/definitions/contentType_27d871da9fd010002250e487eb9d0003"
+            },
+            "instructorLedData": {
+              "$ref": "#/definitions/instructorLedData_fa3972d1d81710001edb43592ce00000"
+            },
+            "mediaData": {
+              "$ref": "#/definitions/mediaData_d090b5f72502100010f81ae60d730000"
+            },
+            "trainingActivityData": {
+              "$ref": "#/definitions/trainingActivityData_d090b5f725021000110a992145490000"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the lesson in a course.",
+              "x-workday-type": "Rich Text"
+            },
+            "externalContentData": {
+              "$ref": "#/definitions/externalContentData_27d871da9fd0100022f36d5fb64e0000"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of the lesson in a course.",
+              "maxLength": 6,
+              "x-workday-type": "Text"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the lesson is mandatory in a course.",
+              "x-workday-type": "Boolean"
+            },
+            "surveyData": {
+              "$ref": "#/definitions/surveyData_27d871da9fd010002523e76598920000"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "securityCategory_088aaa26b7ca10000c466333ee520000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "learningContentDurationUnit_ccd1aaf3c92b100057ada00f86e00000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Time Unit"
+            }
+          }
+        }
+      ]
+    },
+    "contentSkillLevel_661e11e975e61000c5de3b48c21d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Skill Level"
+            }
+          }
+        }
+      ]
+    },
+    "workerReference_c028dfc3c552100017db3346ca9b0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "media_27d871da9fd01000243525d658be0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/media_27d871da9fd01000248915f12ce20000"
+        },
+        {}
+      ],
+      "description": "The media file details for the media lesson."
+    },
+    "mediaLessonFields_27d871da9fd010002435253d0ea90000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "media": {
+              "$ref": "#/definitions/media_27d871da9fd01000243525d658be0001"
+            },
+            "duration": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The approximate duration of the video in the media lesson or instructor-led classroom lesson. Example: 1 day or 30 minutes.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "activityType_1c89ea30062a1000295cb295765a0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Training Activity Type"
+            }
+          }
+        }
+      ]
+    },
+    "contactPersons_e812edcafed6100012e99bbafd7a0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "survey_27d871da9fd01000251eaf3f957f0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/survey_1c89ea30062a10002919f46e54b40000"
+        },
+        {}
+      ],
+      "description": "The survey content."
+    },
+    "surveyLessonFields_27d871da9fd01000251eaf3f957f0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "survey": {
+              "$ref": "#/definitions/survey_27d871da9fd01000251eaf3f957f0001"
+            }
+          }
+        }
+      ]
+    },
+    "securityCategories_2c366a2e92e91000209858bb0e480000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "courseUserLanguage_088aaa26b7ca10000c39a57564c40000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "organizer_1c89ea30062a10001c80e629bc520005": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/organizer_1c89ea30062a10001c98d7d89fec0000"
+        },
+        {}
+      ],
+      "description": "The organizer for the instructor-led virtual classroom lesson."
+    },
+    "integrationSystem_1c89ea30062a10001c80e629bc520007": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/integrationSystem_1c89ea30062a10001ca02d8ab8fe0000"
+        },
+        {}
+      ],
+      "description": "The integration system that generates meeting URLs for the instructor-led virtual classroom lesson."
+    },
+    "virtualClassroomLessonFields_1c89ea30062a10001c80e629bc520000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "organizer": {
+              "$ref": "#/definitions/organizer_1c89ea30062a10001c80e629bc520005"
+            },
+            "meetingId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The meeting ID for the instructor-led virtual classroom lesson.",
+              "x-workday-type": "Text"
+            },
+            "integrationSystem": {
+              "$ref": "#/definitions/integrationSystem_1c89ea30062a10001c80e629bc520007"
+            },
+            "additionalInformation": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Any additional information for the instructor-led virtual classroom in rich text format.",
+              "x-workday-type": "Rich Text"
+            },
+            "loginDetails": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The login details for the instructor-led virtual classroom lesson in rich text format.",
+              "x-workday-type": "Rich Text"
+            },
+            "virtualClassroomURL": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The URL address for the instructor-led virtual classroom lesson.",
+              "x-workday-type": "Text"
+            },
+            "password": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The password for the instructor-led virtual classroom lesson, if you set a password.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "contentUnitType_ad48a72c0b95100018df143d32320000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Content Type"
+            }
+          }
+        }
+      ]
+    },
+    "learningCatalog_661e11e975e61000dfad0385d49d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "organizer_1c89ea30062a10001c98d7d89fec0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "accessType_79184e52d16a10001d4c3a2c25330000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Access Type"
+            }
+          }
+        }
+      ]
+    },
+    "existingLocationRoom_1c89ea30062a10001bcee94930090000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Location"
+            }
+          }
+        }
+      ]
+    },
+    "course_088aaa26b7ca10000c207f98a1050000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "courseId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Reference ID of the course.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "materials_1c89ea30062a100029552a146da80000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "durationUnit_14bbe1bdfd83100016926f056a9d0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The time unit for the duration of the learning content. Example: When the duration is 30 minutes, this report field indicates minutes."
+    },
+    "contentDurationData_14bbe1bdfd83100016926f056a9d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "durationValue"
+          ],
+          "properties": {
+            "durationValue": {
+              "type": "number",
+              "example": 10,
+              "description": "The numeric value for the duration of the learning content. Example: When the duration is 30 minutes, this report field indicates 30.",
+              "x-workday-type": "Numeric"
+            },
+            "durationUnit": {
+              "$ref": "#/definitions/durationUnit_14bbe1bdfd83100016926f056a9d0001"
+            }
+          }
+        }
+      ]
+    },
+    "gradingScheme_27d871da9fd0100025ca81d97c6e0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/gradingScheme_27d871da9fd0100023abe4fd216b0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Grading Scheme"
+            }
+          }
+        }
+      ]
+    },
+    "materials_27d871da9fd0100025ca81d97c6e0004": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/materials_1c89ea30062a100029552a146da80000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Training Activity Attachment"
+            }
+          }
+        }
+      ]
+    },
+    "activityType_27d871da9fd0100025ca81d97c6e0003": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/activityType_1c89ea30062a1000295cb295765a0000"
+        },
+        {}
+      ],
+      "description": "The training activity type of the training activity lesson. This field can be blank."
+    },
+    "trainingActivityLessonFields_27d871da9fd0100025ca813f650d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "gradingScheme": {
+              "type": "array",
+              "description": "The grading scheme that is used to evaluate learners’ proficiency for the training activity lesson. This field is available only if the Track Grades field is True.",
+              "items": {
+                "$ref": "#/definitions/gradingScheme_27d871da9fd0100025ca81d97c6e0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "trackGrades": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if grades for the training activity lesson for learners who enroll in the course is recorded.",
+              "x-workday-type": "Boolean"
+            },
+            "materials": {
+              "type": "array",
+              "description": "The description of the training materials uploaded for the training activity lesson in rich text format.",
+              "items": {
+                "$ref": "#/definitions/materials_27d871da9fd0100025ca81d97c6e0004"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "trackAttendance": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if attendance for the training activity lesson for learners who enroll in the course is recorded.",
+              "x-workday-type": "Boolean"
+            },
+            "activityType": {
+              "$ref": "#/definitions/activityType_27d871da9fd0100025ca81d97c6e0003"
+            }
+          }
+        }
+      ]
+    },
+    "contentProvider_661e11e975e61000c5ba215640420000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "media_27d871da9fd01000248915f12ce20000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "contentLanguages_661e11e975e61000c5d12f26e0050000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "lessonIdentifier_c908b22de6e610001848acd350440000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "integrationSystem_1c89ea30062a10001ca02d8ab8fe0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "publicThumbnailRepresentation_6d4eafa780aa10002285ebcb13100000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "fileName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Filename of Image",
+              "x-workday-type": "Text"
+            },
+            "url": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Blobitory Url",
+              "x-workday-type": "Text"
+            },
+            "publicURL": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Thumbnail Url",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "type_088aaa26b7ca10000b3601b4e15c0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The content type of the course lesson."
+    },
+    "courseLessonDerived_088aaa26b7ca10000b1e2db42ca30000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "order",
+            "title",
+            "type",
+            "url"
+          ],
+          "properties": {
+            "title": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The title of the course lesson.",
+              "x-workday-type": "Text"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the course lesson.",
+              "x-workday-type": "Text"
+            },
+            "type": {
+              "$ref": "#/definitions/type_088aaa26b7ca10000b3601b4e15c0001"
+            },
+            "order": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The order of the course lesson.",
+              "x-workday-type": "Numeric"
+            },
+            "url": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The external content URL of the course lesson.",
+              "x-workday-type": "Text"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if course lesson is required.",
+              "x-workday-type": "Boolean"
+            }
+          }
+        }
+      ]
+    },
+    "existingLocation_1c89ea30062a10001ad0b14d8cee0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/existingLocation_1c89ea30062a10001b92a18059440000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Location"
+            }
+          }
+        }
+      ]
+    },
+    "existingLocationRoom_1c89ea30062a10001ad0b0b3e6bc0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/existingLocationRoom_1c89ea30062a10001bcee94930090000"
+        },
+        {}
+      ],
+      "description": "The training room for the instructor-led training."
+    },
+    "inPersonLedLessonFields_1c89ea30062a10001ad0af80f1680000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "existingLocation": {
+              "type": "array",
+              "description": "The business site or the allowed locations for the instructor-led training.",
+              "items": {
+                "$ref": "#/definitions/existingLocation_1c89ea30062a10001ad0b14d8cee0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "adhocLocationName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The ad hoc location for the instructor-led training.",
+              "x-workday-type": "Text"
+            },
+            "existingLocationRoom": {
+              "$ref": "#/definitions/existingLocationRoom_1c89ea30062a10001ad0b0b3e6bc0001"
+            },
+            "adhocLocationAddress": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The address for the ad hoc location for the instructor-led training.",
+              "x-workday-type": "Text"
+            },
+            "adhocLocationRoom": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The training room in an ad hoc location for the instructor-led training.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "survey_1c89ea30062a10002919f46e54b40000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "durationUnit_ac72acf75e281000192a9f48eaf30001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/learningContentDurationUnit_ccd1aaf3c92b100057ada00f86e00000"
+        },
+        {}
+      ],
+      "description": "The time unit for the duration of the learning content. Example: When the duration is 30 minutes, this report field indicates minutes."
+    },
+    "courseDurationData_ac72acf75e281000192a9d7b0ac30000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "durationValue": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The numeric value for the duration of the learning content. Example: When the duration is 30 minutes, this report field indicates 30.",
+              "x-workday-type": "Numeric"
+            },
+            "durationUnit": {
+              "$ref": "#/definitions/durationUnit_ac72acf75e281000192a9f48eaf30001"
+            }
+          }
+        }
+      ]
+    },
+    "image_70ce6cfc27da10001642de8820640001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Image for Learning Content"
+    },
+    "contentImageData_70ce6cfc27da10001642de8820640000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "thumbnailURL": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The thumbnail URL for the learning content.",
+              "x-workday-type": "Text"
+            },
+            "image": {
+              "$ref": "#/definitions/image_70ce6cfc27da10001642de8820640001"
+            }
+          }
+        }
+      ]
+    },
+    "existingLocation_1c89ea30062a10001b92a18059440000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "deliveryMode_457de18ec8d910002c7adbb9f7450000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "gradingScheme_27d871da9fd0100023abe4fd216b0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "skillsForLearningContent_661e11e975e61000c5ec47c1aebc0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "lessonContentType_b935868be02a10000e1edabce0d00000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "externalLessonFields_27d871da9fd0100023246e3549760000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "contentURL": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The URL of the external content lesson.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "instructors_27d871da9fd01000238c86a741600000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/instructors_27d871da9fd0100023b8ae4e5b070000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Instructor"
+            }
+          }
+        }
+      ]
+    },
+    "virtualClassroomData_1c89ea30062a10001c05c80e48020000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/virtualClassroomLessonFields_1c89ea30062a10001c80e629bc520000"
+        },
+        {}
+      ],
+      "description": "The details of the instructor-led virtual classroom lesson in a blended course or a course offering. This field will return data only for the Virtual Classroom (Instructor Led) lesson types."
+    },
+    "gradingScheme_27d871da9fd01000238c86a741600001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/gradingScheme_27d871da9fd0100023abe4fd216b0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Learning Grading Scheme"
+            }
+          }
+        }
+      ]
+    },
+    "inPersonLedData_1c89ea30062a10001a836582f9540000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/inPersonLedLessonFields_1c89ea30062a10001ad0af80f1680000"
+        },
+        {}
+      ],
+      "description": "The details of the instructor-led in-person lesson in a blended course or a course offering. This field will return data only for the In-Person (Instructor Led) lesson types."
+    },
+    "instructorLedLessonFields_fa3972d1d81710001ed7637c67300000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "trackAttendance": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if attendance for the instructor-led lesson for learners who enroll in the course is recorded.",
+              "x-workday-type": "Boolean"
+            },
+            "instructors": {
+              "type": "array",
+              "description": "The instructors of the instructor-led in-person or virtual classroom lesson.",
+              "items": {
+                "$ref": "#/definitions/instructors_27d871da9fd01000238c86a741600000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "trackGrades": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if grades for the instructor-led lesson for learners who enroll in the course is recorded.",
+              "x-workday-type": "Boolean"
+            },
+            "virtualClassroomData": {
+              "$ref": "#/definitions/virtualClassroomData_1c89ea30062a10001c05c80e48020000"
+            },
+            "gradingScheme": {
+              "type": "array",
+              "description": "The grading scheme that is used to evaluate learners' proficiency for the instructor-led lesson. This field is available only if the Track Grades field is True.",
+              "items": {
+                "$ref": "#/definitions/gradingScheme_27d871da9fd01000238c86a741600001"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "inPersonLedData": {
+              "$ref": "#/definitions/inPersonLedData_1c89ea30062a10001a836582f9540000"
+            },
+            "duration": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The approximate duration of the video in the media lesson or instructor-led classroom lesson. Example: 1 day or 30 minutes.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "learningTopics_088aaa26b7ca10000b83a362f92c0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "availabilityStatus_4063f7df65631000155d54ba0aa80000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "instructors_27d871da9fd0100023b8ae4e5b070000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "learningContentLifecycleStatus_2760cc3b1968100023424b8385b50000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "topics_661e11e975e61000c5f3db5a79d70000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,3484 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Custom Object Definition REST service enables applications and integrations to fetch custom object definitions that have been configured in your Workday tenant. To configure custom object definitions, use the Create Custom Object or Edit Custom Object tasks in Workday.",
+    "version": "v1",
+    "title": "customObjectDefinition",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "ba74f44bc90e107329f639bc20d8003e"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/customObjectDefinition/v1",
+  "tags": [
+    {
+      "name": "definitions",
+      "description": "Provides access to the configured definitions for custom objects in your Workday tenant."
+    },
+    {
+      "name": "fieldTypes",
+      "description": "Provides the ability to access field types.",
+      "x-workday-confidence-level": "Production"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/definitions/{ID}/validations": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Retrieves a collection of validations in a custom object definition.",
+        "description": "Retrieves the validations in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management, Workday Designer\n\n<b>Scope:</b> System, Workday Designer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/customObjectValidation_35c90babc34d1000507988206a760019"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "definitions"
+        ],
+        "description": "\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "customObjectValidation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customObjectValidation_35c90babc34d1000507988206a760019"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/customObjectValidation_35c90babc34d1000507988206a760019"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA862 | Name is required. Please enter a valid Name.\nA886 | Custom Field and Condition Rule are required and must be associated with the same custom object as the request.\nA888 | Severity Level is invalid. Severity Level is required and must be either Warning or Critical.\nA901 | Alias has to be alphanumeric and cannot start with a number.\nA907 | Message Text is required. Please enter a valid Message Text.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/definitions/{ID}/validations/{subresourceID}": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Retrieves a validation in a custom object definition.",
+        "description": "Retrieves a validation in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management, Workday Designer\n\n<b>Scope:</b> System, Workday Designer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/customObjectValidation_35c90babc34d1000507988206a760019"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      },
+      "put": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Updates an existing validation in a custom object definition.",
+        "description": "Updates an existing validation in a custom object definition with the specified ID. Replaces the existing instance with the specified data in the request body.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "customObjectValidation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customObjectValidation_35c90babc34d1000507988206a760019"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/customObjectValidation_35c90babc34d1000507988206a760019"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA862 | Name is required. Please enter a valid Name.\nA886 | Custom Field and Condition Rule are required and must be associated with the same custom object as the request.\nA888 | Severity Level is invalid. Severity Level is required and must be either Warning or Critical.\nA901 | Alias has to be alphanumeric and cannot start with a number.\nA907 | Message Text is required. Please enter a valid Message Text.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      },
+      "delete": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Deletes a validation in a custom object definition.",
+        "description": "Deletes a validation in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Deleting resource."
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/fieldTypes": {
+      "get": {
+        "tags": [
+          "fieldTypes"
+        ],
+        "summary": "Retrieves a collection of custom field types.",
+        "description": "Retrieves all custom field types. \n\nThis method returns the native field type Workday ID in fieldType{id}. You can use the field type Workday ID to filter the custom field types.\n\n<b>Secured by:</b> Custom Object Management, Workday Designer\n\n<b>Scope:</b> System, Workday Designer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fieldType",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/customFieldTypeDetail_19a566100570100021fab79af31f0012"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA824 | Invalid combination of Field Type and details provided in Type Info.\nA826 | The Currency Precision Value exceeds the maximum allowed value of [max].\nA830 | Name is invalid. This value is required and must be unique from all other Custom Field Types.\nA832 | Minimum Currency Value entered cannot be greater than Maximum Currency Value entered.\nA842 | The Decimal Precision Value exceeds the maximum allowed value of [max].\nA856 | Minimum Integer Value entered cannot be greater than Maximum Integer Value entered\nA857 | The Max Length for a Paragraph type can not be greater than [max].\nA860 | Web Service Alias is invalid. Web Service Alias is required, must not match any Custom Object Alias that this Custom Field Type is associated to, must be unique among the Custom Field Types, cannot start with a number, must contain only letters and numbers without spaces.\nA865 | The Max Length for a Text type cannot exceed [max].\nA878 | Minimum Decimal Value entered cannot be greater than Maximum Decimal Value entered.\nA894 | Update to the Inactive Field is invalid. This may be caused by trying to inactivate a Custom Field Type that is currently in use.\nA902 | Invalid Field Type. Field Type is required and must contain one of the following values: Integer, Currency, Decimal, Text, Paragraph or List.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "fieldTypes"
+        ],
+        "description": "\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "customFieldTypeDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customFieldTypeDetail_19a566100570100021fab79af31f0012"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/customFieldTypeDetail_19a566100570100021fab79af31f0012"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA824 | Invalid combination of Field Type and details provided in Type Info.\nA826 | The Currency Precision Value exceeds the maximum allowed value of [max].\nA830 | Name is invalid. This value is required and must be unique from all other Custom Field Types.\nA832 | Minimum Currency Value entered cannot be greater than Maximum Currency Value entered.\nA842 | The Decimal Precision Value exceeds the maximum allowed value of [max].\nA856 | Minimum Integer Value entered cannot be greater than Maximum Integer Value entered\nA857 | The Max Length for a Paragraph type can not be greater than [max].\nA860 | Web Service Alias is invalid. Web Service Alias is required, must not match any Custom Object Alias that this Custom Field Type is associated to, must be unique among the Custom Field Types, cannot start with a number, must contain only letters and numbers without spaces.\nA865 | The Max Length for a Text type cannot exceed [max].\nA878 | Minimum Decimal Value entered cannot be greater than Maximum Decimal Value entered.\nA894 | Update to the Inactive Field is invalid. This may be caused by trying to inactivate a Custom Field Type that is currently in use.\nA902 | Invalid Field Type. Field Type is required and must contain one of the following values: Integer, Currency, Decimal, Text, Paragraph or List.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/definitions/{ID}/activate": {
+      "post": {
+        "tags": [
+          "definitions"
+        ],
+        "description": "\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "customObjectDefinitionActivate",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customObjectDefinitionActivate_c1f30420f50c10000af05f4fa919124c"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/customObjectDefinitionActivate_c1f30420f50c10000af05f4fa919124c"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA825 | You have exceeded the maximum of 5 Currency Type custom fields for this custom object. Please reduce your Currency Type custom fields to 5 or less.\nA833 | Display Value is required for active multi instance custom objects.\nA839 | Custom Object Alias is invalid. The Custom Object Alias is required, cannot be changed once the custom object has been activated, must be unique, must contain only letters and numbers without spaces and must be different from all related custom field type web service aliases.\nA841 | The Display Value and Reference ID are inactive or do not belong to the custom object.\nA870 | Security Domain is invalid. The domain is required and must have a valid value.\nA873 | Custom object is already active.\nA880 | Custom Object Name cannot match any Custom Field Name.\nA890 | Multi Instance boolean value is invalid. A change to this value can only be made if the object is inactive and if the object extends a provided business object.\nA904 | Custom Object Name is invalid. This value is required and must be unique from all other custom objects.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/definitions/{ID}": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Retrieves a custom object definition.",
+        "description": "Retrieves a custom object definition for a multi-instance or single-instance custom object with the specified ID.\n\n<b>Secured by:</b> Custom Object Management, Workday Designer\n\n<b>Scope:</b> System, Workday Designer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/summary_76dc8bbf27441000087af1637dc5121e"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "put": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Updates an existing custom object definition.",
+        "description": "Updates an existing custom object definition with the specified ID. Replaces the existing instance with the specified data in the request body.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "detail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/detail_f91297ea5192100009e2a77fcc2b11ce"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/detail_f91297ea5192100009e2a77fcc2b11ce"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA828 | You have exceeded the maximum of Custom Fields for the Business Object associated with this Custom Object. Please reduce your Custom Fields.\nA833 | Display Value is required for active multi instance custom objects.\nA839 | Custom Object Alias is invalid. The Custom Object Alias is required, cannot be changed once the custom object has been activated, must be unique, must contain only letters and numbers without spaces and must be different from all related custom field type web service aliases.\nA841 | The Display Value and Reference ID are inactive or do not belong to the custom object.\nA863 | The Reference ID for a multi-instance custom object definition cannot be added, changed or removed once the custom object has data.\nA870 | Security Domain is invalid. The domain is required and must have a valid value.\nA880 | Custom Object Name cannot match any Custom Field Name.\nA890 | Multi Instance boolean value is invalid. A change to this value can only be made if the object is inactive and if the object extends a provided business object.\nA897 | The proposed Custom Field for the Reference ID must have a field type of Custom List, Date, Integer or Text.\nA904 | Custom Object Name is invalid. This value is required and must be unique from all other custom objects.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      },
+      "delete": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Deletes a custom object definition.",
+        "description": "Deletes a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Deleting resource."
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA861 | The custom object and its corresponding custom fields cannot be deleted because delivered transformation are currently using this custom object.\nA905 | The custom object and its corresponding custom fields cannot be deleted because data is currently saved to this custom object, data was saved to this custom object in the past, or the custom object is in use (e.g. in a report or rule).",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/definitions": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Retrieves a collection of custom object definitions.",
+        "description": "Retrieves all custom object definitions for both multi-instance and single-instance custom objects.\n\n<b>Secured by:</b> Custom Object Management, Workday Designer\n\n<b>Scope:</b> System, Workday Designer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/summary_76dc8bbf27441000087af1637dc5121e"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "definitions"
+        ],
+        "description": "\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "detail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/detail_f91297ea5192100009e2a77fcc2b11ce"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/detail_f91297ea5192100009e2a77fcc2b11ce"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA834 | Business Object is required. Please enter a valid Business Object.\nA839 | Custom Object Alias is invalid. The Custom Object Alias is required, cannot be changed once the custom object has been activated, must be unique, must contain only letters and numbers without spaces and must be different from all related custom field type web service aliases.\nA843 | Business Object Filter is invalid for the selected Business Object.\nA849 | Business Object Filter is not allowed for the selected Business Object.\nA870 | Security Domain is invalid. The domain is required and must have a valid value.\nA898 | Business Object Filter is required for the selected Business Object.\nA904 | Custom Object Name is invalid. This value is required and must be unique from all other custom objects.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/fieldTypes/{ID}/listValues/{subresourceID}": {
+      "get": {
+        "tags": [
+          "fieldTypes"
+        ],
+        "summary": "Retrieves a list value for a custom lists in a custom object definition.",
+        "description": "Retrieves a list value for a given custom list in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/customListValueDetail_19a56610057010004a53e67ab30e0181"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA827 | Name is invalid. The Name is required and must be unique among the Custom List Values for the custom list.\nA854 | The Custom Field Type is not a custom list. Custom values can only be created for custom lists.\nA866 | You have exceeded the maximum number of allowed Custom List Values of [max].\nA892 | Order is invalid. The Order is required and must be unique among the Custom List Values for the custom list.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      },
+      "put": {
+        "tags": [
+          "fieldTypes"
+        ],
+        "summary": "Updates an existing list value in a custom object definition.",
+        "description": "Updates an existing existing list value in a custom list in a custom object definition with the specified ID. Replaces the existing instance with the specified data in the request body.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "customListValueDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customListValueDetail_19a56610057010004a53e67ab30e0181"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/customListValueDetail_19a56610057010004a53e67ab30e0181"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA827 | Name is invalid. The Name is required and must be unique among the Custom List Values for the custom list.\nA850 | Web Service Alias is invalid. The Web Service Alias is required, must be unique among the Custom List Values for the custom list, cannot start with a number, must contain only letters and numbers without spaces and cannot be changed once the Custom List Value has been created.\nA854 | The Custom Field Type is not a custom list. Custom values can only be created for custom lists.\nA866 | You have exceeded the maximum number of allowed Custom List Values of [max].\nA892 | Order is invalid. The Order is required and must be unique among the Custom List Values for the custom list.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/definitions/{ID}/conditionRules": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Retrieves a collection of condition rules in a custom object definition.",
+        "description": "Retrieves the condition rules in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management, Workday Designer\n\n<b>Scope:</b> System, Workday Designer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/conditionRuleSummary_868a86607f4f1000162d6df187820024"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA829 | Specify a valid operator for the following condition item: [order].\nA836 | Only targetNumber or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetBoolean, targetText, targetDateTimeZone, and targetInstances must be empty.\nA838 | Only targetInstance or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetText, targetDateTimeZone, and targetBoolean must be empty.\nA853 | Only targetBoolean or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetText, targetDateTimeZone, and targetInstances must be empty.\nA858 | Only targetDate or targetField are allowed for condition Item ([order]). Other fields such as targetBoolean, targetNumber, targetText, targetDateTimeZone, and targetInstances must be empty.\nA869 | Only targetText or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetBoolean, targetDateTimeZone, and targetInstances must be empty.\nA872 | Specify a valid sourceField for the following condition items: [order].\nA874 | Specify a valid targetField for the following condition items:  [order].\nA877 | The rule description is already in use.\nA881 | Specify targetInstances or targetField for the following condition items: [order].\nA883 | Only targetDateTimeZone or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetBoolean, targetNumber, targetText, and targetInstances must be empty.\nA884 | Specify sourceField for the following condition items: [order].\nA885 | The rule id is already in use.\nA899 | Condition items must have a unique order.\nA906 | Specify the and/or operator for the following condition items: [order].",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "definitions"
+        ],
+        "description": "\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "conditionRuleDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/conditionRuleDetail_6a2d00bbe62110001233df6028a50020"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/conditionRuleDetail_6a2d00bbe62110001233df6028a50020"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA829 | Specify a valid operator for the following condition item: [order].\nA836 | Only targetNumber or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetBoolean, targetText, targetDateTimeZone, and targetInstances must be empty.\nA838 | Only targetInstance or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetText, targetDateTimeZone, and targetBoolean must be empty.\nA853 | Only targetBoolean or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetText, targetDateTimeZone, and targetInstances must be empty.\nA858 | Only targetDate or targetField are allowed for condition Item ([order]). Other fields such as targetBoolean, targetNumber, targetText, targetDateTimeZone, and targetInstances must be empty.\nA869 | Only targetText or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetBoolean, targetDateTimeZone, and targetInstances must be empty.\nA872 | Specify a valid sourceField for the following condition items: [order].\nA874 | Specify a valid targetField for the following condition items:  [order].\nA877 | The rule description is already in use.\nA881 | Specify targetInstances or targetField for the following condition items: [order].\nA883 | Only targetDateTimeZone or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetBoolean, targetNumber, targetText, and targetInstances must be empty.\nA884 | Specify sourceField for the following condition items: [order].\nA885 | The rule id is already in use.\nA899 | Condition items must have a unique order.\nA906 | Specify the and/or operator for the following condition items: [order].",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/definitions/{ID}/conditionRules/{subresourceID}": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Retrieves a condition rule in a custom object definition.",
+        "description": "Retrieves a condition rule in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management, Workday Designer\n\n<b>Scope:</b> System, Workday Designer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/conditionRuleSummary_868a86607f4f1000162d6df187820024"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA829 | Specify a valid operator for the following condition item: [order].\nA836 | Only targetNumber or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetBoolean, targetText, targetDateTimeZone, and targetInstances must be empty.\nA838 | Only targetInstance or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetText, targetDateTimeZone, and targetBoolean must be empty.\nA853 | Only targetBoolean or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetText, targetDateTimeZone, and targetInstances must be empty.\nA858 | Only targetDate or targetField are allowed for condition Item ([order]). Other fields such as targetBoolean, targetNumber, targetText, targetDateTimeZone, and targetInstances must be empty.\nA869 | Only targetText or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetBoolean, targetDateTimeZone, and targetInstances must be empty.\nA872 | Specify a valid sourceField for the following condition items: [order].\nA874 | Specify a valid targetField for the following condition items:  [order].\nA877 | The rule description is already in use.\nA881 | Specify targetInstances or targetField for the following condition items: [order].\nA883 | Only targetDateTimeZone or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetBoolean, targetNumber, targetText, and targetInstances must be empty.\nA884 | Specify sourceField for the following condition items: [order].\nA885 | The rule id is already in use.\nA899 | Condition items must have a unique order.\nA906 | Specify the and/or operator for the following condition items: [order].",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "put": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Updates an existing condition rule in a custom object definition.",
+        "description": "Updates an existing condition rule in a custom object definition with the specified ID. Replaces the existing instance with the specified data in the request body.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "conditionRuleDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/conditionRuleDetail_6a2d00bbe62110001233df6028a50020"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/conditionRuleDetail_6a2d00bbe62110001233df6028a50020"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA829 | Specify a valid operator for the following condition item: [order].\nA836 | Only targetNumber or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetBoolean, targetText, targetDateTimeZone, and targetInstances must be empty.\nA838 | Only targetInstance or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetText, targetDateTimeZone, and targetBoolean must be empty.\nA853 | Only targetBoolean or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetText, targetDateTimeZone, and targetInstances must be empty.\nA858 | Only targetDate or targetField are allowed for condition Item ([order]). Other fields such as targetBoolean, targetNumber, targetText, targetDateTimeZone, and targetInstances must be empty.\nA869 | Only targetText or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetBoolean, targetDateTimeZone, and targetInstances must be empty.\nA872 | Specify a valid sourceField for the following condition items: [order].\nA874 | Specify a valid targetField for the following condition items:  [order].\nA877 | The rule description is already in use.\nA881 | Specify targetInstances or targetField for the following condition items: [order].\nA883 | Only targetDateTimeZone or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetBoolean, targetNumber, targetText, and targetInstances must be empty.\nA884 | Specify sourceField for the following condition items: [order].\nA885 | The rule id is already in use.\nA899 | Condition items must have a unique order.\nA906 | Specify the and/or operator for the following condition items: [order].",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "delete": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Deletes a condition rule in a custom object definition.",
+        "description": "Deletes a condition rule in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Deleting resource."
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA829 | Specify a valid operator for the following condition item: [order].\nA836 | Only targetNumber or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetBoolean, targetText, targetDateTimeZone, and targetInstances must be empty.\nA838 | Only targetInstance or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetText, targetDateTimeZone, and targetBoolean must be empty.\nA853 | Only targetBoolean or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetText, targetDateTimeZone, and targetInstances must be empty.\nA858 | Only targetDate or targetField are allowed for condition Item ([order]). Other fields such as targetBoolean, targetNumber, targetText, targetDateTimeZone, and targetInstances must be empty.\nA869 | Only targetText or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetNumber, targetBoolean, targetDateTimeZone, and targetInstances must be empty.\nA872 | Specify a valid sourceField for the following condition items: [order].\nA874 | Specify a valid targetField for the following condition items:  [order].\nA877 | The rule description is already in use.\nA881 | Specify targetInstances or targetField for the following condition items: [order].\nA883 | Only targetDateTimeZone or targetField are allowed for condition Item ([order]). Other fields such as targetDate, targetBoolean, targetNumber, targetText, and targetInstances must be empty.\nA884 | Specify sourceField for the following condition items: [order].\nA885 | The rule id is already in use.\nA893 | You cannot delete the Condition Rule because it is in use.\nA899 | Condition items must have a unique order.\nA906 | Specify the and/or operator for the following condition items: [order].",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/fieldTypes/{ID}": {
+      "get": {
+        "tags": [
+          "fieldTypes"
+        ],
+        "summary": "Retrieves a custom field type.",
+        "description": "Retrieves a custom field type with the specified ID.\n\n<b>Secured by:</b> Custom Object Management, Workday Designer\n\n<b>Scope:</b> System, Workday Designer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/customFieldTypeDetail_19a566100570100021fab79af31f0012"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA824 | Invalid combination of Field Type and details provided in Type Info.\nA826 | The Currency Precision Value exceeds the maximum allowed value of [max].\nA830 | Name is invalid. This value is required and must be unique from all other Custom Field Types.\nA832 | Minimum Currency Value entered cannot be greater than Maximum Currency Value entered.\nA842 | The Decimal Precision Value exceeds the maximum allowed value of [max].\nA856 | Minimum Integer Value entered cannot be greater than Maximum Integer Value entered\nA857 | The Max Length for a Paragraph type can not be greater than [max].\nA860 | Web Service Alias is invalid. Web Service Alias is required, must not match any Custom Object Alias that this Custom Field Type is associated to, must be unique among the Custom Field Types, cannot start with a number, must contain only letters and numbers without spaces.\nA865 | The Max Length for a Text type cannot exceed [max].\nA878 | Minimum Decimal Value entered cannot be greater than Maximum Decimal Value entered.\nA894 | Update to the Inactive Field is invalid. This may be caused by trying to inactivate a Custom Field Type that is currently in use.\nA902 | Invalid Field Type. Field Type is required and must contain one of the following values: Integer, Currency, Decimal, Text, Paragraph or List.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "put": {
+        "tags": [
+          "fieldTypes"
+        ],
+        "summary": "Updates an existing custom field type.",
+        "description": "Updates an existing custom field type with the specified ID. Replaces the existing instance with the specified data in the request body.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "customFieldTypeDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customFieldTypeDetail_19a566100570100021fab79af31f0012"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/customFieldTypeDetail_19a566100570100021fab79af31f0012"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA824 | Invalid combination of Field Type and details provided in Type Info.\nA826 | The Currency Precision Value exceeds the maximum allowed value of [max].\nA830 | Name is invalid. This value is required and must be unique from all other Custom Field Types.\nA832 | Minimum Currency Value entered cannot be greater than Maximum Currency Value entered.\nA835 | Minimum Currency Value update is invalid. The Currency type you are trying to update might be in use and is unable to be updated.\nA840 | Maximum Decimal Value update is invalid. The Decimal type you are trying to update might be in use and is unable to be updated.\nA842 | The Decimal Precision Value exceeds the maximum allowed value of [max].\nA845 | Maximum Currency Value update is invalid. The Currency type you are trying to update might be in use and is unable to be updated.\nA848 | Currency Precision update is invalid. The Currency type you are trying to update might be in use and is unable to be updated.\nA851 | Maximum Integer Value update is invalid. The Integer type you are trying to update might be in use and is unable to be updated.\nA855 | Minimum Decimal Value update is invalid. The Decimal type you are trying to update might be in use and is unable to be updated.\nA856 | Minimum Integer Value entered cannot be greater than Maximum Integer Value entered\nA857 | The Max Length for a Paragraph type can not be greater than [max].\nA860 | Web Service Alias is invalid. Web Service Alias is required, must not match any Custom Object Alias that this Custom Field Type is associated to, must be unique among the Custom Field Types, cannot start with a number, must contain only letters and numbers without spaces.\nA864 | Minimum Integer Value update is invalid. The Integer type you are trying to update might be in use and is unable to be updated.\nA865 | The Max Length for a Text type cannot exceed [max].\nA876 | Decimal Precision update is invalid. The Decimal type you are trying to update might be in use and is unable to be updated.\nA878 | Minimum Decimal Value entered cannot be greater than Maximum Decimal Value entered.\nA882 | Maximum Length update is invalid. The Paragraph type you are trying to update might be in use and is unable to be updated.\nA887 | The update to the Field Type is invalid. The Field Type cannot be changed once the Custom Field Type is created.\nA894 | Update to the Inactive Field is invalid. This may be caused by trying to inactivate a Custom Field Type that is currently in use.\nA902 | Invalid Field Type. Field Type is required and must contain one of the following values: Integer, Currency, Decimal, Text, Paragraph or List.\nA903 | Maximum Length update is invalid. The Text type that you are trying to update might be in use and is unable to be updated.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/fieldTypes/{ID}/listValues": {
+      "get": {
+        "tags": [
+          "fieldTypes"
+        ],
+        "summary": "Retrieves a collection of list values for a custom list in a custom object definition.",
+        "description": "Retrieves the list values for a given custom list in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/customListValueDetail_19a56610057010004a53e67ab30e0181"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA827 | Name is invalid. The Name is required and must be unique among the Custom List Values for the custom list.\nA854 | The Custom Field Type is not a custom list. Custom values can only be created for custom lists.\nA866 | You have exceeded the maximum number of allowed Custom List Values of [max].\nA892 | Order is invalid. The Order is required and must be unique among the Custom List Values for the custom list.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "fieldTypes"
+        ],
+        "description": "\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "customListValueDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customListValueDetail_19a56610057010004a53e67ab30e0181"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/customListValueDetail_19a56610057010004a53e67ab30e0181"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA827 | Name is invalid. The Name is required and must be unique among the Custom List Values for the custom list.\nA850 | Web Service Alias is invalid. The Web Service Alias is required, must be unique among the Custom List Values for the custom list, cannot start with a number, must contain only letters and numbers without spaces and cannot be changed once the Custom List Value has been created.\nA854 | The Custom Field Type is not a custom list. Custom values can only be created for custom lists.\nA866 | You have exceeded the maximum number of allowed Custom List Values of [max].\nA892 | Order is invalid. The Order is required and must be unique among the Custom List Values for the custom list.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/definitions/{ID}/fields/{subresourceID}": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Retrieves a field in a custom object definition.",
+        "description": "Retrieves a field in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management, Workday Designer\n\n<b>Scope:</b> System, Workday Designer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/customField_f91297ea519210000d1eaec9254b11e4"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA825 | You have exceeded the maximum of 5 Currency Type custom fields for this custom object. Please reduce your Currency Type custom fields to 5 or less.\nA828 | You have exceeded the maximum of Custom Fields for the Business Object associated with this Custom Object. Please reduce your Custom Fields.\nA831 | Draft and Inactive fields cannot be true at the same time.\nA846 | The update to the Field Type is invalid. The Field Type is required and cannot be changed once the custom object is active.\nA859 | Draft is invalid. Draft can only be true for proposed fields on active custom object.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      },
+      "put": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Updates an existing field in a custom object definition.",
+        "description": "Updates an existing field in a custom object definition with the specified ID. Replaces the existing instance with the specified data in the request body.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "customField",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customField_f91297ea519210000d1eaec9254b11e4"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/customField_f91297ea519210000d1eaec9254b11e4"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA825 | You have exceeded the maximum of 5 Currency Type custom fields for this custom object. Please reduce your Currency Type custom fields to 5 or less.\nA828 | You have exceeded the maximum of Custom Fields for the Business Object associated with this Custom Object. Please reduce your Custom Fields.\nA831 | Draft and Inactive fields cannot be true at the same time.\nA837 | The validation of existing Custom Fields cannot be updated once the custom object is active.\nA841 | The Display Value and Reference ID are inactive or do not belong to the custom object.\nA846 | The update to the Field Type is invalid. The Field Type is required and cannot be changed once the custom object is active.\nA847 | Category update is invalid. Category is required and at least one value must be provided.\nA852 | Update to the Authorized Usages for this custom field is invalid. Authorized Usage is required and at least one value must be provided.\nA859 | Draft is invalid. Draft can only be true for proposed fields on active custom object.\nA867 | Display Options are invalid. Custom field cannot have both Sort Ascending and Sort Descending as selected Display Options and the selected Display Options must be valid for the type of the custom field.\nA871 | Custom Field Name and Custom Object Name cannot match.\nA875 | Custom Field Type is invalid. It is not active or it is custom reference but not customer facing.\nA879 | Prompt Identifier is invalid for the selected Custom Field Type.\nA889 | Name is invalid. Make sure the Name is unique from all other custom fields in the same object.\nA896 | Web Service Alias is invalid. Web Service Alias is required, cannot be changed once the custom object has been activated, must be unique among the custom fields for the custom object, cannot start with a number, must contain only letters and numbers without spaces.\nA900 | The update of the validations for the custom field is invalid.\nA908 | Custom Object Alias and Custom Field Alias cannot match.\nA1852 | The custom field and custom object don't match. The custom field must be associated with the custom object in the request.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      },
+      "delete": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Deletes a field in a custom object definition.",
+        "description": "Deletes a field in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Deleting resource."
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA825 | You have exceeded the maximum of 5 Currency Type custom fields for this custom object. Please reduce your Currency Type custom fields to 5 or less.\nA828 | You have exceeded the maximum of Custom Fields for the Business Object associated with this Custom Object. Please reduce your Custom Fields.\nA831 | Draft and Inactive fields cannot be true at the same time.\nA846 | The update to the Field Type is invalid. The Field Type is required and cannot be changed once the custom object is active.\nA859 | Draft is invalid. Draft can only be true for proposed fields on active custom object.\nA891 | This Custom Field is in use.  In order for you to delete this field you must first remove all usages.  NOTE: We are unable to report if this field is in use by an Integration. You will need to check this.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/definitions/{ID}/fields": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Retrieves a collection of fields in a custom object definition.",
+        "description": "Retrieves the fields in a custom object definition with the specified ID.\n\n<b>Secured by:</b> Custom Object Management, Workday Designer\n\n<b>Scope:</b> System, Workday Designer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/customField_f91297ea519210000d1eaec9254b11e4"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA825 | You have exceeded the maximum of 5 Currency Type custom fields for this custom object. Please reduce your Currency Type custom fields to 5 or less.\nA828 | You have exceeded the maximum of Custom Fields for the Business Object associated with this Custom Object. Please reduce your Custom Fields.\nA831 | Draft and Inactive fields cannot be true at the same time.\nA846 | The update to the Field Type is invalid. The Field Type is required and cannot be changed once the custom object is active.\nA859 | Draft is invalid. Draft can only be true for proposed fields on active custom object.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "definitions"
+        ],
+        "description": "\n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "customField",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customField_f91297ea519210000d1eaec9254b11e4"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/customField_f91297ea519210000d1eaec9254b11e4"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA825 | You have exceeded the maximum of 5 Currency Type custom fields for this custom object. Please reduce your Currency Type custom fields to 5 or less.\nA828 | You have exceeded the maximum of Custom Fields for the Business Object associated with this Custom Object. Please reduce your Custom Fields.\nA831 | Draft and Inactive fields cannot be true at the same time.\nA846 | The update to the Field Type is invalid. The Field Type is required and cannot be changed once the custom object is active.\nA847 | Category update is invalid. Category is required and at least one value must be provided.\nA852 | Update to the Authorized Usages for this custom field is invalid. Authorized Usage is required and at least one value must be provided.\nA859 | Draft is invalid. Draft can only be true for proposed fields on active custom object.\nA867 | Display Options are invalid. Custom field cannot have both Sort Ascending and Sort Descending as selected Display Options and the selected Display Options must be valid for the type of the custom field.\nA871 | Custom Field Name and Custom Object Name cannot match.\nA875 | Custom Field Type is invalid. It is not active or it is custom reference but not customer facing.\nA879 | Prompt Identifier is invalid for the selected Custom Field Type.\nA889 | Name is invalid. Make sure the Name is unique from all other custom fields in the same object.\nA895 | The Web Service Alias of the custom object must be different from the Web Service Alias of the Custom Field Type.\nA896 | Web Service Alias is invalid. Web Service Alias is required, cannot be changed once the custom object has been activated, must be unique among the custom fields for the custom object, cannot start with a number, must contain only letters and numbers without spaces.\nA900 | The update of the validations for the custom field is invalid.\nA908 | Custom Object Alias and Custom Field Alias cannot match.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "referenceId_f91297ea51921000b5136d52375713ac": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The custom field selected as the reference ID.",
+      "x-conditionally-required": true
+    },
+    "businessObjectFilter_f91297ea519210000a806434f71511d7": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/customObjectType_f91297ea519210002c34090c3540122d"
+        },
+        {}
+      ],
+      "description": "The custom object types for the custom object. Example:  Organization Types for Custom Objects on Custom Organization."
+    },
+    "displayValue_f91297ea51921000b5136d1791eb13ab": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Contains the display ID and value for the custom object.",
+      "x-conditionally-required": true
+    },
+    "fields_f91297ea519210001f822d2509a41223": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/customField_f91297ea519210000d1eaec9254b11e4"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Custom Field  \nExample(s): Custom_Field_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "domains_f91297ea519210000ac1028a68b911df": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/domain_f91297ea51921000183022a687a61203"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Domain"
+            }
+          }
+        }
+      ]
+    },
+    "businessObject_f91297ea519210000a8064ceb44411db": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The business object the custom objects extends."
+    },
+    "uiVisibilityRule_f91297ea51921000b5f52048a07613bd": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The condition rules for visibility.",
+      "x-conditionally-required": true
+    },
+    "detail_f91297ea5192100009e2a77fcc2b11ce": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "alias",
+            "domains",
+            "multiInstance",
+            "name"
+          ],
+          "properties": {
+            "referenceId": {
+              "$ref": "#/definitions/referenceId_f91297ea51921000b5136d52375713ac"
+            },
+            "businessObjectFilter": {
+              "$ref": "#/definitions/businessObjectFilter_f91297ea519210000a806434f71511d7"
+            },
+            "displayValue": {
+              "$ref": "#/definitions/displayValue_f91297ea51921000b5136d1791eb13ab"
+            },
+            "multiInstance": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the custom object has multiple instances for the extended business object.",
+              "x-workday-type": "Boolean"
+            },
+            "fields": {
+              "type": "array",
+              "description": "The custom fields for the custom object.",
+              "items": {
+                "$ref": "#/definitions/fields_f91297ea519210001f822d2509a41223"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "domains": {
+              "type": "array",
+              "description": "Contains the Security Domains that secure this object.",
+              "items": {
+                "$ref": "#/definitions/domains_f91297ea519210000ac1028a68b911df"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "businessObject": {
+              "$ref": "#/definitions/businessObject_f91297ea519210000a8064ceb44411db"
+            },
+            "active": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicates whether the custom object definition is active or a draft.",
+              "x-workday-type": "Boolean"
+            },
+            "uiVisibilityRule": {
+              "$ref": "#/definitions/uiVisibilityRule_f91297ea51921000b5f52048a07613bd"
+            },
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The web service alias of the custom object.",
+              "x-workday-type": "Text"
+            },
+            "hideOnView": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the field is hidden when unpopulated.",
+              "x-workday-type": "Boolean",
+              "x-conditionally-required": true
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the custom object.",
+              "x-workday-type": "Text"
+            },
+            "helpText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The help text for the custom object.",
+              "x-workday-type": "Rich Text",
+              "x-conditionally-required": true
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "businessObjectFilter_76dc8bbf27441000087af586f2981222": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The custom object types for the custom object. Example:  Organization Types for Custom Objects on Custom Organization."
+    },
+    "businessObject_76dc8bbf27441000087af5f9649f1223": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The business object the custom objects extends."
+    },
+    "summary_76dc8bbf27441000087af1637dc5121e": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "businessObjectFilter": {
+              "$ref": "#/definitions/businessObjectFilter_76dc8bbf27441000087af586f2981222"
+            },
+            "active": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicates whether the custom object definition is active or a draft.",
+              "x-workday-type": "Boolean"
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the custom object.",
+              "x-workday-type": "Text"
+            },
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The web service alias of the custom object.",
+              "x-workday-type": "Text"
+            },
+            "businessObject": {
+              "$ref": "#/definitions/businessObject_76dc8bbf27441000087af5f9649f1223"
+            },
+            "multiInstance": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the custom object has multiple instances for the extended business object.",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "conditionRuleSummary_868a86607f4f1000162d6df187820024": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "ruleDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The condition rule description provided by user.",
+              "x-workday-type": "Text"
+            },
+            "comment": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The comment entered for the condition rule.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "conditionItems_a60866e6a8af100016b5b849b37700e2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/conditionItemDetail_6a2d00bbe6211000160e0c46fda8003d"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Generic Condition Item (All)"
+            }
+          }
+        }
+      ]
+    },
+    "conditionRuleDetail_6a2d00bbe62110001233df6028a50020": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "conditionItems",
+            "ruleDescription"
+          ],
+          "properties": {
+            "comment": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The comment entered for the condition rule.",
+              "x-workday-type": "Text"
+            },
+            "ruleDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The condition rule description provided by user.",
+              "x-workday-type": "Text"
+            },
+            "conditionRuleId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Reference ID to use for lookups. Example: 'Organization_ID' for or supervisory organizations.",
+              "x-workday-type": "Text"
+            },
+            "conditionItems": {
+              "type": "array",
+              "description": "The condition items composing the rule.",
+              "items": {
+                "$ref": "#/definitions/conditionItems_a60866e6a8af100016b5b849b37700e2"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "customField_3a8d337cdf01100042d2dc779cc80019": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The custom field used for the user-defined validation for the custom object."
+    },
+    "conditionRule_3a8d337cdf01100042d2dcc38546001a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The condition rule used for the user-defined validation for the custom object. This condition rule must match the custom field."
+    },
+    "severityLevel_3a8d337cdf01100042d2dbf34a0b0018": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The severity level of the validation. Examples: Critical, Warning"
+    },
+    "customObjectValidation_35c90babc34d1000507988206a760019": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "conditionRule",
+            "customField",
+            "messageText",
+            "name",
+            "onlyOnOk",
+            "severityLevel"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the validation.",
+              "x-workday-type": "Text"
+            },
+            "customField": {
+              "$ref": "#/definitions/customField_3a8d337cdf01100042d2dc779cc80019"
+            },
+            "conditionRule": {
+              "$ref": "#/definitions/conditionRule_3a8d337cdf01100042d2dcc38546001a"
+            },
+            "messageText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The message displayed when the validation triggers.",
+              "x-workday-type": "Text"
+            },
+            "severityLevel": {
+              "$ref": "#/definitions/severityLevel_3a8d337cdf01100042d2dbf34a0b0018"
+            },
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The alias of the custom object validation.",
+              "x-workday-type": "Text"
+            },
+            "onlyOnOk": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, this validation only executes when the user clicks the OK button to submit the data. Otherwise, it triggers when the user enters data on the custom object.",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "prompts_f91297ea51921000684eb58d781012b3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/promptIdentifier_f91297ea519210006849f45ddf8712b1"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Prompt Identifier"
+            }
+          }
+        }
+      ]
+    },
+    "categories_f91297ea5192100064914b921c07128f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/externalFieldCategory_f91297ea5192100064904939b217128d"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Field Category"
+            }
+          }
+        }
+      ]
+    },
+    "fieldType_f91297ea5192100063f2b46a1e901289": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The field type of the custom field."
+    },
+    "authorizedUsages_f91297ea519210000d1eaf6fca3111e6": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/externalFieldUsage_f91297ea519210005fc757544af9126a"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Authorized Usage"
+            }
+          }
+        }
+      ]
+    },
+    "displayOptions_f91297ea51921000b753a4246a9a13ce": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/displayOption_f91297ea51921000b751b7cc382713cc"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Display Option"
+            }
+          }
+        }
+      ]
+    },
+    "validations_f91297ea51921000b6c6bd1a746913c7": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/customFieldValidation_f91297ea51921000b6bdc24da93113c5"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Custom Field Validation"
+            }
+          }
+        }
+      ]
+    },
+    "customField_f91297ea519210000d1eaec9254b11e4": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "alias",
+            "authorizedUsages",
+            "categories",
+            "fieldType",
+            "name"
+          ],
+          "properties": {
+            "draft": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the custom field is not activated yet and it is saved as a draft.",
+              "x-workday-type": "Boolean"
+            },
+            "prompts": {
+              "type": "array",
+              "description": "The prompt IDs for the custom field.",
+              "items": {
+                "$ref": "#/definitions/prompts_f91297ea51921000684eb58d781012b3"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "categories": {
+              "type": "array",
+              "description": "Contains one or more categories that have been associated with the report field.",
+              "items": {
+                "$ref": "#/definitions/categories_f91297ea5192100064914b921c07128f"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "fieldType": {
+              "$ref": "#/definitions/fieldType_f91297ea5192100063f2b46a1e901289"
+            },
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the custom field should no longer be used.",
+              "x-workday-type": "Boolean"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of the custom field.",
+              "maxLength": 6,
+              "x-workday-type": "Text"
+            },
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The web service alias of the custom field.",
+              "x-workday-type": "Text"
+            },
+            "authorizedUsages": {
+              "type": "array",
+              "description": "The parts of the application where a field is intended to be used.",
+              "items": {
+                "$ref": "#/definitions/authorizedUsages_f91297ea519210000d1eaf6fca3111e6"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the custom field on the business object.",
+              "x-workday-type": "Text"
+            },
+            "displayOptions": {
+              "type": "array",
+              "description": "Contains one or more display options that have been associated with the custom field.",
+              "items": {
+                "$ref": "#/definitions/displayOptions_f91297ea51921000b753a4246a9a13ce"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "validations": {
+              "type": "array",
+              "description": "Contains one or more custom field validations that have been associated with the custom field.",
+              "items": {
+                "$ref": "#/definitions/validations_f91297ea51921000b6c6bd1a746913c7"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "customObjectDefinitionActivate_c1f30420f50c10000af05f4fa919124c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "textInfo_9b0ed2dfc04310007e08800614060208": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/textCustomFieldTypeDetail_9b0ed2dfc04310007dc7cb59568001f9"
+        },
+        {}
+      ],
+      "description": "Contains information about a custom text field."
+    },
+    "listInfo_19a56610057010004945b190ec290150": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/listCustomFieldTypeDetail_19a5661005701000498a70d06a6c0167"
+        },
+        {}
+      ],
+      "description": "Contains the values array with the custom list values."
+    },
+    "paragraphInfo_9b0ed2dfc04310007d64b2ad200e01f1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/paragraphCustomFieldTypeDetail_9b0ed2dfc04310007d437eaac0fc01ea"
+        },
+        {}
+      ],
+      "description": "Contains information about a custom paragraph text field."
+    },
+    "integerInfo_9b0ed2dfc04310007cb65e94107a01de": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/integerCustomFieldTypeDetail_9b0ed2dfc04310007c51ea21de5301d1"
+        },
+        {}
+      ],
+      "description": "Contains information about a custom integer field."
+    },
+    "fieldType_19a566100570100030ac8e11924c0046": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/customFieldTypeTypeDetail_7fd695cd59ae1000040a5f31c74c001e"
+        },
+        {}
+      ],
+      "description": "The type of field for the custom field type."
+    },
+    "currencyInfo_19a566100570100030ac8d5b28c90045": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/currencyCustomFieldTypeDetail_19a566100570100030bd61f02bb70048"
+        },
+        {}
+      ],
+      "description": "Contains information about a custom currency field."
+    },
+    "decimalInfo_9b0ed2dfc04310005ae461fdea6100b4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/decimalCustomFieldTypeDetail_9b0ed2dfc04310005ae36b42f56100b2"
+        },
+        {}
+      ],
+      "description": "Contains information about a custom decimal field."
+    },
+    "customFieldTypeDetail_19a566100570100021fab79af31f0012": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "alias",
+            "name"
+          ],
+          "properties": {
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The web service alias of the custom field type.",
+              "x-workday-type": "Text"
+            },
+            "textInfo": {
+              "$ref": "#/definitions/textInfo_9b0ed2dfc04310007e08800614060208"
+            },
+            "listInfo": {
+              "$ref": "#/definitions/listInfo_19a56610057010004945b190ec290150"
+            },
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the custom field type is not active and should not be used.",
+              "x-workday-type": "Boolean"
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the custom field type.",
+              "x-workday-type": "Text"
+            },
+            "paragraphInfo": {
+              "$ref": "#/definitions/paragraphInfo_9b0ed2dfc04310007d64b2ad200e01f1"
+            },
+            "integerInfo": {
+              "$ref": "#/definitions/integerInfo_9b0ed2dfc04310007cb65e94107a01de"
+            },
+            "fieldType": {
+              "$ref": "#/definitions/fieldType_19a566100570100030ac8e11924c0046"
+            },
+            "currencyInfo": {
+              "$ref": "#/definitions/currencyInfo_19a566100570100030ac8d5b28c90045"
+            },
+            "decimalInfo": {
+              "$ref": "#/definitions/decimalInfo_9b0ed2dfc04310005ae461fdea6100b4"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "customListValueDetail_19a56610057010004a53e67ab30e0181": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of a custom list value.",
+              "x-workday-type": "Text"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of the custom list value.",
+              "maxLength": 6,
+              "x-workday-type": "Text"
+            },
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the custom list value is not active and should not be used.",
+              "x-workday-type": "Boolean"
+            },
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The web service alias of the custom list value.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "decimalCustomFieldTypeDetail_9b0ed2dfc04310005ae36b42f56100b2": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The minimum value for a custom decimal field.",
+              "x-workday-type": "Numeric"
+            },
+            "precision": {
+              "type": "integer",
+              "example": "99",
+              "description": "The precision for a custom decimal field.",
+              "x-workday-type": "Numeric"
+            },
+            "max": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The maximum value for a custom decimal field.",
+              "x-workday-type": "Numeric"
+            }
+          }
+        }
+      ]
+    },
+    "paragraphCustomFieldTypeDetail_9b0ed2dfc04310007d437eaac0fc01ea": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "maxLength": {
+              "type": "integer",
+              "example": "9999999999",
+              "description": "The maximum length for the custom paragraph text.",
+              "x-workday-type": "Numeric"
+            }
+          }
+        }
+      ]
+    },
+    "customFieldValidation_f91297ea51921000b6bdc24da93113c5": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "externalFieldUsage_f91297ea519210005fc757544af9126a": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "integerCustomFieldTypeDetail_9b0ed2dfc04310007c51ea21de5301d1": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "max": {
+              "type": "integer",
+              "example": "9999999999",
+              "description": "The maximum value for a custom integer field.",
+              "x-workday-type": "Numeric"
+            },
+            "min": {
+              "type": "integer",
+              "example": "9999999999",
+              "description": "The minimum value for a custom integer field.",
+              "x-workday-type": "Numeric"
+            }
+          }
+        }
+      ]
+    },
+    "targetInstances_a60866e6a8af10000ee78ff5a3ed0065": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/instanceReference_a60866e6a8af10000f4816d19d78006d"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Instance"
+            }
+          }
+        }
+      ]
+    },
+    "sourceField_a60866e6a8af100008ebca322002002e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The source used by the external field."
+    },
+    "targetField_a933da6c29d51000057c44d969c20020": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The target external field."
+    },
+    "conditionItemDetail_6a2d00bbe6211000160e0c46fda8003d": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "order",
+            "relationalOperator",
+            "sourceField"
+          ],
+          "properties": {
+            "and": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the condition item uses an AND operator.",
+              "x-workday-type": "Boolean"
+            },
+            "targetBoolean": {
+              "type": "boolean",
+              "example": true,
+              "description": "The target boolean used to compare against the source field.",
+              "x-workday-type": "Boolean"
+            },
+            "targetDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The target date used to compare against the condition item source field.",
+              "x-workday-type": "Date"
+            },
+            "targetText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The target text used to compare against the condition item source field.",
+              "x-workday-type": "Text"
+            },
+            "targetInstances": {
+              "type": "array",
+              "description": "The target instances used to compare against the condition item source field.",
+              "items": {
+                "$ref": "#/definitions/targetInstances_a60866e6a8af10000ee78ff5a3ed0065"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "targetNumber": {
+              "type": "number",
+              "example": 99999999999.9999,
+              "description": "The target number used to compare against the condition item source field.",
+              "x-workday-type": "Numeric"
+            },
+            "or": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the condition item uses an OR operator.",
+              "x-workday-type": "Boolean"
+            },
+            "relationalOperator": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name for the condition item relational operator.",
+              "x-workday-type": "Text"
+            },
+            "sourceField": {
+              "$ref": "#/definitions/sourceField_a60866e6a8af100008ebca322002002e"
+            },
+            "targetField": {
+              "$ref": "#/definitions/targetField_a933da6c29d51000057c44d969c20020"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of the condition item.",
+              "maxLength": 6,
+              "x-workday-type": "Text"
+            },
+            "closeParentheses": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the condition item has close parentheses.",
+              "x-workday-type": "Boolean"
+            },
+            "openParentheses": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the condition item has open parentheses.",
+              "x-workday-type": "Boolean"
+            }
+          }
+        }
+      ]
+    },
+    "promptIdentifier_f91297ea519210006849f45ddf8712b1": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "textCustomFieldTypeDetail_9b0ed2dfc04310007dc7cb59568001f9": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "maxLength": {
+              "type": "integer",
+              "example": "9999999999",
+              "description": "The maximum length for the custom text.",
+              "x-workday-type": "Numeric"
+            }
+          }
+        }
+      ]
+    },
+    "externalFieldCategory_f91297ea5192100064904939b217128d": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "currencyCustomFieldTypeDetail_19a566100570100030bd61f02bb70048": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The minimum value for a custom currency field.",
+              "x-workday-type": "Numeric"
+            },
+            "max": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The maximum value for a custom currency field.",
+              "x-workday-type": "Numeric"
+            },
+            "precision": {
+              "type": "integer",
+              "example": "99",
+              "description": "The precision for a custom currency field.",
+              "x-workday-type": "Numeric"
+            }
+          }
+        }
+      ]
+    },
+    "customFieldTypeTypeDetail_7fd695cd59ae1000040a5f31c74c001e": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "values_19a566100570100049ece8fe04c50176": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/customListValueDetail_19a56610057010004a53e67ab30e0181"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Custom List Value (All) Representation"
+            }
+          }
+        }
+      ]
+    },
+    "listCustomFieldTypeDetail_19a5661005701000498a70d06a6c0167": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "values": {
+              "type": "array",
+              "description": "An array containing the custom list values.",
+              "items": {
+                "$ref": "#/definitions/values_19a566100570100049ece8fe04c50176"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "displayOption_f91297ea51921000b751b7cc382713cc": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "customObjectType_f91297ea519210002c34090c3540122d": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "instanceReference_a60866e6a8af10000f4816d19d78006d": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The instance descriptor.",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Workday ID of the given object.",
+              "maxLength": 36,
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "domain_f91297ea51921000183022a687a61203": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

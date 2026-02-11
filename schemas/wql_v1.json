@@ -1,0 +1,1331 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Workday Query Language (WQL) service enables applications to access Workday data using the WQL syntax. It contains resources that define operations to view a summary of data sources, details about a specific data source, business objects, and fields contained within a data source. Information from the response can then be used to construct a WQL request in the Data REST API.",
+    "version": "v1",
+    "title": "wql",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "ba74f44bc90e107329f63fb1aa7a0045"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/wql/v1",
+  "tags": [
+    {
+      "name": "data",
+      "description": "Returns the data from a WQL query. You can only view data you have security access to."
+    },
+    {
+      "name": "dataSources",
+      "description": "Provides the ability to retrieve information about data sources, data source fields, and data source filters including primary and related business objects.  You can use the retrieved information to build your WQL queries."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/dataSources/{ID}": {
+      "get": {
+        "tags": [
+          "dataSources"
+        ],
+        "summary": "Retrieves a data source and primary business object for the specified {ID} for use in a WQL query.",
+        "description": "Retrieves a data source and its primary business object for the specified {ID} for use in a WQL query. You can only view data sources that you have security access to.\n\n<b>Secured by:</b> Development, WQL for Workday Extend, Workday Query Language\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/dataSource_8e5c16ca26d410000330a8f94d110005"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/dataSources/{ID}/dataSourceFilters/{subresourceID}": {
+      "get": {
+        "tags": [
+          "dataSources"
+        ],
+        "summary": "Retrieves the data source filter with the specified {ID} for a specific data source.",
+        "description": "Retrieves the data source filter with the specified {ID} for a specific data source. You can only view data sources and data source filters that you have security access to.\n\n<b>Secured by:</b> Development, WQL for Workday Extend, Workday Query Language\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/dataSourceFilter_3038b90b40f210000ad1f204b2880085"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/dataSources/{ID}/dataSourceFilters": {
+      "get": {
+        "tags": [
+          "dataSources"
+        ],
+        "summary": "Retrieves a data source filter of the data source.",
+        "description": "Retrieves a data source filter of the data source.\n\n<b>Secured by:</b> Development, WQL for Workday Extend, Workday Query Language\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "alias",
+            "in": "query",
+            "description": "The alias of the data source filter.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "The string to be searched in case insensitive manner within the descriptors of the data source filters.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/dataSourceFilter_3038b90b40f210000ad1f204b2880085"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/data": {
+      "get": {
+        "tags": [
+          "data"
+        ],
+        "summary": "Returns the data from a WQL query.",
+        "description": "Returns the data from a WQL query. You can only view data you have security access to.\n\n<b>Secured by:</b> Development, Set Up: Plan Publishing, WQL for Workday Extend, Workday Query Language\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "The WQL query that retrieves the data. Example: SELECT worker from allWorkers.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/report_814fa999bc0e1000060dc1d8b23c0143"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "data"
+        ],
+        "summary": "Returns the data from a WQL query. The read-only POST request accommodates queries greater than 2,048 characters.",
+        "description": "Returns the data from a WQL query. The read-only POST request accommodates queries greater than 2,048 characters. You can only view data you have security access to.\n\n<b>Secured by:</b> Development, Set Up: Plan Publishing, WQL for Workday Extend, Workday Query Language\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "adhocQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/adhocQuery_62d3719129d610001871ae6373a41461"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/adhocQuery_62d3719129d610001871ae6373a41461"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/dataSources": {
+      "get": {
+        "tags": [
+          "dataSources"
+        ],
+        "summary": "Retrieves a collection of data sources, including their primary business objects.",
+        "description": "Retrieves a collection of data sources, with their primary business objects, for use in a WQL query. You can only view data sources that you have security access to.\n\n<b>Secured by:</b> Development, WQL for Workday Extend, Workday Query Language\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "alias",
+            "in": "query",
+            "description": "The alias of the data source.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dataSourceIndexType",
+            "in": "query",
+            "description": "The parameter is used to filter \"Indexed\" and \"Non-indexed\" data sources.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "The string to be searched in case insensitive manner within the descriptors of the data sources.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/dataSourceSummary_cf007dd8877010000e79e0431fc30092"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/dataSources/{ID}/fields/{subresourceID}": {
+      "get": {
+        "tags": [
+          "dataSources"
+        ],
+        "summary": "Retrieves the field with a specified {ID} for the specific data source. Also retrieves the related business object of the field. You can only view fields and data sources that you have security access to.",
+        "description": "Retrieves the field with a specified {ID} for the specific data source. Also retrieves the related business object of the field.  You can only view fields and data sources that you have security access to.\n\n<b>Secured by:</b> Development, WQL for Workday Extend, Workday Query Language\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/fieldDescription_574759726df31000078839fae9c60009"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/dataSources/{ID}/fields": {
+      "get": {
+        "tags": [
+          "dataSources"
+        ],
+        "summary": "Retrieves a field of the data source instance, including the related business object of the field.",
+        "description": "Retrieves a field of the data source instance, including the related business object of the field. You can only view fields and data sources that you have security access to.\n\n<b>Secured by:</b> Development, WQL for Workday Extend, Workday Query Language\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "alias",
+            "in": "query",
+            "description": "The alias of the data source field.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "The string to be searched in case insensitive manner within the descriptors of the data source fields.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/fieldDescriptionSummary_b6861d26dedf100006ff3c098d180016"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "primaryBusinessObject_4f59a9f0816710000be03b706ec40000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "primaryBusinessObject"
+    },
+    "requiredParameters_51b7a148d65d10000e4c4f272bcd003a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/queryParameter_51b7a148d65d10000e3202c85610002f"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Query Parameter For External Promptable"
+            }
+          }
+        }
+      ]
+    },
+    "dataSourceFilters_731e286c8f3c1000086fa9ddd8610025": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/dataSourceFilter_3038b90b40f210000ad1f204b2880085"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Data Source Filter"
+            }
+          }
+        }
+      ]
+    },
+    "optionalParameters_33f68e095acc1000074236a2a0bf0092": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/queryParameter_51b7a148d65d10000e3202c85610002f"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Query Parameter For External Promptable"
+            }
+          }
+        }
+      ]
+    },
+    "dataSource_8e5c16ca26d410000330a8f94d110005": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "supportsEffectiveDate": {
+              "type": "boolean",
+              "example": true,
+              "description": "returns if the data source supports effective date",
+              "x-workday-type": "Boolean"
+            },
+            "primaryBusinessObject": {
+              "$ref": "#/definitions/primaryBusinessObject_4f59a9f0816710000be03b706ec40000"
+            },
+            "requiredParameters": {
+              "type": "array",
+              "description": "Required Query Parameters for External Promptable for Data Source",
+              "items": {
+                "$ref": "#/definitions/requiredParameters_51b7a148d65d10000e4c4f272bcd003a"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "supportsEntryDate": {
+              "type": "boolean",
+              "example": true,
+              "description": "returns if the data source supports entry date",
+              "x-workday-type": "Boolean"
+            },
+            "dataSourceIndexType": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Data Source Index Type",
+              "x-workday-type": "Text",
+              "x-workday-confidence-level": "Production"
+            },
+            "dataSourceFilters": {
+              "type": "array",
+              "description": "Non-required data source filters for the data source.",
+              "items": {
+                "$ref": "#/definitions/dataSourceFilters_731e286c8f3c1000086fa9ddd8610025"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "This field exposes WQL alias for Adhoc Query Enabled instances in WQL Rest APIs. This is for internal use only.",
+              "x-workday-type": "Text"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "A description describing the data source.",
+              "x-workday-type": "Text"
+            },
+            "optionalParameters": {
+              "type": "array",
+              "description": "Optional Query Parameters for External Promptable for Data Source",
+              "items": {
+                "$ref": "#/definitions/optionalParameters_33f68e095acc1000074236a2a0bf0092"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "filterIsRequired": {
+              "type": "boolean",
+              "example": true,
+              "description": "returns if the filer is required",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "primaryBusinessObject_1f6611b8ca84100014c9409d6ad700fa": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "primaryBusinessObject"
+    },
+    "dataSourceSummary_cf007dd8877010000e79e0431fc30092": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "dataSourceIndexType": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Data Source Index Type",
+              "x-workday-type": "Text",
+              "x-workday-confidence-level": "Production"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "A description describing the data source.",
+              "x-workday-type": "Text"
+            },
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "This field exposes WQL alias for Adhoc Query Enabled instances in WQL Rest APIs. This is for internal use only.",
+              "x-workday-type": "Text"
+            },
+            "primaryBusinessObject": {
+              "$ref": "#/definitions/primaryBusinessObject_1f6611b8ca84100014c9409d6ad700fa"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "optionalParameters_64be95ad744110000858b1f03e980099": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/queryParameter_51b7a148d65d10000e3202c85610002f"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Query Parameter For External Promptable"
+            }
+          }
+        }
+      ]
+    },
+    "requiredParameters_51b7a148d65d10000e3330e6ab590032": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/queryParameter_51b7a148d65d10000e3202c85610002f"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Query Parameter For External Promptable"
+            }
+          }
+        }
+      ]
+    },
+    "dataSourceFilter_3038b90b40f210000ad1f204b2880085": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "A description of the data source filter.",
+              "x-workday-type": "Text"
+            },
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "This field exposes WQL alias for Adhoc Query Enabled instances in WQL Rest APIs. This is for internal use only.",
+              "x-workday-type": "Text"
+            },
+            "optionalParameters": {
+              "type": "array",
+              "description": "Optional Query Parameters for External Promptable for Data Source Filter",
+              "items": {
+                "$ref": "#/definitions/optionalParameters_64be95ad744110000858b1f03e980099"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "requiredParameters": {
+              "type": "array",
+              "description": "Required Query Parameters for External Promptable for Data Source Filter",
+              "items": {
+                "$ref": "#/definitions/requiredParameters_51b7a148d65d10000e3330e6ab590032"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "relatedFields_6b74b06cf24110000925195f254e002a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/fieldDescriptionSummary_b6861d26dedf100006ff3c098d180016"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Field"
+            }
+          }
+        }
+      ]
+    },
+    "requiredParameters_70973fb9da081000184bc4156b930000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/queryParameter_51b7a148d65d10000e3202c85610002f"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Query Parameter For External Promptable"
+            }
+          }
+        }
+      ]
+    },
+    "relatedBusinessObject_1a9013c8568e100028c627ea1d9b014c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Related Business Object"
+    },
+    "optionalParameters_0ddad5e12e9c10000dd9a15fd9a10000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/queryParameter_51b7a148d65d10000e3202c85610002f"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Query Parameter For External Promptable"
+            }
+          }
+        }
+      ]
+    },
+    "fieldDescription_574759726df31000078839fae9c60009": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "relatedFields": {
+              "type": "array",
+              "description": "Related Business Object Fields",
+              "items": {
+                "$ref": "#/definitions/relatedFields_6b74b06cf24110000925195f254e002a"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "requiredParameters": {
+              "type": "array",
+              "description": "Required Parameters for WQL",
+              "items": {
+                "$ref": "#/definitions/requiredParameters_70973fb9da081000184bc4156b930000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "relatedBusinessObject": {
+              "$ref": "#/definitions/relatedBusinessObject_1a9013c8568e100028c627ea1d9b014c"
+            },
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "WQL Alias Internal",
+              "x-workday-type": "Text"
+            },
+            "type": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Field Type",
+              "x-workday-type": "Text"
+            },
+            "optionalParameters": {
+              "type": "array",
+              "description": "Optional Parameters for WQL",
+              "items": {
+                "$ref": "#/definitions/optionalParameters_0ddad5e12e9c10000dd9a15fd9a10000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "relatedBusinessObject_99bccf6f1d371000188bc05d2d2f0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Related Business Object"
+    },
+    "fieldDescriptionSummary_b6861d26dedf100006ff3c098d180016": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "This field exposes WQL alias for Adhoc Query Enabled instances in WQL Rest APIs. This is for internal use only.",
+              "x-workday-type": "Text"
+            },
+            "type": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The type of the field",
+              "x-workday-type": "Text"
+            },
+            "relatedBusinessObject": {
+              "$ref": "#/definitions/relatedBusinessObject_99bccf6f1d371000188bc05d2d2f0000"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "adhocQuery_62d3719129d610001871ae6373a41461": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "WQL Query.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "report_814fa999bc0e1000060dc1d8b23c0143": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "workData_51b7a148d65d10000ec6f7bd3a030045": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ]
+    },
+    "queryParameter_51b7a148d65d10000e3202c85610002f": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns \"Text\", \"Date\", \"Numeric\", \"Currency\", \"Boolean\", \"Single Instance\" or \"Multi Instance\".",
+              "x-workday-type": "Text"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Description for Query Parameter for External Promptable",
+              "x-workday-type": "Text"
+            },
+            "label": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "label",
+              "x-workday-type": "Text",
+              "x-workday-confidence-level": "Production"
+            },
+            "workData": {
+              "$ref": "#/definitions/workData_51b7a148d65d10000ec6f7bd3a030045"
+            },
+            "alias": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "This field exposes WQL alias for Adhoc Query Enabled instances in WQL Rest APIs. This is for internal use only.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

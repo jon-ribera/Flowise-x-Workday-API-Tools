@@ -1,0 +1,750 @@
+[
+  {
+    "name": "Recruiting-JobPostings-GET-getQuestionnaire",
+    "description": "[Recruiting] GET /jobPostings/{ID}/questionnaire/{subresourceID} — Retrieves a single questionnaire for the specified job posting ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobPostings/{ID}/questionnaire/{subresourceID}",
+    "operationId": null,
+    "file": "Recruiting-JobPostings-GET-getQuestionnaire.js"
+  },
+  {
+    "name": "Recruiting-Interviews-GET-getInterviews",
+    "description": "[Recruiting] GET /interviews/{ID} — Retrieves a collection of interviews.\n\n<b>Secured by:</b> Interview Feedback Public API\n\n<b>Scope:</b> Recruiting",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/interviews/{ID}",
+    "operationId": null,
+    "file": "Recruiting-Interviews-GET-getInterviews.js"
+  },
+  {
+    "name": "Recruiting-Values-GET-getCountries",
+    "description": "[Recruiting] GET /values/common/countries/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Prospects\n\n<b>Scope:</b> Recruiting, Talent Pipeline",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/countries/",
+    "operationId": null,
+    "file": "Recruiting-Values-GET-getCountries.js"
+  },
+  {
+    "name": "Recruiting-Prospects-POST-postProspects",
+    "description": "[Recruiting] POST /prospects — Create \\~prospects\\~.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/prospects",
+    "operationId": null,
+    "file": "Recruiting-Prospects-POST-postProspects.js"
+  },
+  {
+    "name": "Recruiting-Interviews-GET-getInterviews_1",
+    "description": "[Recruiting] GET /interviews — Retrieves a collection of interviews.\n\n<b>Secured by:</b> Interview Feedback Public API\n\n<b>Scope:</b> Recruiting",
+    "schema": [
+      {
+        "name": "interviewStatus",
+        "type": "string",
+        "description": "\"All applicable interview statuses for an Interview event. Statuses can be: \n * AWAITING_ME - An in-progress Interview event is waiting for the logged-in user's feedback. \n * COMPLETED - An Interview event is complete.\n * FEEDBACK_COMPLETE - All interview feedback for this in-progress event was submitted, but the Interview event isn’t awaiting the Make Interview Decision step.\n * NOT_SCHEDULED - An interview hasn't been scheduled for an in-progress Interview event.\n * PENDING_FEEDBACK - An in-progress Interview event is waiting for interviewer feedback.\n * SCHEDULED - An interview is scheduled for an in-progress Interview event.\n * SUBMITTED_FEEDBACK - The logged-in user submitted feedback for an in-progress Interview event.\n * MAKE_INTERVIEW_DECISION - The make an interview decision step for the candidate.\"",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/interviews",
+    "operationId": null,
+    "file": "Recruiting-Interviews-GET-getInterviews_1.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getLanguages",
+    "description": "[Recruiting] GET /prospects/{ID}/languages — Retrieves the languages of a single \\~prospect\\~ instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/languages",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getLanguages.js"
+  },
+  {
+    "name": "Recruiting-Prospects-POST-postLanguages",
+    "description": "[Recruiting] POST /prospects/{ID}/languages — Creates languages for a \\~prospect\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/prospects/{ID}/languages",
+    "operationId": null,
+    "file": "Recruiting-Prospects-POST-postLanguages.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getSkills",
+    "description": "[Recruiting] GET /prospects/{ID}/skills — Retrieves the skills of a single \\~prospect\\~ instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/skills",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getSkills.js"
+  },
+  {
+    "name": "Recruiting-Prospects-POST-postSkills",
+    "description": "[Recruiting] POST /prospects/{ID}/skills — Creates skills for a \\~prospect\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/prospects/{ID}/skills",
+    "operationId": null,
+    "file": "Recruiting-Prospects-POST-postSkills.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getExperiences",
+    "description": "[Recruiting] GET /prospects/{ID}/experiences/{subresourceID} — Retrieves a single experience instance for a \\~prospect\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/experiences/{subresourceID}",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getExperiences.js"
+  },
+  {
+    "name": "Recruiting-JobPostings-GET-getCandidateAvailabilityTemplate",
+    "description": "[Recruiting] GET /jobPostings/{ID}/candidateAvailabilityTemplate — Retrieves a single instance of the candidate availability template version.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobPostings/{ID}/candidateAvailabilityTemplate",
+    "operationId": null,
+    "file": "Recruiting-JobPostings-GET-getCandidateAvailabilityTemplate.js"
+  },
+  {
+    "name": "Recruiting-JobPostings-GET-getJobPostings",
+    "description": "[Recruiting] GET /jobPostings — Retrieves a collection of job postings.",
+    "schema": [
+      {
+        "name": "category",
+        "type": "string",
+        "description": "query parameter: category",
+        "required": false
+      },
+      {
+        "name": "jobPosting",
+        "type": "string",
+        "description": "Job Posting for Job Posting Anchor",
+        "required": false
+      },
+      {
+        "name": "jobRequisition",
+        "type": "string",
+        "description": "Job Requisition for Job Posting Anchor",
+        "required": false
+      },
+      {
+        "name": "jobSite",
+        "type": "string",
+        "description": "query parameter: jobSite",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobPostings",
+    "operationId": null,
+    "file": "Recruiting-JobPostings-GET-getJobPostings.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getLanguages_1",
+    "description": "[Recruiting] GET /prospects/{ID}/languages/{subresourceID} — Retrieves a single language instance for a \\~prospect\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/languages/{subresourceID}",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getLanguages_1.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getEducations",
+    "description": "[Recruiting] GET /prospects/{ID}/educations — Retrieves the education of a single \\~prospect\\~ instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/educations",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getEducations.js"
+  },
+  {
+    "name": "Recruiting-Prospects-POST-postEducations",
+    "description": "[Recruiting] POST /prospects/{ID}/educations — Creates educations for a \\~prospect\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/prospects/{ID}/educations",
+    "operationId": null,
+    "file": "Recruiting-Prospects-POST-postEducations.js"
+  },
+  {
+    "name": "Recruiting-Interviews-GET-getFeedback",
+    "description": "[Recruiting] GET /interviews/{ID}/feedback/{subresourceID} — Retrieves interview feedback for the specified ID.\n\n<b>Secured by:</b> Interview Feedback Public API\n\n<b>Scope:</b> Recruiting",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/interviews/{ID}/feedback/{subresourceID}",
+    "operationId": null,
+    "file": "Recruiting-Interviews-GET-getFeedback.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getSkills_1",
+    "description": "[Recruiting] GET /prospects/{ID}/skills/{subresourceID} — Retrieves a single skill instance for a \\~prospect\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/skills/{subresourceID}",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getSkills_1.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getResumeAttachments",
+    "description": "[Recruiting] GET /prospects/{ID}/resumeAttachments/{subresourceID} — Retrieves a single resume attachment instance for a \\~prospect\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/resumeAttachments/{subresourceID}",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getResumeAttachments.js"
+  },
+  {
+    "name": "Recruiting-JobPostings-GET-getJobPostings_1",
+    "description": "[Recruiting] GET /jobPostings/{ID} — Retrieves a job posting.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobPostings/{ID}",
+    "operationId": null,
+    "file": "Recruiting-JobPostings-GET-getJobPostings_1.js"
+  },
+  {
+    "name": "Recruiting-JobPostings-GET-getCandidateAvailabilityTemplate_1",
+    "description": "[Recruiting] GET /jobPostings/{ID}/candidateAvailabilityTemplate/{subresourceID} — Retrieves a single instance of the candidate availability template version.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobPostings/{ID}/candidateAvailabilityTemplate/{subresourceID}",
+    "operationId": null,
+    "file": "Recruiting-JobPostings-GET-getCandidateAvailabilityTemplate_1.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getExperiences_1",
+    "description": "[Recruiting] GET /prospects/{ID}/experiences — Retrieves the work experience of a single \\~prospect\\~ instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/experiences",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getExperiences_1.js"
+  },
+  {
+    "name": "Recruiting-Prospects-POST-postExperiences",
+    "description": "[Recruiting] POST /prospects/{ID}/experiences — Creates experiences for a \\~prospect\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/prospects/{ID}/experiences",
+    "operationId": null,
+    "file": "Recruiting-Prospects-POST-postExperiences.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-get_type_viewFile",
+    "description": "[Recruiting] GET /prospects/{ID}/resumeAttachments/{subresourceID}?type=viewFile — \n\n<b>Secured by:</b> Candidate Data: Attachments\n\n<b>Scope:</b> Recruiting\n\nContains attachment(s)",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/resumeAttachments/{subresourceID}?type=viewFile",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-get_type_viewFile.js"
+  },
+  {
+    "name": "Recruiting-Interviews-GET-getFeedback_1",
+    "description": "[Recruiting] GET /interviews/{ID}/feedback — Retrieves interview feedback for the specified ID.\n\n<b>Secured by:</b> Interview Feedback Public API\n\n<b>Scope:</b> Recruiting",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/interviews/{ID}/feedback",
+    "operationId": null,
+    "file": "Recruiting-Interviews-GET-getFeedback_1.js"
+  },
+  {
+    "name": "Recruiting-Interviews-POST-postFeedback",
+    "description": "[Recruiting] POST /interviews/{ID}/feedback — Submits interview details for the processing \\~worker\\~ with the interviewer's rating and comment.\n\n<b>Secured by:</b> Interview Feedback Public API\n\n<b>Scope:</b> Recruiting",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/interviews/{ID}/feedback",
+    "operationId": null,
+    "file": "Recruiting-Interviews-POST-postFeedback.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getResumeAttachments_1",
+    "description": "[Recruiting] GET /prospects/{ID}/resumeAttachments — Retrieves attached resumes for a single \\~prospect\\~ instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/resumeAttachments",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getResumeAttachments_1.js"
+  },
+  {
+    "name": "Recruiting-Prospects-POST-postResumeAttachments",
+    "description": "[Recruiting] POST /prospects/{ID}/resumeAttachments — Creates resume attachments for a \\~prospect\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/prospects/{ID}/resumeAttachments",
+    "operationId": null,
+    "file": "Recruiting-Prospects-POST-postResumeAttachments.js"
+  },
+  {
+    "name": "Recruiting-JobPostings-GET-getQuestionnaire_1",
+    "description": "[Recruiting] GET /jobPostings/{ID}/questionnaire — Retrieves a single questionnaire instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "questionnaireType",
+        "type": "string",
+        "description": "questionnaireType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobPostings/{ID}/questionnaire",
+    "operationId": null,
+    "file": "Recruiting-JobPostings-GET-getQuestionnaire_1.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getResumeAttachments_type_viewFile",
+    "description": "[Recruiting] GET /prospects/{ID}/resumeAttachments?type=viewFile — \n\n<b>Secured by:</b> Candidate Data: Attachments\n\n<b>Scope:</b> Recruiting\n\nContains attachment(s)",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/resumeAttachments?type=viewFile",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getResumeAttachments_type_viewFile.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getEducations_1",
+    "description": "[Recruiting] GET /prospects/{ID}/educations/{subresourceID} — Retrieves a single education instance for a \\~prospect\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}/educations/{subresourceID}",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getEducations_1.js"
+  },
+  {
+    "name": "Recruiting-Prospects-GET-getProspects",
+    "description": "[Recruiting] GET /prospects/{ID} — Retrieves a single \\~prospect\\~ instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/prospects/{ID}",
+    "operationId": null,
+    "file": "Recruiting-Prospects-GET-getProspects.js"
+  }
+]

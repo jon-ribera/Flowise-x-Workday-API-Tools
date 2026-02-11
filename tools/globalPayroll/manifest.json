@@ -1,0 +1,226 @@
+[
+  {
+    "name": "GlobalPayroll-PayGroups-GET-getPayGroups",
+    "description": "[Global Payroll] GET /payGroups/{ID} — Retrieves a Payroll Interface pay group.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/payGroups/{ID}",
+    "operationId": null,
+    "file": "GlobalPayroll-PayGroups-GET-getPayGroups.js"
+  },
+  {
+    "name": "GlobalPayroll-Authorizations-POST-postAuthorizations",
+    "description": "[Global Payroll] POST /authorizations — Check subjectId permissions against featureId for each target Id",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/authorizations",
+    "operationId": null,
+    "file": "GlobalPayroll-Authorizations-POST-postAuthorizations.js"
+  },
+  {
+    "name": "GlobalPayroll-EventDrivenIntegrationVendorResponse-POST-postEventDrivenIntegrationVendorResponse",
+    "description": "[Global Payroll] POST /eventDrivenIntegrationVendorResponse — Updates a specific vendor response instance of Event-Driven Integration with the specified data after the third-party payroll system completes processing of the worker changes.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/eventDrivenIntegrationVendorResponse",
+    "operationId": null,
+    "file": "GlobalPayroll-EventDrivenIntegrationVendorResponse-POST-postEventDrivenIntegrationVendorResponse.js"
+  },
+  {
+    "name": "GlobalPayroll-PayGroups-GET-getPeriods",
+    "description": "[Global Payroll] GET /payGroups/{ID}/periods — Retrieves a collection of payroll periods for the specified Payroll Interface pay group ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "periodEndDate",
+        "type": "string",
+        "description": "The end date of a payroll period using the yyyy-mm-dd format. This should not be used with the showMostRecentOnly query parameter. If both periodEndDate and showMostRecentOnly query parameters are provided, the API will only consider the periodEndDate query parameter.",
+        "required": false
+      },
+      {
+        "name": "showMostRecentOnly",
+        "type": "boolean",
+        "description": "If true, the operation returns the 5 most recent pay periods. This should not be used with periodEndDate query parameter. If both showMostRecentOnly and periodEndDate query parameters are provided, the API will ignore showMostRecentOnly query parameter.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/payGroups/{ID}/periods",
+    "operationId": null,
+    "file": "GlobalPayroll-PayGroups-GET-getPeriods.js"
+  },
+  {
+    "name": "GlobalPayroll-EventDrivenIntegrationVendorResponse-GET-getEventDrivenIntegrationVendorResponse",
+    "description": "[Global Payroll] GET /eventDrivenIntegrationVendorResponse/{ID} — Retrieves a single Event-Driven Integration vendor response.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/eventDrivenIntegrationVendorResponse/{ID}",
+    "operationId": null,
+    "file": "GlobalPayroll-EventDrivenIntegrationVendorResponse-GET-getEventDrivenIntegrationVendorResponse.js"
+  },
+  {
+    "name": "GlobalPayroll-Notifications-POST-postNotifications",
+    "description": "[Global Payroll] POST /notifications — POST Inbound Notifications request.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/notifications",
+    "operationId": null,
+    "file": "GlobalPayroll-Notifications-POST-postNotifications.js"
+  },
+  {
+    "name": "GlobalPayroll-PayGroups-GET-getPeriods_1",
+    "description": "[Global Payroll] GET /payGroups/{ID}/periods/{subresourceID} — Retrieves a payroll period for the specified Payroll Interface pay group ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/payGroups/{ID}/periods/{subresourceID}",
+    "operationId": null,
+    "file": "GlobalPayroll-PayGroups-GET-getPeriods_1.js"
+  },
+  {
+    "name": "GlobalPayroll-PayGroups-PATCH-patchPeriods",
+    "description": "[Global Payroll] PATCH /payGroups/{ID}/periods/{subresourceID} — Partially updates an existing pay period by the specified pay group ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/payGroups/{ID}/periods/{subresourceID}",
+    "operationId": null,
+    "file": "GlobalPayroll-PayGroups-PATCH-patchPeriods.js"
+  },
+  {
+    "name": "GlobalPayroll-EffectiveChanges-POST-postEffectiveChanges",
+    "description": "[Global Payroll] POST /effectiveChanges — Generates effective change data for organizations or workers based on request parameters.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/effectiveChanges",
+    "operationId": null,
+    "file": "GlobalPayroll-EffectiveChanges-POST-postEffectiveChanges.js"
+  },
+  {
+    "name": "GlobalPayroll-PayGroups-GET-getPayGroups_1",
+    "description": "[Global Payroll] GET /payGroups — Retrieves a collection of Payroll Interface pay groups.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/payGroups",
+    "operationId": null,
+    "file": "GlobalPayroll-PayGroups-GET-getPayGroups_1.js"
+  },
+  {
+    "name": "GlobalPayroll-EffectiveChanges-GET-getEffectiveChanges",
+    "description": "[Global Payroll] GET /effectiveChanges/{ID} — Retrieves a specific Data Changes on Demand event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/effectiveChanges/{ID}",
+    "operationId": null,
+    "file": "GlobalPayroll-EffectiveChanges-GET-getEffectiveChanges.js"
+  }
+]

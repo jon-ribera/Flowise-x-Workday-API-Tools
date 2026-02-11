@@ -1,0 +1,717 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Worktag service enables applications to validate worktags, which allow your company to define fields and field selections to categorize and report on transaction and accounting information.",
+    "version": "v1",
+    "title": "worktag",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "1189e438fe8710000b32a06accd446d1"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/worktag/v1",
+  "tags": [
+    {
+      "name": "validateWorktags",
+      "description": "Provides the ability to validate worktags for a transaction."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/validateWorktags": {
+      "post": {
+        "tags": [
+          "validateWorktags"
+        ],
+        "summary": "Validates worktags.",
+        "description": "Validates the allowed and required worktag types and worktag combinations based on the configuration in the 'Maintain Related Worktag Usage' and 'Maintain Worktag Usage' tasks and related worktags. This endpoint enables you to correct errors before you submit transactions that include worktags. \n\nThis POST endpoint is a read-only POST that submits the request for validation. This endpoint doesn't add data to Workday. \n\nIn the request body, specify the required field: taggableConfiguration{ id }, where id uses the format Taggable_Type_ID={referenceID}. You can get the Reference ID of the taggable type from the View Taggable Types task. Example id: Taggable_Type_ID=EXPENSE_REPORT \n\nYou can optionally specify these fields in the request body:\n\n* worktags [{id}] where id is the reference ID of the worktag. Example: Organization_Reference_ID=REGION-4-132\n\n* validationTypes[{id}] where id uses the format Worktags_REST_Validation_Type_ID={referenceID}. You can get the Reference ID of the validation type from the Worktags REST Validation Types report. Example: Worktags_REST_Validation_Type_ID=INACTIVE_WORKTAG_TYPES\n\n* restrictions[{id}] where id is the reference ID of the worktag type configured with 'Restricted To' values. Example: Company_Reference_ID=COMPANY-10-209\n\nFor details and examples, see Community > REST API Guides > Validate Worktags REST API.\n\n<b>Secured by:</b> Manage: Related Worktags, Worktag REST API\n\n<b>Scope:</b> Common Financial Management, Worktags",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "validateWorktagInput",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/validateWorktagInput_86c1996341de10001aedbf1355ff0000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/validateWorktagInput_86c1996341de10001aedbf1355ff0000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1672 | Allow Built-in Worktags must be either true or false.\nA1673 | Duplicate worktag types are not allowed.\nA1674 | Taggable Configuration is required.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "validationTypes_7ccdf8f26ee910000b6aff359b1c00c4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagValidationTypeInput_7ccdf8f26ee910000b6a70bc5fd600c2"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktags REST Validation Type Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "restrictions_f08fabab3cae10001d09c7148c9101ef": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/restrictionInput_4b3cd975feb010000567e14324830071"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Restriction Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "invalidRestrictionsForWorktags_f08fabab3cae10001a21f30e937501b3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagAndRestrictionInput_f08fabab3cae10001a2f1a982daa01b5"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Constraint Values Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "missingRequiredWorktagTypesForWorktags_3f71b007c34610001ff29543f94900ca": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagAndTypeInput_854b3abfd54d10000e8038b032223278"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Anchor Worktag and Target Worktag Types Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "nonAllowedWorktagTypesForTaggableConfig_3f71b007c34610001c4ca37e7c3f00a0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagTypeInput_3f71b007c34610000e0bb926bf370056"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Type Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "missingRequiredWorktagTypesForTaggableConfig_3f71b007c34610000e0c8b4c86f00058": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagTypeInput_3f71b007c34610000e0bb926bf370056"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Type Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "nonAllowedInactiveWorktagValues_aa8aaaaeca39100035e3236199f00406": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagInput_aa8aaaaeca39100034443e493aef03ce"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "worktags_aa8aaaaeca391000349a30b2a58203dc": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagInput_aa8aaaaeca39100034443e493aef03ce"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "invalidWorktagCombinations_aa8aaaaeca391000344569c0b5dd03d0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagsComboInput_f08fabab3cae10000b041ae3234b009d"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Anchor Target Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "taggableConfiguration_aa8aaaaeca391000321b455e3c150390": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "For REST API requests only. Usually the Taggable Type in the 'Maintain Worktag Usage' task that is used for the transaction. Examples: Customer Invoice, Accounting Journal, Expense Report. Exceptions are when the taggable type is Budgets or Time Tracking, the value needs to be either a budget plan structure or time entry template."
+    },
+    "missingRequiredWorktagTypesAfterDefaulting_5ee0ae813753100008c735574add423b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagTypeInput_3f71b007c34610000e0bb926bf370056"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Type Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "validateWorktagInput_86c1996341de10001aedbf1355ff0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "validationTypes": {
+              "type": "array",
+              "description": "For REST API requests only. The validation types to include in the response. If this request parameter is missing or empty, all validation types are included in the response.",
+              "items": {
+                "$ref": "#/definitions/validationTypes_7ccdf8f26ee910000b6aff359b1c00c4"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "restrictions": {
+              "type": "array",
+              "description": "For REST API requests only. Values that are validated for worktag types configured with 'Restricted To' values. Example: Company for a cost center configured with Restricted To Companies.",
+              "items": {
+                "$ref": "#/definitions/restrictions_f08fabab3cae10001d09c7148c9101ef"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "invalidRestrictionsForWorktags": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates invalid restrictions for a worktag configured with Restricted To values. Use the Worktag With Restricted To Values and Invalid Restricted To Values report fields to view the values.",
+              "items": {
+                "$ref": "#/definitions/invalidRestrictionsForWorktags_f08fabab3cae10001a21f30e937501b3"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "onlyOneProjectOrPhaseOrTaskAllowed": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "When returned in a REST API response, indicates that there is more than one worktag for a \\~Project\\~ in the request. Only one worktag type of \\~Project\\~, \\~Project Phase\\~ or \\~Project Task\\~ is allowed.",
+              "x-workday-type": "Text"
+            },
+            "allowBuiltInWorktags": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "When true, REST API requests can include values in the Worktags field that aren't configurable worktag types for the Taggable Type but are valid for validation purposes. Example: Supplier in Supplier Invoice.",
+              "x-workday-type": "Text"
+            },
+            "missingRequiredWorktagTypesForWorktags": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one worktag type configured as required in related worktags is missing. Use the Worktag With Required Worktags and Missing Required Worktag Types report fields to view the values.",
+              "items": {
+                "$ref": "#/definitions/missingRequiredWorktagTypesForWorktags_3f71b007c34610001ff29543f94900ca"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "nonAllowedWorktagTypesForTaggableConfig": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one worktag type sent in the request isn't allowed by the Taggable Configuration.",
+              "items": {
+                "$ref": "#/definitions/nonAllowedWorktagTypesForTaggableConfig_3f71b007c34610001c4ca37e7c3f00a0"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "missingRequiredWorktagTypesForTaggableConfig": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one worktag type configured as ‘Required’ for the Taggable Configuration is missing in the request.",
+              "items": {
+                "$ref": "#/definitions/missingRequiredWorktagTypesForTaggableConfig_3f71b007c34610000e0c8b4c86f00058"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The status in the REST API response that indicates whether the worktags sent in the request have validation errors or not.",
+              "x-workday-type": "Text"
+            },
+            "nonAllowedInactiveWorktagValues": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one inactive worktag was sent in the request that wasn't allowed by the Taggable Configuration.",
+              "items": {
+                "$ref": "#/definitions/nonAllowedInactiveWorktagValues_aa8aaaaeca39100035e3236199f00406"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "worktags": {
+              "type": "array",
+              "description": "The worktags sent in a REST API request to be validated based on the configuration in the 'Maintain Worktag Usage' and 'Maintain Related Worktag Usage' tasks. Validations consider required and allowed worktag types, allowed values, and whether inactive values are allowed.",
+              "items": {
+                "$ref": "#/definitions/worktags_aa8aaaaeca391000349a30b2a58203dc"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "invalidWorktagCombinations": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one combination of worktag values aren't allowed with one another. Use the Worktag with Allowed Values and Invalid Worktag Values report fields to view the values.",
+              "items": {
+                "$ref": "#/definitions/invalidWorktagCombinations_aa8aaaaeca391000344569c0b5dd03d0"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "taggableConfiguration": {
+              "$ref": "#/definitions/taggableConfiguration_aa8aaaaeca391000321b455e3c150390"
+            },
+            "missingRequiredWorktagTypesAfterDefaulting": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one worktag type configured as ‘Required’ for the Taggable Configuration is missing in the request and not added by default from related worktags. Use the Worktag With Required Worktags and Missing Required Worktag Types report fields to view the values.",
+              "items": {
+                "$ref": "#/definitions/missingRequiredWorktagTypesAfterDefaulting_5ee0ae813753100008c735574add423b"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "invalidRestrictedToValues_f08fabab3cae10002bec470e736c0279": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/restrictionInput_4b3cd975feb010000567e14324830071"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Restriction Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "worktagWithRestrictedToValues_f08fabab3cae10002bec472cf4f9027a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "For REST API responses only. Worktags that are configured with Restricted To values."
+    },
+    "worktagAndRestrictionInput_f08fabab3cae10001a2f1a982daa01b5": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "invalidRestrictedToValues": {
+              "type": "array",
+              "description": "For REST API responses only. The invalid Restricted To values for worktags.",
+              "items": {
+                "$ref": "#/definitions/invalidRestrictedToValues_f08fabab3cae10002bec470e736c0279"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "worktagWithRestrictedToValues": {
+              "$ref": "#/definitions/worktagWithRestrictedToValues_f08fabab3cae10002bec472cf4f9027a"
+            }
+          }
+        }
+      ]
+    },
+    "missingWorktagTypes_854b3abfd54d10000e80396c4dd1327a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagTypeInput_3f71b007c34610000e0bb926bf370056"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Type Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "worktagWithRequiredWorktags_854b3abfd54d10000e8038f3ed3f3279": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "For REST API responses only. Worktags configured with required worktag types in their related worktags."
+    },
+    "worktagAndTypeInput_854b3abfd54d10000e8038b032223278": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "missingWorktagTypes": {
+              "type": "array",
+              "description": "For REST API responses only. The worktag types that are configured as required in related worktags but are missing in the request.",
+              "items": {
+                "$ref": "#/definitions/missingWorktagTypes_854b3abfd54d10000e80396c4dd1327a"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "worktagWithRequiredWorktags": {
+              "$ref": "#/definitions/worktagWithRequiredWorktags_854b3abfd54d10000e8038f3ed3f3279"
+            }
+          }
+        }
+      ]
+    },
+    "worktagTypeInput_3f71b007c34610000e0bb926bf370056": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "worktagWithAllowedValues_f08fabab3cae10000bd8f5a584f100c1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "For REST API responses only. Worktags that are configured with allowed values."
+    },
+    "invalidWorktagValues_f08fabab3cae10000bed7987306400c3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagInput_aa8aaaaeca39100034443e493aef03ce"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "worktagsComboInput_f08fabab3cae10000b041ae3234b009d": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "worktagWithAllowedValues": {
+              "$ref": "#/definitions/worktagWithAllowedValues_f08fabab3cae10000bd8f5a584f100c1"
+            },
+            "invalidWorktagValues": {
+              "type": "array",
+              "description": "For REST API responses only. Worktags from the REST request that are invalid for the worktag with allowed values.",
+              "items": {
+                "$ref": "#/definitions/invalidWorktagValues_f08fabab3cae10000bed7987306400c3"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "worktagValidationTypeInput_7ccdf8f26ee910000b6a70bc5fd600c2": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "restrictionInput_4b3cd975feb010000567e14324830071": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "worktagInput_aa8aaaaeca39100034443e493aef03ce": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

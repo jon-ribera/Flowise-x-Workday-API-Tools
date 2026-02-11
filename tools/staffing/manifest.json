@@ -1,0 +1,4646 @@
+[
+  {
+    "name": "Staffing-Values-GET-getRegions",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/regions/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/regions/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getRegions.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getLocation",
+    "description": "[Staffing] GET /jobChanges/{ID}/location — Returns the location information for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/location",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getLocation.js"
+  },
+  {
+    "name": "Staffing-Workers-POST-postOrganizationAssignmentChanges",
+    "description": "[Staffing] POST /workers/{ID}/organizationAssignmentChanges — Initiates an organization assignment change for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/organizationAssignmentChanges",
+    "operationId": null,
+    "file": "Staffing-Workers-POST-postOrganizationAssignmentChanges.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getSkillItems",
+    "description": "[Staffing] GET /workers/{ID}/skillItems — Returns skill items.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/skillItems",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getSkillItems.js"
+  },
+  {
+    "name": "Staffing-Workers-POST-postSkillItems",
+    "description": "[Staffing] POST /workers/{ID}/skillItems — \n\n<b>Secured by:</b> Person Data: Skills, Self-Service: Skills\n\n<b>Scope:</b> Worker Profile and Skills",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/skillItems",
+    "operationId": null,
+    "file": "Staffing-Workers-POST-postSkillItems.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getStartDetails",
+    "description": "[Staffing] GET /jobChanges/{ID}/startDetails/{subresourceID} — Retrieves the start details for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/startDetails/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getStartDetails.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchStartDetails",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/startDetails/{subresourceID} — Partially updates the startDetails options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/startDetails/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchStartDetails.js"
+  },
+  {
+    "name": "Staffing-Workers-POST-postWorkContactInformationChanges",
+    "description": "[Staffing] POST /workers/{ID}/workContactInformationChanges — Creates a new Home Contact Change business process event for the parent Person.\n\n<b>Secured by:</b> Change Work Contact Information (REST Service)\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/workContactInformationChanges",
+    "operationId": null,
+    "file": "Staffing-Workers-POST-postWorkContactInformationChanges.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getRegion",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/region — Retrieves a region for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/region",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getRegion.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getReason",
+    "description": "[Staffing] GET /values/jobChangesGroup/reason/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/reason/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getReason.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getAdministrative",
+    "description": "[Staffing] GET /jobChanges/{ID}/administrative — Retrieves the administrative options for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/administrative",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getAdministrative.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getCustoms",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/customs/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/customs/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getCustoms.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getJobProfile",
+    "description": "[Staffing] GET /jobChanges/{ID}/jobProfile/{subresourceID} — Retrieves a job profile for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/jobProfile/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getJobProfile.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchJobProfile",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/jobProfile/{subresourceID} — Partially updates the jobProfile options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/jobProfile/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchJobProfile.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getLocation_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/location/{subresourceID} — Returns the location information for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/location/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getLocation_1.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchLocation",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/location/{subresourceID} — Partially updates the location options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/location/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchLocation.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getCheckInTopics",
+    "description": "[Staffing] GET /workers/{ID}/checkInTopics — Retrieves a collection of Check-Ins topics.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/checkInTopics",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getCheckInTopics.js"
+  },
+  {
+    "name": "Staffing-Workers-POST-postCheckInTopics",
+    "description": "[Staffing] POST /workers/{ID}/checkInTopics — Creates Check-In topics.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/checkInTopics",
+    "operationId": null,
+    "file": "Staffing-Workers-POST-postCheckInTopics.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getComment",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/comment — Retrieves the comment information for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/comment",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getComment.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getOrganizationAssignmentChanges",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID} — Retrieves a single organization assignment change event instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getOrganizationAssignmentChanges.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getCustomOrganizations",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/customOrganizations/{subresourceID} — Retrieves the custom organizations for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/customOrganizations/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getCustomOrganizations.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-PATCH-patchCustomOrganizations",
+    "description": "[Staffing] PATCH /organizationAssignmentChanges/{ID}/customOrganizations/{subresourceID} — Partially updates the custom organizations for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/organizationAssignmentChanges/{ID}/customOrganizations/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-PATCH-patchCustomOrganizations.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getSupervisoryOrganization",
+    "description": "[Staffing] GET /values/jobChangesGroup/supervisoryOrganization/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/supervisoryOrganization/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getSupervisoryOrganization.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getBusinessUnit",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/businessUnit/{subresourceID} — Retrieves a business unit for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/businessUnit/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getBusinessUnit.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-PATCH-patchBusinessUnit",
+    "description": "[Staffing] PATCH /organizationAssignmentChanges/{ID}/businessUnit/{subresourceID} — Partially updates the business unit for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/organizationAssignmentChanges/{ID}/businessUnit/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-PATCH-patchBusinessUnit.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getPrograms",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/programs/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/programs/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getPrograms.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getJobs",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/jobs/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/jobs/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getJobs.js"
+  },
+  {
+    "name": "Staffing-SupervisoryOrganizations-GET-getSupervisoryOrganizations",
+    "description": "[Staffing] GET /supervisoryOrganizations/{ID} — Retrieves a single supervisory organization instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/supervisoryOrganizations/{ID}",
+    "operationId": null,
+    "file": "Staffing-SupervisoryOrganizations-GET-getSupervisoryOrganizations.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getPosition",
+    "description": "[Staffing] GET /jobChanges/{ID}/position — Retrieves a position for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/position",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getPosition.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getFunds",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/funds/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/funds/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getFunds.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getStartDetails_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/startDetails — Retrieves the start details for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/startDetails",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getStartDetails_1.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getWorkersCompensationCodeOverrides",
+    "description": "[Staffing] GET /values/jobChangesGroup/workersCompensationCodeOverrides/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/workersCompensationCodeOverrides/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getWorkersCompensationCodeOverrides.js"
+  },
+  {
+    "name": "Staffing-Workers-PATCH-patch_type_archive",
+    "description": "[Staffing] PATCH /workers/{ID}/checkInTopics/{subresourceID}?type=archive — Partially updates an existing Check-In topic to archived or un-archived.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workers/{ID}/checkInTopics/{subresourceID}?type=archive",
+    "operationId": null,
+    "file": "Staffing-Workers-PATCH-patch_type_archive.js"
+  },
+  {
+    "name": "Staffing-SupervisoryOrganizations-GET-getOrgChart",
+    "description": "[Staffing] GET /supervisoryOrganizations/{ID}/orgChart — Retrieves information about an organization chart of the specified supervisory organization id.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/supervisoryOrganizations/{ID}/orgChart",
+    "operationId": null,
+    "file": "Staffing-SupervisoryOrganizations-GET-getOrgChart.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getSkillItems_1",
+    "description": "[Staffing] GET /workers/{ID}/skillItems/{subresourceID} — Returns skill items.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/skillItems/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getSkillItems_1.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getExternalSkillLevel",
+    "description": "[Staffing] GET /workers/{ID}/externalSkillLevel/{subresourceID} — Retrieves all external skill level information for a worker. You can filter the external skill levels by externalSkillId.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/externalSkillLevel/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getExternalSkillLevel.js"
+  },
+  {
+    "name": "Staffing-Workers-PUT-putExternalSkillLevel",
+    "description": "[Staffing] PUT /workers/{ID}/externalSkillLevel/{subresourceID} — Updates external skill levels.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/workers/{ID}/externalSkillLevel/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-PUT-putExternalSkillLevel.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getStartDetails",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/startDetails/{subresourceID} — Retrieves the start details for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/startDetails/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getStartDetails.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-PATCH-patchStartDetails",
+    "description": "[Staffing] PATCH /organizationAssignmentChanges/{ID}/startDetails/{subresourceID} — Partially updates the start details for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/organizationAssignmentChanges/{ID}/startDetails/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-PATCH-patchStartDetails.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getMoveTeam",
+    "description": "[Staffing] GET /jobChanges/{ID}/moveTeam/{subresourceID} — Retrieves a move team option from the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/moveTeam/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getMoveTeam.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchMoveTeam",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/moveTeam/{subresourceID} — Partially updates the moveTeam options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/moveTeam/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchMoveTeam.js"
+  },
+  {
+    "name": "Staffing-Workers-POST-postHomeContactInformationChanges",
+    "description": "[Staffing] POST /workers/{ID}/homeContactInformationChanges — Creates a new Home Contact Change business process event for the parent Person.\n\n<b>Secured by:</b> Change Home Contact Information (REST Service)\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/homeContactInformationChanges",
+    "operationId": null,
+    "file": "Staffing-Workers-POST-postHomeContactInformationChanges.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getPosition_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/position/{subresourceID} — Retrieves a position for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/position/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getPosition_1.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchPosition",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/position/{subresourceID} — Partially updates the position options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/position/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchPosition.js"
+  },
+  {
+    "name": "Staffing-JobProfiles-GET-getJobProfiles",
+    "description": "[Staffing] GET /jobProfiles — Retrieves a collection of job profiles.",
+    "schema": [
+      {
+        "name": "includeInactive",
+        "type": "boolean",
+        "description": "If true, the method returns inactive job profiles. Default is false.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobProfiles",
+    "operationId": null,
+    "file": "Staffing-JobProfiles-GET-getJobProfiles.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getComment",
+    "description": "[Staffing] GET /jobChanges/{ID}/comment — Returns the comment information for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/comment",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getComment.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getBusinessTitle",
+    "description": "[Staffing] GET /jobChanges/{ID}/businessTitle/{subresourceID} — Retrieves a business title for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/businessTitle/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getBusinessTitle.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchBusinessTitle",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/businessTitle/{subresourceID} — Partially updates the businessTitle options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/businessTitle/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchBusinessTitle.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getCheckIns",
+    "description": "[Staffing] GET /workers/{ID}/checkIns/{subresourceID} — Retrieves a single Check-In instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/checkIns/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getCheckIns.js"
+  },
+  {
+    "name": "Staffing-Workers-PATCH-patchCheckIns",
+    "description": "[Staffing] PATCH /workers/{ID}/checkIns/{subresourceID} — Partially updates an existing Check-In instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workers/{ID}/checkIns/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-PATCH-patchCheckIns.js"
+  },
+  {
+    "name": "Staffing-Workers-DELETE-deleteCheckIns",
+    "description": "[Staffing] DELETE /workers/{ID}/checkIns/{subresourceID} — Deletes an existing Check-In instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/workers/{ID}/checkIns/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-DELETE-deleteCheckIns.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getTimeTypes",
+    "description": "[Staffing] GET /values/jobChangesGroup/timeTypes/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/timeTypes/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getTimeTypes.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getJobClassification",
+    "description": "[Staffing] GET /jobChanges/{ID}/jobClassification — Retrieves a job classification for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/jobClassification",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getJobClassification.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getWorkShifts",
+    "description": "[Staffing] GET /values/jobChangesGroup/workShifts/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/workShifts/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getWorkShifts.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getCostCenters",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/costCenters/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/costCenters/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getCostCenters.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getAdministrative_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/administrative/{subresourceID} — Retrieves the administrative options for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/administrative/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getAdministrative_1.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchAdministrative",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/administrative/{subresourceID} — Partially updates the administrative options for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/administrative/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchAdministrative.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getMoveTeam_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/moveTeam — Retrieves a move team option from the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/moveTeam",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getMoveTeam_1.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getOpening",
+    "description": "[Staffing] GET /jobChanges/{ID}/opening — Retrieves the opening options for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/opening",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getOpening.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getExplicitSkills",
+    "description": "[Staffing] GET /workers/{ID}/explicitSkills — Get Explicit Skills for Skill Enabled",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "skill",
+        "type": "string",
+        "description": "Retrieves the skills for the specified skill name.",
+        "required": false
+      },
+      {
+        "name": "skillSource",
+        "type": "string",
+        "description": "The Workday ID of the skill source. Returns skills associated with the skill source.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/explicitSkills",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getExplicitSkills.js"
+  },
+  {
+    "name": "Staffing-Workers-POST-postExplicitSkills",
+    "description": "[Staffing] POST /workers/{ID}/explicitSkills — Save skills a user has",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/explicitSkills",
+    "operationId": null,
+    "file": "Staffing-Workers-POST-postExplicitSkills.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getBusinessTitle_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/businessTitle — Retrieves a business title for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/businessTitle",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getBusinessTitle_1.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getBusinessUnits",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/businessUnits/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/businessUnits/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getBusinessUnits.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getExplicitSkills_1",
+    "description": "[Staffing] GET /workers/{ID}/explicitSkills/{subresourceID} — Get Explicit Skills for Skill Enabled",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/explicitSkills/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getExplicitSkills_1.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getCompany",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/company/{subresourceID} — Retrieves a company for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/company/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getCompany.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-PATCH-patchCompany",
+    "description": "[Staffing] PATCH /organizationAssignmentChanges/{ID}/company/{subresourceID} — Partially updates the company for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/organizationAssignmentChanges/{ID}/company/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-PATCH-patchCompany.js"
+  },
+  {
+    "name": "Staffing-JobFamilies-GET-getJobFamilies",
+    "description": "[Staffing] GET /jobFamilies — Retrieves a collection of job families.",
+    "schema": [
+      {
+        "name": "inactive",
+        "type": "boolean",
+        "description": "If true, the method returns inactive job families. Default is false.",
+        "required": false
+      },
+      {
+        "name": "jobFamilyGroup",
+        "type": "string",
+        "description": "The job family group for the job family. You can specify more than 1 jobFamilyGroup query parameter.",
+        "required": false
+      },
+      {
+        "name": "jobProfile",
+        "type": "string",
+        "description": "The job profile for the job family. You can specify more than 1 jobFamilyGroup query parameter. For possible values, you can use a returned id from GET /jobProfiles.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobFamilies",
+    "operationId": null,
+    "file": "Staffing-JobFamilies-GET-getJobFamilies.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getCosting",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/costing/{subresourceID} — Retrieves the costing organizations for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/costing/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getCosting.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-PATCH-patchCosting",
+    "description": "[Staffing] PATCH /organizationAssignmentChanges/{ID}/costing/{subresourceID} — Partially updates the costing organization options for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/organizationAssignmentChanges/{ID}/costing/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-PATCH-patchCosting.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getCheckInTopics_1",
+    "description": "[Staffing] GET /workers/{ID}/checkInTopics/{subresourceID} — Retrieves a single Check-In topic instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/checkInTopics/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getCheckInTopics_1.js"
+  },
+  {
+    "name": "Staffing-Workers-PATCH-patchCheckInTopics",
+    "description": "[Staffing] PATCH /workers/{ID}/checkInTopics/{subresourceID} — Partially updates an existing Check-In topic instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workers/{ID}/checkInTopics/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-PATCH-patchCheckInTopics.js"
+  },
+  {
+    "name": "Staffing-Workers-DELETE-deleteCheckInTopics",
+    "description": "[Staffing] DELETE /workers/{ID}/checkInTopics/{subresourceID} — Deletes an existing Check-In topic instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/workers/{ID}/checkInTopics/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-DELETE-deleteCheckInTopics.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getFrequencies",
+    "description": "[Staffing] GET /values/jobChangesGroup/frequencies/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/frequencies/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getFrequencies.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getHomeContactInformationChanges",
+    "description": "[Staffing] GET /workers/{ID}/homeContactInformationChanges/{subresourceID} — Retrieves an existing Home Contact Change event for the Person.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/homeContactInformationChanges/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getHomeContactInformationChanges.js"
+  },
+  {
+    "name": "Staffing-Jobs-GET-getWorkspace",
+    "description": "[Staffing] GET /jobs/{ID}/workspace — Retrieves a collection of workspaces for the specified job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobs/{ID}/workspace",
+    "operationId": null,
+    "file": "Staffing-Jobs-GET-getWorkspace.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getContract",
+    "description": "[Staffing] GET /jobChanges/{ID}/contract — Retrieves the contract options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/contract",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getContract.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getStartDetails_1",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/startDetails — Retrieves the start details for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/startDetails",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getStartDetails_1.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getRegion_1",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/region/{subresourceID} — Retrieves a region for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/region/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getRegion_1.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-PATCH-patchRegion",
+    "description": "[Staffing] PATCH /organizationAssignmentChanges/{ID}/region/{subresourceID} — Partially updates the region for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/organizationAssignmentChanges/{ID}/region/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-PATCH-patchRegion.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getEmployeeTypes",
+    "description": "[Staffing] GET /values/jobChangesGroup/employeeTypes/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/employeeTypes/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getEmployeeTypes.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getWorkContactInformationChanges",
+    "description": "[Staffing] GET /workers/{ID}/workContactInformationChanges/{subresourceID} — Retrieves an existing Work Contact Change event for the Person.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/workContactInformationChanges/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getWorkContactInformationChanges.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getPayRateTypes",
+    "description": "[Staffing] GET /values/jobChangesGroup/payRateTypes/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/payRateTypes/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getPayRateTypes.js"
+  },
+  {
+    "name": "Staffing-Jobs-GET-getJobs",
+    "description": "[Staffing] GET /jobs/{ID} — Retrieves a single job instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobs/{ID}",
+    "operationId": null,
+    "file": "Staffing-Jobs-GET-getJobs.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getJobChanges",
+    "description": "[Staffing] GET /jobChanges/{ID} — Retrieves a single change job event instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getJobChanges.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getCheckIns_1",
+    "description": "[Staffing] GET /workers/{ID}/checkIns — Retrieves a collection of Check-Ins.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/checkIns",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getCheckIns_1.js"
+  },
+  {
+    "name": "Staffing-Workers-POST-postCheckIns",
+    "description": "[Staffing] POST /workers/{ID}/checkIns — Creates Check-Ins.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/checkIns",
+    "operationId": null,
+    "file": "Staffing-Workers-POST-postCheckIns.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getTemplates",
+    "description": "[Staffing] GET /values/jobChangesGroup/templates/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/templates/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getTemplates.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getWorkers",
+    "description": "[Staffing] GET /workers — Retrieves a collection of workers and current staffing information.",
+    "schema": [
+      {
+        "name": "includeTerminatedWorkers",
+        "type": "boolean",
+        "description": "Include terminated workers in the output",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "description": "Searches workers by name or worker ID. The search is case-insensitive. You can include space-delimited search strings for an OR search.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getWorkers.js"
+  },
+  {
+    "name": "Staffing-JobFamilies-GET-getJobFamilies_1",
+    "description": "[Staffing] GET /jobFamilies/{ID} — Retrieves a single job family instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobFamilies/{ID}",
+    "operationId": null,
+    "file": "Staffing-JobFamilies-GET-getJobFamilies_1.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getCustomOrganizations_1",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/customOrganizations — Retrieves the custom organizations for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/customOrganizations",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getCustomOrganizations_1.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getWorkers",
+    "description": "[Staffing] GET /values/jobChangesGroup/workers/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/workers/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getWorkers.js"
+  },
+  {
+    "name": "Staffing-JobChanges-POST-postSubmit",
+    "description": "[Staffing] POST /jobChanges/{ID}/submit — Submit the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/jobChanges/{ID}/submit",
+    "operationId": null,
+    "file": "Staffing-JobChanges-POST-postSubmit.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getContingentWorkerTypes",
+    "description": "[Staffing] GET /values/jobChangesGroup/contingentWorkerTypes/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/contingentWorkerTypes/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getContingentWorkerTypes.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getJobClassification_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/jobClassification/{subresourceID} — Retrieves a job classification for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/jobClassification/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getJobClassification_1.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchJobClassification",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/jobClassification/{subresourceID} — Partially updates the jobClassification options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/jobClassification/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchJobClassification.js"
+  },
+  {
+    "name": "Staffing-SupervisoryOrganizations-GET-getMembers",
+    "description": "[Staffing] GET /supervisoryOrganizations/{ID}/members/{subresourceID} — Retrieves a single member instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/supervisoryOrganizations/{ID}/members/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-SupervisoryOrganizations-GET-getMembers.js"
+  },
+  {
+    "name": "Staffing-Workers-POST-postJobChanges",
+    "description": "[Staffing] POST /workers/{ID}/jobChanges — Initiates a job change request for a specific worker",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/jobChanges",
+    "operationId": null,
+    "file": "Staffing-Workers-POST-postJobChanges.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getOpening_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/opening/{subresourceID} — Retrieves the opening options for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/opening/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getOpening_1.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchOpening",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/opening/{subresourceID} — Partially updates the opening options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/opening/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchOpening.js"
+  },
+  {
+    "name": "Staffing-SupervisoryOrganizations-GET-getSupervisoryOrganizations_1",
+    "description": "[Staffing] GET /supervisoryOrganizations — Retrieves a supervisory organization for the specified ID.",
+    "schema": [
+      {
+        "name": "includeInactive",
+        "type": "boolean",
+        "description": "If true, this method returns the inactive organizations. Default is false.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/supervisoryOrganizations",
+    "operationId": null,
+    "file": "Staffing-SupervisoryOrganizations-GET-getSupervisoryOrganizations_1.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getCosting_1",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/costing — Retrieves the costing organizations for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/costing",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getCosting_1.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getCurrencies",
+    "description": "[Staffing] GET /values/jobChangesGroup/currencies/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/currencies/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getCurrencies.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getWorkers_1",
+    "description": "[Staffing] GET /workers/{ID} — Retrieves a collection of workers and current staffing information.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getWorkers_1.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getProposedPosition",
+    "description": "[Staffing] GET /values/jobChangesGroup/proposedPosition/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/proposedPosition/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getProposedPosition.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getJobs_1",
+    "description": "[Staffing] GET /values/jobChangesGroup/jobs/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/jobs/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getJobs_1.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getServiceDates",
+    "description": "[Staffing] GET /workers/{ID}/serviceDates/{subresourceID} — Retrieves a single service date information instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/serviceDates/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getServiceDates.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-POST-postSubmit",
+    "description": "[Staffing] POST /organizationAssignmentChanges/{ID}/submit — Submits the organization changes request for the specified ID, and initiates the Change Organization Assignment business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/organizationAssignmentChanges/{ID}/submit",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-POST-postSubmit.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getCompanyInsiderTypes",
+    "description": "[Staffing] GET /values/jobChangesGroup/companyInsiderTypes/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/companyInsiderTypes/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getCompanyInsiderTypes.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getCostCenter",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/costCenter/{subresourceID} — Retrieves a cost center for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/costCenter/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getCostCenter.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-PATCH-patchCostCenter",
+    "description": "[Staffing] PATCH /organizationAssignmentChanges/{ID}/costCenter/{subresourceID} — Partially updates the cost center for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/organizationAssignmentChanges/{ID}/costCenter/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-PATCH-patchCostCenter.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getComment_1",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/comment/{subresourceID} — Retrieves the comment information for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/comment/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getComment_1.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-PATCH-patchComment",
+    "description": "[Staffing] PATCH /organizationAssignmentChanges/{ID}/comment/{subresourceID} — Partially updates  the comment for the organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/organizationAssignmentChanges/{ID}/comment/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-PATCH-patchComment.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getHeadcountOptions",
+    "description": "[Staffing] GET /values/jobChangesGroup/headcountOptions/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/headcountOptions/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getHeadcountOptions.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getGrants",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/grants/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/grants/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getGrants.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getServiceDates_1",
+    "description": "[Staffing] GET /workers/{ID}/serviceDates — Retrieves a collection of service dates for the specified worker id.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/serviceDates",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getServiceDates_1.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getWorkerTypes",
+    "description": "[Staffing] GET /values/jobChangesGroup/workerTypes/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/workerTypes/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getWorkerTypes.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getWorkers_1",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/workers/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/workers/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getWorkers_1.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getContract_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/contract/{subresourceID} — Retrieves the contract options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/contract/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getContract_1.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchContract",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/contract/{subresourceID} — Partially updates the contract options for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/contract/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchContract.js"
+  },
+  {
+    "name": "Staffing-Workers-PATCH-patch_type_archive_1",
+    "description": "[Staffing] PATCH /workers/{ID}/checkIns/{subresourceID}?type=archive — Partially updates an existing Check-In to archived or un-archived.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workers/{ID}/checkIns/{subresourceID}?type=archive",
+    "operationId": null,
+    "file": "Staffing-Workers-PATCH-patch_type_archive_1.js"
+  },
+  {
+    "name": "Staffing-Jobs-GET-getJobs_1",
+    "description": "[Staffing] GET /jobs — Retrieves a collection of jobs.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobs",
+    "operationId": null,
+    "file": "Staffing-Jobs-GET-getJobs_1.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getWorkStudyAwards",
+    "description": "[Staffing] GET /values/jobChangesGroup/workStudyAwards/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/workStudyAwards/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getWorkStudyAwards.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getLocations",
+    "description": "[Staffing] GET /values/jobChangesGroup/locations/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/locations/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getLocations.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getJobProfile_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/jobProfile — Retrieves a job profile for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/jobProfile",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getJobProfile_1.js"
+  },
+  {
+    "name": "Staffing-JobProfiles-GET-getJobProfiles_1",
+    "description": "[Staffing] GET /jobProfiles/{ID} — Retrieves a single job profile instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobProfiles/{ID}",
+    "operationId": null,
+    "file": "Staffing-JobProfiles-GET-getJobProfiles_1.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getPositions",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/positions/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/positions/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getPositions.js"
+  },
+  {
+    "name": "Staffing-Workers-GET-getExternalSkillLevel_1",
+    "description": "[Staffing] GET /workers/{ID}/externalSkillLevel — Retrieves all external skill level information for a worker. You can filter the external skill levels by externalSkillId.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "externalSkillId",
+        "type": "string",
+        "description": "All External Skills. If passed, the External Skill Level associated with the External Skill ID.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/externalSkillLevel",
+    "operationId": null,
+    "file": "Staffing-Workers-GET-getExternalSkillLevel_1.js"
+  },
+  {
+    "name": "Staffing-Workers-POST-postExternalSkillLevel",
+    "description": "[Staffing] POST /workers/{ID}/externalSkillLevel — Creates external skill levels.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/externalSkillLevel",
+    "operationId": null,
+    "file": "Staffing-Workers-POST-postExternalSkillLevel.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-POST-postOrganizationAssignmentChanges",
+    "description": "[Staffing] POST /organizationAssignmentChanges — Creates a new change organization assignment event for a specific filled or unfilled position.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/organizationAssignmentChanges",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-POST-postOrganizationAssignmentChanges.js"
+  },
+  {
+    "name": "Staffing-SupervisoryOrganizations-GET-getMembers_1",
+    "description": "[Staffing] GET /supervisoryOrganizations/{ID}/members — Retrieves a collection of members for the specified supervisory organization ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/supervisoryOrganizations/{ID}/members",
+    "operationId": null,
+    "file": "Staffing-SupervisoryOrganizations-GET-getMembers_1.js"
+  },
+  {
+    "name": "Staffing-Jobs-GET-getWorkspace_1",
+    "description": "[Staffing] GET /jobs/{ID}/workspace/{subresourceID} — Retrieves a single workspace instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobs/{ID}/workspace/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-Jobs-GET-getWorkspace_1.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getJobRequisitions",
+    "description": "[Staffing] GET /values/jobChangesGroup/jobRequisitions/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/jobRequisitions/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getJobRequisitions.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getJobProfiles",
+    "description": "[Staffing] GET /values/jobChangesGroup/jobProfiles/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/jobProfiles/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getJobProfiles.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getCompanies",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/companies/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/companies/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getCompanies.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getWorkSpaces",
+    "description": "[Staffing] GET /values/jobChangesGroup/workSpaces/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/workSpaces/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getWorkSpaces.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getBusinessUnit_1",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/businessUnit — Retrieves a business unit for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/businessUnit",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getBusinessUnit_1.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getAssignmentTypes",
+    "description": "[Staffing] GET /values/jobChangesGroup/assignmentTypes/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/assignmentTypes/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getAssignmentTypes.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getJobClassifications",
+    "description": "[Staffing] GET /values/jobChangesGroup/jobClassifications/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Actions: Additional Job Classifications, Staffing Actions: Administrator, Sta",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "job",
+        "type": "string",
+        "description": "query parameter: job",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "query parameter: location",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "proposedManager",
+        "type": "string",
+        "description": "query parameter: proposedManager",
+        "required": false
+      },
+      {
+        "name": "staffingEvent",
+        "type": "string",
+        "description": "query parameter: staffingEvent",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/jobChangesGroup/jobClassifications/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getJobClassifications.js"
+  },
+  {
+    "name": "Staffing-Values-GET-getGifts",
+    "description": "[Staffing] GET /values/organizationAssignmentChangesGroup/gifts/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Staffing Organizations: Business Unit, Staffing Organizations: Company, Staffing Organ",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "query parameter: effectiveDate",
+        "required": false
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "query parameter: event",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "query parameter: organizationType",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationAssignmentChangesGroup/gifts/",
+    "operationId": null,
+    "file": "Staffing-Values-GET-getGifts.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getCompany_1",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/company — Retrieves a company for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/company",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getCompany_1.js"
+  },
+  {
+    "name": "Staffing-SupervisoryOrganizations-GET-getOrgChart_1",
+    "description": "[Staffing] GET /supervisoryOrganizations/{ID}/orgChart/{subresourceID} — Retrieves a single organization chart instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/supervisoryOrganizations/{ID}/orgChart/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-SupervisoryOrganizations-GET-getOrgChart_1.js"
+  },
+  {
+    "name": "Staffing-JobChanges-GET-getComment_1",
+    "description": "[Staffing] GET /jobChanges/{ID}/comment/{subresourceID} — Returns the comment information for the specified job change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChanges/{ID}/comment/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-GET-getComment_1.js"
+  },
+  {
+    "name": "Staffing-JobChanges-PATCH-patchComment",
+    "description": "[Staffing] PATCH /jobChanges/{ID}/comment/{subresourceID} — Partially updates the comment for the specified change job ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/jobChanges/{ID}/comment/{subresourceID}",
+    "operationId": null,
+    "file": "Staffing-JobChanges-PATCH-patchComment.js"
+  },
+  {
+    "name": "Staffing-OrganizationAssignmentChanges-GET-getCostCenter_1",
+    "description": "[Staffing] GET /organizationAssignmentChanges/{ID}/costCenter — Retrieves a cost center for the specified organization assignment change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationAssignmentChanges/{ID}/costCenter",
+    "operationId": null,
+    "file": "Staffing-OrganizationAssignmentChanges-GET-getCostCenter_1.js"
+  }
+]

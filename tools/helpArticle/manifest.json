@@ -1,0 +1,112 @@
+[
+  {
+    "name": "HelpArticle-ArticleVersions-GET-getArticleVersions",
+    "description": "[Help Article] GET /articleVersions/{ID} — Retrieve an article version and the plain text content for the article version.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/articleVersions/{ID}",
+    "operationId": null,
+    "file": "HelpArticle-ArticleVersions-GET-getArticleVersions.js"
+  },
+  {
+    "name": "HelpArticle-ArticleVersions-GET-getArticleVersions_1",
+    "description": "[Help Article] GET /articleVersions — Retrieves a list of article versions and the plain text content within each article version.",
+    "schema": [
+      {
+        "name": "audience",
+        "type": "string",
+        "description": "The audience of the article version.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "The status of the article version.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/articleVersions",
+    "operationId": null,
+    "file": "HelpArticle-ArticleVersions-GET-getArticleVersions_1.js"
+  },
+  {
+    "name": "HelpArticle-Values-GET-getAudiences",
+    "description": "[Help Article] GET /values/common/audiences/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Help Article REST API, Set Up: Help Knowledge Management\n\n<b>Scope:</b> Help, People E",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/audiences/",
+    "operationId": null,
+    "file": "HelpArticle-Values-GET-getAudiences.js"
+  },
+  {
+    "name": "HelpArticle-ArticleStatuses-GET-getArticleStatuses",
+    "description": "[Help Article] GET /articleStatuses — Retrieves a list of article version statuses for all articles.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/articleStatuses",
+    "operationId": null,
+    "file": "HelpArticle-ArticleStatuses-GET-getArticleStatuses.js"
+  },
+  {
+    "name": "HelpArticle-ArticleStatuses-GET-getArticleStatuses_1",
+    "description": "[Help Article] GET /articleStatuses/{ID} — Retrieve an article version status for an article.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/articleStatuses/{ID}",
+    "operationId": null,
+    "file": "HelpArticle-ArticleStatuses-GET-getArticleStatuses_1.js"
+  }
+]

@@ -1,0 +1,373 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Privacy service enables access to log entries containing audit information about user activities.",
+    "version": "v1",
+    "title": "privacy",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "e67b812850dc10004691d6f30a4a744c"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/privacy/v1",
+  "tags": [
+    {
+      "name": "activityLogging",
+      "description": "Provides the ability to view log entries in the User Activity report data source. Before accessing this resource, select the Enable User Activity Logging option on the *Edit Tenant Setup - System* task to begin logging the user activity. You can only view the audit log entries permitted by the security profile of the current user."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/activityLogging": {
+      "get": {
+        "tags": [
+          "activityLogging"
+        ],
+        "summary": "Retrieves a collection of user activity log entries in a specified time frame.",
+        "description": "Retrieves all user activity log entries in a specified time frame. You can filter the log entries by user and task.\n\nThe from and to parameters are required. \n\nTo tune the performance and to ensure that you retrieve the complete set of records in a time period, iteratively call the GET /activityLogging endpoint with the following recommended parameter values:\n\n* limit=1000 (Note that the maximum value of the limit parameter has been increased from 100 to 1000.)\n\n* offset=0 (Initially set to 0, then increment by 1000 in subsequent runs.)\n\n* instancesReturned=1 (A lower value is more performant. The value of 1 fetches 10,000 records.)\n\nExamples of iterative calls:\nGET /activityLogging?from=2022-04-17T08:15:00Z&to=2022-04-17T09:15:00Z&limit=1000&instancesReturned=1&offset=0\nGET /activityLogging?from=2022-04-17T08:15:00Z&to=2022-04-17T09:15:00Z&limit=1000&instancesReturned=1&offset=1000\nGET /activityLogging?from=2022-04-17T08:15:00Z&to=2022-04-17T09:15:00Z&limit=1000&instancesReturned=1&offset=2000\n\nFor more details, see the User Activity Logging REST API Guide in the Administrator Guide.\n\n<b>Secured by:</b> System Auditing\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "(Required) The date and time of the earliest log entry. The default timezone is UTC/GMT. The time format is \"{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z\".  Example:  \"2021-05-18T13:45:14Z\" indicates May 18, 2021, 1:45PM UTC.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "instancesReturned",
+            "in": "query",
+            "description": "This number multiplied by 10,000 determines the total number of requested user activity instances. Example: A value of 5 requests a maximum of 50,000 instances. The default and maximum values are 25. By default, the method requests the maximum 250,000 instances. To fine-tune the performance, set this parameter to a lower number. While the instancesReturned parameter controls the total number of requested instances, the limit parameter controls the number of returned instances in a paginated response.",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "returnUserActivityEntryCount",
+            "in": "query",
+            "description": "If true, returns only the total count of user activity instances for the specified parameters.",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "systemAccount",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "taskId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "(Required) The date and time of the latest log entry. The default timezone is UTC/GMT. The time format is \"{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z\".  Example:  \"2021-05-18T13:45:14Z\" indicates May 18, 2021, 1:45PM UTC.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/userActivityTracking_e67b812850dc100047ba1824d0087452"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "target_e67b812850dc100047ba1994e6ae7457": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The instance which the action is executed on."
+    },
+    "userActivityTracking_e67b812850dc100047ba1824d0087452": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "systemAccount": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The system account that initiated the request.",
+              "x-workday-type": "Text"
+            },
+            "activityAction": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The type of action that was executed.",
+              "x-workday-type": "Text"
+            },
+            "requestTime": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The request time of the action.",
+              "x-workday-type": "Date"
+            },
+            "userAgent": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The client browser and operating system information from the user signon used to make this request.",
+              "x-workday-type": "Text"
+            },
+            "taskId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Workday ID of the task executed in the transaction.",
+              "maxLength": 36,
+              "x-workday-type": "Text"
+            },
+            "deviceType": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The device type from the user signon used to make the request.",
+              "x-workday-type": "Text"
+            },
+            "ipAddress": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The user's IP Address from the user signon used to make the request.",
+              "x-workday-type": "Text"
+            },
+            "userActivityEntryCount": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "Returns the User Activity Count for the inputted filter parameters",
+              "x-workday-type": "Numeric"
+            },
+            "sessionId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The system ID for tracking signons from the user signon used to make the request.",
+              "x-workday-type": "Text"
+            },
+            "target": {
+              "$ref": "#/definitions/target_e67b812850dc100047ba1994e6ae7457"
+            },
+            "taskDisplayName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The action executed in the transaction.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

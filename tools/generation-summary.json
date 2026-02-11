@@ -1,0 +1,252 @@
+{
+  "generatedAt": "2026-02-11T10:11:57.280Z",
+  "totalServices": 49,
+  "totalTools": 884,
+  "services": [
+    {
+      "name": "absenceManagement",
+      "version": "v4",
+      "tools": 15
+    },
+    {
+      "name": "accountsPayable",
+      "version": "v1",
+      "tools": 12
+    },
+    {
+      "name": "asor",
+      "version": "v1",
+      "tools": 2
+    },
+    {
+      "name": "attachments",
+      "version": "v1",
+      "tools": 1
+    },
+    {
+      "name": "benefitEnrollmentEventOfferings",
+      "version": "v1",
+      "tools": 2
+    },
+    {
+      "name": "benefitPartner",
+      "version": "v1",
+      "tools": 1
+    },
+    {
+      "name": "budgets",
+      "version": "v1",
+      "tools": 1
+    },
+    {
+      "name": "businessProcess",
+      "version": "v1",
+      "tools": 20
+    },
+    {
+      "name": "common",
+      "version": "v1",
+      "tools": 40
+    },
+    {
+      "name": "compensation",
+      "version": "v2",
+      "tools": 13
+    },
+    {
+      "name": "connect",
+      "version": "v2",
+      "tools": 10
+    },
+    {
+      "name": "contractCompliance",
+      "version": "v1",
+      "tools": 4
+    },
+    {
+      "name": "coreAccounting",
+      "version": "v1",
+      "tools": 3
+    },
+    {
+      "name": "customObjectDataMultiInstance",
+      "version": "v2",
+      "tools": 5
+    },
+    {
+      "name": "customObjectDataSingleInstance",
+      "version": "v2",
+      "tools": 4
+    },
+    {
+      "name": "customObjectDefinition",
+      "version": "v1",
+      "tools": 29
+    },
+    {
+      "name": "customerAccounts",
+      "version": "v1",
+      "tools": 11
+    },
+    {
+      "name": "expense",
+      "version": "v1",
+      "tools": 16
+    },
+    {
+      "name": "finTaxPublic",
+      "version": "v1",
+      "tools": 1
+    },
+    {
+      "name": "globalPayroll",
+      "version": "v1",
+      "tools": 11
+    },
+    {
+      "name": "graph",
+      "version": "v1",
+      "tools": 2
+    },
+    {
+      "name": "helpArticle",
+      "version": "v1",
+      "tools": 5
+    },
+    {
+      "name": "helpCase",
+      "version": "v4",
+      "tools": 35
+    },
+    {
+      "name": "holiday",
+      "version": "v1",
+      "tools": 1
+    },
+    {
+      "name": "journeys",
+      "version": "v1",
+      "tools": 1
+    },
+    {
+      "name": "learning",
+      "version": "v1",
+      "tools": 5
+    },
+    {
+      "name": "oAuthClient",
+      "version": "v1",
+      "tools": 2
+    },
+    {
+      "name": "payroll",
+      "version": "v2",
+      "tools": 25
+    },
+    {
+      "name": "performanceEnablement",
+      "version": "v5",
+      "tools": 42
+    },
+    {
+      "name": "person",
+      "version": "v4",
+      "tools": 113
+    },
+    {
+      "name": "prismAnalytics",
+      "version": "v3",
+      "tools": 21
+    },
+    {
+      "name": "privacy",
+      "version": "v1",
+      "tools": 1
+    },
+    {
+      "name": "procurement",
+      "version": "v5",
+      "tools": 44
+    },
+    {
+      "name": "projects",
+      "version": "v1",
+      "tools": 64
+    },
+    {
+      "name": "recruiting",
+      "version": "v4",
+      "tools": 31
+    },
+    {
+      "name": "request",
+      "version": "v2",
+      "tools": 6
+    },
+    {
+      "name": "revenue",
+      "version": "v1",
+      "tools": 5
+    },
+    {
+      "name": "staffing",
+      "version": "v7",
+      "tools": 144
+    },
+    {
+      "name": "studentAcademicFoundation",
+      "version": "v1",
+      "tools": 14
+    },
+    {
+      "name": "studentCore",
+      "version": "v1",
+      "tools": 35
+    },
+    {
+      "name": "studentCurriculum",
+      "version": "v1",
+      "tools": 6
+    },
+    {
+      "name": "studentEngagement",
+      "version": "v1",
+      "tools": 4
+    },
+    {
+      "name": "studentFinance",
+      "version": "v1",
+      "tools": 6
+    },
+    {
+      "name": "studentRecruiting",
+      "version": "v1",
+      "tools": 6
+    },
+    {
+      "name": "systemMetrics",
+      "version": "v1",
+      "tools": 6
+    },
+    {
+      "name": "talentManagement",
+      "version": "v2",
+      "tools": 21
+    },
+    {
+      "name": "timeTracking",
+      "version": "v5",
+      "tools": 29
+    },
+    {
+      "name": "worktag",
+      "version": "v1",
+      "tools": 1
+    },
+    {
+      "name": "wql",
+      "version": "v1",
+      "tools": 8
+    }
+  ]
+}

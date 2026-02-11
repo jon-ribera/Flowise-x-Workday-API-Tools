@@ -1,0 +1,178 @@
+[
+  {
+    "name": "Revenue-BillableTransactions-GET-getBillingRateApplication",
+    "description": "[Revenue] GET /billableTransactions/{ID}/billingRateApplication — Retrieves a collection of billing rate applications for the specified billable transaction.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/billableTransactions/{ID}/billingRateApplication",
+    "operationId": null,
+    "file": "Revenue-BillableTransactions-GET-getBillingRateApplication.js"
+  },
+  {
+    "name": "Revenue-BillableTransactions-GET-getBillableTransactions",
+    "description": "[Revenue] GET /billableTransactions/{ID} — Retrieves a single billable transaction instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/billableTransactions/{ID}",
+    "operationId": null,
+    "file": "Revenue-BillableTransactions-GET-getBillableTransactions.js"
+  },
+  {
+    "name": "Revenue-BillableTransactions-PATCH-patchBillableTransactions",
+    "description": "[Revenue] PATCH /billableTransactions/{ID} — Partially updates an existing billable transaction instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/billableTransactions/{ID}",
+    "operationId": null,
+    "file": "Revenue-BillableTransactions-PATCH-patchBillableTransactions.js"
+  },
+  {
+    "name": "Revenue-BillableTransactions-GET-getBillingRateApplication_1",
+    "description": "[Revenue] GET /billableTransactions/{ID}/billingRateApplication/{subresourceID} — Retrieves a single billing rate application instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/billableTransactions/{ID}/billingRateApplication/{subresourceID}",
+    "operationId": null,
+    "file": "Revenue-BillableTransactions-GET-getBillingRateApplication_1.js"
+  },
+  {
+    "name": "Revenue-BillableTransactions-GET-getBillableTransactions_1",
+    "description": "[Revenue] GET /billableTransactions — Retrieves a collection of billable transactions.",
+    "schema": [
+      {
+        "name": "billingStatus",
+        "type": "string",
+        "description": "Filters the billable transactions by status. Specify the Workday ID of the status. You can specify multiple status query parameters.\n\nValid values:\n\n* 3d46fe27ed464f9aaaddcd510731c5f0 - Approval In Process\n\n* b8f58d21282249c9b8ad2391adb3ef9d - Awaiting Review\n\n* 62a1b884a62d448899b34628026efcae - Billed\n\n* 275424eaf82743ed8d17d755cd8d91a7 - Billing In Progress\n\n* 743da2a9c0fc45d0843702e7385a79ff - Do Not Bill\n\n* 2cc0607f96b4433f860134953788caab - On Hold\n\n* 46328a05acf110000b5601a2b76a008b - Partially Billed\n\n* 8c4f33a55c774494a07ec40dd3b6b44f - Ready To Bill\n\n* aeb6a01a4a8a4a2780582fc5c665ef57 - Unbillable",
+        "required": false
+      },
+      {
+        "name": "customer",
+        "type": "string",
+        "description": "The Workday ID of the customer associated with the project for the billable transaction. To get a valid ID, you can call GET /customers in the Customer Accounts REST service.",
+        "required": false
+      },
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "Filters the billable transactions with transaction date on or after the specified date. Use the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "phase",
+        "type": "string",
+        "description": "The Workday ID of the project phase associated with the billable transaction for the time entry. To get a valid ID, call GET /planPhases in the Projects REST service.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "The Workday ID of the project associated with the billable transactions. To get a valid ID, you can call GET /projects in the Projects REST service.",
+        "required": false
+      },
+      {
+        "name": "spendCategory",
+        "type": "string",
+        "description": "The Workday ID of the spend category for the billable transaction associated with the expense report line.",
+        "required": false
+      },
+      {
+        "name": "task",
+        "type": "string",
+        "description": "The Workday ID of the project task associated with the billable transaction for the time entry.  To get a valid ID, call GET /planTasks in the Projects REST service.",
+        "required": false
+      },
+      {
+        "name": "timeCode",
+        "type": "string",
+        "description": "The Workday ID of the time code for the billable transaction associated with the time entry.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "Filters the billable transactions with transaction date on or before the specified date. Use the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "transactionSource",
+        "type": "string",
+        "description": "Filters the billable transactions by transaction source. Specify the Workday ID of the transaction source.\n\nValid values:\n\n* 3c4a245325f44745b13a4553c4810524 - Expense\n\n* 381908377f9c100005d7078e86a2003e - Misc Expense\n\n* 6b404c3fa9f34512b0490da5f4237573 - Supplier Invoice\n\n* 7a55a775b63b4b9b8a5b3722fc1e4556 - Time",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker associated with the billable transaction. To get a valid ID, call GET /workers in the Staffing service.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/billableTransactions",
+    "operationId": null,
+    "file": "Revenue-BillableTransactions-GET-getBillableTransactions_1.js"
+  }
+]

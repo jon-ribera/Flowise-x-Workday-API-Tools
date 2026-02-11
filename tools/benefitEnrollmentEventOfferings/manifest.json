@@ -1,0 +1,46 @@
+[
+  {
+    "name": "BenefitEnrollmentEventOfferings-EmployeeEnrollmentEvent-GET-getEmployeeEnrollmentEvent",
+    "description": "[Benefit Enrollment Event Offerings] GET /employeeEnrollmentEvent/{ID} — Retrieves the latest benefit enrollment event of the processing worker. This resource will return one event that is New, In Progress or the latest finalized.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/employeeEnrollmentEvent/{ID}",
+    "operationId": null,
+    "file": "BenefitEnrollmentEventOfferings-EmployeeEnrollmentEvent-GET-getEmployeeEnrollmentEvent.js"
+  },
+  {
+    "name": "BenefitEnrollmentEventOfferings-EmployeeEnrollmentEvent-GET-getEmployeeEnrollmentEvent_1",
+    "description": "[Benefit Enrollment Event Offerings] GET /employeeEnrollmentEvent — Retrieves the latest benefit enrollment event of the processing worker.",
+    "schema": [
+      {
+        "name": "enrollmentOfferingTypeWID",
+        "type": "string",
+        "description": "WID of Enrollment Offering Type such as Medical, Dental, Vision, 401(k), Basic Group Life etc",
+        "required": false
+      },
+      {
+        "name": "onlyCurrentElections",
+        "type": "boolean",
+        "description": "Boolean value. If it is true, the API would return the current active enrollment offerings of the processing worker as of processing date. If false, API returns the most latest enrollment offerings of the worker that could be from the most latest finalized or not started/in progress future event.",
+        "required": false
+      },
+      {
+        "name": "planType",
+        "type": "string",
+        "description": "Benefit Election or Plan Type such as \"Healthcare\", \"Retirement Savings\"",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/employeeEnrollmentEvent",
+    "operationId": null,
+    "file": "BenefitEnrollmentEventOfferings-EmployeeEnrollmentEvent-GET-getEmployeeEnrollmentEvent_1.js"
+  }
+]

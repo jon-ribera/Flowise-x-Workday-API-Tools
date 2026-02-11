@@ -1,0 +1,1264 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "REST API for Omnichannel Engagement - Campaigns services required by: \n- Campaign Builder bespoke UI task",
+    "version": "v2",
+    "title": "connect",
+    "x-workday-confidence-level": "Production",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "6c31c88500d110002118604931b01332"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/connect/v2",
+  "tags": [
+    {
+      "name": "messageTemplates",
+      "description": "Get Message Templates"
+    },
+    {
+      "name": "notificationTypes",
+      "description": "Get Notification Types"
+    },
+    {
+      "name": "sendMessage",
+      "description": "sendMessage"
+    },
+    {
+      "name": "Prompt Values",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/messageTemplates/{ID}": {
+      "get": {
+        "tags": [
+          "messageTemplates"
+        ],
+        "summary": "Retrieves a message template with the specific ID.",
+        "description": "Retrieves a message template with the specific ID.\n\n<b>Secured by:</b> Set Up: Message Templates\n\n<b>Scope:</b> Learning Core, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/messageTemplateDetail_5408cc3a0b34100012c2709ce5180033"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      },
+      "put": {
+        "tags": [
+          "messageTemplates"
+        ],
+        "summary": "Updates an existing message template instance.",
+        "description": "Updates an existing message template instance. Replaces the existing instance with the specified data in the request body\n\n<b>Secured by:</b> Set Up: Message Templates\n\n<b>Scope:</b> Learning Core, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "messageTemplateDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/messageTemplateDetail_5408cc3a0b34100012c2709ce5180033"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/messageTemplateDetail_5408cc3a0b34100012c2709ce5180033"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nA Message Template with the same name already exists. Please enter a new Message Template name.\n\nNotification Type is required and must have a value.\n\nThe field template name is required and must have a value.\n\nYou must enter a Body to continue.\n\nYou must enter a Message to continue.\n\nYou must enter a Subject to continue.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      },
+      "patch": {
+        "tags": [
+          "messageTemplates"
+        ],
+        "summary": "Partially updates an existing message template instance.",
+        "description": "Partially updates an existing message template instance with the specified ID and the specified data in the request body.\n\n<b>Secured by:</b> Set Up: Message Templates\n\n<b>Scope:</b> Learning Core, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "messageTemplateDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/messageTemplateDetail_5408cc3a0b34100012c2709ce5180033"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/messageTemplateDetail_5408cc3a0b34100012c2709ce5180033"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nA Message Template with the same name already exists. Please enter a new Message Template name.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/notificationTypes": {
+      "get": {
+        "tags": [
+          "notificationTypes"
+        ],
+        "summary": "Retrieves a collection of notification types.",
+        "description": "Retrieves all notification types.\n\n<b>Secured by:</b> Administer Communications, Set Up: Message Templates\n\n<b>Scope:</b> Learning Core, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/notificationCategoryDetail_5a1a2175398910001d7aa50ec49d01e1"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/values/AudiencePromptGroup/audienceType/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Administer Audience, Administer Campaigns\n\n<b>Scope:</b> Learning Core, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "audienceTypeParm",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "connectType",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/sendMessage": {
+      "post": {
+        "tags": [
+          "sendMessage"
+        ],
+        "description": "\n\n<b>Secured by:</b> Administer Communications\n\n<b>Scope:</b> System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "messageDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/messageDetail_d922f3734ac610000865fd4fbbe20013"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/messageDetail_d922f3734ac610000865fd4fbbe20013"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nAt least one Recipient is required.\n\nMessage Template cannot be provided if Email or Push details is provided.\n\nNotification Type is required and must have a value.\n\nNotification Type must match the Message Template's Notification Type.\n\nSubmit Workday IDs that are of the same contact reference type.\n\nSubmit Worker type Workday IDs.\n\nSubmit only valid types.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/notificationTypes/{ID}": {
+      "get": {
+        "tags": [
+          "notificationTypes"
+        ],
+        "summary": "Retrieves a notification type.",
+        "description": "Retrieves a notification type with the specified ID.\n\n<b>Secured by:</b> Administer Communications, Set Up: Message Templates\n\n<b>Scope:</b> Learning Core, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/notificationCategoryDetail_5a1a2175398910001d7aa50ec49d01e1"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/messageTemplates": {
+      "get": {
+        "tags": [
+          "messageTemplates"
+        ],
+        "summary": "Retrieves a collection of message templates.",
+        "description": "Retrieves all message templates. You can filter by inactive status, name, and notification type.\n\n<b>Secured by:</b> Set Up: Message Templates\n\n<b>Scope:</b> Learning Core, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "inactive",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "notificationType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/messageTemplateDetail_5408cc3a0b34100012c2709ce5180033"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      },
+      "post": {
+        "tags": [
+          "messageTemplates"
+        ],
+        "description": "\n\n<b>Secured by:</b> Set Up: Message Templates\n\n<b>Scope:</b> Learning Core, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "messageTemplateDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/messageTemplateDetail_5408cc3a0b34100012c2709ce5180033"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/messageTemplateDetail_5408cc3a0b34100012c2709ce5180033"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nA Message Template with the same name already exists. Please enter a new Message Template name.\n\nNotification Type is required and must have a value.\n\nThe field template name is required and must have a value.\n\nYou must enter a Body to continue.\n\nYou must enter a Message to continue.\n\nYou must enter a Subject to continue.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/AudiencePromptGroup/selection/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Administer Audience, Administer Campaigns\n\n<b>Scope:</b> Learning Core, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "audienceTypeParm",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "connectType",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "createdBy_5ba8cf19f72310001cd096a5f2e70065": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Message Template creator."
+    },
+    "emailDetail_eb4d31b1f3221000185722ca02fc01a3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/emailDetail_eb4d31b1f322100013cbe9495079019a"
+        },
+        {}
+      ],
+      "description": "Email Configuration container for REST API."
+    },
+    "pushDetail_eb4d31b1f32210001cbbffd809fd01c9": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/pushDetail_eb4d31b1f32210001ce75e0095e501d0"
+        },
+        {}
+      ],
+      "description": "Container for push notification data, used in REST API."
+    },
+    "notificationType_5408cc3a0b3410001368d430b5b90039": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Notification Type indicates where the template can be used."
+    },
+    "lastUpdatedBy_eb4d31b1f32210001d3f4858dc3701d9": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Person who last updated the instance."
+    },
+    "messageTemplateDetail_5408cc3a0b34100012c2709ce5180033": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "name",
+            "notificationType"
+          ],
+          "properties": {
+            "createdBy": {
+              "$ref": "#/definitions/createdBy_5ba8cf19f72310001cd096a5f2e70065"
+            },
+            "emailDetail": {
+              "$ref": "#/definitions/emailDetail_eb4d31b1f3221000185722ca02fc01a3"
+            },
+            "lastUpdated": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "x-workday-type": "Date"
+            },
+            "pushDetail": {
+              "$ref": "#/definitions/pushDetail_eb4d31b1f32210001cbbffd809fd01c9"
+            },
+            "usageCount": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "Count of instances using this Message Template",
+              "x-workday-type": "Numeric"
+            },
+            "createdOn": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Gives the date that the instance was originally created.",
+              "x-workday-type": "Date"
+            },
+            "notificationType": {
+              "$ref": "#/definitions/notificationType_5408cc3a0b3410001368d430b5b90039"
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Message Template Name",
+              "x-workday-type": "Text"
+            },
+            "lastUpdatedBy": {
+              "$ref": "#/definitions/lastUpdatedBy_eb4d31b1f32210001d3f4858dc3701d9"
+            },
+            "referenceID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Reference ID to use for lookups within our Workday Web Services. For \\~supervisory organizations\\~, this is also the 'Organization ID'",
+              "x-workday-type": "Text"
+            },
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicates template is active or has been disabled.",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "parentCategory_5a1a2175398910001e704ab0f44501e9": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Notification Parent Category container for REST API."
+    },
+    "notificationCategoryDetail_5a1a2175398910001d7aa50ec49d01e1": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "referenceID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Reference ID to use for lookups within our Workday Web Services. For \\~supervisory organizations\\~, this is also the 'Organization ID'",
+              "x-workday-type": "Text"
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "x-workday-type": "Text"
+            },
+            "parentCategory": {
+              "$ref": "#/definitions/parentCategory_5a1a2175398910001e704ab0f44501e9"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "emailDetail_d922f3734ac610000865fd872ab50014": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/emailDetail_eb4d31b1f322100013cbe9495079019a"
+        },
+        {}
+      ],
+      "description": "Email Configuration Data"
+    },
+    "recipients_9d574635b01b10001712b0ebd0f5128e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/recipientsDetail_a596d8d9ee4910001902b69ba0de003f"
+        },
+        {}
+      ],
+      "description": "This field is just used by REST framework to provide a container, there is no real data behind it."
+    },
+    "pushDetail_d922f3734ac61000114560d348db0021": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/pushDetail_eb4d31b1f32210001ce75e0095e501d0"
+        },
+        {}
+      ],
+      "description": "Container for push notification data, used in REST API"
+    },
+    "notificationType_a6d342531b47100007803df966b2018a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Notification Type indicates where the template can be used."
+    },
+    "messageTemplate_a596d8d9ee491000187844a2389b0034": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Message Template used by Ad-hoc/Group Communications"
+    },
+    "senderOverride_1536c08b2c7f10001b65096af862002a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "This field affects the sender icon that will be displayed in the Workday Inbox."
+    },
+    "commID_d2a92f140a3c1000172b26c5a7e10122": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Group Communication"
+    },
+    "messageDetail_d922f3734ac610000865fd4fbbe20013": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "emailDetail": {
+              "$ref": "#/definitions/emailDetail_d922f3734ac610000865fd872ab50014"
+            },
+            "recipients": {
+              "$ref": "#/definitions/recipients_9d574635b01b10001712b0ebd0f5128e"
+            },
+            "pushDetail": {
+              "$ref": "#/definitions/pushDetail_d922f3734ac61000114560d348db0021"
+            },
+            "notificationType": {
+              "$ref": "#/definitions/notificationType_a6d342531b47100007803df966b2018a"
+            },
+            "messageTemplate": {
+              "$ref": "#/definitions/messageTemplate_a596d8d9ee491000187844a2389b0034"
+            },
+            "senderOverride": {
+              "$ref": "#/definitions/senderOverride_1536c08b2c7f10001b65096af862002a"
+            },
+            "commID": {
+              "$ref": "#/definitions/commID_d2a92f140a3c1000172b26c5a7e10122"
+            }
+          }
+        }
+      ]
+    },
+    "contacts_5f70bfa140f710001c38c02ead6001ed": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/connectSubscriberRepresentation_1299170974151000138a9e9fcd0b2bf2"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Connect Subscriber Representation"
+            }
+          }
+        }
+      ]
+    },
+    "recipientsDetail_a596d8d9ee4910001902b69ba0de003f": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "contacts": {
+              "type": "array",
+              "description": "Recipients for the Send Message.  This CRF supports any instance of type superclass Workday Connect Subscriber, 1$17306.",
+              "items": {
+                "$ref": "#/definitions/contacts_5f70bfa140f710001c38c02ead6001ed"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "connectSubscriberRepresentation_1299170974151000138a9e9fcd0b2bf2": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "pushDetail_eb4d31b1f32210001ce75e0095e501d0": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "message"
+          ],
+          "properties": {
+            "redirectURL": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The URL to launch the appropriate mobile app upon acknowledgement.",
+              "x-workday-type": "Text"
+            },
+            "message": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Message content of a push notification.",
+              "x-workday-type": "Rich Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Mobile Notification Configuration Data (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "emailDetail_eb4d31b1f322100013cbe9495079019a": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "body",
+            "subject"
+          ],
+          "properties": {
+            "subject": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Email subject line.",
+              "x-workday-type": "Rich Text"
+            },
+            "replyTo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Reply To",
+              "x-workday-type": "Text"
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Email Configuration Data container for REST API.",
+              "x-workday-type": "Text"
+            },
+            "body": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Message content of the email.",
+              "x-workday-type": "Rich Text"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

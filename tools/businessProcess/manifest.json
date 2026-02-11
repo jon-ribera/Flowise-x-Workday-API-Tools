@@ -1,0 +1,556 @@
+[
+  {
+    "name": "BusinessProcess-EventSteps-POST-postToDo",
+    "description": "[Business Process] POST /eventSteps/{ID}/toDo — Post an action for a To Do step in a business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/eventSteps/{ID}/toDo",
+    "operationId": null,
+    "file": "BusinessProcess-EventSteps-POST-postToDo.js"
+  },
+  {
+    "name": "BusinessProcess-EventSteps-GET-getEventSteps",
+    "description": "[Business Process] GET /eventSteps — Retrieves business process event steps.",
+    "schema": [
+      {
+        "name": "businessProcess",
+        "type": "string",
+        "description": "query parameter: businessProcess",
+        "required": false
+      },
+      {
+        "name": "createdOnOrAfter",
+        "type": "string",
+        "description": "query parameter: createdOnOrAfter",
+        "required": false
+      },
+      {
+        "name": "createdOnOrBefore",
+        "type": "string",
+        "description": "query parameter: createdOnOrBefore",
+        "required": false
+      },
+      {
+        "name": "dueDateOnOrAfter",
+        "type": "string",
+        "description": "query parameter: dueDateOnOrAfter",
+        "required": false
+      },
+      {
+        "name": "dueDateOnOrBefore",
+        "type": "string",
+        "description": "query parameter: dueDateOnOrBefore",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "stepType",
+        "type": "string",
+        "description": "query parameter: stepType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/eventSteps",
+    "operationId": null,
+    "file": "BusinessProcess-EventSteps-GET-getEventSteps.js"
+  },
+  {
+    "name": "BusinessProcess-Events-GET-getEvents",
+    "description": "[Business Process] GET /events — Retrieves business process events.",
+    "schema": [
+      {
+        "name": "businessProcess",
+        "type": "string",
+        "description": "query parameter: businessProcess",
+        "required": false
+      },
+      {
+        "name": "completedOnOrAfter",
+        "type": "string",
+        "description": "query parameter: completedOnOrAfter",
+        "required": false
+      },
+      {
+        "name": "completedOnOrBefore",
+        "type": "string",
+        "description": "query parameter: completedOnOrBefore",
+        "required": false
+      },
+      {
+        "name": "initiatedOnOrAfter",
+        "type": "string",
+        "description": "query parameter: initiatedOnOrAfter",
+        "required": false
+      },
+      {
+        "name": "initiatedOnOrBefore",
+        "type": "string",
+        "description": "query parameter: initiatedOnOrBefore",
+        "required": false
+      },
+      {
+        "name": "initiator",
+        "type": "string",
+        "description": "query parameter: initiator",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "query parameter: status",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/events",
+    "operationId": null,
+    "file": "BusinessProcess-Events-GET-getEvents.js"
+  },
+  {
+    "name": "BusinessProcess-Events-GET-getCompletedSteps",
+    "description": "[Business Process] GET /events/{ID}/completedSteps — Retrieves completed steps for a business process event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/events/{ID}/completedSteps",
+    "operationId": null,
+    "file": "BusinessProcess-Events-GET-getCompletedSteps.js"
+  },
+  {
+    "name": "BusinessProcess-Events-GET-getAttachments",
+    "description": "[Business Process] GET /events/{ID}/attachments — Retrieves attachments for a business process event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/events/{ID}/attachments",
+    "operationId": null,
+    "file": "BusinessProcess-Events-GET-getAttachments.js"
+  },
+  {
+    "name": "BusinessProcess-Types-GET-getTypes",
+    "description": "[Business Process] GET /types — Retrieves all business process types.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/types",
+    "operationId": null,
+    "file": "BusinessProcess-Types-GET-getTypes.js"
+  },
+  {
+    "name": "BusinessProcess-Events-POST-postRescind",
+    "description": "[Business Process] POST /events/{ID}/rescind — Rescinds a business process event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/events/{ID}/rescind",
+    "operationId": null,
+    "file": "BusinessProcess-Events-POST-postRescind.js"
+  },
+  {
+    "name": "BusinessProcess-Types-GET-getTypes_1",
+    "description": "[Business Process] GET /types/{ID} — Retrieves a business process type.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/types/{ID}",
+    "operationId": null,
+    "file": "BusinessProcess-Types-GET-getTypes_1.js"
+  },
+  {
+    "name": "BusinessProcess-EventSteps-GET-getEventSteps_1",
+    "description": "[Business Process] GET /eventSteps/{ID} — Retrieves a business process event step.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/eventSteps/{ID}",
+    "operationId": null,
+    "file": "BusinessProcess-EventSteps-GET-getEventSteps_1.js"
+  },
+  {
+    "name": "BusinessProcess-Events-GET-getComments",
+    "description": "[Business Process] GET /events/{ID}/comments — Retrieves comments for a business process event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/events/{ID}/comments",
+    "operationId": null,
+    "file": "BusinessProcess-Events-GET-getComments.js"
+  },
+  {
+    "name": "BusinessProcess-Events-GET-getInProgressSteps",
+    "description": "[Business Process] GET /events/{ID}/inProgressSteps — Retrieves in progress steps for a business process event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/events/{ID}/inProgressSteps",
+    "operationId": null,
+    "file": "BusinessProcess-Events-GET-getInProgressSteps.js"
+  },
+  {
+    "name": "BusinessProcess-EventSteps-POST-postDeny",
+    "description": "[Business Process] POST /eventSteps/{ID}/deny — Denies a business process event step.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/eventSteps/{ID}/deny",
+    "operationId": null,
+    "file": "BusinessProcess-EventSteps-POST-postDeny.js"
+  },
+  {
+    "name": "BusinessProcess-Values-GET-getTo",
+    "description": "[Business Process] GET /values/sendBack/to/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Public Business Processes\n\n<b>Scope:</b> Tenant Non-Configurable",
+    "schema": [
+      {
+        "name": "eventStep",
+        "type": "string",
+        "description": "query parameter: eventStep",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/sendBack/to/",
+    "operationId": null,
+    "file": "BusinessProcess-Values-GET-getTo.js"
+  },
+  {
+    "name": "BusinessProcess-EventSteps-POST-postQuestionnaire",
+    "description": "[Business Process] POST /eventSteps/{ID}/questionnaire — Post an action for a Complete Questionnaire step in a business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/eventSteps/{ID}/questionnaire",
+    "operationId": null,
+    "file": "BusinessProcess-EventSteps-POST-postQuestionnaire.js"
+  },
+  {
+    "name": "BusinessProcess-Events-GET-getRemainingSteps",
+    "description": "[Business Process] GET /events/{ID}/remainingSteps — Retrieves remaining steps for a business process event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/events/{ID}/remainingSteps",
+    "operationId": null,
+    "file": "BusinessProcess-Events-GET-getRemainingSteps.js"
+  },
+  {
+    "name": "BusinessProcess-Events-POST-postCancel",
+    "description": "[Business Process] POST /events/{ID}/cancel — Cancels a business process event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/events/{ID}/cancel",
+    "operationId": null,
+    "file": "BusinessProcess-Events-POST-postCancel.js"
+  },
+  {
+    "name": "BusinessProcess-Events-GET-getEvents_1",
+    "description": "[Business Process] GET /events/{ID} — Retrieves a business process event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/events/{ID}",
+    "operationId": null,
+    "file": "BusinessProcess-Events-GET-getEvents_1.js"
+  },
+  {
+    "name": "BusinessProcess-Types-GET-getAttachmentCategories",
+    "description": "[Business Process] GET /types/{ID}/attachmentCategories — Retrieves attachment categories for a business process type.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "eventTarget",
+        "type": "string",
+        "description": "The Workday ID of the event target that this business process is about. You can use a returned id from an API that returns instances of the event target type. For example, if your event target is a worker, use GET /workers in the Staffing service.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/types/{ID}/attachmentCategories",
+    "operationId": null,
+    "file": "BusinessProcess-Types-GET-getAttachmentCategories.js"
+  },
+  {
+    "name": "BusinessProcess-EventSteps-POST-postApprove",
+    "description": "[Business Process] POST /eventSteps/{ID}/approve — Approves a business process event step.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/eventSteps/{ID}/approve",
+    "operationId": null,
+    "file": "BusinessProcess-EventSteps-POST-postApprove.js"
+  },
+  {
+    "name": "BusinessProcess-EventSteps-POST-postSendBack",
+    "description": "[Business Process] POST /eventSteps/{ID}/sendBack — Sends back a business process event step.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/eventSteps/{ID}/sendBack",
+    "operationId": null,
+    "file": "BusinessProcess-EventSteps-POST-postSendBack.js"
+  }
+]

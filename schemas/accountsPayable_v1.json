@@ -1,0 +1,2439 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Returns information related to accounts payable.",
+    "version": "v1",
+    "title": "accountsPayable",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "34ea2f97b8841000127b6195d0fb0138"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/accountsPayable/v1",
+  "tags": [
+    {
+      "name": "sendSupplierInvoiceAttachmentsForScanning",
+      "x-workday-confidence-level": "Production"
+    },
+    {
+      "name": "supplierInvoiceRequests"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/supplierInvoiceRequests/{ID}/submit": {
+      "post": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "summary": "Submits a single supplier invoice instance.",
+        "description": "Submits a supplier invoice instance with the specified ID for approval.\n\n<b>Secured by:</b> Process: Supplier Invoice - Request\n\n<b>Scope:</b> Supplier Accounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "submitSupplierInvoiceRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/submitSupplierInvoiceRequest_fe25e892a91410001a1090223ec50102"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/submitSupplierInvoiceRequest_fe25e892a91410001a1090223ec50102"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nYou cannot submit this Supplier Invoice Request because the Supplier Invoice Request is not in submittable status.\n\nYou cannot submit this supplier invoice request due to Critical Custom Validations. Please fix the exceptions before submitting the supplier invoice request.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/supplierInvoiceRequests/{ID}/attachments/{subresourceID}?type=viewContent": {
+      "get": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "description": "\n\n<b>Secured by:</b> Process: Supplier Invoice - Request, View: Supplier Invoice Request\n\n<b>Scope:</b> Supplier Accounts\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/contentSummary_878805f1228010000d890b29cdad0478"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/supplierInvoiceRequests": {
+      "get": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "summary": "Retrieves a collection of supplier invoices.",
+        "description": "Retrieves all supplier invoices.\n\n<b>Secured by:</b> Process: Supplier Invoice - Request, Self-Service: Supplier Invoice Request, View: Supplier Invoice Request\n\n<b>Scope:</b> Supplier Accounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "description": "The company for the Common Financial Dimensions. This is for internal use only on a REST API.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "fromDueDate",
+            "in": "query",
+            "description": "The  beginning date of the payment due period for this supplier invoice request. Use the MM/DD/YYYY format. Example: When the payment term is Net 30, the due date value is the day from this invoice date.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "fromInvoiceDate",
+            "in": "query",
+            "description": "The date on or after which the supplier invoice is created using the MM/DD/YYYY format.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "requester",
+            "in": "query",
+            "description": "The ID of the worker generating the supplier invoice request.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The status of the supplier invoice request. This is for internal use only on a REST API.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "supplier",
+            "in": "query",
+            "description": "The supplier on the business documents.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "toDueDate",
+            "in": "query",
+            "description": "The end date of the payment due period for this supplier invoice request. Use the MM/DD/YYYY format. Example: When the payment term is Net 30, the due date value is 30 days from the invoice date.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "toInvoiceDate",
+            "in": "query",
+            "description": "The date on or before which the supplier invoice is created using the MM/DD/YYYY format.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/invoiceRequestSummary_e6c79302212b1000170aafef80de03f6"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      },
+      "post": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "summary": "Creates the supplier invoice as specified in the request.",
+        "description": "Request Supplier Invoice Requests\n\n<b>Secured by:</b> Process: Supplier Invoice - Request\n\n<b>Scope:</b> Supplier Accounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createInvoiceRequestSummary",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createInvoiceRequestSummary_88373bd89fa7100012214f29d79a011e"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/createInvoiceRequestSummary_88373bd89fa7100012214f29d79a011e"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nAll purchase items must be active.\n\nCan not have any combination of Project, Project Phase or Project Task worktags for the same line.\n\nCurrency Conversion Rates between currency and company's default currency are not defined.\n\nCurrency entered is not listed as an Accepted Currency by Supplier.\n\nCurrency is required.\n\nEnter a requester that has a status of Active or a Hiring Date before today. You can't enter a requester that has a status of Terminated or a Hiring Date in the future.\n\nEnter a whole number for Quantity if you want to split by quantity.\n\nEnter at least one invoice request line.\n\nOnly one worktag for each type is allowed for each document line.\n\nQuantity is required for a Purchase Item.\n\nReference Number is missing.  The Reference Number is required when submitting an invoice request with a Reference Type.\n\nReference Type is missing. The Reference Type is required when submitting an invoice request with a Reference Number.\n\nSelect a balancing worktag for Worktags of the following type: [type]\n\nSelect a unit of measure that is already in use for the supplier item.\n\nService Lines cannot be split based on quantity.\n\nSpend Category must match the Spend Category for the Purchase Item.\n\nSupplier Connection is Inactive.\n\nSupplier Connection is not valid for Supplier.\n\nSuppliers that are restricted to company must be restricted to either the document header company or the Company Hierarchy for which it is a subordinate.\n\nThe Extended Amount of the lines must equal Quantity of the lines multiplied by Unit Cost of the line. Currently,[expression].\n\nThe Extended Amount of the splits must equal Quantity of the splits multiplied by Unit Cost of the line. Currently,[expression].\n\nThe Invoice Type must be active, have supplier accounts usage, and apply to the same country as the company on this document.\n\nThe Quantity must equal zero when you split a supplier invoice request line by amount.\n\nThe Supplier Invoice Request Line cannot be marked as Billable if the selected Worktag is not for a Project Plan, Phase, or Task from a Billable Project.\n\nThe Supplier's Invoice Number entered has already been used on another Supplier Invoice, Adjustment, or Invoice Request for this supplier\n\nThe [type] is/are not available for use with the company/s: [partitionable] [company]\n\nThe following Accounting Worktags are required but have not been assigned: [missing].\n\nThe following worktag type(s) are invalid: [invalid type]\n\nThe following worktag type(s) are required: [missing types]\n\nThe quantity must be a whole number.\n\nThe total invoice request amount does not match the control total amount.\n\nTotal of Extended Amount in Invoice Request line splits are not same as Extended Amount for Invoice Request Line\n\nTotal of Quantity in Invoice Request line splits are not same as Quantity for Invoice Request Goods Line\n\nValues for Quantity and Unit Cost are not allowed for Invoice Request Service Lines.\n\nWorktags are not allowed when there are split lines.\n\n[invalid supplier invoice worktag value message]\n\n[list of worktag types] not valid for this transaction.\n\n[missing required worktag types on Spend Transactions]\n\n[worktag value] is not permitted as an allowed value for worktag type: [worktag type], because it is inactive.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/supplierInvoiceRequests/{ID}/attachments/{subresourceID}": {
+      "get": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "summary": "Retrieves a single attachment instance.",
+        "description": "Retrieves an attachment with the specified subresource ID for the specified supplier invoice.\n\n<b>Secured by:</b> Process: Supplier Invoice - Request, View: Supplier Invoice Request\n\n<b>Scope:</b> Supplier Accounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/attachmentSummary_11ce086ab3f2100010fe0dc062f30445"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/supplierInvoiceRequests/{ID}/attachments?type=viewContent": {
+      "get": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "description": "\n\n<b>Secured by:</b> Process: Supplier Invoice - Request, View: Supplier Invoice Request\n\n<b>Scope:</b> Supplier Accounts\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/contentSummary_878805f1228010000d890b29cdad0478"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/sendSupplierInvoiceAttachmentsForScanning": {
+      "post": {
+        "tags": [
+          "sendSupplierInvoiceAttachmentsForScanning"
+        ],
+        "summary": "Sends supplier invoice attachments for scanning.",
+        "description": "Sends supplier invoice attachments for the specified ID.\n\n<b>Secured by:</b> Process: Supplier Invoice Work Queue, Self-Service: Document Scanning\n\n<b>Scope:</b> Supplier Accounts, System",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ocrSupplierInvoicesContainerRepresentation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrSupplierInvoicesContainerRepresentation_da21a1c310eb10000abe00ba8af52260"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/ocrSupplierInvoicesContainerRepresentation_da21a1c310eb10000abe00ba8af52260"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1648 | The Supplier Invoice Reference ID matches an existing Supplier Invoice and can not be used.\n- | Enter REST API or an external supplier invoice source that isn't a Workday-owned value.\n- | Enter an active External Supplier Invoice Source.\n- | One of the following file extensions must be used: [extensions].\n- | Specify a Company to submit Additional Fields.\n- | The [attribute] isn't valid for the supplier invoice template [template].\n- | To submit the ocr supplier invoice, remove all additional fields data references from the request or set up the configurable attribute template for the company [company].\n- | You must opt in to Supplier Invoice OCR via the Innovation Services task and opt in to contributing Supplier Invoice data for the Supplier Invoice OCR service via the Innovation Services Data Selection Opt-In task.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/supplierInvoiceRequests/{ID}/lines": {
+      "get": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "summary": "Retrieves a collection of supplier invoice lines.",
+        "description": "Retrieves all supplier invoice lines for the specified supplier invoice.\n\n<b>Secured by:</b> Process: Supplier Invoice - Request, View: Supplier Invoice Request\n\n<b>Scope:</b> Supplier Accounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/viewLineSummary_9405000285d4100015a7caddd42501a0"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/supplierInvoiceRequests/{ID}": {
+      "get": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "summary": "Retrieves a single supplier invoice instance.",
+        "description": "Retrieves the supplier invoice with the specified ID.\n\n<b>Secured by:</b> Process: Supplier Invoice - Request, Self-Service: Supplier Invoice Request, View: Supplier Invoice Request\n\n<b>Scope:</b> Supplier Accounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/invoiceRequestSummary_e6c79302212b1000170aafef80de03f6"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/supplierInvoiceRequests/{ID}/attachments": {
+      "get": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "summary": "Retrieves a collection of attachments for the specified supplier invoice.",
+        "description": "Retrieves all attachments associated with supplier invoices.\n\n<b>Secured by:</b> Process: Supplier Invoice - Request, View: Supplier Invoice Request\n\n<b>Scope:</b> Supplier Accounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/attachmentSummary_11ce086ab3f2100010fe0dc062f30445"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "summary": "Creates a new attachment for the supplier invoice.",
+        "description": "Creates attachments for the specified supplier invoice.\n\n<b>Secured by:</b> Process: Supplier Invoice - Request\n\n<b>Scope:</b> Supplier Accounts\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "createAttachmentSummary",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createAttachmentSummary_a240ec6a66a9100019a3736404710153"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/createAttachmentSummary_a240ec6a66a9100019a3736404710153"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/supplierInvoiceRequests/{ID}/lines/{subresourceID}": {
+      "get": {
+        "tags": [
+          "supplierInvoiceRequests"
+        ],
+        "summary": "Retrieves a single supplier invoice line instance.",
+        "description": "Retrieves a supplier invoice line with the specified subresource ID for the specified supplier invoice ID.\n\n<b>Secured by:</b> Process: Supplier Invoice - Request, View: Supplier Invoice Request\n\n<b>Scope:</b> Supplier Accounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/viewLineSummary_9405000285d4100015a7caddd42501a0"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "ocrSupplierInvoices_da21a1c310eb10000abe00d4506d2261": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ocrSupplierInvoiceRootServiceRepresentation_94bfa40e349510000a5fc89dd1960107"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for OCR Supplier Invoice Root Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "ocrSupplierInvoicesContainerRepresentation_da21a1c310eb10000abe00ba8af52260": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "ocrSupplierInvoices": {
+              "type": "array",
+              "description": "Container for OCR Supplier Invoice Root.",
+              "items": {
+                "$ref": "#/definitions/ocrSupplierInvoices_da21a1c310eb10000abe00d4506d2261"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for OCR Supplier Invoices Container"
+            }
+          }
+        }
+      ]
+    },
+    "company_88373bd89fa7100012214f3db664011f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The company used for Common Financial Dimensions. This is for internal use only on a REST API."
+    },
+    "currency_88373bd89fa7100012214f4d45740121": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The currency for the reporting transaction."
+    },
+    "requester_3768a745c1b81000093b2d31af5b0125": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The requester of the supplier invoice request."
+    },
+    "referenceType_88373bd89fa7100012214f894f3a012b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The type of reference used to encode key payment information on the invoice documents."
+    },
+    "paymentTerms_88373bd89fa7100012214f7d71760129": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The payment terms of the customer defined on the transaction or payment terms defined on the transaction directly.  You can use this field to drill into details and access the related actions menu."
+    },
+    "lines_88373bd89fa7100012214fbcd7c60133": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/createLineSummary_e379188fa833100003f4ceabb3770413"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Invoice Request Line"
+            }
+          }
+        }
+      ]
+    },
+    "statutoryInvoiceType_88373bd89fa7100012214fa3449d012f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Invoice Type selected on the supplier invoice request."
+    },
+    "supplier_88373bd89fa7100012214fb0c97a0131": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The supplier for the business documents. This field allows you to drill into the details and access related actions."
+    },
+    "handlingCode_88373bd89fa7100012214f654d620125": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The handling code for Supplier Invoice Request."
+    },
+    "shipToAddress_88373bd89fa7100012214f9c9dbe012e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The shipping address for Supplier Invoice Request."
+    },
+    "remitToConnection_88373bd89fa7100012214f8fb057012c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The remit-to address for the supplier on the supplier invoice request."
+    },
+    "createInvoiceRequestSummary_88373bd89fa7100012214f29d79a011e": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "company",
+            "invoiceDate",
+            "supplier"
+          ],
+          "properties": {
+            "company": {
+              "$ref": "#/definitions/company_88373bd89fa7100012214f3db664011f"
+            },
+            "currency": {
+              "$ref": "#/definitions/currency_88373bd89fa7100012214f4d45740121"
+            },
+            "taxAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "Tax amount for the supplier invoice request.",
+              "x-workday-type": "Currency"
+            },
+            "requester": {
+              "$ref": "#/definitions/requester_3768a745c1b81000093b2d31af5b0125"
+            },
+            "controlTotalAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The amount entered that should match the total of the line amounts.",
+              "x-workday-type": "Currency"
+            },
+            "referenceType": {
+              "$ref": "#/definitions/referenceType_88373bd89fa7100012214f894f3a012b"
+            },
+            "paymentTerms": {
+              "$ref": "#/definitions/paymentTerms_88373bd89fa7100012214f7d71760129"
+            },
+            "lines": {
+              "type": "array",
+              "description": "The Supplier Invoice Request Lines for a Supplier Invoice Request.",
+              "items": {
+                "$ref": "#/definitions/lines_88373bd89fa7100012214fbcd7c60133"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "statutoryInvoiceType": {
+              "$ref": "#/definitions/statutoryInvoiceType_88373bd89fa7100012214fa3449d012f"
+            },
+            "suppliersInvoiceNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reference number provided by the supplier for the supplier invoice request.",
+              "x-workday-type": "Text"
+            },
+            "referenceNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reference number encoded with the key payment information on the supplier invoice request.",
+              "maxLength": 140,
+              "x-workday-type": "Text"
+            },
+            "invoiceReceivedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date an invoice is received.",
+              "x-workday-type": "Date"
+            },
+            "freightAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "Freight amount for the supplier invoice request.",
+              "x-workday-type": "Currency"
+            },
+            "supplier": {
+              "$ref": "#/definitions/supplier_88373bd89fa7100012214fb0c97a0131"
+            },
+            "handlingCode": {
+              "$ref": "#/definitions/handlingCode_88373bd89fa7100012214f654d620125"
+            },
+            "shipToAddress": {
+              "$ref": "#/definitions/shipToAddress_88373bd89fa7100012214f9c9dbe012e"
+            },
+            "invoiceDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date when a request for a supplier invoice is created.",
+              "x-workday-type": "Date"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The memo for the Supplier Invoice Request.",
+              "x-workday-type": "Text"
+            },
+            "remitToConnection": {
+              "$ref": "#/definitions/remitToConnection_88373bd89fa7100012214f8fb057012c"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Invoice Request"
+            }
+          }
+        }
+      ]
+    },
+    "statutoryInvoiceType_f9d7e09c63221000058ba924089e047c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Invoice Type specified on the supplier invoice request."
+    },
+    "handlingCode_11ce086ab3f21000091dc03083a7043c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The handling code for Supplier Invoice Request."
+    },
+    "status_3886de80e615100003e84498906d0401": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of the Supplier Invoice Request. This is for internal use only on a REST API."
+    },
+    "remitToConnection_3886de80e61510000e2d1ebcfe6e0414": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The remit to address for the supplier on the Supplier Invoice Request."
+    },
+    "paymentTerms_11ce086ab3f2100007dc219470200432": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The payment terms of the customer defined on the transaction or payment terms defined on the transaction directly.  You can use this field to drill into details and access the related actions menu."
+    },
+    "currency_3886de80e61510000e2d1eb0df060413": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/currencyEmbedded_34ea2f97b88410000bfa3887e1970133"
+        },
+        {}
+      ],
+      "description": "The currency for the reporting transaction."
+    },
+    "shipToAddress_11ce086ab3f2100007dc220a14e50433": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The shipping address for supplier invoice request."
+    },
+    "referenceType_11ce086ab3f2100008ef886f5a590438": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The type of reference used to encode key payment information on the invoice documents."
+    },
+    "requester_3886de80e61510000388d79f782803ff": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The requester for the Supplier Invoice Request."
+    },
+    "supplier_3886de80e61510000eb4cd49c84e0417": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The supplier for the business documents.This field allows you to drill into the details and access related actions"
+    },
+    "company_3886de80e61510000de666c523f80410": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The company used for Common Financial Dimensions. This is for internal use only on a REST API."
+    },
+    "invoiceRequestSummary_e6c79302212b1000170aafef80de03f6": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "invoiceDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date when a request for a supplier invoice is created.",
+              "x-workday-type": "Date"
+            },
+            "statutoryInvoiceType": {
+              "$ref": "#/definitions/statutoryInvoiceType_f9d7e09c63221000058ba924089e047c"
+            },
+            "referenceNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reference number that is encoded with key payment information on the invoice request document.",
+              "maxLength": 140,
+              "x-workday-type": "Text"
+            },
+            "taxAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "Tax amount for the supplier invoice request.",
+              "x-workday-type": "Currency"
+            },
+            "handlingCode": {
+              "$ref": "#/definitions/handlingCode_11ce086ab3f21000091dc03083a7043c"
+            },
+            "status": {
+              "$ref": "#/definitions/status_3886de80e615100003e84498906d0401"
+            },
+            "dueDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The due date for payment for this Supplier Invoice Request. Example: If the payment terms are Net 30, the Due Date field is 30 days after the invoice date.",
+              "x-workday-type": "Date"
+            },
+            "remitToConnection": {
+              "$ref": "#/definitions/remitToConnection_3886de80e61510000e2d1ebcfe6e0414"
+            },
+            "paymentTerms": {
+              "$ref": "#/definitions/paymentTerms_11ce086ab3f2100007dc219470200432"
+            },
+            "controlTotalAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The amount entered that should match the total of the line amounts.",
+              "x-workday-type": "Currency"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The memo for the supplier invoice request.",
+              "x-workday-type": "Text"
+            },
+            "suppliersInvoiceNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reference number provided by the supplier for the supplier invoice request.",
+              "x-workday-type": "Text"
+            },
+            "currency": {
+              "$ref": "#/definitions/currency_3886de80e61510000e2d1eb0df060413"
+            },
+            "freightAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The freight amount for the supplier invoice request.",
+              "x-workday-type": "Currency"
+            },
+            "shipToAddress": {
+              "$ref": "#/definitions/shipToAddress_11ce086ab3f2100007dc220a14e50433"
+            },
+            "referenceType": {
+              "$ref": "#/definitions/referenceType_11ce086ab3f2100008ef886f5a590438"
+            },
+            "requestNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The unique number assigned to the Supplier Invoice Request at the time of creation.",
+              "x-workday-type": "Text"
+            },
+            "invoiceReceivedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the invoice was recieved",
+              "x-workday-type": "Date"
+            },
+            "requester": {
+              "$ref": "#/definitions/requester_3886de80e61510000388d79f782803ff"
+            },
+            "supplier": {
+              "$ref": "#/definitions/supplier_3886de80e61510000eb4cd49c84e0417"
+            },
+            "company": {
+              "$ref": "#/definitions/company_3886de80e61510000de666c523f80410"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Invoice Request"
+            }
+          }
+        }
+      ]
+    },
+    "submitSupplierInvoiceRequest_fe25e892a91410001a1090223ec50102": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "unitOfMeasure_9405000285d41000163cb6d4366401b2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The unit of measure for the document line."
+    },
+    "itemIdentifiers_9405000285d41000163cb686ca4001aa": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/itemIdentifierSummary_e379188fa83310001a9637f72ba3044b"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Alternate Item Identifier"
+            }
+          }
+        }
+      ]
+    },
+    "splits_9405000285d41000163cb6bed9bb01b0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/lineSplitSummary_11ce086ab3f210001320c75db93d044e"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Invoice Request Line Split"
+            }
+          }
+        }
+      ]
+    },
+    "spendCategory_9405000285d4100015a7cb06d1a601a3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Spend Category defined on the Line for the Business Document Line Distribution."
+    },
+    "itemTags_9405000285d41000163cb692ab0101ab": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/itemTagSummary_e379188fa8331000194263b1ba8e0445"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Item Tag"
+            }
+          }
+        }
+      ]
+    },
+    "item_9405000285d4100015a7cb2e679f01a7": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The item for the document line."
+    },
+    "worktags_9405000285d41000163cb6de040401b3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/linesWorktagSummary_76c5b32c69101000067ac4193d5f0115"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Accounting Worktag"
+            }
+          }
+        }
+      ]
+    },
+    "splitBy_9405000285d4100015a7cafcc16101a2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The distribution method for supplier invoice request line."
+    },
+    "viewLineSummary_9405000285d4100015a7caddd42501a0": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The line type of the supplier invoice request.",
+              "x-workday-type": "Text"
+            },
+            "unitOfMeasure": {
+              "$ref": "#/definitions/unitOfMeasure_9405000285d41000163cb6d4366401b2"
+            },
+            "itemIdentifiers": {
+              "type": "array",
+              "description": "Contains list of Item Identifiers for Procurement Item on Business Document Line Distribution.",
+              "items": {
+                "$ref": "#/definitions/itemIdentifiers_9405000285d41000163cb686ca4001aa"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "internalMemo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The internal line memo for the supplier invoice request line.",
+              "x-workday-type": "Text"
+            },
+            "splits": {
+              "type": "array",
+              "description": "Splits for the Supplier Invoice Request Line instance.",
+              "items": {
+                "$ref": "#/definitions/splits_9405000285d41000163cb6bed9bb01b0"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "itemDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the item on the document line. This is a text-only value.",
+              "x-workday-type": "Text"
+            },
+            "billable": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if a supplier invoice request line or line split is billable.",
+              "x-workday-type": "Boolean"
+            },
+            "unitCost": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The unit cost for the document line.",
+              "x-workday-type": "Currency"
+            },
+            "extendedAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The extended amount for the document line.  Excludes Extended Amounts on Tax Only Invoices.",
+              "x-workday-type": "Currency"
+            },
+            "spendCategory": {
+              "$ref": "#/definitions/spendCategory_9405000285d4100015a7cb06d1a601a3"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The memo on the document line.",
+              "x-workday-type": "Text"
+            },
+            "itemTags": {
+              "type": "array",
+              "description": "All item tags for a goods delivery run line's item",
+              "items": {
+                "$ref": "#/definitions/itemTags_9405000285d41000163cb692ab0101ab"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "item": {
+              "$ref": "#/definitions/item_9405000285d4100015a7cb2e679f01a7"
+            },
+            "quantity": {
+              "type": "number",
+              "example": 99999999999.99,
+              "description": "The quantity on the transaction line. This value can have 20 integer places, is precise to 2 decimal places, and can be negative.",
+              "x-workday-type": "Numeric"
+            },
+            "worktags": {
+              "type": "array",
+              "description": "Accounting Worktags for Requisition. Used in REST API Only.",
+              "items": {
+                "$ref": "#/definitions/worktags_9405000285d41000163cb6de040401b3"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "splitBy": {
+              "$ref": "#/definitions/splitBy_9405000285d4100015a7cafcc16101a2"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Invoice Request Line"
+            }
+          }
+        }
+      ]
+    },
+    "attachmentSummary_11ce086ab3f2100010fe0dc062f30445": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "fileName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "File name of the attachment",
+              "maxLength": 255,
+              "x-workday-type": "Text"
+            },
+            "fileLength": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "File length of the attachment",
+              "x-workday-type": "Numeric"
+            },
+            "fileExtension": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Type of the file extension for an attachment.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "itemTagSummary_e379188fa8331000194263b1ba8e0445": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "contentType_a240ec6a66a9100019a3744cbef40157": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Content type of the attachment."
+    },
+    "createAttachmentSummary_a240ec6a66a9100019a3736404710153": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "fileName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "File name of the attachment.",
+              "maxLength": 255,
+              "x-workday-type": "Text"
+            },
+            "fileLength": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "File length of the attachment.",
+              "x-workday-type": "Numeric"
+            },
+            "contentType": {
+              "$ref": "#/definitions/contentType_a240ec6a66a9100019a3744cbef40157"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Business Document Attachment"
+            }
+          }
+        }
+      ]
+    },
+    "currencyEmbedded_34ea2f97b88410000bfa3887e1970133": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "currencyID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Reference ID to use for lookups within our Workday Web Services. For \\~supervisory organizations\\~, this is also the 'Organization ID'",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            }
+          }
+        }
+      ]
+    },
+    "contentSummary_878805f1228010000d890b29cdad0478": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "worktags_f9d7e09c6322100006d2f74934b0047e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/lineSplitWorktagSummary_76c5b32c6910100010e0a58870cc011d"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "lineSplitSummary_11ce086ab3f210001320c75db93d044e": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "quantity": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The quantity specified for the Business Document Line distribution line split.",
+              "x-workday-type": "Numeric"
+            },
+            "worktags": {
+              "type": "array",
+              "description": "The worktags for the document line split.",
+              "items": {
+                "$ref": "#/definitions/worktags_f9d7e09c6322100006d2f74934b0047e"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "amount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The amount on the transaction line split. This value displays in the same currency as the business document.",
+              "x-workday-type": "Currency"
+            },
+            "percent": {
+              "type": "number",
+              "example": 999.999999,
+              "description": "The percentage specified for the Business Document Line distribution line split.",
+              "x-workday-type": "Numeric"
+            },
+            "billable": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the supplier invoice request line or line split are billable.",
+              "x-workday-type": "Boolean"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The memo for a line split",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "contentType_b1c2c627eb8b1000072be79759670017": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Content type of the attachment."
+    },
+    "supplierInvoiceDocumentAttachmentServiceDefinition_b1c2c627eb8b1000072be738a9310013": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "contentType": {
+              "$ref": "#/definitions/contentType_b1c2c627eb8b1000072be79759670017"
+            },
+            "fileName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "File name of the attachment.",
+              "maxLength": 255,
+              "x-workday-type": "Text"
+            },
+            "fileLength": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "File length of the attachment.",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Business Document Attachment"
+            }
+          }
+        }
+      ]
+    },
+    "itemIdentifierSummary_e379188fa83310001a9637f72ba3044b": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "linesWorktagSummary_76c5b32c69101000067ac4193d5f0115": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "assignee_94bfa40e3495100010c2eef574c10134": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~worker\\~ assigned to OCR supplier invoice root for processing."
+    },
+    "attachments_94bfa40e349510000f895315d7030123": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/supplierInvoiceDocumentAttachmentServiceDefinition_b1c2c627eb8b1000072be738a9310013"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Invoice Document Attachment Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "externalSupplierInvoiceSource_eac2374ad0dc1000156b2e4f77720135": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The external supplier invoice source assigned to OCR supplier invoice root for processing."
+    },
+    "company_94bfa40e34951000113cdb9ccf4a013d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The company for the reporting transaction. For Requisition Templates, use the Company or Company Hierarchy field instead to include multiple companies and company hierarchies."
+    },
+    "additionalFields_1c49e565b42b10002b3da7a67e5b0026": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/configurableAttributeValueServiceDefinition_1c49e565b42b10002bf7295b33d70039"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Invoice Document Configurable Attribute Value (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "ocrSupplierInvoiceRootServiceRepresentation_94bfa40e349510000a5fc89dd1960107": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "receivedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date an invoice is received.",
+              "x-workday-type": "Date"
+            },
+            "assignee": {
+              "$ref": "#/definitions/assignee_94bfa40e3495100010c2eef574c10134"
+            },
+            "attachments": {
+              "type": "array",
+              "description": "Attachments on OCR Supplier Invoice Root.",
+              "items": {
+                "$ref": "#/definitions/attachments_94bfa40e349510000f895315d7030123"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "ocrHighPriority": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the OCR supplier invoice root is high priority.",
+              "x-workday-type": "Boolean"
+            },
+            "externalReference": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "External Reference for Supplier Invoice",
+              "x-workday-type": "Text"
+            },
+            "externalSupplierInvoiceSource": {
+              "$ref": "#/definitions/externalSupplierInvoiceSource_eac2374ad0dc1000156b2e4f77720135"
+            },
+            "supplierInvoiceReferenceID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Supplier Invoice ID value is used for duplicate checking invoices that come from integrations.",
+              "x-workday-type": "Text"
+            },
+            "company": {
+              "$ref": "#/definitions/company_94bfa40e34951000113cdb9ccf4a013d"
+            },
+            "workQueueNotes": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The work queue notes assigned to OCR supplier invoice root for processing.",
+              "x-workday-type": "Rich Text",
+              "x-workday-confidence-level": "Production"
+            },
+            "additionalFields": {
+              "type": "array",
+              "description": "The additional field values for OCR supplier invoice root.",
+              "items": {
+                "$ref": "#/definitions/additionalFields_1c49e565b42b10002b3da7a67e5b0026"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "lineSplitWorktagSummary_76c5b32c6910100010e0a58870cc011d": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "configurableAttribute_1c49e565b42b10002bf729797095003b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The configurable attribute associated to configurable attribute value"
+    },
+    "configurableAttributeValueServiceDefinition_1c49e565b42b10002bf7295b33d70039": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "attributeValue": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The configurable attribute value",
+              "x-workday-type": "Text"
+            },
+            "configurableAttribute": {
+              "$ref": "#/definitions/configurableAttribute_1c49e565b42b10002bf729797095003b"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Invoice Document Configurable Attribute Value"
+            }
+          }
+        }
+      ]
+    },
+    "worktags_76c5b32c691010000c775eb56a5e0118": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/linesWorktagSummary_76c5b32c69101000067ac4193d5f0115"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "splits_11ce086ab3f21000144a741f47160455": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/lineSplitSummary_11ce086ab3f210001320c75db93d044e"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Invoice Request Line Split"
+            }
+          }
+        }
+      ]
+    },
+    "splitBy_9405000285d41000176509b6d2e101be": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The distribution method for supplier invoice request line."
+    },
+    "spendCategory_e379188fa833100010c3e2228aa60426": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Retrieves the spend category defined on the line for the Business Document Line Distribution."
+    },
+    "unitOfMeasure_e379188fa8331000163b4a599de4042a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The unit of measure for the document line."
+    },
+    "item_e379188fa833100010c3e2345d390428": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The item for the document line."
+    },
+    "createLineSummary_e379188fa833100003f4ceabb3770413": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "unitCost": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The unit cost for the document line.",
+              "x-workday-type": "Currency"
+            },
+            "internalMemo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The internal line memo for the supplier invoice request line.",
+              "x-workday-type": "Text"
+            },
+            "itemDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the item on the document line. This is a text-only value.",
+              "x-workday-type": "Text"
+            },
+            "worktags": {
+              "type": "array",
+              "description": "The worktags for the document line.",
+              "items": {
+                "$ref": "#/definitions/worktags_76c5b32c691010000c775eb56a5e0118"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "splits": {
+              "type": "array",
+              "description": "The supplier invoice lines that includes the splits for the requested instance.\n\nNote: Splits occur on a Supplier Invoice when a user decides to divide a line into multiple lines. For instance, if someone has a line which has a quantity of 4 items and they select \"Splits\" and they may split that line into 2 (so there will now be 2 lines, each of which has a quantity of 2 items)",
+              "items": {
+                "$ref": "#/definitions/splits_11ce086ab3f21000144a741f47160455"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of the lines on a transaction. You can use this field to compare other transactions, such as supplier invoice matching events.",
+              "x-workday-type": "Text"
+            },
+            "billable": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the supplier invoice request line or line split are billable.",
+              "x-workday-type": "Boolean"
+            },
+            "splitBy": {
+              "$ref": "#/definitions/splitBy_9405000285d41000176509b6d2e101be"
+            },
+            "quantity": {
+              "type": "number",
+              "example": 99999999999.99,
+              "description": "The quantity on the transaction line. This value can have 20 integer places, is precise to 2 decimal places, and can be negative.",
+              "x-workday-type": "Numeric"
+            },
+            "extendedAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The extended amount for the document line.  Excludes extended amount on tax only invoices.",
+              "x-workday-type": "Currency"
+            },
+            "spendCategory": {
+              "$ref": "#/definitions/spendCategory_e379188fa833100010c3e2228aa60426"
+            },
+            "unitOfMeasure": {
+              "$ref": "#/definitions/unitOfMeasure_e379188fa8331000163b4a599de4042a"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The memo on the document line.",
+              "x-workday-type": "Text"
+            },
+            "serviceLine": {
+              "type": "boolean",
+              "example": true,
+              "description": "The line type for supplier invoice request line.",
+              "x-workday-type": "Boolean"
+            },
+            "item": {
+              "$ref": "#/definitions/item_e379188fa833100010c3e2345d390428"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Invoice Request Line"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

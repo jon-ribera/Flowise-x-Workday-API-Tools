@@ -1,0 +1,676 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Budgets Public REST service",
+    "version": "v1",
+    "title": "budgets",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "2c9036d8806f10000b1f04dcdd7300d3"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/budgets/v1",
+  "tags": [
+    {
+      "name": "runBudgetCheck",
+      "description": "Use this API to check the budget for a specific transaction, which can have multiple lines."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/runBudgetCheck": {
+      "post": {
+        "tags": [
+          "runBudgetCheck"
+        ],
+        "summary": "Creates a budget check for transactions.",
+        "description": "Creates a budget check for transactions.\n\n<b>Secured by:</b> Budgets REST APIs\n\n<b>Scope:</b> Budgets",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "checkBudgetHeader",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/checkBudgetHeader_7ae56802b1fd100015a757ba8509007b"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/checkBudgetHeader_7ae56802b1fd100015a757ba8509007b"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1089 | Edit the currency on each transaction line so that it matches this default company currency: [currency]",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "overallStatus_7ae56802b1fd100015a757f4eaff007d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/overallStatus_37a7a96cafbb10001bdfca4e5b3f0023"
+        },
+        {}
+      ],
+      "description": "The budget check Status of the transaction for the \\~plan\\~ with budget check enabled."
+    },
+    "company_7ae56802b1fd100015a757fe6a22007e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/company_7ae56802b1fd100020d4546a01f900c5"
+        },
+        {}
+      ],
+      "description": "The Company for the budget check transaction."
+    },
+    "transactionLines_7ae56802b1fd100016f005d7344e0099": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/checkBudgetLines_7ae56802b1fd100016ee1317a4b7008e"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Check Budget Transaction Lines Abstract"
+            }
+          }
+        }
+      ]
+    },
+    "checkBudgetHeader_7ae56802b1fd100015a757ba8509007b": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "company",
+            "inflightTransactionDate"
+          ],
+          "properties": {
+            "overallStatus": {
+              "$ref": "#/definitions/overallStatus_7ae56802b1fd100015a757f4eaff007d"
+            },
+            "inflightTransactionDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The transaction Date for the budget check transaction.",
+              "x-workday-type": "Date"
+            },
+            "company": {
+              "$ref": "#/definitions/company_7ae56802b1fd100015a757fe6a22007e"
+            },
+            "transactionLines": {
+              "type": "array",
+              "description": "The transaction Lines for the Budget Check transaction.",
+              "items": {
+                "$ref": "#/definitions/transactionLines_7ae56802b1fd100016f005d7344e0099"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "accountingWorktagsOrAggregationDimension_945d0d223672100016ebebeac5890088": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/planAccountingWorktags_7ae56802b1fd100018b70eba131400a2"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Budget Check Accounting Worktag and Aggregation Dimension (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "currency_a88dd757a7f610001ef781a6e707005c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The company base Currency for the transaction amount."
+    },
+    "lineStatus_d725bed6c532100019afe46482fe0009": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/lineLevelStatus_aa491a76b1201000211db977dee600b5"
+        },
+        {}
+      ],
+      "description": "The budget check status for each \\~plan\\~ with budget check enabled, for each transaction line."
+    },
+    "ledgerAccountOrLedgerSummary_a88dd757a7f610001ef781b7f687005d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/planLedgerAccountOrSummary_7ae56802b1fd100019186e490fcf00af"
+        },
+        {}
+      ],
+      "description": "The Ledger Account or Ledger Account Summary for the \\~plan\\~ with budget check enabled."
+    },
+    "plan_a88dd757a7f6100019640fad65380051": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/plan_7ae56802b1fd100018eba284eaca00a9"
+        },
+        {}
+      ],
+      "description": "The \\~Plan\\~ with budget check enabled."
+    },
+    "planInformation_a88dd757a7f6100019640f7e92500050": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "accountingWorktagsOrAggregationDimension": {
+              "type": "array",
+              "description": "The Accounting Worktags and aggregation dimensions from the \\~Plan\\~ with budget check enabled.",
+              "items": {
+                "$ref": "#/definitions/accountingWorktagsOrAggregationDimension_945d0d223672100016ebebeac5890088"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "currency": {
+              "$ref": "#/definitions/currency_a88dd757a7f610001ef781a6e707005c"
+            },
+            "availableAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The Available Amount for the \\~plan\\~ with budget check enabled.",
+              "x-workday-type": "Currency"
+            },
+            "aggregatedTransactionAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The Aggregated Transaction Amount for the \\~plan\\~ line with budget check enabled.",
+              "x-workday-type": "Currency"
+            },
+            "spendAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The Current Spend Amount for the \\~plan\\~ with budget check enabled.",
+              "x-workday-type": "Currency"
+            },
+            "lineStatus": {
+              "$ref": "#/definitions/lineStatus_d725bed6c532100019afe46482fe0009"
+            },
+            "ledgerAccountOrLedgerSummary": {
+              "$ref": "#/definitions/ledgerAccountOrLedgerSummary_a88dd757a7f610001ef781b7f687005d"
+            },
+            "plan": {
+              "$ref": "#/definitions/plan_a88dd757a7f6100019640fad65380051"
+            },
+            "planAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The Current \\~Plan\\~ Amount from the \\~plan\\~ with budget check enabled.",
+              "x-workday-type": "Currency"
+            }
+          }
+        }
+      ]
+    },
+    "currency_8bb8d9707e4e10001b624058b81c013a": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Currency"
+            }
+          }
+        }
+      ]
+    },
+    "plan_7ae56802b1fd100018eba284eaca00a9": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "transactionBookcode_b50511ad25a41000049eb93f86b80025": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Book Code"
+            }
+          }
+        }
+      ]
+    },
+    "lineLevelStatus_aa491a76b1201000211db977dee600b5": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "company_7ae56802b1fd100020d4546a01f900c5": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Company"
+            }
+          }
+        }
+      ]
+    },
+    "currency_37a7a96cafbb10001c21ee4edb8b0027": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/currency_8bb8d9707e4e10001b624058b81c013a"
+        },
+        {}
+      ],
+      "description": "The company base Currency for the budget check transaction."
+    },
+    "bookCode_b50511ad25a4100004a0c2f191ca0027": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/transactionBookcode_b50511ad25a41000049eb93f86b80025"
+        },
+        {}
+      ],
+      "description": "The Transaction Book Code for the budget check transaction."
+    },
+    "planInformation_a88dd757a7f610001965d776bd6e0053": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/planInformation_a88dd757a7f6100019640f7e92500050"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Check Budget Lines Plan Data Abstract"
+            }
+          }
+        }
+      ]
+    },
+    "ledgerAccount_7ae56802b1fd100016ee139972550097": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/transactionLedgerAccount_7ae56802b1fd10001928224eec2000b2"
+        },
+        {}
+      ],
+      "description": "The Transaction Ledger Account for the budget check transaction."
+    },
+    "accountingWorktags_4b7ab2e987c910001d0bdfa274e60084": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/transactionAccountingWorktags_7ae56802b1fd100018cc00e931e500a5"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Budget Check Accounting Worktag (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "checkBudgetLines_7ae56802b1fd100016ee1317a4b7008e": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "$ref": "#/definitions/currency_37a7a96cafbb10001c21ee4edb8b0027"
+            },
+            "bookCode": {
+              "$ref": "#/definitions/bookCode_b50511ad25a4100004a0c2f191ca0027"
+            },
+            "transactionAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The Transaction Amount for the budget check transaction.",
+              "x-workday-type": "Currency"
+            },
+            "planInformation": {
+              "type": "array",
+              "description": "The \\~Plan\\~ Data for the \\~plans\\~ enabled for Budget Check.",
+              "items": {
+                "$ref": "#/definitions/planInformation_a88dd757a7f610001965d776bd6e0053"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "ledgerAccount": {
+              "$ref": "#/definitions/ledgerAccount_7ae56802b1fd100016ee139972550097"
+            },
+            "accountingWorktags": {
+              "type": "array",
+              "description": "The Transaction Accounting worktags for the budget check transaction.",
+              "items": {
+                "$ref": "#/definitions/accountingWorktags_4b7ab2e987c910001d0bdfa274e60084"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "transactionLedgerAccount_7ae56802b1fd10001928224eec2000b2": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "transactionAccountingWorktags_7ae56802b1fd100018cc00e931e500a5": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "planAccountingWorktags_7ae56802b1fd100018b70eba131400a2": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "overallStatus_37a7a96cafbb10001bdfca4e5b3f0023": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Budget Check Status"
+            }
+          }
+        }
+      ]
+    },
+    "planLedgerAccountOrSummary_7ae56802b1fd100019186e490fcf00af": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

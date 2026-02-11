@@ -1,0 +1,801 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Exposes metrics and other performance data about the Workday system.",
+    "version": "v1",
+    "title": "systemMetrics",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "e164b09852081000200e7a03dac30045"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/systemMetrics/v1",
+  "tags": [
+    {
+      "name": "activeTasks",
+      "description": "Returns the active tasks in the system."
+    },
+    {
+      "name": "activeUserSessions",
+      "description": "All the active user sessions."
+    },
+    {
+      "name": "systemMetricsOverview"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/activeTasks/{ID}": {
+      "get": {
+        "tags": [
+          "activeTasks"
+        ],
+        "description": "\n\n<b>Secured by:</b> System Monitor Administrator, System Monitor Support\n\n<b>Scope:</b> System, System Health Dashboard, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/activeTasks_f87f05c3d17110000c0d48345e830002"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/activeUserSessions": {
+      "get": {
+        "tags": [
+          "activeUserSessions"
+        ],
+        "summary": "Retrieves a collection of active user sessions.",
+        "description": "Retrieves all active user sessions.\n\n<b>Secured by:</b> System Monitor Administrator, System Monitor Support\n\n<b>Scope:</b> System, System Health Dashboard, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/activeUserSessions_35109e9d48f9100008e5e6a49f0113c0"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/activeTasks": {
+      "get": {
+        "tags": [
+          "activeTasks"
+        ],
+        "description": "\n\n<b>Secured by:</b> System Monitor Administrator, System Monitor Support\n\n<b>Scope:</b> System, System Health Dashboard, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/activeTasks_f87f05c3d17110000c0d48345e830002"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/activeUserSessions/{ID}": {
+      "get": {
+        "tags": [
+          "activeUserSessions"
+        ],
+        "summary": "Retrieves an active user session.",
+        "description": "Retrieves the active user session with the specified ID.\n\n<b>Secured by:</b> System Monitor Administrator, System Monitor Support\n\n<b>Scope:</b> System, System Health Dashboard, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/activeUserSessions_35109e9d48f9100008e5e6a49f0113c0"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/systemMetricsOverview": {
+      "get": {
+        "tags": [
+          "systemMetricsOverview"
+        ],
+        "summary": "Retrieves system metrics with the specified ID, including queued tasks, running tasks, and active user sessions.",
+        "description": "Retrieves a collection of system metrics, including queued tasks, running tasks, and active user sessions.\n\n<b>Secured by:</b> System Monitor Administrator, System Monitor Support\n\n<b>Scope:</b> System, System Health Dashboard, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/systemMetricsOverview_bca45797466810000c29a14b9b2e002c"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/systemMetricsOverview/{ID}": {
+      "get": {
+        "tags": [
+          "systemMetricsOverview"
+        ],
+        "summary": "Retrieves system metrics.",
+        "description": "Retrieves system metrics with the specified ID, including queued tasks, running tasks, and active user sessions.\n\n<b>Secured by:</b> System Monitor Administrator, System Monitor Support\n\n<b>Scope:</b> System, System Health Dashboard, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/systemMetricsOverview_bca45797466810000c29a14b9b2e002c"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "systemMetricsOverview_bca45797466810000c29a14b9b2e002c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "activeUserSessions": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "Count of active user sessions in the system.",
+              "x-workday-type": "Numeric"
+            },
+            "runningTasks": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "Count of running tasks in the system.",
+              "x-workday-type": "Numeric"
+            },
+            "queuedTasks": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The number of queued tasks in the system.",
+              "x-workday-type": "Numeric"
+            }
+          }
+        }
+      ]
+    },
+    "systemAccount_35109e9d48f9100008e5e6f16f5213c4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "System account, that is used for Signon"
+    },
+    "role_35109e9d48f910001004ecbccc94191b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Role of the system account associated with this user session."
+    },
+    "deviceType_35109e9d48f9100008e5e6dea2ef13c2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Device type used for user signon."
+    },
+    "authenticationType_35109e9d48f9100008e5e6c8990013c1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the authentication type (e.g. Username Password, SAML, OpenID) that is used to sign on."
+    },
+    "activeUserSessions_35109e9d48f9100008e5e6a49f0113c0": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "systemAccount": {
+              "$ref": "#/definitions/systemAccount_35109e9d48f9100008e5e6f16f5213c4"
+            },
+            "signonTime": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The time that the user's session started.",
+              "x-workday-type": "Date"
+            },
+            "role": {
+              "$ref": "#/definitions/role_35109e9d48f910001004ecbccc94191b"
+            },
+            "deviceType": {
+              "$ref": "#/definitions/deviceType_35109e9d48f9100008e5e6dea2ef13c2"
+            },
+            "elapsedMinutes": {
+              "type": "integer",
+              "example": "9999999999",
+              "description": "Elapsed signon time in minutes or elapsed time from the signon start if session is still active.",
+              "x-workday-type": "Numeric"
+            },
+            "authenticationType": {
+              "$ref": "#/definitions/authenticationType_35109e9d48f9100008e5e6c8990013c1"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "task_f87f05c3d17110000e0490fddf9b001d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The running task."
+    },
+    "account_f87f05c3d17110000c0d48d9c502000e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the workday account used to launch the task."
+    },
+    "activeTasks_f87f05c3d17110000c0d48345e830002": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the service that launched the task.",
+              "x-workday-type": "Text"
+            },
+            "startTime": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Start time of the task.",
+              "x-workday-type": "Date"
+            },
+            "cpuTimeMillis": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The time spend by the CPU to process the task.",
+              "x-workday-type": "Numeric"
+            },
+            "task": {
+              "$ref": "#/definitions/task_f87f05c3d17110000e0490fddf9b001d"
+            },
+            "runningSubtaskCount": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The count of running self and child processes executed within this sample.",
+              "x-workday-type": "Numeric"
+            },
+            "queuedSubtaskCount": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The count of queued self and child processes executed within this sample.",
+              "x-workday-type": "Numeric"
+            },
+            "account": {
+              "$ref": "#/definitions/account_f87f05c3d17110000c0d48d9c502000e"
+            },
+            "taskDurationMillis": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The duration of time the task has been both queued and running.",
+              "x-workday-type": "Numeric"
+            },
+            "bytesAllocated": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The memory allocated for task in mebibytes (MiB).",
+              "x-workday-type": "Numeric"
+            },
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Indicates the status the task is currently in as either queued or running.",
+              "x-workday-type": "Text"
+            },
+            "queueMillis": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The duration of time the task has been waiting in the queue.",
+              "x-workday-type": "Numeric"
+            },
+            "instancesAccessed": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The count of all the instances traversed to process the task.",
+              "x-workday-type": "Numeric"
+            },
+            "queueName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the queue currently processing the task.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

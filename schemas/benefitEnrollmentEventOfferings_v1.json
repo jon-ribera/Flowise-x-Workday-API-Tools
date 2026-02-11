@@ -1,0 +1,875 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Benefit Enrollment Event Offerings REST API enable you to get worker benefit enrollment offerings for a single and active benefit enrollment event.",
+    "version": "v1",
+    "title": "benefitEnrollmentEventOfferings",
+    "x-workday-confidence-level": "Production",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "1370b5d6990210001992ceff87f70001"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/benefitEnrollmentEventOfferings/v1",
+  "tags": [
+    {
+      "name": "employeeEnrollmentEvent",
+      "description": "Processing Worker's Latest Employee Enrollment Event"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/employeeEnrollmentEvent/{ID}": {
+      "get": {
+        "tags": [
+          "employeeEnrollmentEvent"
+        ],
+        "summary": "Retrieves the latest benefit enrollment event of the processing worker. This resource will return one event that is New, In Progress or the latest finalized.",
+        "description": "Retrieves the latest benefit enrollment event of the processing worker. This resource will return one event that is New, In Progress or the latest finalized.\n\n<b>Secured by:</b> Self-Service: Benefit Elections, Self-Service: Retirement Savings\n\n<b>Scope:</b> Benefits",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/enrollmentOfferingsByType_4d0b89015192100018e31387450f0000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/employeeEnrollmentEvent": {
+      "get": {
+        "tags": [
+          "employeeEnrollmentEvent"
+        ],
+        "summary": "Retrieves the latest benefit enrollment event of the processing worker.",
+        "description": "Retrieves the latest benefit enrollment event of the processing worker.\n\n<b>Secured by:</b> Self-Service: Benefit Elections, Self-Service: Retirement Savings\n\n<b>Scope:</b> Benefits",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "enrollmentOfferingTypeWID",
+            "in": "query",
+            "description": "WID of Enrollment Offering Type such as Medical, Dental, Vision, 401(k), Basic Group Life etc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "onlyCurrentElections",
+            "in": "query",
+            "description": "Boolean value. If it is true, the API would return the current active enrollment offerings of the processing worker as of processing date. If false, API returns the most latest enrollment offerings of the worker that could be from the most latest finalized or not started/in progress future event.",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "planType",
+            "in": "query",
+            "description": "Benefit Election or Plan Type such as \"Healthcare\", \"Retirement Savings\"",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/enrollmentOfferingsByType_4d0b89015192100018e31387450f0000"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "retirementSavingsEnrollmentOfferings_bb9c89eab9d6100025935561ee690000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/retirementSavingsElections_86947b855674100011207a1074c40000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Enrollment Offering"
+            }
+          }
+        }
+      ]
+    },
+    "healthcareEnrollmentOfferings_4d0b8901519210001cbee1efecdb0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/healthcareElections_12efc4fddc4010001d8e4d466d7b0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Enrollment Offering"
+            }
+          }
+        }
+      ]
+    },
+    "enrollmentOfferingsByType_4d0b89015192100018e31387450f0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "retirementSavingsEnrollmentOfferings": {
+              "type": "array",
+              "description": "Retirement Savings Enrollment Offerings for Employee Enrollment Event",
+              "items": {
+                "$ref": "#/definitions/retirementSavingsEnrollmentOfferings_bb9c89eab9d6100025935561ee690000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "healthcareEnrollmentOfferings": {
+              "type": "array",
+              "description": "Healthcare Enrollment Offerings for Employee Enrollment Event",
+              "items": {
+                "$ref": "#/definitions/healthcareEnrollmentOfferings_4d0b8901519210001cbee1efecdb0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "dependent_bb9c89eab9d6100021d0b03bd5010000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Person for the Dependent Election"
+    },
+    "dependentRelationship_bb9c89eab9d6100021d0b03bd5010002": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Relationship Type of the Dependent Person for the Dependent Election"
+    },
+    "dependentElectionView_bb9c89eab9d6100021d0afa20a5e0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "dependent": {
+              "$ref": "#/definitions/dependent_bb9c89eab9d6100021d0b03bd5010000"
+            },
+            "providerID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Provider ID selected for the dependent on the health care election.",
+              "x-workday-type": "Text"
+            },
+            "dependentRelationship": {
+              "$ref": "#/definitions/dependentRelationship_bb9c89eab9d6100021d0b03bd5010002"
+            },
+            "couldBeCoveredForHealthcareCoverageElsewhere": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns whether the Dependent could covered for health care elsewhere (relevant for spousal surcharge)",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Dependent Election"
+            }
+          }
+        }
+      ]
+    },
+    "retirementSavingsElectionsForEnrollmentOffering_86947b855674100011207aaa23530000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/retirementSavingsElectionsForEnrollmentOffering_86947b855674100011980aa390a30000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Retirement Savings Election"
+            }
+          }
+        }
+      ]
+    },
+    "retirementSavingsElections_86947b855674100011207a1074c40000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "retirementSavingsElectionsForEnrollmentOffering": {
+              "type": "array",
+              "description": "Retirement Savings Elections For Enrollment Offering",
+              "items": {
+                "$ref": "#/definitions/retirementSavingsElectionsForEnrollmentOffering_86947b855674100011207aaa23530000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "benefitPlanForElection_9234851c14b210002a58789b3fb20000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Benefit Plan for Election"
+    },
+    "dependentElections_bb9c89eab9d61000101ef432e76c0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/dependentElectionView_bb9c89eab9d6100021d0afa20a5e0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Dependent Election"
+            }
+          }
+        }
+      ]
+    },
+    "healthcareCoverageTarget_57271b00461a10001bf1eb601a2b0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The health care coverage target selected for the health care election.  Examples include EE Only, EE + 1 dependent, and EE + 2 or more dependents."
+    },
+    "planFrequency_9234851c14b21000284617a46c4b0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Benefit Plan Frequency"
+    },
+    "benefitPlanCurrency_9234851c14b21000284617a46c4b0002": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Benefit Plan Currency"
+    },
+    "enrollmentOfferingType_12efc4fddc4010001bbe501350b30002": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The type of the benefit plan, such as Medical, Dental, Vision."
+    },
+    "coverageOptions_12efc4fddc4010001bbe501350b30001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/healthcareCoverageOptions_4f42502ff6c510000ed6f1333f850000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Derived Health Care Coverage Cost"
+            }
+          }
+        }
+      ]
+    },
+    "healthcareElectionsInEnrollmentOffering_12efc4fddc4010001bbe501350b30000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "benefitPlanForElection": {
+              "$ref": "#/definitions/benefitPlanForElection_9234851c14b210002a58789b3fb20000"
+            },
+            "employerCostPerPlanFrequency": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The amount that an employer will contribute to the cost of the benefit plan per the time frequency associated to the plan.",
+              "x-workday-type": "Currency"
+            },
+            "benefitPlanExternalDescriptionURL": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Benefit Election's Benefit Plan External Plan Description URL",
+              "x-workday-type": "Text"
+            },
+            "benefitProviderWebsite": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Benefit Provider External URL for Benefit Election",
+              "x-workday-type": "Text"
+            },
+            "employeeCostPerPlanFrequency": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The amount that an \\~employee\\~ will contribute to the cost of the benefit plan per the time frequency associated to the plan.",
+              "x-workday-type": "Currency"
+            },
+            "dependentElections": {
+              "type": "array",
+              "description": "Dependent Elections",
+              "items": {
+                "$ref": "#/definitions/dependentElections_bb9c89eab9d61000101ef432e76c0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "healthcareCoverageTarget": {
+              "$ref": "#/definitions/healthcareCoverageTarget_57271b00461a10001bf1eb601a2b0000"
+            },
+            "benefitPlanProviderAndName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Benefit Plan provider description",
+              "x-workday-type": "Text"
+            },
+            "planFrequency": {
+              "$ref": "#/definitions/planFrequency_9234851c14b21000284617a46c4b0001"
+            },
+            "benefitPlanCurrency": {
+              "$ref": "#/definitions/benefitPlanCurrency_9234851c14b21000284617a46c4b0002"
+            },
+            "expandedBenefitPlanDetailsAdditionalText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Customized information to describe benefit plan details, as of the effective date.",
+              "x-workday-type": "Rich Text"
+            },
+            "expandedPlanDetails": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Expanded Plan Details",
+              "x-workday-type": "Text"
+            },
+            "enrollmentOfferingType": {
+              "$ref": "#/definitions/enrollmentOfferingType_12efc4fddc4010001bbe501350b30002"
+            },
+            "coverageOptions": {
+              "type": "array",
+              "description": "Coverage Options",
+              "items": {
+                "$ref": "#/definitions/coverageOptions_12efc4fddc4010001bbe501350b30001"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "coverageLevel_4f42502ff6c510000ed6f1333f850001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "coverage Level"
+    },
+    "healthcareCoverageOptions_4f42502ff6c510000ed6f1333f850000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "coverageLevel": {
+              "$ref": "#/definitions/coverageLevel_4f42502ff6c510000ed6f1333f850001"
+            },
+            "employeeCost": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Employee Cost",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "beneficiaryAllocation_86947b85567410001c8e5f2717520000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "beneficiaryName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the beneficiary the allocation is for.",
+              "x-workday-type": "Text",
+              "x-workday-confidence-level": "Production"
+            },
+            "contingentPercentage": {
+              "type": "number",
+              "example": 999.99,
+              "description": "The Contingent Percentage allocation for the beneficiary.",
+              "x-workday-type": "Numeric",
+              "x-workday-confidence-level": "Production"
+            },
+            "primaryPercentage": {
+              "type": "number",
+              "example": 999.99,
+              "description": "The Primary Percentage allocation for the Beneficiary.",
+              "x-workday-type": "Numeric",
+              "x-workday-confidence-level": "Production"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "healthcareElectionsFromEnrollmentOffering_12efc4fddc4010001d8e4d466d7b0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/healthcareElectionsInEnrollmentOffering_12efc4fddc4010001bbe501350b30000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Health Care Election"
+            }
+          }
+        }
+      ]
+    },
+    "healthcareElections_12efc4fddc4010001d8e4d466d7b0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "healthcareElectionsFromEnrollmentOffering": {
+              "type": "array",
+              "description": "Health Care Elections in Health Care Enrollment Offering",
+              "items": {
+                "$ref": "#/definitions/healthcareElectionsFromEnrollmentOffering_12efc4fddc4010001d8e4d466d7b0001"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "planFrequency_86947b85567410001c2b97213a490000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The default time frequency associated to a benefit plan, such as Monthly or Semi-Monthly."
+    },
+    "beneficiaryAllocation_86947b85567410001c20970c1cc90000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/beneficiaryAllocation_86947b85567410001c8e5f2717520000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Beneficiary Allocation"
+            }
+          }
+        }
+      ]
+    },
+    "enrollmentOfferingType_86947b85567410001bba474ce3f90000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The type of the benefit plan, such as Medical, Dental, Vision."
+    },
+    "planName_86947b855674100011980b4952990000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The name of the benefit plan the \\~worker\\~ selects for the enrollment election."
+    },
+    "retirementSavingsElectionsForEnrollmentOffering_86947b855674100011980aa390a30000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "planFrequency": {
+              "$ref": "#/definitions/planFrequency_86947b85567410001c2b97213a490000"
+            },
+            "employerContributionAmountByPlanFrequency": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The amount the employer contributes towards an \\~employee's\\~ retirement savings account election. Example: $1,000",
+              "x-workday-type": "Text"
+            },
+            "employeeContributionPercentage": {
+              "type": "number",
+              "example": 999.99,
+              "description": "The percentage of pay that an \\~employee\\~ contributes to a retirement savings plan only if in the settings we are showing \\~employee\\~ contribution.",
+              "x-workday-type": "Numeric"
+            },
+            "employeeContributionAmountMinimumByPlanFrequency": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The minimum amount an \\~employee\\~ contributes for a retirement savings account election. Example: $1.00",
+              "x-workday-type": "Text"
+            },
+            "employerContributionPercent": {
+              "type": "number",
+              "example": 999.99,
+              "description": "The percentage the employer contributes towards an \\~employee's\\~ retirement savings account election. Example: 3%",
+              "x-workday-type": "Numeric"
+            },
+            "employeeContributionAmountByPlanFrequency": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The amount that an \\~employee\\~ will contribute to the cost of the benefit plan per the time frequency associated to the plan.",
+              "x-workday-type": "Currency"
+            },
+            "employeeContributionAmountMaximumByPlanFrequency": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The maximum amount an \\~employee\\~ contributes for a retirement savings account election. Example: $20,000",
+              "x-workday-type": "Text"
+            },
+            "employeeContributionPercentageMinimum": {
+              "type": "number",
+              "example": 999.99,
+              "description": "The minimum percentage an \\~employee\\~ contributes for a retirement savings account election. Example: 0%",
+              "x-workday-type": "Numeric"
+            },
+            "employeeContributionPercentageMaximum": {
+              "type": "number",
+              "example": 999.99,
+              "description": "The maximum percentage an \\~employee\\~ contributes for a retirement savings account election. Example: 100%",
+              "x-workday-type": "Numeric"
+            },
+            "beneficiaryAllocation": {
+              "type": "array",
+              "description": "The beneficiary's allocation for the enrollment election.",
+              "items": {
+                "$ref": "#/definitions/beneficiaryAllocation_86947b85567410001c20970c1cc90000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "enrollmentOfferingType": {
+              "$ref": "#/definitions/enrollmentOfferingType_86947b85567410001bba474ce3f90000"
+            },
+            "planName": {
+              "$ref": "#/definitions/planName_86947b855674100011980b4952990000"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Retirement Savings Election"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,226 @@
+[
+  {
+    "name": "Wql-DataSources-GET-getDataSources",
+    "description": "[Wql] GET /dataSources/{ID} — Retrieves a data source and primary business object for the specified {ID} for use in a WQL query.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/dataSources/{ID}",
+    "operationId": null,
+    "file": "Wql-DataSources-GET-getDataSources.js"
+  },
+  {
+    "name": "Wql-DataSources-GET-getDataSourceFilters",
+    "description": "[Wql] GET /dataSources/{ID}/dataSourceFilters/{subresourceID} — Retrieves the data source filter with the specified {ID} for a specific data source.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/dataSources/{ID}/dataSourceFilters/{subresourceID}",
+    "operationId": null,
+    "file": "Wql-DataSources-GET-getDataSourceFilters.js"
+  },
+  {
+    "name": "Wql-DataSources-GET-getDataSourceFilters_1",
+    "description": "[Wql] GET /dataSources/{ID}/dataSourceFilters — Retrieves a data source filter of the data source.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "alias",
+        "type": "string",
+        "description": "The alias of the data source filter.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "searchString",
+        "type": "string",
+        "description": "The string to be searched in case insensitive manner within the descriptors of the data source filters.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/dataSources/{ID}/dataSourceFilters",
+    "operationId": null,
+    "file": "Wql-DataSources-GET-getDataSourceFilters_1.js"
+  },
+  {
+    "name": "Wql-Data-GET-getData",
+    "description": "[Wql] GET /data — Returns the data from a WQL query.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "query",
+        "type": "string",
+        "description": "The WQL query that retrieves the data. Example: SELECT worker from allWorkers.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/data",
+    "operationId": null,
+    "file": "Wql-Data-GET-getData.js"
+  },
+  {
+    "name": "Wql-Data-POST-postData",
+    "description": "[Wql] POST /data — Returns the data from a WQL query. The read-only POST request accommodates queries greater than 2,048 characters.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/data",
+    "operationId": null,
+    "file": "Wql-Data-POST-postData.js"
+  },
+  {
+    "name": "Wql-DataSources-GET-getDataSources_1",
+    "description": "[Wql] GET /dataSources — Retrieves a collection of data sources, including their primary business objects.",
+    "schema": [
+      {
+        "name": "alias",
+        "type": "string",
+        "description": "The alias of the data source.",
+        "required": false
+      },
+      {
+        "name": "dataSourceIndexType",
+        "type": "string",
+        "description": "The parameter is used to filter \"Indexed\" and \"Non-indexed\" data sources.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "searchString",
+        "type": "string",
+        "description": "The string to be searched in case insensitive manner within the descriptors of the data sources.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/dataSources",
+    "operationId": null,
+    "file": "Wql-DataSources-GET-getDataSources_1.js"
+  },
+  {
+    "name": "Wql-DataSources-GET-getFields",
+    "description": "[Wql] GET /dataSources/{ID}/fields/{subresourceID} — Retrieves the field with a specified {ID} for the specific data source. Also retrieves the related business object of the field. You can only view fields and data sources that you have security access to.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/dataSources/{ID}/fields/{subresourceID}",
+    "operationId": null,
+    "file": "Wql-DataSources-GET-getFields.js"
+  },
+  {
+    "name": "Wql-DataSources-GET-getFields_1",
+    "description": "[Wql] GET /dataSources/{ID}/fields — Retrieves a field of the data source instance, including the related business object of the field.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "alias",
+        "type": "string",
+        "description": "The alias of the data source field.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "searchString",
+        "type": "string",
+        "description": "The string to be searched in case insensitive manner within the descriptors of the data source fields.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/dataSources/{ID}/fields",
+    "operationId": null,
+    "file": "Wql-DataSources-GET-getFields_1.js"
+  }
+]

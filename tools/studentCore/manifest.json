@@ -1,0 +1,1042 @@
+[
+  {
+    "name": "StudentCore-Students-GET-getResidencies",
+    "description": "[Student Core] GET /students/{ID}/residencies — Retrieves a collection of residence information for the specified student ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "institutionalAcademicUnit",
+        "type": "string",
+        "description": "The Institutions.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}/residencies",
+    "operationId": null,
+    "file": "StudentCore-Students-GET-getResidencies.js"
+  },
+  {
+    "name": "StudentCore-Values-GET-getAwardYears",
+    "description": "[Student Core] GET /values/holds/awardYears/ — Valid financial aid award years.\n\n<b>Secured by:</b> Access Hold Reasons, Manage: Apply Holds\n\n<b>Scope:</b> Action Items and Holds",
+    "schema": [
+      {
+        "name": "academicRecord",
+        "type": "string",
+        "description": "The academic record of the student the hold applies to.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the hold reason.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "reason",
+        "type": "string",
+        "description": "The hold reason for the hold.",
+        "required": false
+      },
+      {
+        "name": "student",
+        "type": "string",
+        "description": "The student to apply the hold to.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/holds/awardYears/",
+    "operationId": null,
+    "file": "StudentCore-Values-GET-getAwardYears.js"
+  },
+  {
+    "name": "StudentCore-Students-GET-getApplyHoldEvents",
+    "description": "[Student Core] GET /students/{ID}/applyHoldEvents — Retrieves a collection of Apply Student Hold Events.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}/applyHoldEvents",
+    "operationId": null,
+    "file": "StudentCore-Students-GET-getApplyHoldEvents.js"
+  },
+  {
+    "name": "StudentCore-Students-GET-getStudents",
+    "description": "[Student Core] GET /students/{ID} — Retrieves a student instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}",
+    "operationId": null,
+    "file": "StudentCore-Students-GET-getStudents.js"
+  },
+  {
+    "name": "StudentCore-Values-GET-getAcademicRecords",
+    "description": "[Student Core] GET /values/holds/academicRecords/ — Valid academic records filtered by student and hold reason. Call the GET /values/holds/academicRecords?student=id&reason=id endpoint.\n\n<b>Secured by:</b> Access Hold Reasons, Manage: Apply Holds\n\n<b>S",
+    "schema": [
+      {
+        "name": "academicRecord",
+        "type": "string",
+        "description": "The academic record of the student the hold applies to.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the hold reason.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "reason",
+        "type": "string",
+        "description": "The hold reason for the hold.",
+        "required": false
+      },
+      {
+        "name": "student",
+        "type": "string",
+        "description": "The student to apply the hold to.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/holds/academicRecords/",
+    "operationId": null,
+    "file": "StudentCore-Values-GET-getAcademicRecords.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-POST-postSubmit",
+    "description": "[Student Core] POST /immigrationEvents/{ID}/submit — Submits an immigration event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/immigrationEvents/{ID}/submit",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-POST-postSubmit.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-GET-getImmigrationData",
+    "description": "[Student Core] GET /immigrationEvents/{ID}/immigrationData/{subresourceID} — Retrieves an immigration data instance for the specified immigration event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/immigrationEvents/{ID}/immigrationData/{subresourceID}",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-GET-getImmigrationData.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-PUT-putImmigrationData",
+    "description": "[Student Core] PUT /immigrationEvents/{ID}/immigrationData/{subresourceID} — \n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/immigrationEvents/{ID}/immigrationData/{subresourceID}",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-PUT-putImmigrationData.js"
+  },
+  {
+    "name": "StudentCore-Holds-GET-getHolds",
+    "description": "[Student Core] GET /holds/{ID} — This resource returns all Student Hold Assignments or a collection of Student Hold Assignments filtered by query parameters.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/holds/{ID}",
+    "operationId": null,
+    "file": "StudentCore-Holds-GET-getHolds.js"
+  },
+  {
+    "name": "StudentCore-Holds-POST-postOverrideHold",
+    "description": "[Student Core] POST /holds/{ID}/overrideHold — \n\n<b>Secured by:</b> Override Student Hold (REST Service)\n\n<b>Scope:</b> Action Items and Holds",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/holds/{ID}/overrideHold",
+    "operationId": null,
+    "file": "StudentCore-Holds-POST-postOverrideHold.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-GET-getImmigrationEvents",
+    "description": "[Student Core] GET /immigrationEvents — Retrieves a collection of immigration events.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/immigrationEvents",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-GET-getImmigrationEvents.js"
+  },
+  {
+    "name": "StudentCore-Students-POST-postApplyHold",
+    "description": "[Student Core] POST /students/{ID}/applyHold — Creates an Apply Student Hold Event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/students/{ID}/applyHold",
+    "operationId": null,
+    "file": "StudentCore-Students-POST-postApplyHold.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-GET-getImmigrationData_1",
+    "description": "[Student Core] GET /immigrationEvents/{ID}/immigrationData — Retrieves a collection of immigration data for the specified immigration event ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/immigrationEvents/{ID}/immigrationData",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-GET-getImmigrationData_1.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-POST-postImmigrationData",
+    "description": "[Student Core] POST /immigrationEvents/{ID}/immigrationData — Creates an immigration data with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/immigrationEvents/{ID}/immigrationData",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-POST-postImmigrationData.js"
+  },
+  {
+    "name": "StudentCore-Values-GET-getReasons",
+    "description": "[Student Core] GET /values/holds/reasons/ — All of the active hold reasons, optionally filtered by student and academic unit query parms. Call these endpoints for valid filter values:\n- GET /values/holds/reasons?student={id}\n- GET /values/holds",
+    "schema": [
+      {
+        "name": "academicRecord",
+        "type": "string",
+        "description": "The academic record of the student the hold applies to.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the hold reason.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "reason",
+        "type": "string",
+        "description": "The hold reason for the hold.",
+        "required": false
+      },
+      {
+        "name": "student",
+        "type": "string",
+        "description": "The student to apply the hold to.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/holds/reasons/",
+    "operationId": null,
+    "file": "StudentCore-Values-GET-getReasons.js"
+  },
+  {
+    "name": "StudentCore-Students-GET-getApplyHoldEvents_1",
+    "description": "[Student Core] GET /students/{ID}/applyHoldEvents/{subresourceID} — Retrieves an Apply Student Hold Event instance for the specified student.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}/applyHoldEvents/{subresourceID}",
+    "operationId": null,
+    "file": "StudentCore-Students-GET-getApplyHoldEvents_1.js"
+  },
+  {
+    "name": "StudentCore-Values-GET-getAwardItems",
+    "description": "[Student Core] GET /values/holds/awardItems/ — Valid student award items for the student and academic unit specified. Call the GET /values/holds/awardItems?student={id}&academicUnit={id} endpoint.\n\n<b>Secured by:</b> Access Hold Reasons, Manage: A",
+    "schema": [
+      {
+        "name": "academicRecord",
+        "type": "string",
+        "description": "The academic record of the student the hold applies to.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the hold reason.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "reason",
+        "type": "string",
+        "description": "The hold reason for the hold.",
+        "required": false
+      },
+      {
+        "name": "student",
+        "type": "string",
+        "description": "The student to apply the hold to.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/holds/awardItems/",
+    "operationId": null,
+    "file": "StudentCore-Values-GET-getAwardItems.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-GET-getImmigrationPages",
+    "description": "[Student Core] GET /immigrationEvents/{ID}/immigrationPages — \n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/immigrationEvents/{ID}/immigrationPages",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-GET-getImmigrationPages.js"
+  },
+  {
+    "name": "StudentCore-Values-GET-getInstitution",
+    "description": "[Student Core] GET /values/holds/institution/ — The institution of the hold reason. Call the following endpoint for the correct institution:\nGET /values/holds/institution?reason={id}\n\n<b>Secured by:</b> Access Hold Reasons, Manage: Apply Holds\n\n<b>",
+    "schema": [
+      {
+        "name": "academicRecord",
+        "type": "string",
+        "description": "The academic record of the student the hold applies to.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the hold reason.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "reason",
+        "type": "string",
+        "description": "The hold reason for the hold.",
+        "required": false
+      },
+      {
+        "name": "student",
+        "type": "string",
+        "description": "The student to apply the hold to.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/holds/institution/",
+    "operationId": null,
+    "file": "StudentCore-Values-GET-getInstitution.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-GET-getImmigrationPages_1",
+    "description": "[Student Core] GET /immigrationEvents/{ID}/immigrationPages/{subresourceID} — \n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/immigrationEvents/{ID}/immigrationPages/{subresourceID}",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-GET-getImmigrationPages_1.js"
+  },
+  {
+    "name": "StudentCore-Holds-POST-postUpdateHold",
+    "description": "[Student Core] POST /holds/{ID}/updateHold — Creates an Update Student Hold Event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/holds/{ID}/updateHold",
+    "operationId": null,
+    "file": "StudentCore-Holds-POST-postUpdateHold.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-GET-getImmigrationEvents_1",
+    "description": "[Student Core] GET /immigrationEvents/{ID} — Retrieves an immigration event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/immigrationEvents/{ID}",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-GET-getImmigrationEvents_1.js"
+  },
+  {
+    "name": "StudentCore-Holds-GET-getHolds_1",
+    "description": "[Student Core] GET /holds — This resource returns all Student Hold Assignments or a collection of Student Hold Assignments filtered by query parameters.",
+    "schema": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "Whether the holds are active or not.",
+        "required": false
+      },
+      {
+        "name": "holdReason",
+        "type": "string",
+        "description": "The hold reason to filter on.",
+        "required": false
+      },
+      {
+        "name": "holdType",
+        "type": "string",
+        "description": "The hold types to filter on.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "student",
+        "type": "string",
+        "description": "The student to filter on.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/holds",
+    "operationId": null,
+    "file": "StudentCore-Holds-GET-getHolds_1.js"
+  },
+  {
+    "name": "StudentCore-Students-GET-getStudents_1",
+    "description": "[Student Core] GET /students — Retrieves a collection of students.",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "query parameter: academicLevel",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "Derived Academic Units.",
+        "required": false
+      },
+      {
+        "name": "activeOnly",
+        "type": "boolean",
+        "description": "Only return active students.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "programOfStudy",
+        "type": "string",
+        "description": "For students who haven't matriculated, the program of study they either applied to or have been admitted to. For matriculated students, the primary program of study from their reporting record.",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "description": "A fuzzy search string that matches student IDs and names. Example: search=bri%20book returns the student Brian Booker.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/students",
+    "operationId": null,
+    "file": "StudentCore-Students-GET-getStudents_1.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-GET-getDependentImmigrationData",
+    "description": "[Student Core] GET /immigrationEvents/{ID}/dependentImmigrationData/{subresourceID} — Retrieves a dependent immigration data instance for the specified student ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/immigrationEvents/{ID}/dependentImmigrationData/{subresourceID}",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-GET-getDependentImmigrationData.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-PUT-putDependentImmigrationData",
+    "description": "[Student Core] PUT /immigrationEvents/{ID}/dependentImmigrationData/{subresourceID} — \n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/immigrationEvents/{ID}/dependentImmigrationData/{subresourceID}",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-PUT-putDependentImmigrationData.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-DELETE-deleteDependentImmigrationData",
+    "description": "[Student Core] DELETE /immigrationEvents/{ID}/dependentImmigrationData/{subresourceID} — Delete immigration event dependent immigration data.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/immigrationEvents/{ID}/dependentImmigrationData/{subresourceID}",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-DELETE-deleteDependentImmigrationData.js"
+  },
+  {
+    "name": "StudentCore-Values-GET-getSchoolCodes",
+    "description": "[Student Core] GET /values/holds/schoolCodes/ — All federal school codes, optionally filtered by student and hold reason query parms. Call these endpoints for valid filter values:\n- GET /values/holds/schoolCodes?student={id}\n- GET /values/holds/sch",
+    "schema": [
+      {
+        "name": "academicRecord",
+        "type": "string",
+        "description": "The academic record of the student the hold applies to.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the hold reason.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "reason",
+        "type": "string",
+        "description": "The hold reason for the hold.",
+        "required": false
+      },
+      {
+        "name": "student",
+        "type": "string",
+        "description": "The student to apply the hold to.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/holds/schoolCodes/",
+    "operationId": null,
+    "file": "StudentCore-Values-GET-getSchoolCodes.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-GET-getDependentImmigrationData_1",
+    "description": "[Student Core] GET /immigrationEvents/{ID}/dependentImmigrationData — Retrieves a collection of dependent immigration data for the specified student ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/immigrationEvents/{ID}/dependentImmigrationData",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-GET-getDependentImmigrationData_1.js"
+  },
+  {
+    "name": "StudentCore-ImmigrationEvents-POST-postDependentImmigrationData",
+    "description": "[Student Core] POST /immigrationEvents/{ID}/dependentImmigrationData — Creates dependent immigration data for the specified immigration event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/immigrationEvents/{ID}/dependentImmigrationData",
+    "operationId": null,
+    "file": "StudentCore-ImmigrationEvents-POST-postDependentImmigrationData.js"
+  },
+  {
+    "name": "StudentCore-Students-GET-getImmigrationEvents",
+    "description": "[Student Core] GET /students/{ID}/immigrationEvents — Retrieves a collection of immigration events.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "institution",
+        "type": "string",
+        "description": "query parameter: institution",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "query parameter: status",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}/immigrationEvents",
+    "operationId": null,
+    "file": "StudentCore-Students-GET-getImmigrationEvents.js"
+  },
+  {
+    "name": "StudentCore-Students-GET-getImmigrationEvents_1",
+    "description": "[Student Core] GET /students/{ID}/immigrationEvents/{subresourceID} — Retrieves an immigration event for the specified student.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}/immigrationEvents/{subresourceID}",
+    "operationId": null,
+    "file": "StudentCore-Students-GET-getImmigrationEvents_1.js"
+  },
+  {
+    "name": "StudentCore-Values-GET-getAcademicPeriods",
+    "description": "[Student Core] GET /values/holds/academicPeriods/ — Valid academic periods filtered by student, academic record, or academic unit. Call these endpoints for valid filter values:\nGET /values/holds/academicPeriods?student={id}\nGET /values/holds/academicPe",
+    "schema": [
+      {
+        "name": "academicRecord",
+        "type": "string",
+        "description": "The academic record of the student the hold applies to.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit of the hold reason.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "reason",
+        "type": "string",
+        "description": "The hold reason for the hold.",
+        "required": false
+      },
+      {
+        "name": "student",
+        "type": "string",
+        "description": "The student to apply the hold to.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/holds/academicPeriods/",
+    "operationId": null,
+    "file": "StudentCore-Values-GET-getAcademicPeriods.js"
+  },
+  {
+    "name": "StudentCore-Holds-POST-postRemoveHold",
+    "description": "[Student Core] POST /holds/{ID}/removeHold — \n\n<b>Secured by:</b> Remove Student Hold (REST Service)\n\n<b>Scope:</b> Action Items and Holds",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/holds/{ID}/removeHold",
+    "operationId": null,
+    "file": "StudentCore-Holds-POST-postRemoveHold.js"
+  },
+  {
+    "name": "StudentCore-Students-GET-getResidencies_1",
+    "description": "[Student Core] GET /students/{ID}/residencies/{subresourceID} — Retrieves residence information for the specified student.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/students/{ID}/residencies/{subresourceID}",
+    "operationId": null,
+    "file": "StudentCore-Students-GET-getResidencies_1.js"
+  }
+]

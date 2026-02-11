@@ -1,0 +1,2508 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Prism Analytics",
+    "version": "v3",
+    "description": "The Workday Public API enables you to programmatically create and manage external data into a\nWorkday Prism Analytics table. You can load data into a table once or on a regular basis.\nYou can load data into a table you just created, or an existing table.\n\nFor general concepts regarding Workday REST APIs see: [Workday REST API](https://doc.workday.com/admin-guide/en-us/integrations/workday-rest-api/dan1370797985682.html)\n\nSee later sections for an overview of tables and buckets.\n\n  CHANGELOG:\n  ------------\n  New Resources\n  ------------\n  | V3 Resource | Operations |\n  | ------------ | ----------- |\n  | dataChanges/{dataChangeID}/validate | GET Validate data change |\n  | dataChanges/{dataChangeID}/cancel/{activityID} | POST Cancel data change |\n"
+  },
+  "servers": [
+    {
+      "url": "/api/prismAnalytics/v3/{tenant}",
+      "variables": {
+        "tenant": {
+          "default": "super"
+        }
+      }
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Tables",
+      "description": "Tables Overview\n------------\nA table is a Prism artifact that is used to contain data imported into Prism.\nTables can be included in Prism pipelines when imported into a Prism Dataset.\nTables that are *enabledForAnalysis* can be view in Discovery Boards or reports\nusing the associated Analytic data source.\n"
+    },
+    {
+      "name": "Buckets",
+      "description": "Buckets Overview\n------------\nA bucket is a temporary container that you use to load data into a table or dataset created with the REST API.\nA bucket describes the schema of the files it loads into the table or dataset.\n\nYou create a bucket for a specific table, load data into the bucket, and then commit (complete) the bucket.\nWhen you use the complete call on a bucket, Workday starts a process in the background to move\nthe data into the table.\n\nOnce you run the /complete call, you can't use the bucket again. To upload files to another table or dataset,\ncreate a new bucket.\n"
+    },
+    {
+      "name": "Data Changes",
+      "description": "Data Changes Overview\n------------\nData change is a Prism artifact that gives users the ability to easily load data into a Prism table so that they can use the table for analysis in downstream applications (Discovery Board, Reports, apps like Accounting Center/People Analytics)\nData from multiple sources - namely\n  * Files Upload\n  * Datasets\n  * SFTP\n  * Workday Reports\n  * Amazon S3\n  * Salesforce\n\ncan be loaded into Prism tables using data change task. A data change can be re-used to run operations on a table.\nWhile loading data into a table users can specify how to merge the new data into the existing data by specifying the load operation:\n  * Insert\n  * TruncateAndInsert\n  * Delete\n  * Upsert\n  * Update\n\nFor delete/update/upsert operations users should be able to specify which field to use as the operation key\n"
+    }
+  ],
+  "paths": {
+    "/tables": {
+      "get": {
+        "tags": [
+          "Tables"
+        ],
+        "summary": "Get tables that the current user has permission on",
+        "description": "The Tables resource represents a collection of tables created by the Workday REST API.\nYou can only view the tables or datasets permitted by the security profile of the current user.\n\nThis resource exposes the tables or datasets that the current user has permission on.\n\nThere's no request body required or available for this method. When retrieving a collection,\nuse these optional query parameters to page the results:\n\n| Secured by |\n| ---------- |\n- Prism: Tables Manage domain in the Prism Analytics functional area.\n- Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n- Prism: Tables Manage Schema domain in the Prism Analytics functional area.\n",
+        "operationId": "GetTables",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of object data entries included in the response.\n- default: 20\n- max: 100\n",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The API name of the table to retrieve a single table.\n",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset to the first object in a collection to include in the response.\ndefault: 0\n",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "How much information to be returned in response JSON.\nThe value for type dictates the response fields that are excluded.\n- default: summary\n- full : Returns tableResponse, excluding user permissions\n- permissions : Returns tableResponse with user permissions. Schema fields are excluded\n- summary : Returns summarized tableResponse, excluding schema fields and user permissions\nNote: The HTTP 200 response below is for type \"full\"\n",
+            "schema": {
+              "type": "string",
+              "default": "summary",
+              "enum": [
+                "full",
+                "permissions",
+                "summary"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tableResponseList"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tables"
+        ],
+        "summary": "Create a new table with the specified name",
+        "description": "Use this method to create a new table with the specified name.\n\n| Secured by |\n| ---------- |\n- Prism: Tables Create domain in the Prism Analytics functional area.\n\nTable API names:\n* Must be unique in the Data Catalog.\n* Can contain up to 255 characters.\n* Can only include alphanumeric and underscore characters.\n* Must start with a letter.\n* Can't end with an underscore character.\n* Can't begin with WPA_.\n",
+        "operationId": "PostTable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tableRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Table created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tableResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "Table"
+      }
+    },
+    "/tables/{id}": {
+      "get": {
+        "tags": [
+          "Tables"
+        ],
+        "summary": "Get the description of a table by ID",
+        "description": "This resource exposes the description of a table or dataset that the current user has permission on.\n\nThere's no request body required or available for this method. When retrieving a collection, use these optional query parameters to page the results:\n| Secured by |\n| ---------- |\n- Prism: Tables Manage domain in the Prism Analytics functional area.\n- Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n- Prism: Tables Manage Schema domain in the Prism Analytics functional area.\n",
+        "operationId": "GetTable",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "How much information to be returned in response JSON.\nThe value for type dictates the response fields that are excluded.\n- default: full\n- full : Returns tableResponse, excluding user permissions\n- permissions : Returns tableResponse with user permissions. Schema fields are excluded\n- summary : Returns summarized tableResponse, excluding schema fields and user permissions\nNote: The HTTP 200 response below is for \"type\" full\n",
+            "schema": {
+              "type": "string",
+              "default": "full"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tableResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tables"
+        ],
+        "summary": "Edit an existing table with the specified name",
+        "description": "Use this method to edit an existing table with the specified name. You must supply a JSON formatted body with your request.\n| Secured by |\n| ---------- |\n- Prism: Tables Manage domain in the Prism Analytics functional area.\n- Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n- Prism: Tables Manage Schema domain in the Prism Analytics functional area.\n",
+        "operationId": "PutTable",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/table"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tableResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "Table"
+      },
+      "patch": {
+        "tags": [
+          "Tables"
+        ],
+        "summary": "Edit the specified attributes of an existing table with the specified id. If an attribute is not provided in the request, it will not be changed.",
+        "description": "Use this method to edit an existing table with the specified id. You must supply a JSON formatted body with your request.\n| Secured by |\n| ---------- |\n- Prism: Tables Manage domain in the Prism Analytics functional area.\n- Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n- Prism: Tables Manage Schema domain in the Prism Analytics functional area.\n",
+        "operationId": "PatchTable",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/patchTable"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tableResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "Table"
+      }
+    },
+    "/buckets": {
+      "get": {
+        "tags": [
+          "Buckets"
+        ],
+        "summary": "Get the buckets permitted by the security profile of the current user",
+        "description": "The buckets resource represents a collection of buckets created by the Workday REST API. You can only view the buckets permitted by the security profile of the current user.\n| Secured by |\n| ---------- |\n  - Prism: Tables Manage domain in the Prism Analytics functional area.\n  - Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n  - Prism: Delete Table Data domain in the Prism Analytics functional area\n  - Prism: Insert Table Data domain in the Prism Analytics functional area\n  - Prism: Truncate Table Data domain in the Prism Analytics functional area\n  - Prism: Update Table Data domain in the Prism Analytics functional area\n",
+        "operationId": "GetBuckets",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of object data entries to be included in the response.\n- default: 20\n- max: 100\n",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The name of bucket.\n",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset to the first object in a collection to include in the response.\n- default: 0\n",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "How much information to be returned.\n",
+            "schema": {
+              "type": "string",
+              "default": "summary",
+              "enum": [
+                "full",
+                "summary"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bucketResponseList"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Buckets"
+        ],
+        "summary": "Create a new bucket for a table or dataset",
+        "description": "Use this method to create a new bucket for a particular table or dataset. Use version 2 of the REST API to associate the bucket with a table, and use version 1 of the REST API to associate the bucket with a dataset. You must supply a JSON format body with your request.\n\nWhen you create a bucket for a particular table or dataset, you must describe the structure of the data files you'll upload to the bucket. The file structure:\n\nSpecifies a particular table to associate with the bucket.\nDescribes the file schema in the form of parsing options and field information.\n\nThe schema you specify must match the schema of the files you upload to the bucket.\n\nConsider these rules when using buckets:\n* Use a new bucket for each attempt to load data into a table or dataset.\n* Specify an associated table (version 2) or dataset (version 1) when you create the bucket.\n* A bucket can only be in the New state for a maximum of 24 hours. If you don't run the complete call within 24 hours, Workday aborts the bucket and removes any files you uploaded.\n* You can upload 1 or more files to a bucket, but each file must conform to the same schema.\n* You can create multiple buckets for the same table or dataset, but only 1 bucket per table or dataset can be in the Processing state at any given time.\n* Workday loads data from the buckets into the table or dataset in the order you run the complete calls, not the order you create the buckets.\n\n| Secured by |\n| ---------- |\n  - Prism: Tables Manage domain in the Prism Analytics functional area.\n  - Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n  - Prism: Delete Table Data domain in the Prism Analytics functional area\n  - Prism: Insert Table Data domain in the Prism Analytics functional area\n  - Prism: Truncate Table Data domain in the Prism Analytics functional area\n  - Prism: Update Table Data domain in the Prism Analytics functional area\n\n| Migration Notes |\n| ---------- |\n- In V1 and V2 this resource was referred to as a bucket.\n- In V1 this API created a Prism Dataset rather than a Prism table.\n",
+        "operationId": "PostBucket",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/bucket"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Bucket created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bucketResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "Bucket"
+      }
+    },
+    "/buckets/{id}": {
+      "get": {
+        "tags": [
+          "Buckets"
+        ],
+        "summary": "Get bucket by ID",
+        "description": "The buckets resource represents a collection of buckets created by the Workday REST API. Use version 2 of the REST API to associate the bucket with a table, and use version 1 of the REST API to associate the bucket with a dataset. You can only view the buckets permitted by the security profile of the current user.\n| Secured by |\n| ---------- |\n  - Prism: Tables Manage domain in the Prism Analytics functional area.\n  - Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n  - Prism: Delete Table Data domain in the Prism Analytics functional area\n  - Prism: Insert Table Data domain in the Prism Analytics functional area\n  - Prism: Truncate Table Data domain in the Prism Analytics functional area\n  - Prism: Update Table Data domain in the Prism Analytics functional area\n",
+        "operationId": "GetBucket",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A reference to a Prism Analytics table. Example: The ID of the bucket.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "How much information to be returned.\n- default: full\n",
+            "schema": {
+              "type": "string",
+              "default": "full",
+              "enum": [
+                "full",
+                "summary"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bucketResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Buckets"
+        ],
+        "summary": "Edit an existing bucket with the specified name",
+        "description": "Use this method to edit an existing bucket with the specified name. You must supply a JSON format body with your request. The bucket state must be New.\n| Secured by |\n| ---------- |\n  - Prism: Tables Manage domain in the Prism Analytics functional area.\n  - Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n  - Prism: Delete Table Data domain in the Prism Analytics functional area\n  - Prism: Insert Table Data domain in the Prism Analytics functional area\n  - Prism: Truncate Table Data domain in the Prism Analytics functional area\n  - Prism: Update Table Data domain in the Prism Analytics functional area\n",
+        "operationId": "PutBucket",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/bucket"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bucketResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "Bucket"
+      }
+    },
+    "/buckets/{id}/files": {
+      "post": {
+        "tags": [
+          "Buckets"
+        ],
+        "summary": "Upload a single file to a bucket for a table or dataset",
+        "description": "The buckets/Files resource represents a single file you can upload to the bucket. Use version 2 of the REST API to associate the bucket with a table, and use version 1 of the REST API to associate the bucket with a dataset. You can only upload files to a bucket permitted by the security profile of the current user.\n\nUse this method to upload a single file to a bucket for a particular table or dataset. The bucket state must be New. You must supply a file in the body with your request. The file must be delimited and gzip compressed.\n\n| Secured by |\n| ---------- |\n  - Prism: Tables Manage domain in the Prism Analytics functional area.\n  - Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n  - Prism: Delete Table Data domain in the Prism Analytics functional area\n  - Prism: Insert Table Data domain in the Prism Analytics functional area\n  - Prism: Truncate Table Data domain in the Prism Analytics functional area\n  - Prism: Update Table Data domain in the Prism Analytics functional area\n\n  When you use the REST API to create tables or datasets, you upload 1 or more data source files to Workday.\n  Workday uses the data in these files to populate the table or dataset.\n  Workday supports delimited files that are RFC 4180-compliant. For more information, see RFC 4180.\n\n  Consider these guidelines and requirements:\n    - You can upload 1 file in each POST request. To upload multiple files into the bucket, create multiple POST requests either sequentially or concurrently.\n    - Files must be gzip compressed.\n    - Each filename in a bucket must be unique.\n    - The schema of the files you upload must match the schema defined in the bucket.\n    - The maximum number of concurrent uploads is 10.\n    - The files must be delimited, such as a comma-delimited file.\n    - If the file contains any empty lines, Workday:\n        - Ignores the empty lines.\n    - The files must be gzip compressed.\n    - Each record must be delimited by a newline character, and must be either CR (\\r), LF (\\n), or CRLF (\\r\\n).\n    - If a field value contains the field delimiter, new line character, or double quotes, then the field value must be enclosed in a quote character, such as double quotes.\n    - If the field value contains a quote character, then it must be escaped by:\n        - The escape character (fieldsEnclosingCharacterEscapedBy parameter).\n    - Workday doesn't trim leading or trailing spaces in field values.\n      Any spaces before or after the field delimiter or inside the quote characters are part of the field value.\n      Example: This text includes a leading space in the second field: Tom Smith, Marge Smith\n    - Numeric field values can only contain numerals and a period as the decimal point in order to be recognized as a numeric value.\n    - Date field values must match a supported date format in order to be recognized as a date value.\n    - The number of fields in the files must match the number of fields in the bucket fields parameter.\n    - The maximum number of fields is 1,000.\n    - The maximum length of a field value is 32,000 characters.\n    - The maximum length of a row in the data source file is 500,000 characters.\n",
+        "operationId": "BucketFiles",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "name",
+                  "uploadFile"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "uploadFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/fileInfo"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/buckets/{id}/complete": {
+      "post": {
+        "tags": [
+          "Buckets"
+        ],
+        "summary": "Commit data contained in a bucket into the associated table or dataset",
+        "description": "The buckets/Complete resource represents your intention to commit the data contained in the bucket into the associated table or dataset. Use version 2 of the REST API to associate the bucket with a table, and use version 1 of the REST API to associate the bucket with a dataset. You can only commit data to a table or dataset permitted by the security profile of the current user.\n\nUse this method after you upload all files to a bucket in order to commit the data in those files into the table or dataset. The bucket state must be New.\n\nYou must include an empty JSON string {} in the request body for this method.\n\nThe response body is in JSON format.\n\n| Secured by |\n| ---------- |\n  - Prism: Tables Manage domain in the Prism Analytics functional area.\n  - Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n  - Prism: Delete Table Data domain in the Prism Analytics functional area\n  - Prism: Insert Table Data domain in the Prism Analytics functional area\n  - Prism: Truncate Table Data domain in the Prism Analytics functional area\n  - Prism: Update Table Data domain in the Prism Analytics functional area\n",
+        "operationId": "BucketComplete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bucketResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/buckets/{id}/errorFile": {
+      "get": {
+        "tags": [
+          "Buckets"
+        ],
+        "summary": "Get bucket error file by ID",
+        "description": "When loading data into a table, Workday validates the data against the defined schema.\n\nIf the value for a field doesn’t match the field type or other field attributes (such as date format), then Workday marks the entire row as invalid and doesn’t include the row in the table. Instead, Workday sends the row to an error file that you can download.\n\nUse the error file to get a list of all rows that failed to load into the table. You can fix the errors in the data, remove the extra fields that Workday adds, and load the fixed data into the table.\n\nThe error file:\n- Is a CSV file.\n- Includes all fields defined in the table schema plus fields for troubleshooting:\n  - Error Code\n  - Error Message\n- Includes all failed rows up to a maximum of 10,000 rows. If there are more than 10,000 error rows, then Workday rejects the load with a status of Failed.\n| Secured by |\n| ---------- |\n  - Prism: Tables Manage domain in the Prism Analytics functional area.\n  - Prism: Tables Owner Manage domain in the Prism Analytics functional area.\n  - Prism: Delete Table Data domain in the Prism Analytics functional area\n  - Prism: Insert Table Data domain in the Prism Analytics functional area\n  - Prism: Truncate Table Data domain in the Prism Analytics functional area\n  - Prism: Update Table Data domain in the Prism Analytics functional area\n",
+        "operationId": "GetBucketErrorFile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A reference to a Prism Analytics bucket. Example: The ID of the bucket.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataChanges": {
+      "get": {
+        "tags": [
+          "Data Changes"
+        ],
+        "summary": "Get data changes accessible by a user",
+        "description": "Returns collection of data changes accessible by a user. User can pass offset and limit query params to get the list of data changes.\nThe type of responses is based on \"type\" query parameter. The user gets a default response containing: id, name, displayName.\n\nThe user can also receive \"summary\" or \"full\" response based on the value set for the \"type\" parameter.\n\n| Secured by |\n| ---------- |\n- Prism: Delete Table Data domain in the Prism Analytics functional area\n- Prism: Insert Table Data domain in the Prism Analytics functional area\n- Prism: Tables Manage domain in the Prism Analytics functional area\n- Prism: Tables Owner Manage domain in the Prism Analytics functional area\n- Prism: Truncate Table Data domain in the Prism Analytics functional area\n- Prism: Update Table Data domain in the Prism Analytics functional area\n",
+        "operationId": "GetDataChanges",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of object data entries to be included in the response.\n- default: 20\n- max: 500\n",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The name of a data change.\n\nNote: Either \"type\" or \"name\" query parameter must be set in order to receive the response as object \"dataChangeResponseList\" below.\n- default: -- (empty)\n",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset to the first object in a collection to include in the response.\ndefault: 0\n",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "How much data change information to be returned. Note: The model response for HTTP 200 below is for type \"summary\"\n\nNote: Either \"type\" or \"name\" query parameter needs to be set in order to receive the HTTP 200 response below.\n- default: -- (empty)\n- full: Every element in type \"summary\", plus description, application, categories, tags, mappings\n- summary: Returns summarized data change details specified in the model \"dataChangeSummary\"\n",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "full",
+                "summary"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dataChangeResponseList"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataChanges/{dataChangeID}": {
+      "get": {
+        "tags": [
+          "Data Changes"
+        ],
+        "summary": "Gets data change associated with ID",
+        "description": "Returns a data change associated with ID path parameter. User can pass type query param to specify \nthe type of responses. User will get a default response containing - id, name, displayName\nUser can also specify summary or full response using type param\n\n| Secured by |\n| ---------- |\n- Prism: Delete Table Data domain in the Prism Analytics functional area\n- Prism: Insert Table Data domain in the Prism Analytics functional area\n- Prism: Tables Manage domain in the Prism Analytics functional area\n- Prism: Tables Owner Manage domain in the Prism Analytics functional area\n- Prism: Truncate Table Data domain in the Prism Analytics functional area\n- Prism: Update Table Data domain in the Prism Analytics functional area\n",
+        "operationId": "GetDataChange",
+        "parameters": [
+          {
+            "name": "dataChangeID",
+            "in": "path",
+            "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "How much information to be returned.\n- default: -- (empty)\n",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "full",
+                "summary"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/dataChangeResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataChanges/{dataChangeID}/activities": {
+      "post": {
+        "tags": [
+          "Data Changes"
+        ],
+        "summary": "Execute data change by ID",
+        "description": "This resource executes a data change. ID of the data change to be executed is specified as path param, and hence a request body is not required. Request body is not required for executing data changes created from another Prism dataset/table.\n\n| Secured by |\n| ---------- |\n- Prism: Delete Table Data domain in the Prism Analytics functional area\n- Prism: Insert Table Data domain in the Prism Analytics functional area\n- Prism: Tables Manage domain in the Prism Analytics functional area\n- Prism: Tables Owner Manage domain in the Prism Analytics functional area\n- Prism: Truncate Table Data domain in the Prism Analytics functional area\n- Prism: Update Table Data domain in the Prism Analytics functional area\n",
+        "operationId": "ExecDataChangeActivity",
+        "parameters": [
+          {
+            "name": "dataChangeID",
+            "in": "path",
+            "description": "A reference to a Prism Analytics data change.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dataChangeActivityRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/runtimeResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "DataChange"
+      }
+    },
+    "/dataChanges/{dataChangeID}/activities/{activityID}": {
+      "get": {
+        "tags": [
+          "Data Changes"
+        ],
+        "summary": "Get details of the activity specified by activityID",
+        "description": "This resource returns details of the activity specified by activityID in the path param.\n\n| Secured by |\n| ---------- |\n- Prism: Delete Table Data domain in the Prism Analytics functional area\n- Prism: Insert Table Data domain in the Prism Analytics functional area\n- Prism: Tables Manage domain in the Prism Analytics functional area\n- Prism: Tables Owner Manage domain in the Prism Analytics functional area\n- Prism: Truncate Table Data domain in the Prism Analytics functional area\n- Prism: Update Table Data domain in the Prism Analytics functional area\n",
+        "operationId": "ExecDataChangeActivityStatus",
+        "parameters": [
+          {
+            "name": "activityID",
+            "in": "path",
+            "description": "A reference to a Prism Analytics data change activity.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataChangeID",
+            "in": "path",
+            "description": "A reference to a Prism Analytics data change.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dataChangeActivityRunStatusResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataChanges/{dataChangeID}/validate": {
+      "get": {
+        "tags": [
+          "Data Changes"
+        ],
+        "summary": "Validate data change specified by dataChangeID",
+        "description": "This resource validates the data change specified by dataChangeID in the path param.\n",
+        "operationId": "ValidateDataChange",
+        "parameters": [
+          {
+            "name": "dataChangeID",
+            "in": "path",
+            "description": "A reference to a Prism Analytics data change.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiObject"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataChanges/{dataChangeID}/cancel/{activityID}": {
+      "post": {
+        "tags": [
+          "Data Changes"
+        ],
+        "summary": "Cancel data change specified by dataChangeID and activityID",
+        "description": "This resource cancels a data change. The ID of the data change activity is specified as a path param, and hence a request body is not required.\n",
+        "operationId": "CancelDataChangeActivity",
+        "parameters": [
+          {
+            "name": "activityID",
+            "in": "path",
+            "description": "A reference to a Prism Analytics data change activity.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataChangeID",
+            "in": "path",
+            "description": "A reference to a Prism Analytics data change.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {}
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fileContainers": {
+      "post": {
+        "tags": [
+          "Data Changes"
+        ],
+        "summary": "Create new fileContainer",
+        "description": "Use this method to create a new fileContainer.\n\n| Secured by |\n| ---------- |\n- Prism: Delete Table Data domain in the Prism Analytics functional area\n- Prism: Insert Table Data domain in the Prism Analytics functional area\n- Prism: Tables Manage domain in the Prism Analytics functional area\n- Prism: Tables Owner Manage domain in the Prism Analytics functional area\n- Prism: Truncate Table Data domain in the Prism Analytics functional area\n- Prism: Update Table Data domain in the Prism Analytics functional area\n",
+        "operationId": "PostFileContainer",
+        "responses": {
+          "201": {
+            "description": "File Container created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/fileContainerResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fileContainers/{fileContainerID}/files": {
+      "get": {
+        "tags": [
+          "Data Changes"
+        ],
+        "summary": "Get all files for a file container",
+        "description": "This resource returns all files for a file container. Returns file metadata about each file such as file name, size, checksum, and state. Possible file states are Timed Out, Uploading, Failed and Success. Files with a state of \"Success\" are ready for upload.\n\n| Secured by |\n| ---------- |\n- Self-Service: Prism File Container domain in the Prism Analytics functional area\n",
+        "operationId": "GetFileContainerFiles",
+        "parameters": [
+          {
+            "name": "fileContainerID",
+            "in": "path",
+            "description": "A reference to a Prism Analytics File Container.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/filesResponseList"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Data Changes"
+        ],
+        "summary": "Load file into file container",
+        "description": "This resource loads the file into a file container. Creates temporary location to store file, and saves file metadata like size, checksum.\n\n| Secured by |\n| ---------- |\n- Self-Service: Prism File Container domain in the Prism Analytics functional area\n",
+        "operationId": "PostFileContainerFile",
+        "parameters": [
+          {
+            "name": "fileContainerID",
+            "in": "path",
+            "description": "A reference to a Prism Analytics File Container.\n",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/fileUploadResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "baseTableFields": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "The description of the object. The description must contain less than 1,000 characters.\n"
+          },
+          "documentation": {
+            "type": "string",
+            "description": "A long string field you can use to include more detailed information about this object for\ninternal documentation purposes. The documentation must contain less than 32,000 characters.\n"
+          },
+          "enableForAnalysis": {
+            "type": "boolean",
+            "description": "Creates a Prism data source using the data in this table that can be used for querying."
+          }
+        }
+      },
+      "commonTableFields": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/baseTableFields"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "tags": {
+                "type": "array",
+                "description": "Analytic tags\n",
+                "items": {
+                  "$ref": "#/components/schemas/tag"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "patchTable": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/displayNamedObject"
+          },
+          {
+            "$ref": "#/components/schemas/baseTableFields"
+          }
+        ]
+      },
+      "tableRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/displayNamedObject"
+          },
+          {
+            "$ref": "#/components/schemas/commonTableFields"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "fields": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/tableFieldsRequest"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "table": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/displayNamedObject"
+          },
+          {
+            "$ref": "#/components/schemas/commonTableFields"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "fields": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/tableSchemaFields"
+                }
+              },
+              "id": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "tableResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/table"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "empty": {
+                "type": "boolean"
+              },
+              "published": {
+                "type": "boolean"
+              },
+              "stats": {
+                "$ref": "#/components/schemas/tableStats"
+              },
+              "createdBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "createdMoment": {
+                "type": "string",
+                "description": "DateTime when table was created"
+              },
+              "updatedBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "updatedMoment": {
+                "type": "string",
+                "description": "DateTime when table was updated"
+              },
+              "dateRefreshed": {
+                "type": "string",
+                "description": "DateTime when table was refreshed"
+              },
+              "tablePermissions": {
+                "$ref": "#/components/schemas/tablePermissions"
+              },
+              "analyticsDataSource": {
+                "$ref": "#/components/schemas/apiObject"
+              }
+            }
+          }
+        ]
+      },
+      "tableResponseList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "List of tableReponse.",
+                "items": {
+                  "$ref": "#/components/schemas/tableResponse"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "bucket": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/namedObject"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "documentation": {
+                "type": "string"
+              },
+              "state": {
+                "$ref": "#/components/schemas/bucketStatus"
+              },
+              "operation": {
+                "$ref": "#/components/schemas/operationType"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/fileSchema"
+              },
+              "targetDataset": {
+                "$ref": "#/components/schemas/apiObject"
+              }
+            }
+          }
+        ]
+      },
+      "bucketResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/bucket"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              },
+              "stats": {
+                "$ref": "#/components/schemas/bucketstats"
+              },
+              "files": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/bucketfile"
+                }
+              },
+              "createdBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "createdMoment": {
+                "type": "string",
+                "description": "DateTime when table created"
+              },
+              "updatedBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "updatedMoment": {
+                "type": "string",
+                "description": "DateTime when table created"
+              }
+            }
+          }
+        ]
+      },
+      "bucketResponseList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "description": "Count."
+              },
+              "data": {
+                "type": "array",
+                "description": "List of bucketResponse.",
+                "items": {
+                  "$ref": "#/components/schemas/bucketResponse"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "dataChangeMappings": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "mappings": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sourceFieldName": {
+                      "type": "string"
+                    },
+                    "targetFieldName": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "dataChange": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/dataChangeSummary"
+          },
+          {
+            "$ref": "#/components/schemas/dataChangeMappings"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "object",
+                "properties": {
+                  "parms": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "fileNamePattern": {
+                          "description": "File name pattern that matches every file/object to be read by the Data Change Task. Applicable for S3 source.",
+                          "type": "string"
+                        },
+                        "prompts": {
+                          "$ref": "#/components/schemas/prompts",
+                          "description": "Values for prompts defined in a Report. Applicable for OMS source."
+                        },
+                        "sqlQuery": {
+                          "description": "SQL query to be executed on the source system. Applicable for SALESFORCE source.",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "sourceType": {
+                    "type": "string",
+                    "description": "\n* `UPLOAD` - Data change to load data by uploading gzip files\n* `TRANSFORMATION` - Data change to load data from a Prism pipeline\n* `SFTP` - Data change to load data from an SFTP source\n* `OMS` - Data change to load data from a Workday Report\n* `S3` - Data change to load data from S3 Source\n* `SALESFORCE` - Data change to load from Salesforce source\n",
+                    "enum": [
+                      "UPLOAD",
+                      "TRANSFORMATION",
+                      "SFTP",
+                      "OMS",
+                      "S3",
+                      "SALESFORCE"
+                    ]
+                  },
+                  "schema": {
+                    "$ref": "#/components/schemas/fileSchema"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "dataChangeSummary": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/namedObject"
+          },
+          {
+            "$ref": "#/components/schemas/displayNamedObject"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "object",
+                "properties": {
+                  "sourceType": {
+                    "type": "string",
+                    "description": "\n* `UPLOAD` - Datachange to load data by uploading gzip files\n* `TRANSFORMATION` - Data change to load data from a Prism pipeline\n* `SFTP` - Data change to load data from an SFTP source\n* `OMS` - Data change to load data from a Workday Report\n* `S3` - Data change to load data from S3 Source\n* `SALESFORCE` - Data change to load from Salesforce source\n",
+                    "enum": [
+                      "UPLOAD",
+                      "TRANSFORMATION",
+                      "SFTP",
+                      "OMS",
+                      "S3",
+                      "SALESFORCE"
+                    ]
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "* ID of the source \n* Required if sourceType is not UPLOAD and \"name\" attribute is not specified \n* In other words, either id or name attribute should be specified for source to look up when sourceType is not UPLOAD type\n"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "* Name of the source \n* Required if sourceType is not UPLOAD and \"id\" attribute is not specified \n* In other words, either id or name attribute should be specified for source to look up when sourceType is not UPLOAD type\n"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "target": {
+                "$ref": "#/components/schemas/namedObject"
+              },
+              "createdBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "createdMoment": {
+                "type": "string",
+                "description": "DateTime when data change created"
+              },
+              "modifiedBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "modifiedMoment": {
+                "type": "string",
+                "description": "DateTime when data change created"
+              },
+              "operation": {
+                "type": "object",
+                "properties": {
+                  "operationType": {
+                    "type": "string",
+                    "description": "\n* `APPEND` - APPEND\n* `REPLACE` - REPLACE\n* `DELETE` - DELETE\n* `UPDATE` - UPDATE\n* `UPSERT` - UPSERT\n",
+                    "enum": [
+                      "APPEND",
+                      "REPLACE",
+                      "DELETE",
+                      "UPDATE",
+                      "UPSERT"
+                    ]
+                  },
+                  "operationKeys": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "dataChangeResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/dataChange"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "errorMessage": {
+                "type": "string"
+              },
+              "createdBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "createdMoment": {
+                "type": "string",
+                "description": "DateTime when data change created"
+              },
+              "updatedBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "updatedMoment": {
+                "type": "string",
+                "description": "DateTime when data change created"
+              }
+            }
+          }
+        ]
+      },
+      "prompts": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "descriptor": {
+                "type": "string"
+              },
+              "doNotPromptAtRuntime": {
+                "type": "boolean"
+              },
+              "operator": {
+                "$ref": "#/components/schemas/apiObject"
+              },
+              "externalField": {
+                "$ref": "#/components/schemas/apiObject"
+              },
+              "promptQualifier": {
+                "$ref": "#/components/schemas/apiObject"
+              },
+              "externalParameter": {
+                "$ref": "#/components/schemas/apiObject"
+              },
+              "displayOptions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/apiObject"
+                }
+              },
+              "xmlAlias": {
+                "type": "string"
+              },
+              "order": {
+                "type": "string"
+              },
+              "wqlAlias": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "dynamicValue": {
+                "$ref": "#/components/schemas/apiObject"
+              },
+              "xmlSchemaType": {
+                "type": "string"
+              },
+              "promptValue": {
+                "type": "object",
+                "properties": {
+                  "attributeValue": {
+                    "type": "string"
+                  },
+                  "workdataType": {
+                    "$ref": "#/components/schemas/workdataType"
+                  },
+                  "instanceValue": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/apiObject"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "workdataType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "descriptor": {
+            "type": "string"
+          }
+        }
+      },
+      "dataChangeGETResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/namedObject"
+          },
+          {
+            "$ref": "#/components/schemas/displayNamedObject"
+          }
+        ]
+      },
+      "dataChangeResponseList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "List of data change summaries.",
+                "items": {
+                  "$ref": "#/components/schemas/dataChangeSummary"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "dataChangeRunRequest": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "dataChangeID": {
+                "type": "string"
+              },
+              "fileContainerID": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "fileContainerResponse": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "fileUploadResponse": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "descriptor": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "checksum": {
+                "type": "string"
+              },
+              "length": {
+                "type": "string"
+              },
+              "state": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "allowedFileSize": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "filesResponseList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "List of files in a file container summaries.",
+                "items": {
+                  "$ref": "#/components/schemas/fileUploadResponse"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "dataChangeValidateResponse": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "valid": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "runtimeResponse": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Activity ID"
+              }
+            }
+          }
+        ]
+      },
+      "dataChangeActivityRunStatusResponse": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "descriptor": {
+                "type": "string"
+              },
+              "dataChangeID": {
+                "type": "string"
+              },
+              "dataChangeName": {
+                "type": "string"
+              },
+              "dataChangeDisplayName": {
+                "type": "string"
+              },
+              "state": {
+                "$ref": "#/components/schemas/bucketStatus"
+              },
+              "operation": {
+                "$ref": "#/components/schemas/operationType"
+              },
+              "stats": {
+                "$ref": "#/components/schemas/bucketstats"
+              },
+              "message": {
+                "type": "string"
+              },
+              "errorCode": {
+                "type": "string"
+              },
+              "createdBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "startTime": {
+                "type": "string",
+                "description": "DateTime when data change run started"
+              },
+              "endTime": {
+                "type": "string",
+                "description": "DateTime when data change run ended"
+              },
+              "target": {
+                "$ref": "#/components/schemas/apiObject"
+              },
+              "source": {
+                "$ref": "#/components/schemas/apiObject"
+              },
+              "fileContainer": {
+                "$ref": "#/components/schemas/apiObject"
+              },
+              "exceptions": {
+                "type": "object",
+                "allOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/exception"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "exception": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "exceptionTarget": {
+                "$ref": "#/components/schemas/apiObject"
+              },
+              "exceptionType": {
+                "$ref": "#/components/schemas/operationType"
+              },
+              "invalidRowCount": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "operationType": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "descriptor": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "dataChangeRunStatusResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/dataChange"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              },
+              "errorMessage": {
+                "type": "string"
+              },
+              "createdBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "createdMoment": {
+                "type": "string",
+                "description": "DateTime when data change created"
+              },
+              "updatedBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "updatedMoment": {
+                "type": "string",
+                "description": "DateTime when data change created"
+              }
+            }
+          }
+        ]
+      },
+      "publishActivityGETResponse": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "stats": {
+                "$ref": "#/components/schemas/publishStats"
+              },
+              "message": {
+                "type": "string"
+              },
+              "createdBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "createTime": {
+                "type": "string",
+                "description": "DateTime when publish run started"
+              },
+              "modifiedBy": {
+                "$ref": "#/components/schemas/userRef"
+              },
+              "modifiedTime": {
+                "type": "string",
+                "description": "DateTime when publish run ended"
+              },
+              "startTime": {
+                "type": "string",
+                "description": "DateTime when publish run started"
+              },
+              "endTime": {
+                "type": "string",
+                "description": "DateTime when publish run ended"
+              },
+              "elapsedMillis": {
+                "type": "number",
+                "description": "Time taken for publish to run"
+              },
+              "sources": {
+                "type": "object",
+                "allOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/apiObject"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "publishStats": {
+        "type": "object",
+        "properties": {
+          "totalSteps": {
+            "type": "integer"
+          },
+          "completedSteps": {
+            "type": "integer"
+          },
+          "totalRowCount": {
+            "type": "integer"
+          }
+        }
+      },
+      "publishResponseList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/list"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "List of data change summaries.",
+                "items": {
+                  "$ref": "#/components/schemas/publishActivityGETResponse"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "fileSchema": {
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/schemaFields"
+            }
+          },
+          "parseOptions": {
+            "$ref": "#/components/schemas/parseOptions"
+          }
+        }
+      },
+      "schemaFields": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/schemaFieldsRequest"
+          }
+        ]
+      },
+      "schemaFieldsRequest": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "ordinal": {
+                "type": "integer",
+                "description": "The order of the field in the file (index).\nThe ordinal values:\n- Must start with 1.\n- Must be contiguous.\n- Can't skip any number.\n- Have a maximum of 1,000.\n"
+              },
+              "description": {
+                "type": "string",
+                "description": "The description of the field. The description must contain less than 1,000 characters.\n"
+              },
+              "parseFormat": {
+                "type": "string",
+                "description": "Required for Date fields.\nThe Date format that the values in this field must match to be recognized as a Date field.\n"
+              },
+              "type": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "\n* `Boolean` - True/False value\n* `Numeric` - Numeric\n* `Text` - String\n* `Date` - Datetime\n* `Currency` - Currency\n* `Instance` - ID of an instance\n* `Multi_Instance` - List of IDs of instances.\nUse this format:\n\"type\": {  \"id\": \"Schema_Field_Type=type\"\n}\n",
+                    "enum": [
+                      "Boolean",
+                      "Numeric",
+                      "Text",
+                      "Date",
+                      "Instance",
+                      "Currency",
+                      "Multi_Instance"
+                    ]
+                  },
+                  "id": {
+                    "type": "string",
+                    "enum": [
+                      "Schema_Field_Type=Boolean",
+                      "Schema_Field_Type=Integer",
+                      "Schema_Field_Type=Text",
+                      "Schema_Field_Type=Date",
+                      "Schema_Field_Type=Long",
+                      "Schema_Field_Type=Decimal",
+                      "Schema_Field_Type=Numeric",
+                      "Schema_Field_Type=Instance",
+                      "Schema_Field_Type=Currency",
+                      "Schema_Field_Type=Multi_Instance",
+                      "<id>"
+                    ]
+                  }
+                }
+              },
+              "precision": {
+                "type": "integer",
+                "description": "Required for Numeric fields.\nThe maximum number of digits in a Numeric field.\nThis value includes all digits to the left and right of the decimal point. The maximum value is 38.\n"
+              },
+              "scale": {
+                "type": "integer",
+                "description": "Required for Numeric fields.\nThe maximum number of digits to the right of the decimal point in a Numeric field. This value must be less than the precision value.\n"
+              },
+              "businessObject": {
+                "$ref": "#/components/schemas/apiObject"
+              },
+              "context": {
+                "$ref": "#/components/schemas/apiObject"
+              }
+            }
+          }
+        ]
+      },
+      "wbucketFields": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/schemaFields"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "useAsOperationKey": {
+                "type": "boolean",
+                "description": "Required when the target operation is update, upsert, or delete.\nSpecifies the field to use as the operation key. You can specify 1 of these fields:\nThe field that has externalID set to True\nWPA_LoadID\nWPA_RowID\nWhen the operation type is upsert, you can only specify the field that has externalID set to True.\n\nYou only use this when creating a bucket using version 2 to update or delete rows in a table.\n"
+              }
+            }
+          }
+        ]
+      },
+      "tableSchemaFields": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/schemaFields"
+          },
+          {
+            "$ref": "#/components/schemas/displayNamedObject"
+          },
+          {
+            "$ref": "#/components/schemas/commonFieldAttributes"
+          }
+        ]
+      },
+      "tableFieldsRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/schemaFieldsRequest"
+          },
+          {
+            "$ref": "#/components/schemas/displayNamedObject"
+          },
+          {
+            "$ref": "#/components/schemas/commonFieldAttributes"
+          }
+        ]
+      },
+      "commonFieldAttributes": {
+        "type": "object",
+        "properties": {
+          "defaultValue": {
+            "type": "string",
+            "description": "Specifies a value for a field if the uploaded source file schema doesn't include that field.\nWhen the source file schema doesn't include a field, Workday uses the default value for all\nrows in the source file.\n\nNote: The Default Value is only used when the source file schema is missing a field,\nnot when a particular field value is NULL.\n"
+          },
+          "fieldId": {
+            "type": "string",
+            "description": "Readonly attribute included in the response.\n"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Required when field is set as the external ID (primary key).\nSpecifies that the field must contain data. Make a field required to ensure it doesn’t contain a NULL\nvalue when you insert or update data in the table. When you insert or update data in a table\nand this field is NULL, Workday rejects the row and instead includes it in the error file.\n"
+          },
+          "externalId": {
+            "type": "boolean",
+            "description": "Required when the target operation is update, upsert, or delete.\nSpecifies the field in a table to use as a key. Specify a field as the external ID when the values in the field uniquely identify each row from its source.\n\nSet a field as the external ID if you want to update or delete data in the table based on data in an external file. This parameter is similar to a primary key in a relational database.\n\nWhen using this parameter, consider:\n- You can only define 1 field in a table as the external ID field.\n- Ensure that each field value in the external ID field is unique. If the field values aren’t unique, you'll get unexpected results. Workday doesn’t enforce the uniqueness.\n- You can’t define a default value for fields used as an external ID. The field value must come from the external source and can’t be NULL.\n- You must set the external ID field as required.\n"
+          }
+        }
+      },
+      "fileInfo": {
+        "type": "object",
+        "properties": {
+          "length": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "checksum": {
+            "type": "string"
+          }
+        }
+      },
+      "bucketStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "descriptor": {
+            "type": "string",
+            "description": "* `New` - When you first create a bucket, the state is New. You can load files into a bucket in the New state.\n* `Queued` - Workday changes the state to Queued after you run the complete call on a bucket, but Workday is busy processing other buckets. When a processing slot becomes available, Workday changes the state back to Processing.\n* `Processing` - Workday changes the state to Processing immediately after you run the complete call on a bucket. If a processing slot is available, then the state remains as Processing, and Workday starts running the background processes to move the data into the table or dataset. When Workday finishes these background processes, it changes the state to either Success, Warning, or Failed, depending on the status.\n* `Success` - When Workday successfully loads all rows into the table, the state is Success.\n* `Warning` - When Workday successfully loads rows into the table, but encounters some invalid rows, the state is Warning.\n* `Failed` - When Workday isn't able to move the data to the table or dataset for any reason, the state is Failed.\n* `Canceled` - When a bucket is in the Processing state for 1 or more hours, you can force Workday to stop trying to move data into the table or dataset. You stop this process using the Cleanup Bucket State task. After running this task on the bucket, the state is Cancelled.\n* `Loading` -\n* `Timed out` -\n* `Aborted` -\n",
+            "enum": [
+              "New",
+              "Queued",
+              "Processing",
+              "Success",
+              "Warning",
+              "Failed",
+              "Canceled",
+              "Loading",
+              "Timed out",
+              "Aborted"
+            ]
+          }
+        }
+      },
+      "bucketstats": {
+        "type": "object",
+        "properties": {
+          "processsedFiles": {
+            "type": "integer"
+          },
+          "wBucketSize": {
+            "type": "integer"
+          },
+          "totalRowCount": {
+            "type": "integer"
+          },
+          "errorRowCount": {
+            "type": "integer"
+          },
+          "producedEncodedFilesSize": {
+            "type": "integer"
+          }
+        }
+      },
+      "bucketfile": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/apiObject"
+          }
+        ]
+      },
+      "displayNamedObject": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "description": "The display name for the object. You can change this name at any time.\nIf you don't include this parameter, Workday sets it to the same value in the name parameter.\n"
+          }
+        }
+      },
+      "namedObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "Table name. This is the table API name. You can't change this name after you create the table.\nTable API names:\n\n- Must be unique in the Data Catalog.\n- Can contain up to 255 characters.\n- Can only include alphanumeric and underscore characters.\n- Must start with a letter.\n- Can't end with an underscore character.\n- Can't begin with WPA_.\n"
+          }
+        }
+      },
+      "apiObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "descriptor": {
+            "type": "string"
+          }
+        }
+      },
+      "list": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Count."
+          }
+        }
+      },
+      "userRef": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "descriptor": {
+            "type": "string"
+          }
+        }
+      },
+      "tag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "tablePermissions": {
+        "type": "object",
+        "properties": {
+          "canView": {
+            "type": "boolean",
+            "description": "User has Table Viewer permission"
+          },
+          "canEdit": {
+            "type": "boolean",
+            "description": "User has Table Editor permission"
+          },
+          "canDelete": {
+            "type": "boolean",
+            "description": "User has Table Editor permission"
+          },
+          "canShare": {
+            "type": "boolean"
+          },
+          "canPublish": {
+            "type": "boolean"
+          },
+          "canAppendTableData": {
+            "type": "boolean"
+          },
+          "canReplaceTableData": {
+            "type": "boolean"
+          },
+          "canTruncateTableData": {
+            "type": "boolean"
+          },
+          "canDeleteTableData": {
+            "type": "boolean"
+          },
+          "canEditDataSourceSecurity": {
+            "type": "boolean"
+          },
+          "selectTableData": {
+            "type": "boolean"
+          }
+        }
+      },
+      "parseOptions": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "charset": {
+            "type": "string"
+          },
+          "fieldsDelimitedBy": {
+            "type": "string"
+          },
+          "headerLinesToIgnore": {
+            "type": "integer"
+          },
+          "fieldsEnclosedBy": {
+            "type": "string"
+          },
+          "ignoreTrailingExtraFields": {
+            "type": "boolean"
+          },
+          "ignoreTrailingMissingFields": {
+            "type": "boolean"
+          },
+          "recordsDelimitedBy": {
+            "type": "string"
+          },
+          "ignoreTrailingWhitespaces": {
+            "type": "boolean"
+          },
+          "ignoreLeadingWhitespaces": {
+            "type": "boolean"
+          },
+          "fieldsEnclosingCharacterEscapedBy": {
+            "type": "string"
+          },
+          "ignoreTrailingWhitespacesInQuotes": {
+            "type": "string"
+          },
+          "ignoreLeadingWhitespacesInQuotes": {
+            "type": "string"
+          },
+          "commentCharacter": {
+            "type": "string"
+          }
+        }
+      },
+      "tableStats": {
+        "type": "object",
+        "properties": {
+          "rows": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          }
+        }
+      },
+      "dataChangeActivityRequest": {
+        "type": "object",
+        "properties": {
+          "fileContainerWid": {
+            "type": "string"
+          }
+        }
+      },
+      "INSTANCE_MODEL_REFERENCE": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\$[0-9]+)|(\\S+=\\S+))$",
+            "type": "string",
+            "description": "id / id / reference id"
+          },
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the instance",
+            "readOnly": true
+          },
+          "href": {
+            "type": "string",
+            "description": "A link to the instance",
+            "readOnly": true
+          }
+        }
+      },
+      "ProtonHttpError": {
+        "required": [
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "A description of the error"
+          },
+          "code": {
+            "type": "integer",
+            "description": "The error code associated with this error"
+          },
+          "path": {
+            "type": "string",
+            "description": "Identifies the path to the error within the JSON string"
+          },
+          "field": {
+            "type": "string",
+            "description": "Identifies the field in error"
+          },
+          "location": {
+            "type": "string",
+            "description": "The line/ column number and offset of a parse error"
+          }
+        }
+      },
+      "ValidationErrorResponse": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string",
+                "description": "Error type"
+              },
+              "errors": {
+                "type": "array",
+                "description": "An array of validation errors",
+                "items": {
+                  "$ref": "#/components/schemas/ProtonHttpError"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}

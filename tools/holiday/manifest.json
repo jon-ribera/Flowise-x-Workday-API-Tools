@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Holiday-HolidayEvents-GET-getHolidayEvents",
+    "description": "[Holiday] GET /holidayEvents — \n\n<b>Secured by:</b> Self-Service: Leave of Absence, Self-Service: Time Off, Worker Data: Leave of Absence, Worker Data: Time Off\n\n<b>Scope:</b> Time Off and Leave",
+    "schema": [
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "query parameter: fromDate",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "query parameter: toDate",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "query parameter: worker",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/holidayEvents",
+    "operationId": null,
+    "file": "Holiday-HolidayEvents-GET-getHolidayEvents.js"
+  }
+]

@@ -1,0 +1,2110 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Use this API to view and manage requests.",
+    "version": "v2",
+    "title": "request",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "51bb27ea9d6a10000e2a75cc534801b9"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/request/v2",
+  "tags": [
+    {
+      "name": "requests",
+      "description": "Returns a collection of requests based on the specified parameters."
+    },
+    {
+      "name": "types",
+      "description": "Returns a collection of requests types based on the specified parameters."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/requests/{ID}": {
+      "get": {
+        "tags": [
+          "requests"
+        ],
+        "summary": "Retrieves the request with the specified ID.",
+        "description": "Retrieves the specified request, including the completed questionnaire associated to it. Returned results are secured based on the processing person's View access to the request.\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/requestDetails_16d56a997c581000085d7d20894a00ea"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/types": {
+      "get": {
+        "tags": [
+          "types"
+        ],
+        "summary": "Retrieves a collection of request types.",
+        "description": "Returns all request types. The returned results are secured based on the processing person's Initiate access to the request. Call GET /types/{ID} to retrieve details about the questionnaire for the request type.\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/requestTypeSummary_51bb27ea9d6a10000ef43f2c46be01c6"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/requests/{ID}/close": {
+      "post": {
+        "tags": [
+          "requests"
+        ],
+        "summary": "Closes a request.",
+        "description": "Closes the specified request. In the request body, specify at least the required field: resolution.  Security is evaluated based on the request event awaiting the processing person's action. Ensure that the user who submits this endpoint has View permission on the Workday Object specified on the workdayObjectValue request field, if included. To check the user permission on the object, see the View Security for Securable Item task in Workday.\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "requestClose",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/requestClose_f3416caceb7210000902eadbe25b00f3"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/requestClose_f3416caceb7210000902eadbe25b00f3"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA187 | Invalid request subtype.\nA188 | You can't submit a comment because comments are disabled on this business process.\nA189 | The Workday object value you provide must match the Workday object associated to this request type.\nA212 | This event step is not awaiting your action.\nA218 | You must specify a resolution.\nA220 | Invalid resolution details.\nA1703 | Specify a resolution that's active and configured for the request type.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/requests": {
+      "get": {
+        "tags": [
+          "requests"
+        ],
+        "summary": "Retrieves a collection of in progress requests based on the specified parameters.",
+        "description": "Returns a collection of in progress requests based on the specified parameters. Does not return the associated questionnaire response for each request. Returned results are secured based on the processing person's View access to the request. To retrieve Closed requests, specify the resolution as a parameter. Use prompting on the /requests resource to see the WIDs available for each parameter field.\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "completedOnOrAfter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "completedOnOrBefore",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "initiatedOnOrAfter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "initiatedOnOrBefore",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "initiator",
+            "in": "query",
+            "description": "The WID for the person who initiated the request. You can GET /workers in the /common service to retrieve a worker's WID.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "onBehalfOf",
+            "in": "query",
+            "description": "The Workday ID of the person this request is being initiated on behalf of.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "requestId",
+            "in": "query",
+            "description": "The ID of the request based on the ID generator format.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "requestSubtype",
+            "in": "query",
+            "description": "The Workday ID of the request subtype. You can specify more than 1 requestSubtype query parameter. \nYou can call GET /requests/query/values/requestSubtype to retrieve a valid ID.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "requestType",
+            "in": "query",
+            "description": "The Workday ID of the request type. You can specify more than 1 requestType query parameter.\nYou can call GET /requests/query/values/requestType to retrieve a valid ID.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "resolution",
+            "in": "query",
+            "description": "The Workday ID of the resolution of the request. You can specify more than 1 resolution query parameter.\nValid values:\n\n* 47fa99d9ed671000111f2f4d1d6f37ea - Done\n\n* be256002ae2010000c0b9b59ca1d014b - Duplicate\n\n* be256002ae2010000c0b9c817aea014c - Denied\n\n* be256002ae2010000bfd6ae5ea5b0148 - Canceled",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "resolutionDetails",
+            "in": "query",
+            "description": "The Workday ID of the resolution details. You can specify more than 1 resolutionDetails query parameter.\nYou can call GET /requests/query/values/resolutionDetails to retrieve a valid ID.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "workdayObjectValue",
+            "in": "query",
+            "description": "The Workday ID of the business object associated with the request. \nCall the corresponding GET endpoint on the business object resource in the appropriate REST service to get a valid ID.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/requestSummary_6531dd9ce4ca100012aa4b7e247205b7"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "requests"
+        ],
+        "summary": "Creates a request.",
+        "description": "Creates a request with the specified data.  In the request body, specify the required field: requestType {id}. You can use a returned id from GET /types. Other fields will be required based on the specified request type. The Create Requests task in Workday shows the required fields for a specific request type and questionnaire.  Secured by the processing person's Initiate access on the specified request type.\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "requestInitiate",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/requestInitiate_cfaf14034314100036416238d97a0ce7"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/requestInitiate_cfaf14034314100036416238d97a0ce7"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA188 | You can't submit a comment because comments are disabled on this business process.\nA193 | You can't enter a description because it is hidden for this request type.\nA194 | You must provide a request description.\nA204 | You must provide a request type.\nA210 | You don't have permissions to initiate a request of this type.\nA213 | Questionnaire response is required for the request type.\nA231 | Questionnaire submission is not allowed for the specified request type.\nA1353 | Request type does not allow initiation on behalf of another person.\nA1754 | You have submitted more than one answer for a single select multiple choice question.\nA1755 | You have selected an invalid answer choice.\nA1756 | This questionnaire has already been submitted. You can’t submit it again.\nA1756 | This questionnaire has already been submitted. You can’t submit it again.\nA1757 | This questionnaire is now closed. You can no longer submit new responses or change your existing responses.\nA1758 | You cannot submit answers to branching questions without answers for parent questions.\nA1759 | All answers you submit must match the expected format for that question type.\nA1761 | All answered questions must be questions from the associated questionnaire.\nA1764 | You must answer all required questions.\nA1765 | You have submitted more multiple choice answers than is allowed for a question.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/types/{ID}": {
+      "get": {
+        "tags": [
+          "types"
+        ],
+        "summary": "Retrieves a request type.",
+        "description": "Retrieves the specified request type, including the business object and questionnaire details associated with the request type. Call this endpoint to get the information you need to create a request.\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/requestTypeDetails_51bb27ea9d6a100017bb2d2805b101e7"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "requestDescriptionDisplay_16e9782c4fab1000129fb6aa29d500fa": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The request description display for the request type. Possible value is Hide, Optional, or Require."
+    },
+    "idGenerator_98e2add5b9fe100022e87e15d9f60000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The ID generator format for this request type."
+    },
+    "allowedRequestResolutions_b4e577fc565710001428645db8c80000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/requestResolutionDetails_b4e577fc5657100016976f6a21670000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Request Resolution (All)"
+            }
+          }
+        }
+      ]
+    },
+    "questionnaire_56ff0f38a8da100025895b156f720000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionnaireDetails_56ff0f38a8da100025866da0fd210000"
+        },
+        {}
+      ],
+      "description": "Returns the questionnaire that is configured on the request type."
+    },
+    "workdayObject_51bb27ea9d6a100017bb2d474c3101ea": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday Object configured on the Request Type."
+    },
+    "requestTypeDetails_51bb27ea9d6a100017bb2d2805b101e7": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the request type.",
+              "x-workday-type": "Rich Text"
+            },
+            "allowRequestOnBehalfOf": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicates whether this request can be initiated on behalf of another person.",
+              "x-workday-type": "Boolean"
+            },
+            "restrictQuestionnaireResponses": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if Questionnaire responses associated with this request type can only be viewed by security groups added to the Questionnaire results domain.",
+              "x-workday-type": "Boolean"
+            },
+            "requestDescriptionDisplay": {
+              "$ref": "#/definitions/requestDescriptionDisplay_16e9782c4fab1000129fb6aa29d500fa"
+            },
+            "idGenerator": {
+              "$ref": "#/definitions/idGenerator_98e2add5b9fe100022e87e15d9f60000"
+            },
+            "allowedRequestResolutions": {
+              "type": "array",
+              "description": "Indicates the available Request Resolutions for this type.",
+              "items": {
+                "$ref": "#/definitions/allowedRequestResolutions_b4e577fc565710001428645db8c80000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "questionnaire": {
+              "$ref": "#/definitions/questionnaire_56ff0f38a8da100025895b156f720000"
+            },
+            "workdayObject": {
+              "$ref": "#/definitions/workdayObject_51bb27ea9d6a100017bb2d474c3101ea"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Request Type"
+            }
+          }
+        }
+      ]
+    },
+    "requestDescriptionDisplay_16e9782c4fab100014d2fa7420a500fc": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The request description display for the request type. Possible value is Hide, Optional, or Require."
+    },
+    "idGenerator_eef3a992d3651000115a6367aa3d0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The ID generator format for this request type."
+    },
+    "allowedRequestResolutions_b4e577fc565710001a968daf71320000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/requestResolutionDetails_b4e577fc5657100016976f6a21670000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Request Resolution (All)"
+            }
+          }
+        }
+      ]
+    },
+    "workdayObject_51bb27ea9d6a10000ef43f643be601c9": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday Object configured on the Request Type."
+    },
+    "questionnaire_51bb27ea9d6a10000ef43f5c33af01c8": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the questionnaire that is configured on the request type."
+    },
+    "requestTypeSummary_51bb27ea9d6a10000ef43f2c46be01c6": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "allowRequestOnBehalfOf": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicates whether this request can be initiated on behalf of another person.",
+              "x-workday-type": "Boolean"
+            },
+            "requestDescriptionDisplay": {
+              "$ref": "#/definitions/requestDescriptionDisplay_16e9782c4fab100014d2fa7420a500fc"
+            },
+            "restrictQuestionnaireResponses": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if Questionnaire responses associated with this request type can only be viewed by security groups added to the Questionnaire results domain.",
+              "x-workday-type": "Boolean"
+            },
+            "idGenerator": {
+              "$ref": "#/definitions/idGenerator_eef3a992d3651000115a6367aa3d0000"
+            },
+            "allowedRequestResolutions": {
+              "type": "array",
+              "description": "Indicates the available Request Resolutions",
+              "items": {
+                "$ref": "#/definitions/allowedRequestResolutions_b4e577fc565710001a968daf71320000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "workdayObject": {
+              "$ref": "#/definitions/workdayObject_51bb27ea9d6a10000ef43f643be601c9"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the request type.",
+              "x-workday-type": "Rich Text"
+            },
+            "questionnaire": {
+              "$ref": "#/definitions/questionnaire_51bb27ea9d6a10000ef43f5c33af01c8"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Request Type"
+            }
+          }
+        }
+      ]
+    },
+    "workdayObjectValue_16d56a997c581000085d7da51a8400f5": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The value of the Workday Object for the Request, selected on the Close Request step"
+    },
+    "resolution_16d56a997c581000085d7d8f174000f1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the resolution of the request. \nValid values:\n\n* 47fa99d9ed671000111f2f4d1d6f37ea - Done\n\n* be256002ae2010000c0b9b59ca1d014b - Duplicate\n\n* be256002ae2010000c0b9c817aea014c - Denied\n\n* be256002ae2010000bfd6ae5ea5b0148 - Canceled"
+    },
+    "questionnaireResponses_56ff0f38a8da10001bf732ab0bc20000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionnaireResponseDetails_56ff0f38a8da10001cbb8332c3ea0000"
+        },
+        {}
+      ],
+      "description": "The responses for questionnaires configured on a request."
+    },
+    "initiator_16d56a997c581000085d7d83f1ee00ef": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the person who initiated the Request"
+    },
+    "onBehalfOf_f02147bb2ae610001e496c69c6a60000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the person this request is being initiated on behalf of."
+    },
+    "requestEvent_16d56a997c581000085d7d7801ca00ed": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "We are retiring this report field. We recommend you use the new Request Event field which adds additional security by checking if the request event is viewable by the processing person."
+    },
+    "requestType_16d56a997c581000085d7d9fcc8600f4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Request Type"
+    },
+    "resolutionDetails_16d56a997c581000085d7d94e98a00f2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The resolution details of the Request."
+    },
+    "status_16d56a997c581000085d7daaf4e800f6": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Workflow State"
+    },
+    "subtype_16d56a997c581000085d7d9a830d00f3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Request Subtype instance."
+    },
+    "requestDetails_16d56a997c581000085d7d20894a00ea": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "workdayObjectValue": {
+              "$ref": "#/definitions/workdayObjectValue_16d56a997c581000085d7da51a8400f5"
+            },
+            "requestDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date that the request business process was initiated.",
+              "x-workday-type": "Date"
+            },
+            "resolution": {
+              "$ref": "#/definitions/resolution_16d56a997c581000085d7d8f174000f1"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the description of the Request",
+              "x-workday-type": "Rich Text"
+            },
+            "questionnaireResponses": {
+              "$ref": "#/definitions/questionnaireResponses_56ff0f38a8da10001bf732ab0bc20000"
+            },
+            "initiator": {
+              "$ref": "#/definitions/initiator_16d56a997c581000085d7d83f1ee00ef"
+            },
+            "onBehalfOf": {
+              "$ref": "#/definitions/onBehalfOf_f02147bb2ae610001e496c69c6a60000"
+            },
+            "requestId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The ID of the request based on the ID generator format.",
+              "x-workday-type": "Text"
+            },
+            "completionDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the request was completed.",
+              "x-workday-type": "Date"
+            },
+            "requestEvent": {
+              "$ref": "#/definitions/requestEvent_16d56a997c581000085d7d7801ca00ed"
+            },
+            "requestType": {
+              "$ref": "#/definitions/requestType_16d56a997c581000085d7d9fcc8600f4"
+            },
+            "resolutionDetails": {
+              "$ref": "#/definitions/resolutionDetails_16d56a997c581000085d7d94e98a00f2"
+            },
+            "status": {
+              "$ref": "#/definitions/status_16d56a997c581000085d7daaf4e800f6"
+            },
+            "subtype": {
+              "$ref": "#/definitions/subtype_16d56a997c581000085d7d9a830d00f3"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Request"
+            }
+          }
+        }
+      ]
+    },
+    "requestEvent_05f0381fedc61000083090fbe94f0224": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "We are retiring this report field. We recommend you use the new Request Event field which adds additional security by checking if the request event is viewable by the processing person."
+    },
+    "onBehalfOf_d6f395402a0110000ec47d5134310000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the person this request is being initiated on behalf of."
+    },
+    "initiator_6531dd9ce4ca10001473be6d93c305c7": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the person who initiated the Request"
+    },
+    "resolution_6531dd9ce4ca10001473be85ee5505ca": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the resolution of the request. \nValid values:\n\n* 47fa99d9ed671000111f2f4d1d6f37ea - Done\n\n* be256002ae2010000c0b9b59ca1d014b - Duplicate\n\n* be256002ae2010000c0b9c817aea014c - Denied\n\n* be256002ae2010000bfd6ae5ea5b0148 - Canceled"
+    },
+    "subtype_6531dd9ce4ca10001347565e9dca05be": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Request Subtype instance."
+    },
+    "resolutionDetails_6531dd9ce4ca10001473be8e478705cb": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The resolution details of the Request."
+    },
+    "requestType_6531dd9ce4ca10001473be46f33605c2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Request Type"
+    },
+    "workdayObjectValue_3854eadb79931000175a43b5590200ff": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The value of the Workday Object for the Request, selected on the Close Request step"
+    },
+    "status_3854eadb799310001b18ae9fd8920113": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Workflow State"
+    },
+    "requestSummary_6531dd9ce4ca100012aa4b7e247205b7": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "requestEvent": {
+              "$ref": "#/definitions/requestEvent_05f0381fedc61000083090fbe94f0224"
+            },
+            "completionDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the request was completed.",
+              "x-workday-type": "Date"
+            },
+            "onBehalfOf": {
+              "$ref": "#/definitions/onBehalfOf_d6f395402a0110000ec47d5134310000"
+            },
+            "requestId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The ID of the request based on the ID generator format.",
+              "x-workday-type": "Text"
+            },
+            "initiator": {
+              "$ref": "#/definitions/initiator_6531dd9ce4ca10001473be6d93c305c7"
+            },
+            "resolution": {
+              "$ref": "#/definitions/resolution_6531dd9ce4ca10001473be85ee5505ca"
+            },
+            "subtype": {
+              "$ref": "#/definitions/subtype_6531dd9ce4ca10001347565e9dca05be"
+            },
+            "resolutionDetails": {
+              "$ref": "#/definitions/resolutionDetails_6531dd9ce4ca10001473be8e478705cb"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the description of the Request",
+              "x-workday-type": "Rich Text"
+            },
+            "requestDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date that the request business process was initiated.",
+              "x-workday-type": "Date"
+            },
+            "requestType": {
+              "$ref": "#/definitions/requestType_6531dd9ce4ca10001473be46f33605c2"
+            },
+            "workdayObjectValue": {
+              "$ref": "#/definitions/workdayObjectValue_3854eadb79931000175a43b5590200ff"
+            },
+            "status": {
+              "$ref": "#/definitions/status_3854eadb799310001b18ae9fd8920113"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Request"
+            }
+          }
+        }
+      ]
+    },
+    "questionnaireResponses_56ff0f38a8da1000269cb93332c70000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionnaireResponseSubmit_56ff0f38a8da10002696fe288f630000"
+        },
+        {}
+      ],
+      "description": "The responses for questionnaires configured on a request."
+    },
+    "requestType_cfaf14034314100036416272d0fc0ceb": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Request Type"
+    },
+    "onBehalfOf_d6f395402a0110001228f352c1ab0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the person this request is being initiated on behalf of."
+    },
+    "requestInitiate_cfaf14034314100036416238d97a0ce7": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "requestID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Request ID",
+              "x-workday-type": "Text"
+            },
+            "questionnaireResponses": {
+              "$ref": "#/definitions/questionnaireResponses_56ff0f38a8da1000269cb93332c70000"
+            },
+            "requestType": {
+              "$ref": "#/definitions/requestType_cfaf14034314100036416272d0fc0ceb"
+            },
+            "onBehalfOf": {
+              "$ref": "#/definitions/onBehalfOf_d6f395402a0110001228f352c1ab0000"
+            },
+            "comment": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Latest Comment for the Request Event of the Request",
+              "x-workday-type": "Text"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the description of the Request",
+              "x-workday-type": "Rich Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Request"
+            }
+          }
+        }
+      ]
+    },
+    "workdayObjectValue_f3416caceb7210001675680560860118": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The value of the Workday Object for the Request, selected on the Close Request step"
+    },
+    "resolution_f3416caceb721000167568392ec8011d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID of the resolution of the request. \nValid values:\n\n* 47fa99d9ed671000111f2f4d1d6f37ea - Done\n\n* be256002ae2010000c0b9b59ca1d014b - Duplicate\n\n* be256002ae2010000c0b9c817aea014c - Denied\n\n* be256002ae2010000bfd6ae5ea5b0148 - Canceled"
+    },
+    "resolutionDetails_f3416caceb721000167568438294011e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/requestResolutionsDetails_f3416caceb721000192b6fb75f7e012e"
+        },
+        {}
+      ],
+      "description": "The resolution details of the Request."
+    },
+    "requestSubtype_f3416caceb7210001675684d4c97011f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/requestSubtype_f3416caceb72100018e5413f3fa40127"
+        },
+        {}
+      ],
+      "description": "The Request Subtype instance."
+    },
+    "requestClose_f3416caceb7210000902eadbe25b00f3": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "comment": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Latest Comment for the Request Event of the Request",
+              "x-workday-type": "Text"
+            },
+            "workdayObjectValue": {
+              "$ref": "#/definitions/workdayObjectValue_f3416caceb7210001675680560860118"
+            },
+            "resolution": {
+              "$ref": "#/definitions/resolution_f3416caceb721000167568392ec8011d"
+            },
+            "resolutionDetails": {
+              "$ref": "#/definitions/resolutionDetails_f3416caceb721000167568438294011e"
+            },
+            "requestSubtype": {
+              "$ref": "#/definitions/requestSubtype_f3416caceb7210001675684d4c97011f"
+            },
+            "requestID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Request ID",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Request"
+            }
+          }
+        }
+      ]
+    },
+    "answerMutlipleChoice_6d65702d9ff0100006862d604cf8010e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The multiple choice answer for a question."
+    },
+    "questionnaireAttachments_cfb1e71e5435100008fe5bfbc9f8073f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionnaireAttachment_cfb1e71e5435100008e52b3f011f0708"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Questionnaire Attachment"
+            }
+          }
+        }
+      ]
+    },
+    "questionItem_6d65702d9ff0100006862d6699b0010f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Question Item for Questionnaire Answer. Question item represents the question in a questionnaire."
+    },
+    "questionnaireAnswerDetails_6d65702d9ff0100006578b8d4ada0107": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "answerMutlipleChoice": {
+              "$ref": "#/definitions/answerMutlipleChoice_6d65702d9ff0100006862d604cf8010e"
+            },
+            "answerText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The text answer for a questionnaire.",
+              "x-workday-type": "Text"
+            },
+            "answerDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The answer in a date format.",
+              "x-workday-type": "Date"
+            },
+            "answerNumeric": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The answer in a numeric format.",
+              "x-workday-type": "Numeric"
+            },
+            "questionnaireAttachments": {
+              "type": "array",
+              "description": "Questionnaire Attachments for Questionnaire Response.",
+              "items": {
+                "$ref": "#/definitions/questionnaireAttachments_cfb1e71e5435100008fe5bfbc9f8073f"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "questionOrder": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Question Item Order for Questionnaire Answer (REST API)",
+              "x-workday-type": "Text"
+            },
+            "questionBody": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The question body for a questionnaire answer in rich text.",
+              "x-workday-type": "Rich Text"
+            },
+            "questionItem": {
+              "$ref": "#/definitions/questionItem_6d65702d9ff0100006862d6699b0010f"
+            },
+            "branching": {
+              "type": "boolean",
+              "example": true,
+              "description": "Is Answer for a Branching Question",
+              "x-workday-type": "Boolean"
+            },
+            "answerMultipleChoiceOrder": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Question Multiple Choice Answer Order for Questionnaire Answer (REST API)",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "requestSubtype_f3416caceb72100018e5413f3fa40127": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Request Subtype"
+            }
+          }
+        }
+      ]
+    },
+    "requestResolutionDetails_b4e577fc5657100016976f6a21670000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "questionnaireAnswers_670e7e9e117b10002734f5a0c9fd07c7": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionnaireAnswerCreate_670e7e9e117b1000276a34afc7b207cb"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Questionnaire Answer Representation"
+            }
+          }
+        }
+      ]
+    },
+    "questionnaireTargetContext_b73d92d470c7100012164155beb48425": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The applicable questionnaire or application for a student. Example: Student Application for Spring 2023. This is a new attribute as of 2021R2, and is currently only supported for Student."
+    },
+    "questionnaireTarget_b73d92d470c7100012164171eac28426": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The questionnaire subject. Example: The candidate for admission to a school. This is a new attribute as of 2021R2, and is currently only supported for Student."
+    },
+    "questionnaireResponseSubmit_56ff0f38a8da10002696fe288f630000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "questionnaireAnswers": {
+              "type": "array",
+              "description": "The set of answers for a questionnaire.",
+              "items": {
+                "$ref": "#/definitions/questionnaireAnswers_670e7e9e117b10002734f5a0c9fd07c7"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "questionnaireTargetContext": {
+              "$ref": "#/definitions/questionnaireTargetContext_b73d92d470c7100012164155beb48425"
+            },
+            "questionnaireTarget": {
+              "$ref": "#/definitions/questionnaireTarget_b73d92d470c7100012164171eac28426"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Questionnaire Response"
+            }
+          }
+        }
+      ]
+    },
+    "possibleAnswers_35124aec314610000f15a340986c00fe": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionMultipleChoiceAnswerDetails_35124aec314610000f355986c6490104"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Question Score"
+            }
+          }
+        }
+      ]
+    },
+    "type_35124aec314610000f15a34518bf00ff": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The type of the question."
+    },
+    "displayOption_35124aec314610000f15a32daa6600fa": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the display option selected for the question. Answer choices will be presented this way to users answering the question."
+    },
+    "questionItemDetails_35124aec314610000f15a3222d1800f9": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "numberOfSelections": {
+              "type": "integer",
+              "example": "99",
+              "description": "The number of allowed answers for a question for a questionnaire",
+              "x-workday-type": "Numeric"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of the question within the questionnaire.",
+              "x-workday-type": "Text"
+            },
+            "possibleAnswers": {
+              "type": "array",
+              "description": "Returns the scores for the multiple choice answers configured for the multiple choice question.",
+              "items": {
+                "$ref": "#/definitions/possibleAnswers_35124aec314610000f15a340986c00fe"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicator whether the answer for the question is required.",
+              "x-workday-type": "Boolean"
+            },
+            "body": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The question body in rich text.",
+              "x-workday-type": "Rich Text"
+            },
+            "type": {
+              "$ref": "#/definitions/type_35124aec314610000f15a34518bf00ff"
+            },
+            "displayOption": {
+              "$ref": "#/definitions/displayOption_35124aec314610000f15a32daa6600fa"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Question Item"
+            }
+          }
+        }
+      ]
+    },
+    "questions_35124aec314610000eeda239777500f3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionItemDetails_35124aec314610000f15a3222d1800f9"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Question Item"
+            }
+          }
+        }
+      ]
+    },
+    "questionnaireDetails_56ff0f38a8da100025866da0fd210000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "questions": {
+              "type": "array",
+              "description": "Returns all Parent-Level Question Items for the questionnaire",
+              "items": {
+                "$ref": "#/definitions/questions_35124aec314610000eeda239777500f3"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the questionnaire.",
+              "x-workday-type": "Text"
+            },
+            "questionnaireDisplayName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The display name for the questionnaire.",
+              "x-workday-type": "Text",
+              "x-workday-confidence-level": "Production"
+            },
+            "referenceIdValue": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reference ID for the Questionnaire",
+              "x-workday-type": "Text"
+            },
+            "questionnaireInstructions": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns instructions for the questionnaire. These instructions may be overridden where the questionnaire is being used.",
+              "x-workday-type": "Rich Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Questionnaire"
+            }
+          }
+        }
+      ]
+    },
+    "branchingQuestion_b846d79e92ac100013f9842aa5700161": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionItemDetails_35124aec314610000f15a3222d1800f9"
+        },
+        {}
+      ],
+      "description": "Branching Question Item for Question Score"
+    },
+    "questionMultipleChoiceAnswerDetails_35124aec314610000f355986c6490104": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "Returns the score for the multiple choice answer configured for the multiple choice question.",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The answer text for the Question Multiple Choice Answer",
+              "x-workday-type": "Text"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order for the Question Multiple Choice Answer",
+              "x-workday-type": "Text"
+            },
+            "branchingQuestion": {
+              "$ref": "#/definitions/branchingQuestion_b846d79e92ac100013f9842aa5700161"
+            },
+            "id": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Workday ID for the Question Multiple Choice Answer",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "contentType_cfb1e71e5435100008e52b8894ef0709": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Content type of the attachment"
+    },
+    "questionnaireAttachment_cfb1e71e5435100008e52b3f011f0708": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "fileLength": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "File length of the attachment",
+              "x-workday-type": "Numeric"
+            },
+            "fileName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "File name of the attachment",
+              "maxLength": 255,
+              "x-workday-type": "Text"
+            },
+            "contentType": {
+              "$ref": "#/definitions/contentType_cfb1e71e5435100008e52b8894ef0709"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "questionnaireResponseStatus_6d65702d9ff01000061092a84bb200fb": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of the questionnaire response."
+    },
+    "questionnaireAnswers_6d65702d9ff01000061092d2bdce0100": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionnaireAnswerDetails_6d65702d9ff0100006578b8d4ada0107"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Questionnaire Answer"
+            }
+          }
+        }
+      ]
+    },
+    "surveyTarget_6d65702d9ff01000061092c3e19300fe": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/surveyTargetEmptyView_6d65702d9ff010000635c8e3b15d0105"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Survey Target"
+            }
+          }
+        }
+      ]
+    },
+    "questionnaireTarget_b73d92d470c7100015b283130b5d8588": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The questionnaire subject. Example: The candidate for admission to a school. This is a new attribute as of 2021R2, and is currently only supported for Student."
+    },
+    "businessProcessType_6d65702d9ff01000061092cbaa8100ff": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The business process type that distributed the questionnaire."
+    },
+    "questionnaireTargetContext_b73d92d470c7100015b282ee9c2f8587": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The applicable questionnaire or application for a student. Example: Student Application for Spring 2023. This is a new attribute as of 2021R2, and is currently only supported for Student."
+    },
+    "questionnaireResponseDetails_56ff0f38a8da10001cbb8332c3ea0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "questionnaireResponseStatus": {
+              "$ref": "#/definitions/questionnaireResponseStatus_6d65702d9ff01000061092a84bb200fb"
+            },
+            "questionnaireAnswers": {
+              "type": "array",
+              "description": "The set of answers for a questionnaire.",
+              "items": {
+                "$ref": "#/definitions/questionnaireAnswers_6d65702d9ff01000061092d2bdce0100"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "creationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The submission date for the Questionnaire Response",
+              "x-workday-type": "Date"
+            },
+            "totalScore": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The total score for a questionnaire response is the sum of the questionnaire answers' score.",
+              "x-workday-type": "Numeric"
+            },
+            "surveyTarget": {
+              "type": "array",
+              "description": "Survey Target for Questionnaire Response REST APIs",
+              "items": {
+                "$ref": "#/definitions/surveyTarget_6d65702d9ff01000061092c3e19300fe"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "questionnaireTarget": {
+              "$ref": "#/definitions/questionnaireTarget_b73d92d470c7100015b283130b5d8588"
+            },
+            "businessProcessType": {
+              "$ref": "#/definitions/businessProcessType_6d65702d9ff01000061092cbaa8100ff"
+            },
+            "questionnaireTargetContext": {
+              "$ref": "#/definitions/questionnaireTargetContext_b73d92d470c7100015b282ee9c2f8587"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "requestResolutionsDetails_f3416caceb721000192b6fb75f7e012e": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "surveyTargetEmptyView_6d65702d9ff010000635c8e3b15d0105": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "questionItem_670e7e9e117b10002790f46f3d9c07d1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Question Item for Questionnaire Answer. Question item represents the question in a questionnaire."
+    },
+    "questionnaireAttachments_69164aa4df9610001e17f32134be5429": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionnaireAttachment_cfb1e71e5435100008e52b3f011f0708"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Questionnaire Attachment Representation"
+            }
+          }
+        }
+      ]
+    },
+    "answerMultipleChoices_670e7e9e117b10002790f474903a07d2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionMultipleChoiceAnswerEmptyView_670e7e9e117b100027c36c757fb807d5"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Question Multiple Choice Answer Representation"
+            }
+          }
+        }
+      ]
+    },
+    "questionnaireAnswerCreate_670e7e9e117b1000276a34afc7b207cb": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "questionItem": {
+              "$ref": "#/definitions/questionItem_670e7e9e117b10002790f46f3d9c07d1"
+            },
+            "questionnaireAttachments": {
+              "type": "array",
+              "description": "Questionnaire Attachments for Questionnaire Response.",
+              "items": {
+                "$ref": "#/definitions/questionnaireAttachments_69164aa4df9610001e17f32134be5429"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "answerNumeric": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The answer in a numeric format.",
+              "x-workday-type": "Numeric"
+            },
+            "answerMultipleChoices": {
+              "type": "array",
+              "description": "Question Multiple Choice Answers for question answer",
+              "items": {
+                "$ref": "#/definitions/answerMultipleChoices_670e7e9e117b10002790f474903a07d2"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "answerDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The answer in a date format.",
+              "x-workday-type": "Date"
+            },
+            "answerText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The text answer for a questionnaire.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "questionMultipleChoiceAnswerEmptyView_670e7e9e117b100027c36c757fb807d5": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

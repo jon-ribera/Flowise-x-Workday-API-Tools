@@ -1,0 +1,2146 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The service enables applications to access and create supplier contract data.",
+    "version": "v1",
+    "title": "contractCompliance",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "cd5128d9804a100017ff494049603b8a"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/contractCompliance/v1",
+  "tags": [
+    {
+      "name": "supplierContracts",
+      "description": "Provides the ability to retrieve supplier contracts."
+    },
+    {
+      "name": "Prompt Values",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/values/contractComplianceGroup/companiesOrHierarchies/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves all companies or company hierarchies the user has access to.\n\n<b>Secured by:</b> Process: Supplier Contract - Create/Edit, Scout Service\n\n<b>Scope:</b> Supplier Contracts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/companiesOrHierarchies_0a6867d85c6c10000ee4586391190000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "true"
+      },
+      "parameters": [
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        }
+      ]
+    },
+    "/values/contractComplianceGroup/contractTypes/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves all contract types the user has access to.\n\n<b>Secured by:</b> Process: Supplier Contract - Create/Edit, Scout Service\n\n<b>Scope:</b> Supplier Contracts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/contractTypes_d120ba5ac8e910000a6554956db219b1"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "true"
+      },
+      "parameters": [
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        }
+      ]
+    },
+    "/supplierContracts": {
+      "get": {
+        "tags": [
+          "supplierContracts"
+        ],
+        "summary": "Retrieves all supplier contracts.",
+        "description": "Retrieves all supplier contracts.\n\n<b>Secured by:</b> Process: Supplier Contract - View, View: Organization Supplier Contract\n\n<b>Scope:</b> Procurement, Supplier Contracts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "companyOrHierarchy",
+            "in": "query",
+            "description": "Filters the contracts by company or company hierarchy. Specify the Workday ID of the company or company hierarchy.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "contractSpecialist",
+            "in": "query",
+            "description": "Filters the contracts by the supplier contract specialist. Specify the Workday ID or reference ID of the specialist on the contract.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "contractType",
+            "in": "query",
+            "description": "Filters the contracts by type. Specify the Workday ID of the contract type.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "endDateOnOrAfter",
+            "in": "query",
+            "description": "Filters the contracts with an end date on or after the specified date. Use the yyyy-mm-dd format.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "endDateOnOrBefore",
+            "in": "query",
+            "description": "Filters the contracts with an end date on or before the specified date. Use the yyyy-mm-dd format.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "externalReferenceID",
+            "in": "query",
+            "description": "Filters the contracts by the External Reference ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "externalSystemReference",
+            "in": "query",
+            "description": "Filters the contracts with the external system reference ID.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "onHold",
+            "in": "query",
+            "description": "Filters the contracts that are on hold.",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "startDateOnOrAfter",
+            "in": "query",
+            "description": "Filters the contracts with a start date on or after the specified date. Use the yyyy-mm-dd format.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "startDateOnOrBefore",
+            "in": "query",
+            "description": "Filters the contracts with a start date on or before the specified date. Use the yyyy-mm-dd format.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filters the contracts by status. Specify the Workday ID of the status.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "supplier",
+            "in": "query",
+            "description": "Filters the contracts by the supplier. Specify the Workday ID of the supplier.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/supplierContractSummary_cd5128d9804a100018f833d472d63c26"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/supplierContracts/{ID}": {
+      "get": {
+        "tags": [
+          "supplierContracts"
+        ],
+        "summary": "Retrieves a supplier contract.",
+        "description": "Retrieves a supplier contract with the specified ID.\n\n<b>Secured by:</b> Process: Supplier Contract - View, View: Organization Supplier Contract\n\n<b>Scope:</b> Procurement, Supplier Contracts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/supplierContractDetail_719b04dc621d10001f86e7aa62e0516f"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "chargeControls_38c2fff67e6510001c6ee770e7510000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/chargeControls_38c2fff67e6510001c6b434637750000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Charge Control"
+            }
+          }
+        }
+      ]
+    },
+    "overridePaymentType_294f32dfa38610000bd177bfe3120790": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The payment type that populates on supplier invoices for installments of this supplier contract."
+    },
+    "billToAddress_294f32dfa3861000081b8a30154c059d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The bill-to address that populates on purchase orders for installments of this supplier contract."
+    },
+    "purchaseOrderDefaultCompany_294f32dfa3861000081b8a077b400599": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/companyReferenceSummary_6cb7f7b41e021000112164aeef730ea2"
+        },
+        {}
+      ],
+      "description": "The company that populates on purchase orders for installments of this supplier contract."
+    },
+    "buyer_719b04dc621d10001f86ea0246245187": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~worker\\~ who is the buyer for the supplier contract."
+    },
+    "defaultOrderFromConnection_719b04dc621d10001f86e937a8af517d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The default supplier order-from connection on the supplier contract. Workday populates the order-from connection on requisitions and purchase orders when you select the supplier contract."
+    },
+    "supplierInvoiceDefaultCompany_294f32dfa3861000081b89e1dcbc0598": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/companyReferenceSummary_6cb7f7b41e021000112164aeef730ea2"
+        },
+        {}
+      ],
+      "description": "The company that populates on supplier invoices for installments of this supplier contract."
+    },
+    "catalogs_294f32dfa38610000ee0f94e5faa0ad4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/supplierCatalog_294f32dfa38610000f0feb2983cb0ad8"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Catalog  \nExample(s): Supplier_Catalog_Reference_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "companyOrHierarchy_719b04dc621d10001f86ea43dea25189": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/companies_7f642ee440f710000c85fbc5b8b80000"
+        },
+        {}
+      ],
+      "description": "Company or Hierarchy associated with the Supplier Contract. The Contract is only associated with one or the other, not both."
+    },
+    "serviceLines_719b04dc621d10001f86ea7dd518518b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/contractServiceLineSummary_533e3415bec610003e1b3cbc959a9658"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Contract Service Line"
+            }
+          }
+        }
+      ]
+    },
+    "paymentType_719b04dc621d10001f86e8f6377d5179": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The payment type for the reporting transaction."
+    },
+    "noticePeriodFrequency_294f32dfa38610000736f43fdd09049b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Unit of time for the notice period selected on the supplier contract."
+    },
+    "multiParticipants_719b04dc621d10001f86eac0c00d518f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/participantListEntry_66349afd48c910000d31f7eb076505bd"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Contract Participant List Entry"
+            }
+          }
+        }
+      ]
+    },
+    "shipToAddress_294f32dfa3861000081b8a2702df059c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The ship-to address that populates on purchase orders for installments of this supplier contract."
+    },
+    "supplierForSupplierInvoice_294f32dfa38610000e688af09c2d09f7": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The default Supplier used when creating a Schedule for Supplier Invoices. The schedule can be changed  to use a different supplier."
+    },
+    "contractSpecialist_719b04dc621d10001f86e9d9b7955185": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~worker\\~ who is the supplier contract specialist for the supplier contract."
+    },
+    "currency_719b04dc621d10001f86e95a14f6517f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The currency for the reporting transaction."
+    },
+    "supplier_719b04dc621d10001f86e91122b8517b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The supplier for the business documents that support one supplier. You can use this field to drill into the details and access its related actions."
+    },
+    "externalSystemReference_719b04dc621d10001f86e89bbafe5174": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The reference identifier of the external system that stores the requisitions, supplier invoices, suppliers, supplier contracts, or expense reports."
+    },
+    "purchaseOrderIssueOption_294f32dfa38610000b1dd99b595d06df": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The issue option that populates on purchase orders for installments of this supplier contract."
+    },
+    "renewalTermFrequency_294f32dfa386100007724e2913f904bb": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Unit of time for the renewal term selected on the supplier contract."
+    },
+    "status_719b04dc621d10001f86e8c193a25176": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of the supplier contract."
+    },
+    "multiSuppliers_719b04dc621d10001f86ea94128c518c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/supplierListEntry_66349afd48c910000df3b019706006cd"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier List Entry"
+            }
+          }
+        }
+      ]
+    },
+    "paymentTerms_294f32dfa38610000b1dd977f4a606de": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The payment terms of the customer defined on the transaction or payment terms defined on the transaction directly.  You can use this field to drill into details and access the related actions menu."
+    },
+    "contractType_719b04dc621d10001f86e9a1ee7a5181": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/supplierContractType_d120ba5ac8e910000bf550beb1ec81de"
+        },
+        {}
+      ],
+      "description": "The supplier contract type that determines how the supplier contract will function."
+    },
+    "supplierContractDetail_719b04dc621d10001f86e7aa62e0516f": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "chargeControls": {
+              "type": "array",
+              "description": "The charge control rules applied to the transaction or transaction line.",
+              "items": {
+                "$ref": "#/definitions/chargeControls_38c2fff67e6510001c6ee770e7510000"
+              },
+              "x-workday-type": "Multi-instance",
+              "x-conditionally-hidden": true
+            },
+            "overridePaymentType": {
+              "$ref": "#/definitions/overridePaymentType_294f32dfa38610000bd177bfe3120790"
+            },
+            "billToAddress": {
+              "$ref": "#/definitions/billToAddress_294f32dfa3861000081b8a30154c059d"
+            },
+            "catalogDiscountPercent": {
+              "type": "number",
+              "example": 999.99,
+              "description": "Catalog Discount Percent applied to all Catalog Items on the Supplier Contract. The discounted Unit Cost will not be used if there is a Contract Line for the Item, since the Unit Cost on the Contract Line will be used.",
+              "x-workday-type": "Numeric"
+            },
+            "supplierInvoiceReferenceNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The supplier invoice reference number on the supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "purchaseOrderDefaultCompany": {
+              "$ref": "#/definitions/purchaseOrderDefaultCompany_294f32dfa3861000081b8a077b400599"
+            },
+            "overview": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description or overview of the supplier contract.",
+              "x-workday-type": "Rich Text"
+            },
+            "buyer": {
+              "$ref": "#/definitions/buyer_719b04dc621d10001f86ea0246245187"
+            },
+            "defaultOrderFromConnection": {
+              "$ref": "#/definitions/defaultOrderFromConnection_719b04dc621d10001f86e937a8af517d"
+            },
+            "supplierInvoiceDefaultCompany": {
+              "$ref": "#/definitions/supplierInvoiceDefaultCompany_294f32dfa3861000081b89e1dcbc0598"
+            },
+            "signedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the supplier contract was signed. This date is optional and doesn't affect the execution of the supplier contract.",
+              "x-workday-type": "Date"
+            },
+            "catalogs": {
+              "type": "array",
+              "description": "The catalogs for the supplier contract. You can have 1 or more catalogs for a supplier contract. The contract type must be enabled for catalogs and the supplier of catalogs must match the supplier of the contract.",
+              "items": {
+                "$ref": "#/definitions/catalogs_294f32dfa38610000ee0f94e5faa0ad4"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "externalReferenceID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The external identifier that's associated with a Workday requisition, supplier, supplier contract, or supplier invoice.",
+              "x-workday-type": "Text"
+            },
+            "companyOrHierarchy": {
+              "$ref": "#/definitions/companyOrHierarchy_719b04dc621d10001f86ea43dea25189"
+            },
+            "invoicedPOAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The Total Amount from Supplier Invoices attached to Purchase Orders. Invoices that are canceled or denied are not included. Will return zero if the amount is negative. The currency is the currency of the Supplier Contract.",
+              "x-workday-type": "Currency"
+            },
+            "receiptAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The total received amount for the supplier contract in the contract currency. Workday excludes draft and in progress receipts when the option is selected for the company’s procurement options. Receipts from Purchase Orders are not included, nor are canceled or denied Receipts.",
+              "x-workday-type": "Currency"
+            },
+            "billToContactDetail": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The bill-to contact that populates on purchase orders for installments of this supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "serviceLines": {
+              "type": "array",
+              "description": "The service lines of the supplier contract.",
+              "items": {
+                "$ref": "#/definitions/serviceLines_719b04dc621d10001f86ea7dd518518b"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "noticePeriod": {
+              "type": "integer",
+              "example": "999",
+              "description": "The number of days/months prior to supplier contract expiration that a notice is delivered.",
+              "x-workday-type": "Numeric"
+            },
+            "fromSupplierList": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if Supplier List option is enabled for a Multi-Supplier Contract.",
+              "x-workday-type": "Boolean"
+            },
+            "allowAllSuppliers": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the Allow All Suppliers option is enabled for a multisupplier type contract.",
+              "x-workday-type": "Boolean"
+            },
+            "automaticallyRenew": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if the supplier contract is automatically renewed.",
+              "x-workday-type": "Boolean"
+            },
+            "totalAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The total contract amount of a supplier contract. This must be equal to, or greater than, the line extended amount.",
+              "x-workday-type": "Currency"
+            },
+            "paymentType": {
+              "$ref": "#/definitions/paymentType_719b04dc621d10001f86e8f6377d5179"
+            },
+            "originalTotalAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The original total contract amount in the currency of the supplier contract.",
+              "x-workday-type": "Currency"
+            },
+            "documentLink": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The link to the external document that the supplier contract refers to. The supplier contract may stem from an external system and this link allows to access the contract to that external system.",
+              "x-workday-type": "Text"
+            },
+            "renewalTerm": {
+              "type": "integer",
+              "example": "999",
+              "description": "The number of days/months/years the supplier contract is renewed for.",
+              "x-workday-type": "Numeric"
+            },
+            "gpoReference": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Group Purchase Organization (GPO) contract reference of the supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "noticePeriodFrequency": {
+              "$ref": "#/definitions/noticePeriodFrequency_294f32dfa38610000736f43fdd09049b"
+            },
+            "multiParticipants": {
+              "type": "array",
+              "description": "The list of participants associated with a supplier contract (Includes active and in-active).",
+              "items": {
+                "$ref": "#/definitions/multiParticipants_719b04dc621d10001f86eac0c00d518f"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "nonPOInvoiceAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The total amount on invoices that aren't associated to purchase orders, in the currency of the supplier contract. Workday doesn't include canceled invoices, denied invoices, and lease-type contract invoice installments marked as Accounted. This report field returns zero when the total amount is negative.",
+              "x-workday-type": "Currency"
+            },
+            "endDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The end date of the supplier contract.",
+              "x-workday-type": "Date"
+            },
+            "purchaseOrderAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The Total Amount from Purchase Orders associated with the contract, either by contract line or header level reference. Orders that are canceled or denied are not included. The currency is the currency of the Supplier Contract. Landed costs are included.",
+              "x-workday-type": "Currency"
+            },
+            "shipToAddress": {
+              "$ref": "#/definitions/shipToAddress_294f32dfa3861000081b8a2702df059c"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the supplier contract begins and is executable. The contract is valid and executable when the start date is on or before the date of the spend transaction. Example: When the purchase order date predates the contract start date, the contracted price of an item isn't applicable and the spend amount won't be recorded against the contract.",
+              "x-workday-type": "Date"
+            },
+            "supplierForSupplierInvoice": {
+              "$ref": "#/definitions/supplierForSupplierInvoice_294f32dfa38610000e688af09c2d09f7"
+            },
+            "number": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The automatically generated supplier contract number.",
+              "x-workday-type": "Text"
+            },
+            "contractSpecialist": {
+              "$ref": "#/definitions/contractSpecialist_719b04dc621d10001f86e9d9b7955185"
+            },
+            "onHold": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the transaction document is on hold. You can put customer contracts, supplier invoices, inventory pick lists and other types of documents on hold.",
+              "x-workday-type": "Boolean"
+            },
+            "currency": {
+              "$ref": "#/definitions/currency_719b04dc621d10001f86e95a14f6517f"
+            },
+            "shipToContactDetail": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The ship-to contact that populates on purchase orders for installments of this supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "supplier": {
+              "$ref": "#/definitions/supplier_719b04dc621d10001f86e91122b8517b"
+            },
+            "externalSystemReference": {
+              "$ref": "#/definitions/externalSystemReference_719b04dc621d10001f86e89bbafe5174"
+            },
+            "purchaseOrderIssueOption": {
+              "$ref": "#/definitions/purchaseOrderIssueOption_294f32dfa38610000b1dd99b595d06df"
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The contract name for the supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "renewalTermFrequency": {
+              "$ref": "#/definitions/renewalTermFrequency_294f32dfa386100007724e2913f904bb"
+            },
+            "sendExpiryNotification": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if the supplier contract is included in expiry supplier contract notifications",
+              "x-workday-type": "Boolean"
+            },
+            "status": {
+              "$ref": "#/definitions/status_719b04dc621d10001f86e8c193a25176"
+            },
+            "multiSuppliers": {
+              "type": "array",
+              "description": "Contains the Supplier List Entries associated with the Supplier Contract.",
+              "items": {
+                "$ref": "#/definitions/multiSuppliers_719b04dc621d10001f86ea94128c518c"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "contractReferenceNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reference number that identifies the supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "paymentTerms": {
+              "$ref": "#/definitions/paymentTerms_294f32dfa38610000b1dd977f4a606de"
+            },
+            "contractType": {
+              "$ref": "#/definitions/contractType_719b04dc621d10001f86e9a1ee7a5181"
+            },
+            "markupPercent": {
+              "type": "number",
+              "example": 999.99,
+              "description": "The markup percent applied to the unit cost of supplier items associated to the supplier contract.",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Contract"
+            }
+          }
+        }
+      ]
+    },
+    "externalSystemReference_cb840b4c087d100019cd5a0390613cfd": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The reference identifier of the external system that stores the requisitions, supplier invoices, suppliers, supplier contracts, or expense reports."
+    },
+    "status_cb840b4c087d100019cd59ada3ca3cf9": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of the supplier contract."
+    },
+    "paymentType_cb840b4c087d100019cd58fe1e393cf2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The payment type for the reporting transaction."
+    },
+    "supplier_cb840b4c087d100019cd5a69d5dc3d01": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The supplier for the business documents that support one supplier. You can use this field to drill into the details and access its related actions."
+    },
+    "defaultOrderFromConnection_cb840b4c087d100019cd59ca7f023cfa": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The default supplier order-from connection on the supplier contract. Workday populates the order-from connection on requisitions and purchase orders when you select the supplier contract."
+    },
+    "currency_cb840b4c087d100019cd58b39a733cf0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The currency for the reporting transaction."
+    },
+    "contractType_cb840b4c087d100019cd5aba0f873d04": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/supplierContractType_d120ba5ac8e910000bf550beb1ec81de"
+        },
+        {}
+      ],
+      "description": "The supplier contract type that determines how the supplier contract will function."
+    },
+    "contractSpecialist_a42a81dd372910001b44628bb9954ba2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~worker\\~ who is the supplier contract specialist for the supplier contract."
+    },
+    "buyer_cb840b4c087d100019cd59e1e7f93cfb": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~worker\\~ who is the buyer for the supplier contract."
+    },
+    "companyOrHierarchy_cb840b4c087d100019cd5ad2123e3d05": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/companies_7f642ee440f710000c85fbc5b8b80000"
+        },
+        {}
+      ],
+      "description": "Company or Hierarchy associated with the Supplier Contract. The Contract is only associated with one or the other, not both."
+    },
+    "chargeControls_38c2fff67e6510001dce816376650000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/chargeControls_38c2fff67e6510001c6b434637750000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Charge Control"
+            }
+          }
+        }
+      ]
+    },
+    "renewalTermFrequency_294f32dfa3861000078f61bf2c1604d5": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Unit of time for the renewal term selected on the supplier contract."
+    },
+    "supplierInvoiceDefaultCompany_294f32dfa38610000ac0cb2df6b206aa": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/companyReferenceSummary_6cb7f7b41e021000112164aeef730ea2"
+        },
+        {}
+      ],
+      "description": "The company that populates on supplier invoices for installments of this supplier contract."
+    },
+    "catalogs_294f32dfa38610000ee9edeb3c0c0ad6": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/supplierCatalog_294f32dfa38610000f0feb2983cb0ad8"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Catalog  \nExample(s): Supplier_Catalog_Reference_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "purchaseOrderDefaultCompany_294f32dfa38610000ac0cb53c99306ab": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/companyReferenceSummary_6cb7f7b41e021000112164aeef730ea2"
+        },
+        {}
+      ],
+      "description": "The company that populates on purchase orders for installments of this supplier contract."
+    },
+    "supplierForSupplierInvoice_294f32dfa38610000e477c74a46609f4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The default Supplier used when creating a Schedule for Supplier Invoices. The schedule can be changed  to use a different supplier."
+    },
+    "purchaseOrderIssueOption_294f32dfa38610000b20f0361c5006e3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The issue option that populates on purchase orders for installments of this supplier contract."
+    },
+    "paymentTerms_294f32dfa38610000b20f023685f06e2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The payment terms of the customer defined on the transaction or payment terms defined on the transaction directly.  You can use this field to drill into details and access the related actions menu."
+    },
+    "multiSuppliers_66349afd48c910000df5b9dfb39f06d2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/supplierListEntry_66349afd48c910000df3b019706006cd"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier List Entry"
+            }
+          }
+        }
+      ]
+    },
+    "shipToAddress_294f32dfa38610000ac0cb7ab18906ad": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The ship-to address that populates on purchase orders for installments of this supplier contract."
+    },
+    "multiParticipants_66349afd48c910000d37cadb706505c1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/participantListEntry_66349afd48c910000d31f7eb076505bd"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Contract Participant List Entry"
+            }
+          }
+        }
+      ]
+    },
+    "noticePeriodFrequency_294f32dfa38610000741bf971c1c049d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Unit of time for the notice period selected on the supplier contract."
+    },
+    "billToAddress_294f32dfa38610000ac0cb5c280e06ac": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The bill-to address that populates on purchase orders for installments of this supplier contract."
+    },
+    "overridePaymentType_294f32dfa38610000bc4bb59570c078e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The payment type that populates on supplier invoices for installments of this supplier contract."
+    },
+    "supplierContractSummary_cd5128d9804a100018f833d472d63c26": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "onHold": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the transaction document is on hold. You can put customer contracts, supplier invoices, inventory pick lists and other types of documents on hold.",
+              "x-workday-type": "Boolean"
+            },
+            "externalReferenceID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The external identifier that's associated with a Workday requisition, supplier, supplier contract, or supplier invoice.",
+              "x-workday-type": "Text"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the supplier contract begins and is executable. The contract is valid and executable when the start date is on or before the date of the spend transaction. Example: When the purchase order date predates the contract start date, the contracted price of an item isn't applicable and the spend amount won't be recorded against the contract.",
+              "x-workday-type": "Date"
+            },
+            "originalTotalAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The original total contract amount in the currency of the supplier contract.",
+              "x-workday-type": "Currency"
+            },
+            "externalSystemReference": {
+              "$ref": "#/definitions/externalSystemReference_cb840b4c087d100019cd5a0390613cfd"
+            },
+            "signedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the supplier contract was signed. This date is optional and doesn't affect the execution of the supplier contract.",
+              "x-workday-type": "Date"
+            },
+            "status": {
+              "$ref": "#/definitions/status_cb840b4c087d100019cd59ada3ca3cf9"
+            },
+            "contractReferenceNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reference number that identifies the supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "gpoReference": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Group Purchase Organization (GPO) contract reference of the supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "paymentType": {
+              "$ref": "#/definitions/paymentType_cb840b4c087d100019cd58fe1e393cf2"
+            },
+            "supplier": {
+              "$ref": "#/definitions/supplier_cb840b4c087d100019cd5a69d5dc3d01"
+            },
+            "defaultOrderFromConnection": {
+              "$ref": "#/definitions/defaultOrderFromConnection_cb840b4c087d100019cd59ca7f023cfa"
+            },
+            "currency": {
+              "$ref": "#/definitions/currency_cb840b4c087d100019cd58b39a733cf0"
+            },
+            "contractType": {
+              "$ref": "#/definitions/contractType_cb840b4c087d100019cd5aba0f873d04"
+            },
+            "endDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The end date of the supplier contract.",
+              "x-workday-type": "Date"
+            },
+            "overview": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description or overview of the supplier contract.",
+              "x-workday-type": "Rich Text"
+            },
+            "number": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The automatically generated supplier contract number.",
+              "x-workday-type": "Text"
+            },
+            "contractSpecialist": {
+              "$ref": "#/definitions/contractSpecialist_a42a81dd372910001b44628bb9954ba2"
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The contract name for the supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "buyer": {
+              "$ref": "#/definitions/buyer_cb840b4c087d100019cd59e1e7f93cfb"
+            },
+            "totalAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The total contract amount of a supplier contract. This must be equal to, or greater than, the line extended amount.",
+              "x-workday-type": "Currency"
+            },
+            "companyOrHierarchy": {
+              "$ref": "#/definitions/companyOrHierarchy_cb840b4c087d100019cd5ad2123e3d05"
+            },
+            "documentLink": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The link to the external document that the supplier contract refers to. The supplier contract may stem from an external system and this link allows to access the contract to that external system.",
+              "x-workday-type": "Text"
+            },
+            "chargeControls": {
+              "type": "array",
+              "description": "The charge control rules applied to the transaction or transaction line.",
+              "items": {
+                "$ref": "#/definitions/chargeControls_38c2fff67e6510001dce816376650000"
+              },
+              "x-workday-type": "Multi-instance",
+              "x-conditionally-hidden": true
+            },
+            "receiptAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The total received amount for the supplier contract in the contract currency. Workday excludes draft and in progress receipts when the option is selected for the company’s procurement options. Receipts from Purchase Orders are not included, nor are canceled or denied Receipts.",
+              "x-workday-type": "Currency"
+            },
+            "invoicedPOAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The Total Amount from Supplier Invoices attached to Purchase Orders. Invoices that are canceled or denied are not included. Will return zero if the amount is negative. The currency is the currency of the Supplier Contract.",
+              "x-workday-type": "Currency"
+            },
+            "automaticallyRenew": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if the supplier contract is automatically renewed.",
+              "x-workday-type": "Boolean"
+            },
+            "nonPOInvoiceAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The total amount on invoices that aren't associated to purchase orders, in the currency of the supplier contract. Workday doesn't include canceled invoices, denied invoices, and lease-type contract invoice installments marked as Accounted. This report field returns zero when the total amount is negative.",
+              "x-workday-type": "Currency"
+            },
+            "purchaseOrderAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The Total Amount from Purchase Orders associated with the contract, either by contract line or header level reference. Orders that are canceled or denied are not included. The currency is the currency of the Supplier Contract. Landed costs are included.",
+              "x-workday-type": "Currency"
+            },
+            "renewalTermFrequency": {
+              "$ref": "#/definitions/renewalTermFrequency_294f32dfa3861000078f61bf2c1604d5"
+            },
+            "supplierInvoiceDefaultCompany": {
+              "$ref": "#/definitions/supplierInvoiceDefaultCompany_294f32dfa38610000ac0cb2df6b206aa"
+            },
+            "catalogs": {
+              "type": "array",
+              "description": "The catalogs for the supplier contract. You can have 1 or more catalogs for a supplier contract. The contract type must be enabled for catalogs and the supplier of catalogs must match the supplier of the contract.",
+              "items": {
+                "$ref": "#/definitions/catalogs_294f32dfa38610000ee9edeb3c0c0ad6"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "catalogDiscountPercent": {
+              "type": "number",
+              "example": 999.99,
+              "description": "Catalog Discount Percent applied to all Catalog Items on the Supplier Contract. The discounted Unit Cost will not be used if there is a Contract Line for the Item, since the Unit Cost on the Contract Line will be used.",
+              "x-workday-type": "Numeric"
+            },
+            "renewalTerm": {
+              "type": "integer",
+              "example": "999",
+              "description": "The number of days/months/years the supplier contract is renewed for.",
+              "x-workday-type": "Numeric"
+            },
+            "purchaseOrderDefaultCompany": {
+              "$ref": "#/definitions/purchaseOrderDefaultCompany_294f32dfa38610000ac0cb53c99306ab"
+            },
+            "noticePeriod": {
+              "type": "integer",
+              "example": "999",
+              "description": "The number of days/months prior to supplier contract expiration that a notice is delivered.",
+              "x-workday-type": "Numeric"
+            },
+            "supplierForSupplierInvoice": {
+              "$ref": "#/definitions/supplierForSupplierInvoice_294f32dfa38610000e477c74a46609f4"
+            },
+            "purchaseOrderIssueOption": {
+              "$ref": "#/definitions/purchaseOrderIssueOption_294f32dfa38610000b20f0361c5006e3"
+            },
+            "shipToContactDetail": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The ship-to contact that populates on purchase orders for installments of this supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "paymentTerms": {
+              "$ref": "#/definitions/paymentTerms_294f32dfa38610000b20f023685f06e2"
+            },
+            "multiSuppliers": {
+              "type": "array",
+              "description": "Contains the Supplier List Entries associated with the Supplier Contract.",
+              "items": {
+                "$ref": "#/definitions/multiSuppliers_66349afd48c910000df5b9dfb39f06d2"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "shipToAddress": {
+              "$ref": "#/definitions/shipToAddress_294f32dfa38610000ac0cb7ab18906ad"
+            },
+            "fromSupplierList": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if Supplier List option is enabled for a Multi-Supplier Contract.",
+              "x-workday-type": "Boolean"
+            },
+            "billToContactDetail": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The bill-to contact that populates on purchase orders for installments of this supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "allowAllSuppliers": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the Allow All Suppliers option is enabled for a multisupplier type contract.",
+              "x-workday-type": "Boolean"
+            },
+            "multiParticipants": {
+              "type": "array",
+              "description": "The list of participants associated with a supplier contract (Includes active and in-active).",
+              "items": {
+                "$ref": "#/definitions/multiParticipants_66349afd48c910000d37cadb706505c1"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "noticePeriodFrequency": {
+              "$ref": "#/definitions/noticePeriodFrequency_294f32dfa38610000741bf971c1c049d"
+            },
+            "markupPercent": {
+              "type": "number",
+              "example": 999.99,
+              "description": "The markup percent applied to the unit cost of supplier items associated to the supplier contract.",
+              "x-workday-type": "Numeric"
+            },
+            "sendExpiryNotification": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if the supplier contract is included in expiry supplier contract notifications",
+              "x-workday-type": "Boolean"
+            },
+            "billToAddress": {
+              "$ref": "#/definitions/billToAddress_294f32dfa38610000ac0cb5c280e06ac"
+            },
+            "supplierInvoiceReferenceNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The supplier invoice reference number on the supplier contract.",
+              "x-workday-type": "Text"
+            },
+            "overridePaymentType": {
+              "$ref": "#/definitions/overridePaymentType_294f32dfa38610000bc4bb59570c078e"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Contract"
+            }
+          }
+        }
+      ]
+    },
+    "companies_7f642ee440f710000c85fbc5b8b80000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "companiesOrHierarchies_0a6867d85c6c10000ee4586391190000": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/companies_7f642ee440f710000c85fbc5b8b80000"
+          }
+        }
+      }
+    },
+    "supplierContractType_d120ba5ac8e910000bf550beb1ec81de": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Contract Type  \nExample(s): Supplier_Contract_Type_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "contractTypes_d120ba5ac8e910000a6554956db219b1": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/supplierContractType_d120ba5ac8e910000bf550beb1ec81de"
+          }
+        }
+      }
+    },
+    "companyReferenceSummary_6cb7f7b41e021000112164aeef730ea2": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Company  \nExample(s): Company_Reference_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "company_66349afd48c910000d31f86ab81805bf": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/companyReferenceSummary_6cb7f7b41e021000112164aeef730ea2"
+        },
+        {}
+      ],
+      "description": "The participant company associated with the supplier contract. Only participant companies can have access to the supplier contract. The header company may or may not be a participant company."
+    },
+    "participantListEntry_66349afd48c910000d31f7eb076505bd": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the entry on Participant List for a Multi-Participant Contract is inactive.",
+              "x-workday-type": "Boolean"
+            },
+            "company": {
+              "$ref": "#/definitions/company_66349afd48c910000d31f86ab81805bf"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "chargeControls_38c2fff67e6510001c6b434637750000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "maximumAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The \\~maximum charge control amount\\~ of the charge control rule for the source transaction or transaction line.  The amount can be used in condition rules to control spending on target transactions or transaction lines.",
+              "x-workday-type": "Currency"
+            },
+            "minimumAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The \\~minimum charge control amount\\~ of the charge control rule for the source transaction or transaction line. The amount can be used in condition rules to control spending on target transactions or transaction lines.",
+              "x-workday-type": "Currency"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "supplier_66349afd48c910000df3b072b07e06d0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The supplier on a supplier list for a contract that can contain multiple suppliers."
+    },
+    "supplierListEntry_66349afd48c910000df3b019706006cd": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "markupPercent": {
+              "type": "number",
+              "example": 999.99,
+              "description": "The markup percent applied to the unit cost of supplier items associated to the supplier.",
+              "x-workday-type": "Numeric"
+            },
+            "supplier": {
+              "$ref": "#/definitions/supplier_66349afd48c910000df3b072b07e06d0"
+            },
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if the entry on Supplier List for Multi-Supplier Contract is inactive.",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "companyForInvoice_e9cb46c9ca49100010e45dd8eccc1242": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/companyReferenceSummary_6cb7f7b41e021000112164aeef730ea2"
+        },
+        {}
+      ],
+      "description": "Company for Business Document Line. For intercompany transactions the line company may be different than the header company. For non intercompany transactions the line company will be the same as the header company.\nThis Report Field is based on a common super class that spans many of the financial transactions thus Custom Validation Rules and/or Workflow Condition Rules that use this field may be reused more widely."
+    },
+    "taxCode_533e3415bec61000405d5321e7ba9946": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The tax code for the taxable document line."
+    },
+    "spendCategory_e9cb46c9ca49100010e45dc390cb1240": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Spend Category defined on the Line for the Business Document Line Distribution."
+    },
+    "item_533e3415bec610003e479b46a6809688": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The item for the document line."
+    },
+    "taxRecoverabilities_533e3415bec61000405d53085f2e9945": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/taxRecoverabilitySummary_0f17b46ff78e100005fc5ac6110f16ac"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Tax Recoverability"
+            }
+          }
+        }
+      ]
+    },
+    "worktags_533e3415bec6100041766c4197759a81": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagOutputSummary_0f17b46ff78e1000060c3f859a1616dd"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Accounting Worktag"
+            }
+          }
+        }
+      ]
+    },
+    "shipToContact_533e3415bec610004156086772249a63": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Ship To contact \\~worker\\~ for the document line."
+    },
+    "taxApplicability_533e3415bec61000403b963f5aed9913": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the tax applicability of the taxable invoice line."
+    },
+    "chargeControls_38c2fff67e6510001d6d08dc66ef0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/chargeControls_38c2fff67e6510001c6b434637750000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Charge Control"
+            }
+          }
+        }
+      ]
+    },
+    "location_e9cb46c9ca49100010e45da4893e123d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The location for the supplier contract line."
+    },
+    "shipToAddress_533e3415bec6100041766c682e0b9a82": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Ship-To Address for the document line. If Line Ship-To Address is empty, the header Ship-To Address is returned."
+    },
+    "contractServiceLineSummary_533e3415bec610003e1b3cbc959a9658": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "lineIsCanceled": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if this Supplier Contract Line is canceled. Canceled contract lines can't be ordered, received, or invoiced.",
+              "x-workday-type": "Boolean"
+            },
+            "lineNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The line number of this Supplier Contract Line.",
+              "maxLength": 20,
+              "x-workday-type": "Text"
+            },
+            "companyForInvoice": {
+              "$ref": "#/definitions/companyForInvoice_e9cb46c9ca49100010e45dd8eccc1242"
+            },
+            "extendedAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The extended amount for the document line.  Excludes Extended Amounts on Tax Only Invoices.",
+              "x-workday-type": "Currency"
+            },
+            "taxCode": {
+              "$ref": "#/definitions/taxCode_533e3415bec61000405d5321e7ba9946"
+            },
+            "spendCategory": {
+              "$ref": "#/definitions/spendCategory_e9cb46c9ca49100010e45dc390cb1240"
+            },
+            "item": {
+              "$ref": "#/definitions/item_533e3415bec610003e479b46a6809688"
+            },
+            "taxRecoverabilities": {
+              "type": "array",
+              "description": "Tax Recoverabilities on a Taxable Document Line.",
+              "items": {
+                "$ref": "#/definitions/taxRecoverabilities_533e3415bec61000405d53085f2e9945"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "doNotAutoRenew": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the supplier contract line is marked as Do Not Auto Renew. The line checkbox is only editable when the supplier contract type allows Renewal Terms.",
+              "x-workday-type": "Boolean"
+            },
+            "lineOnHold": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the supplier contract line is On Hold. You can't add On Hold lines to purchase orders, supplier invoices, receipts, or installments. Lines already associated with downstream documents can't be marked as On Hold.",
+              "x-workday-type": "Boolean"
+            },
+            "lineDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The line item description for the document line.",
+              "x-workday-type": "Text"
+            },
+            "retention": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if the Retention check box is selected on the line.",
+              "x-workday-type": "Boolean"
+            },
+            "worktags": {
+              "type": "array",
+              "description": "All worktags for the related business object.",
+              "items": {
+                "$ref": "#/definitions/worktags_533e3415bec6100041766c4197759a81"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "memo": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The memo on the document line.",
+              "x-workday-type": "Text"
+            },
+            "shipToContact": {
+              "$ref": "#/definitions/shipToContact_533e3415bec610004156086772249a63"
+            },
+            "taxApplicability": {
+              "$ref": "#/definitions/taxApplicability_533e3415bec61000403b963f5aed9913"
+            },
+            "renewalAmount": {
+              "type": "object",
+              "example": "99999999999.999",
+              "description": "The amount to be renewed for this Supplier Contract Line. When supplier contracts are auto-renewed, the renewal amount automatically persists on the renewed supplier contract line.",
+              "x-workday-type": "Currency"
+            },
+            "lineEndDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The end date of this Supplier Contract Line.",
+              "x-workday-type": "Date"
+            },
+            "chargeControls": {
+              "type": "array",
+              "description": "The charge control rules applied to the transaction or transaction line.",
+              "items": {
+                "$ref": "#/definitions/chargeControls_38c2fff67e6510001d6d08dc66ef0000"
+              },
+              "x-workday-type": "Multi-instance",
+              "x-conditionally-hidden": true
+            },
+            "location": {
+              "$ref": "#/definitions/location_e9cb46c9ca49100010e45da4893e123d"
+            },
+            "lineStartDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The start date of the Supplier Contract Line.",
+              "x-workday-type": "Date"
+            },
+            "shipToAddress": {
+              "$ref": "#/definitions/shipToAddress_533e3415bec6100041766c682e0b9a82"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Supplier Contract Service Line"
+            }
+          }
+        }
+      ]
+    },
+    "worktagType_6b452996a9281000081fa45c5b950016": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The worktag type for the worktag."
+    },
+    "worktagOutputSummary_0f17b46ff78e1000060c3f859a1616dd": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "worktagType": {
+              "$ref": "#/definitions/worktagType_6b452996a9281000081fa45c5b950016"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Accounting Worktag"
+            }
+          }
+        }
+      ]
+    },
+    "supplierCatalog_294f32dfa38610000f0feb2983cb0ad8": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "taxRecoverabilitySummary_0f17b46ff78e100005fc5ac6110f16ac": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "percentRecoverable": {
+              "type": "number",
+              "example": 999.999,
+              "description": "The tax recoverable percentage for tax recoverability.",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

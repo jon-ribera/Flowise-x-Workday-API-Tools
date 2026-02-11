@@ -1,0 +1,3414 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The public APIs to access event actions and details",
+    "version": "v1",
+    "title": "businessProcess",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "b6729d1b232d10000cd0f346f6b90004"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/businessProcess/v1",
+  "tags": [
+    {
+      "name": "eventSteps",
+      "description": "Returns a collection of business process event steps based on the specified parameters. Only event steps that are awaiting action from the processing person are returned."
+    },
+    {
+      "name": "events",
+      "description": "Returns a collection of events based on the specified parameters. You must specify either the worker or initiating worker query parameter. If you did not specify the worker nor the initiating worker parameter, this method returns an empty response. \n\nThis operation returns the most recent results first. The results are sorted in descending order of the creation date of the event.\n\nSecured by the Business Process Security Policy for each event."
+    },
+    {
+      "name": "types",
+      "description": "Returns all business process types. Secured by Public Business Processes."
+    },
+    {
+      "name": "Prompt Values",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/eventSteps/{ID}/toDo": {
+      "post": {
+        "tags": [
+          "eventSteps"
+        ],
+        "summary": "Post an action for a To Do step in a business process.",
+        "description": "Post an action for a To Do step in a business process.\nSpecify these required fields in the request body: {stepAction}.\nYou can add an optional comment, if enabled at tenant or business process level.\n\nValid values for stepAction are:\n{ \"id\": \"133d5c88baa64136aab041c1d2e9ed53\" } for Submit,  \n{ \"id\": \"d9e41d34446c11de98360015c5e6daf6\" } for Save for Later.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "businessProcessEventStepTodo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/businessProcessEventStepTodo_33ae690d779b10001c98021b2aa90000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/businessProcessEventStepTodo_33ae690d779b10001c98021b2aa90000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA212 | This event step isn't awaiting your action\nA1572 | Specify a To Do step.\nA1573 | You can't comment on this business process type.\nA1573 | You can't comment on this business process type.\nA1574 | Specify Submit or Save for Later. This step type doesn't support other actions.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/eventSteps": {
+      "get": {
+        "tags": [
+          "eventSteps"
+        ],
+        "summary": "Retrieves business process event steps.",
+        "description": "Retrieves a collection of business process event steps. You can filter the event steps by business process, creation date, due date, and step type.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "businessProcess",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "createdOnOrAfter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "createdOnOrBefore",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "dueDateOnOrAfter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "dueDateOnOrBefore",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "stepType",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/eventStepsSummary_da856647269810000f8afbac30ba0183"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/events": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Retrieves business process events.",
+        "description": "Retrieves a collection of business process events based on the specified parameters. You must specify exactly one worker parameter. If a worker parameter is not specified, returns a blank response.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "businessProcess",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "completedOnOrAfter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "completedOnOrBefore",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "initiatedOnOrAfter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "initiatedOnOrBefore",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "initiator",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "worker",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/eventDetails_ce00e3198c5b100007db119d8cef0007"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/events/{ID}/completedSteps": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Retrieves completed steps for a business process event.",
+        "description": "Retrieves all business process steps that are completed for the specified buinesss process event.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/completedStepsView_0108ca756f1b10001913796229930074"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/events/{ID}/attachments": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Retrieves attachments for a business process event.",
+        "description": "Retrieves attachments on the specified business process event that the processing user has permission to view.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/eventAttachmentsView_f1092a8e5197100009621afa37b9029b"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/types": {
+      "get": {
+        "tags": [
+          "types"
+        ],
+        "summary": "Retrieves all business process types.",
+        "description": "Retrieves a collection of business process types.\n\n<b>Secured by:</b> Public Business Processes\n\n<b>Scope:</b> Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/businessProcessTypeView_a06e49cf714e100008435914d7d90105"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/events/{ID}/rescind": {
+      "post": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Rescinds a business process event.",
+        "description": "Rescinds the business process event specified by the ID. In the request body, specify these required fields: comment.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "businessProcessEventAction",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/businessProcessEventAction_46302b0ce6a810001fcbad0bc1e30000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/businessProcessEventAction_46302b0ce6a810001fcbad0bc1e30000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA181 | You need to specify a comment.\nA219 | You can't rescind this event because the status isn't Successfully Completed.\nA2443 | You currently don't have security access to rescind this event.\nA2444 | You can't rescind this event because this action isn't supported on the business process.\nA2444 | You can't rescind this event because this action isn't supported on this business process: [businessprocesstype]\nA2445 | You can't rescind this event because this action isn't supported on the subprocess.\nA2453 | You can't rescind this event because this event is delegated to someone.\nA2454 | You can't rescind this event because there are subevents still in progress.\nA2988 | [nonRescindableSubprocessValidationMessage]",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/types/{ID}": {
+      "get": {
+        "tags": [
+          "types"
+        ],
+        "summary": "Retrieves a business process type.",
+        "description": "Retrieves the business process type specified by the ID.\n\n<b>Secured by:</b> Public Business Processes\n\n<b>Scope:</b> Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/businessProcessTypeDetails_e73cbf40479a100012b92d7f999d0144"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/eventSteps/{ID}": {
+      "get": {
+        "tags": [
+          "eventSteps"
+        ],
+        "summary": "Retrieves a business process event step.",
+        "description": "Returns a business process event step. Returned results are secured based on processing person's view access to the event to which the step belongs. If the processing person does not have view access to the event, when this API is called, they will not be able to retrieve the event step and receive a 404 error.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/eventStepsView_a7a41b4d029c10000b1f92d3188e18f6"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/events/{ID}/comments": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Retrieves comments for a business process event.",
+        "description": "Retrieves comments on the specified business process event.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/comments_a7a41b4d029c10000b1da9c45b7b18f4"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/events/{ID}/inProgressSteps": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Retrieves in progress steps for a business process event.",
+        "description": "Retrieves all business process steps that are currently in progress for the specified business process event.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/stepsInProgressView_be45cf559398100006ba2d34b00d0010"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/eventSteps/{ID}/deny": {
+      "post": {
+        "tags": [
+          "eventSteps"
+        ],
+        "summary": "Denies a business process event step.",
+        "description": "Denies the business process event step specified by the ID of the originating event step. The processing person must have view access to the event.  In the request body, specify these required fields: id (the event step you are denying), stepAction{id} (if there are multiple event steps), comment.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "businessProcessStepsDeny",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/businessProcessStepsDeny_0277c526ae0f100006ec0c0cc48a128b"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/businessProcessStepsDeny_0277c526ae0f100006ec0c0cc48a128b"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA181 | A comment is required\nA183 | This event step cannot be denied\nA212 | This event step is not awaiting your action.\nA225 | You are not authorized to deny this event step\nA234 | A step action is required when multiple values are available",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/sendBack/to/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Public Business Processes\n\n<b>Scope:</b> Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "eventStep",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        }
+      ]
+    },
+    "/eventSteps/{ID}/questionnaire": {
+      "post": {
+        "tags": [
+          "eventSteps"
+        ],
+        "summary": "Post an action for a Complete Questionnaire step in a business process.",
+        "description": "Post an action for a Complete Questionnaire step in a business process.\nSpecify these required fields in the request body if the intended action is Submit or Save for Later: {stepAction, questionnaireResponse}.\nYou can send Save for Later multiple times, but {questionnaireResponse} values will replace the existing questionnaire answers. \nIf the intended action is Skip, exclude {questionnaireResponse} from the request body.\n\nValid values for stepAction are:\n{ \"id\": \"133d5c88baa64136aab041c1d2e9ed53\" } for Submit,  \n{ \"id\": \"d9e41a8c446c11de98360015c5e6daf6\" } for Save for Later,\n{ \"id\": \"d9e4231a446c11de98360015c5e6daf6\" } for Skip.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "completeQuestionnaireEventStep",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/completeQuestionnaireEventStep_3544fcea2784100018ee4286aeca0000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/completeQuestionnaireEventStep_3544fcea2784100018ee4286aeca0000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA212 | This event step isn't awaiting your action\nA1584 | Specify a questionnaire response.\nA1585 | Specify a complete questionnaire.\nA1649 | You can’t skip this step if you provide a questionnaire response.\nA1650 | Specify Submit, Save for Later or Skip. This step type doesn't support other actions.\nA1651 | This step is required.\nA1754 | You have submitted more than one answer for a single select multiple choice question.\nA1755 | You have selected an invalid answer choice.\nA1757 | This questionnaire is now closed. You can no longer submit new responses or change your existing responses.\nA1758 | You cannot submit answers to branching questions without answers for parent questions.\nA1759 | All answers you submit must match the expected format for that question type.\nA1760 | This questionnaire was submitted already. You can’t submit it again.\nA1760 | This questionnaire was submitted already. You can’t submit it again.\nA1761 | All answered questions must be questions from the associated questionnaire.\nA1762 | Attach an answer. There's no uploaded file.\nA1763 | This questionnaire has already been skipped. You can’t submit it again.\nA1764 | You must answer all required questions.\nA1765 | You have submitted more multiple choice answers than is allowed for a question.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/events/{ID}/remainingSteps": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Retrieves remaining steps for a business process event.",
+        "description": "Retrieves all remaining business process steps for the specified business process event.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/remainingStepView_33c0a45dcb6a10000c26c7c9b9640020"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/events/{ID}/cancel": {
+      "post": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Cancels a business process event.",
+        "description": "Cancels the business process event specified by the ID.  In the request body, specify these required fields: comment.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "businessProcessEventAction",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/businessProcessEventAction_46302b0ce6a810001fcbad0bc1e30000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/businessProcessEventAction_46302b0ce6a810001fcbad0bc1e30000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA181 | You need to specify a comment.\nA219 | You can't cancel this business process because the event isn't in progress or in error.\nA2198 | You can't cancel this event because this action isn't supported on the subprocess.\nA2199 | You can't cancel this event because this action isn't supported on the business process.\nA2200 | You can't cancel this event because this action isn't currently supported on the business process.\nA2201 | You currently don't have security access to cancel this event.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/events/{ID}": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Retrieves a business process event.",
+        "description": "Retrieves the business process event with the specified ID.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/eventDetails_ce00e3198c5b100007db119d8cef0007"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/types/{ID}/attachmentCategories": {
+      "get": {
+        "tags": [
+          "types"
+        ],
+        "summary": "Retrieves attachment categories for a business process type.",
+        "description": "Retrieves all attachment categories for the specified business process type that the processing user can select for the specified event. You can filter by event target.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "eventTarget",
+            "in": "query",
+            "description": "The Workday ID of the event target that this business process is about. You can use a returned id from an API that returns instances of the event target type. For example, if your event target is a worker, use GET /workers in the Staffing service.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/attachmentCategoryView_01bedd7c1f9e10001e09ac8bd50600e8"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/eventSteps/{ID}/approve": {
+      "post": {
+        "tags": [
+          "eventSteps"
+        ],
+        "summary": "Approves a business process event step.",
+        "description": "Approves the business process event step specified by the ID of the originating event step.  In the request body, specify these required fields: id (the event step you are approving), comment.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "businessProcessStepsApprove",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/businessProcessStepsApprove_d3a64cee269d100010ccdf1f3a7a003c"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/businessProcessStepsApprove_d3a64cee269d100010ccdf1f3a7a003c"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA190 | This event step type cannot be approved\nA212 | This event step is not awaiting your action.\nA1573 | You can't comment on this business process type.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/eventSteps/{ID}/sendBack": {
+      "post": {
+        "tags": [
+          "eventSteps"
+        ],
+        "summary": "Sends back a business process event step.",
+        "description": "Sends back the business process event step specified by the ID of the originating event step.   In the request body, specify these required fields: id (the event step you are sending back), reason.\n\n<b>Secured by:</b> Core Navigation, Public Business Processes\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "businessProcessStepSendBack",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/businessProcessStepSendBack_7493dc548656100016691f68af730447"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/businessProcessStepSendBack_7493dc548656100016691f68af730447"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA202 | The step you are sending back to isn't supported for this business process.\nA212 | This event step isn't awaiting your action\nA227 | The step you are sending back from isn't supported for this business process.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "stepEvent_429268efcffb10000a1c13ce7e2200b3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns Event for event record."
+    },
+    "businessProcessStep_126610e8eaaa10001a6221fd7bb500b2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the step being performed by the event record."
+    },
+    "status_a7a41b4d029c10000b1f9341d97718fb": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of this business process step."
+    },
+    "stepType_003fc135ee7610000781c691372100fa": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the type of step being performed by the event record."
+    },
+    "businessProcess_abe94cbf692f10001401fef6197a023b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The business process type of the event that the step is associated with."
+    },
+    "task_1c5422aa354510000b063cf1297f00fb": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "This CRF returns the instance of the task that is configured for the Event Record. The included instance information includes a descriptor and the WID."
+    },
+    "overallProcess_cb97eee93655100009c59d031a5e013b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the overall process for this event record. The overall process is the outermost process in a business process."
+    },
+    "awaitingPersons_a7a41b4d029c10000b1f9316fd2018f8": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/awaitingPerson_be45cf559398100006b982ad8c6d000e"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Person"
+            }
+          }
+        }
+      ]
+    },
+    "comments_83266eae1691100007b8854e956f0047": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/comments_a7a41b4d029c10000b1da9c45b7b18f4"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Comment"
+            }
+          }
+        }
+      ]
+    },
+    "event_a7a41b4d029c10000b1f9334c61218fa": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Identifies the business process and allows you to drill into the details and access related actions."
+    },
+    "questionnaire_29444fc74ae610001adc2a36b8c300b3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "This CRF returns the instance of Questionnaire that is configured for the Complete Questionnaire Event included in the Event Record. The included instance information includes a descriptor and the WID."
+    },
+    "completedByPerson_a7a41b4d029c10000b1f9327976918f9": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The person that completed the step as Assignee"
+    },
+    "eventStepsView_a7a41b4d029c10000b1f92d3188e18f6": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "delayedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the delayed step will trigger.",
+              "x-workday-type": "Date"
+            },
+            "stepEvent": {
+              "$ref": "#/definitions/stepEvent_429268efcffb10000a1c13ce7e2200b3"
+            },
+            "businessProcessStep": {
+              "$ref": "#/definitions/businessProcessStep_126610e8eaaa10001a6221fd7bb500b2"
+            },
+            "parallelStepInboxOrder": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of parallel steps in My Tasks. This field returns the order only if this business process type allows the Parallel Step Order in My Tasks configuration. If there are multiple steps from the business process definition that are associated to this event step, this field returns no value.",
+              "x-workday-type": "Text"
+            },
+            "status": {
+              "$ref": "#/definitions/status_a7a41b4d029c10000b1f9341d97718fb"
+            },
+            "dueDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Returns the due date for this step.",
+              "x-workday-type": "Date"
+            },
+            "stepType": {
+              "$ref": "#/definitions/stepType_003fc135ee7610000781c691372100fa"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of this step within the business process definition it is part of.",
+              "x-workday-type": "Text"
+            },
+            "stepHelpText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "This CRF returns the step help text that is configured for the Workflow Step of the Event Record.",
+              "x-workday-type": "Rich Text"
+            },
+            "businessProcess": {
+              "$ref": "#/definitions/businessProcess_abe94cbf692f10001401fef6197a023b"
+            },
+            "completedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date when this step was completed",
+              "x-workday-type": "Date"
+            },
+            "task": {
+              "$ref": "#/definitions/task_1c5422aa354510000b063cf1297f00fb"
+            },
+            "overallProcess": {
+              "$ref": "#/definitions/overallProcess_cb97eee93655100009c59d031a5e013b"
+            },
+            "awaitingPersons": {
+              "type": "array",
+              "description": "The people this event is currently awaiting for action.",
+              "items": {
+                "$ref": "#/definitions/awaitingPersons_a7a41b4d029c10000b1f9316fd2018f8"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "comments": {
+              "type": "array",
+              "description": "Returns the comments for the business process event step",
+              "items": {
+                "$ref": "#/definitions/comments_83266eae1691100007b8854e956f0047"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "event": {
+              "$ref": "#/definitions/event_a7a41b4d029c10000b1f9334c61218fa"
+            },
+            "questionnaire": {
+              "$ref": "#/definitions/questionnaire_29444fc74ae610001adc2a36b8c300b3"
+            },
+            "completedByPerson": {
+              "$ref": "#/definitions/completedByPerson_a7a41b4d029c10000b1f9327976918f9"
+            },
+            "creationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date when the event record was created.",
+              "x-workday-type": "Date"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "stepEvent_0e248a2147271000163da105718300b7": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns Event for event record."
+    },
+    "overallProcess_da856647269810000f8afbe3503c0191": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the overall process for this event record. The overall process is the outermost process in a business process."
+    },
+    "task_da856647269810000f8afbdb394e018e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "This CRF returns the instance of the task that is configured for the Event Record. The included instance information includes a descriptor and the WID."
+    },
+    "awaitingPersons_da856647269810000f8afbe0b1160190": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/awaitingPerson_be45cf559398100006b982ad8c6d000e"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Person"
+            }
+          }
+        }
+      ]
+    },
+    "businessProcessStep_da856647269810000f8afbbdc74c0186": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the step being performed by the event record."
+    },
+    "stepType_da856647269810000f8afbcf5b17018a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the type of step being performed by the event record."
+    },
+    "businessProcess_da856647269810000f8afbd85bf8018d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The business process type of the event that the step is associated with."
+    },
+    "completedByPerson_da856647269810000f8afbed6fd00194": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The person that completed the step as Assignee"
+    },
+    "comments_da856647269810000f8afbe7addc0192": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/comments_a7a41b4d029c10000b1da9c45b7b18f4"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Comment"
+            }
+          }
+        }
+      ]
+    },
+    "status_da856647269810000f8afbc077fb0187": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of this business process step."
+    },
+    "event_da856647269810000f8afbeac5a00193": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Identifies the business process and allows you to drill into the details and access related actions."
+    },
+    "eventStepsSummary_da856647269810000f8afbac30ba0183": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "stepEvent": {
+              "$ref": "#/definitions/stepEvent_0e248a2147271000163da105718300b7"
+            },
+            "creationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date when the event record was created.",
+              "x-workday-type": "Date"
+            },
+            "stepHelpText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "This CRF returns the step help text that is configured for the Workflow Step of the Event Record.",
+              "x-workday-type": "Rich Text"
+            },
+            "overallProcess": {
+              "$ref": "#/definitions/overallProcess_da856647269810000f8afbe3503c0191"
+            },
+            "delayedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the delayed step will trigger.",
+              "x-workday-type": "Date"
+            },
+            "completedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date when this step was completed",
+              "x-workday-type": "Date"
+            },
+            "task": {
+              "$ref": "#/definitions/task_da856647269810000f8afbdb394e018e"
+            },
+            "awaitingPersons": {
+              "type": "array",
+              "description": "The people this event is currently awaiting for action.",
+              "items": {
+                "$ref": "#/definitions/awaitingPersons_da856647269810000f8afbe0b1160190"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "businessProcessStep": {
+              "$ref": "#/definitions/businessProcessStep_da856647269810000f8afbbdc74c0186"
+            },
+            "stepType": {
+              "$ref": "#/definitions/stepType_da856647269810000f8afbcf5b17018a"
+            },
+            "businessProcess": {
+              "$ref": "#/definitions/businessProcess_da856647269810000f8afbd85bf8018d"
+            },
+            "parallelStepInboxOrder": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of parallel steps in My Tasks. This field returns the order only if this business process type allows the Parallel Step Order in My Tasks configuration. If there are multiple steps from the business process definition that are associated to this event step, this field returns no value.",
+              "x-workday-type": "Text"
+            },
+            "completedByPerson": {
+              "$ref": "#/definitions/completedByPerson_da856647269810000f8afbed6fd00194"
+            },
+            "comments": {
+              "type": "array",
+              "description": "Returns the comments for the business process event step",
+              "items": {
+                "$ref": "#/definitions/comments_da856647269810000f8afbe7addc0192"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "status": {
+              "$ref": "#/definitions/status_da856647269810000f8afbc077fb0187"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of this step within the business process definition it is part of.",
+              "x-workday-type": "Text"
+            },
+            "dueDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Returns the due date for this step.",
+              "x-workday-type": "Date"
+            },
+            "event": {
+              "$ref": "#/definitions/event_da856647269810000f8afbeac5a00193"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "stepAction_122be871d36110000539df507b410000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of the step"
+    },
+    "businessProcessEventStepTodo_33ae690d779b10001c98021b2aa90000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "stepAction"
+          ],
+          "properties": {
+            "stepAction": {
+              "$ref": "#/definitions/stepAction_122be871d36110000539df507b410000"
+            },
+            "comment": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Last Comment",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "eventStatus_0277c526ae0f1000142f25a5ad5e12cd": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Workflow State of the current Action Event"
+    },
+    "stepAction_0277c526ae0f100006ec0d3a4fd7128d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of this business process step."
+    },
+    "businessProcessStepsDeny_0277c526ae0f100006ec0c0cc48a128b": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "comment": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns user's comment for Event Record.",
+              "x-workday-type": "Text"
+            },
+            "eventStatus": {
+              "$ref": "#/definitions/eventStatus_0277c526ae0f1000142f25a5ad5e12cd"
+            },
+            "stepAction": {
+              "$ref": "#/definitions/stepAction_0277c526ae0f100006ec0d3a4fd7128d"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "status_7493dc548656100016691f82f04a0448": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of this business process step.",
+      "x-readOnly": true
+    },
+    "to_7493dc54865610001e4448dfd4cc0826": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "a set containing no instances",
+      "x-workday-populated-by": {
+        "path": "/values/sendBack/to",
+        "field": "id"
+      }
+    },
+    "businessProcessStepSendBack_7493dc548656100016691f68af730447": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "reason",
+            "to"
+          ],
+          "properties": {
+            "reason": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns user's comment for Event Record.",
+              "x-workday-type": "Text"
+            },
+            "status": {
+              "$ref": "#/definitions/status_7493dc548656100016691f82f04a0448"
+            },
+            "to": {
+              "$ref": "#/definitions/to_7493dc54865610001e4448dfd4cc0826"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "stepAction_0fe15a3bc2e510000a1ff95a59a30000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of the step"
+    },
+    "questionnaireResponse_3544fcea2784100018ee4320719e0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionnaireResponseSubmit_177812e3e8b51000163a63c22b7a0000"
+        },
+        {}
+      ],
+      "description": "Questionnaire Response"
+    },
+    "completeQuestionnaireEventStep_3544fcea2784100018ee4286aeca0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "stepAction": {
+              "$ref": "#/definitions/stepAction_0fe15a3bc2e510000a1ff95a59a30000"
+            },
+            "questionnaireResponse": {
+              "$ref": "#/definitions/questionnaireResponse_3544fcea2784100018ee4320719e0000"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "eventStatus_d3a64cee269d100010eef79987c40042": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Workflow State of the current Action Event"
+    },
+    "businessProcessStepsApprove_d3a64cee269d100010ccdf1f3a7a003c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "comment": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns user's comment for Event Record.",
+              "x-workday-type": "Text"
+            },
+            "eventStatus": {
+              "$ref": "#/definitions/eventStatus_d3a64cee269d100010eef79987c40042"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "status_ce00e3198c5b100009273f74aaf20011": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Transaction status or workflow state for an event. Example: Successfully Completed, Denied, Terminated"
+    },
+    "initiator_5fd69af0d37810001afef9a3d7684d0a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~worker\\~ that initiated the business process. Please do not use this field in a condition rule for the initiation step of a process, as it will not return results. This is because there is no initiating \\~worker\\~ designated until the process has started. The Initiating \\~Worker\\~ field only gets a value after the event is initiated (after the process is submitted)."
+    },
+    "subBusinessProcesses_ce00e3198c5b1000095ceb025b770013": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/subBusinessProcess_e72a50878598100007c686af2536000e"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Action Event"
+            }
+          }
+        }
+      ]
+    },
+    "overallBusinessProcess_ce00e3198c5b1000095ceb31e13f0015": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Top Level (overall) Business Process that this Event is part of or returns the same instance if this Event is not a sub-process."
+    },
+    "for_ce00e3198c5b1000095ceb1fc8290014": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The thing which this business process is about. It could be another business process if this is a sub-process"
+    },
+    "eventDetails_ce00e3198c5b100007db119d8cef0007": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "creationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Date the business process was initiated.",
+              "x-workday-type": "Date"
+            },
+            "completedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date and time the business process was completed.",
+              "x-workday-type": "Date"
+            },
+            "status": {
+              "$ref": "#/definitions/status_ce00e3198c5b100009273f74aaf20011"
+            },
+            "effectiveDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date this business process takes effect.",
+              "x-workday-type": "Date"
+            },
+            "initiator": {
+              "$ref": "#/definitions/initiator_5fd69af0d37810001afef9a3d7684d0a"
+            },
+            "dueDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the business process needs to be completed.",
+              "x-workday-type": "Date"
+            },
+            "subBusinessProcesses": {
+              "type": "array",
+              "description": "Returns other Business Processes (sub-processes) part of this process, including processes multiple levels down.",
+              "items": {
+                "$ref": "#/definitions/subBusinessProcesses_ce00e3198c5b1000095ceb025b770013"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "overallBusinessProcess": {
+              "$ref": "#/definitions/overallBusinessProcess_ce00e3198c5b1000095ceb31e13f0015"
+            },
+            "for": {
+              "$ref": "#/definitions/for_ce00e3198c5b1000095ceb1fc8290014"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "comments_0108ca756f1b1000191379babffb007a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/comments_a7a41b4d029c10000b1da9c45b7b18f4"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Action Event"
+            }
+          }
+        }
+      ]
+    },
+    "event_0108ca756f1b1000191379c74408007b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Identifies the business process and allows you to drill into the details and access related actions."
+    },
+    "awaitingPersons_0108ca756f1b1000191379d0c8b3007c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/awaitingPerson_be45cf559398100006b982ad8c6d000e"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Person"
+            }
+          }
+        }
+      ]
+    },
+    "completedByPerson_0108ca756f1b1000191379b06bbf0079": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The person that completed the step as Assignee"
+    },
+    "status_0108ca756f1b100019137981a39f0075": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of this business process step."
+    },
+    "completedStepsView_0108ca756f1b10001913796229930074": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of this step within the business process definition it is part of.",
+              "x-workday-type": "Text"
+            },
+            "parallelStepInboxOrder": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of parallel steps in My Tasks. This field returns the order only if this business process type allows the Parallel Step Order in My Tasks configuration. If there are multiple steps from the business process definition that are associated to this event step, this field returns no value.",
+              "x-workday-type": "Text"
+            },
+            "dueDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Returns the due date for this step.",
+              "x-workday-type": "Date"
+            },
+            "comments": {
+              "type": "array",
+              "description": "Returns the comments for the business process event step",
+              "items": {
+                "$ref": "#/definitions/comments_0108ca756f1b1000191379babffb007a"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "event": {
+              "$ref": "#/definitions/event_0108ca756f1b1000191379c74408007b"
+            },
+            "awaitingPersons": {
+              "type": "array",
+              "description": "The people this event is currently awaiting for action.",
+              "items": {
+                "$ref": "#/definitions/awaitingPersons_0108ca756f1b1000191379d0c8b3007c"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "creationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date when the event record was created.",
+              "x-workday-type": "Date"
+            },
+            "completedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date when this step was completed",
+              "x-workday-type": "Date"
+            },
+            "completedByPerson": {
+              "$ref": "#/definitions/completedByPerson_0108ca756f1b1000191379b06bbf0079"
+            },
+            "status": {
+              "$ref": "#/definitions/status_0108ca756f1b100019137981a39f0075"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "awaitingPersons_be45cf559398100006ba2d50d6700011": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/awaitingPerson_be45cf559398100006b982ad8c6d000e"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Person"
+            }
+          }
+        }
+      ]
+    },
+    "status_be45cf559398100006ba2d93420c0014": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of this business process step."
+    },
+    "businessProcessStep_119846d6d88210000efec4095f07022f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/businessProcessStep_c7f1caa70f141000115398ce8d0800fd"
+        },
+        {}
+      ],
+      "description": "Returns the step being performed by the event record."
+    },
+    "stepsInProgressView_be45cf559398100006ba2d34b00d0010": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "awaitingPersons": {
+              "type": "array",
+              "description": "The people this event is currently awaiting for action.",
+              "items": {
+                "$ref": "#/definitions/awaitingPersons_be45cf559398100006ba2d50d6700011"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "parallelStepInboxOrder": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of parallel steps in My Tasks. This field returns the order only if this business process type allows the Parallel Step Order in My Tasks configuration. If there are multiple steps from the business process definition that are associated to this event step, this field returns no value.",
+              "x-workday-type": "Text"
+            },
+            "status": {
+              "$ref": "#/definitions/status_be45cf559398100006ba2d93420c0014"
+            },
+            "creationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date when the event record was created.",
+              "x-workday-type": "Date"
+            },
+            "delayedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the delayed step will trigger.",
+              "x-workday-type": "Date"
+            },
+            "dueDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Returns the due date for this step.",
+              "x-workday-type": "Date"
+            },
+            "anonymous": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns if the event step has been anonymously assigned.",
+              "x-workday-type": "Boolean"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of this step within the business process definition it is part of.",
+              "x-workday-type": "Text"
+            },
+            "businessProcessStep": {
+              "$ref": "#/definitions/businessProcessStep_119846d6d88210000efec4095f07022f"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "person_a7a41b4d029c10000b46e7abcec61901": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Comment made by Person"
+    },
+    "comments_a7a41b4d029c10000b1da9c45b7b18f4": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "commentDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Gives the moment at which the instance was originally created.",
+              "x-workday-type": "Date"
+            },
+            "person": {
+              "$ref": "#/definitions/person_a7a41b4d029c10000b46e7abcec61901"
+            },
+            "comment": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Comment",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "businessProcessEventAction_46302b0ce6a810001fcbad0bc1e30000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "comment": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "comment",
+              "x-workday-type": "Text"
+            },
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "status",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "stepType_d8ee62587cf610001a018fce99fb0117": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the type of the step."
+    },
+    "groups_d8ee62587cf610001a551e47fbc30124": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/securityGroupView_5abdf20568241000191b2a1b8cf502ea"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Security Group"
+            }
+          }
+        }
+      ]
+    },
+    "dueDate_d8ee62587cf610001af42c229a9f0144": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the due date for the Process Definition Step."
+    },
+    "remainingStepView_33c0a45dcb6a10000c26c7c9b9640020": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "stepType": {
+              "$ref": "#/definitions/stepType_d8ee62587cf610001a018fce99fb0117"
+            },
+            "completionStep": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if this step completes the business process.",
+              "x-workday-type": "Boolean"
+            },
+            "step": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the alternate name of the workflow step for the business process definition.",
+              "x-workday-type": "Text"
+            },
+            "groups": {
+              "type": "array",
+              "description": "Returns the security groups that can perform the workflow step.",
+              "items": {
+                "$ref": "#/definitions/groups_d8ee62587cf610001a551e47fbc30124"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "parallelStepInboxOrder": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The order of parallel steps in My Tasks. This field returns the order only if this business process type allows the Parallel Step Order in My Tasks configuration.",
+              "x-workday-type": "Text"
+            },
+            "dueDate": {
+              "$ref": "#/definitions/dueDate_d8ee62587cf610001af42c229a9f0144"
+            },
+            "order": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the order of this step within the business process definition it is part of.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "businessProcessTypeDetails_e73cbf40479a100012b92d7f999d0144": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "helpText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The help text for the initiation step of a business process.",
+              "x-workday-type": "Rich Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "businessProcessTypeView_a06e49cf714e100008435914d7d90105": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "attachmentCategoryView_01bedd7c1f9e10001e09ac8bd50600e8": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "referenceID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Reference ID to use for lookups within our Workday Web Services. For \\~supervisory organizations\\~, this is also the 'Organization ID'",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "questionMultipleChoiceAnswerEmptyView_670e7e9e117b100027c36c757fb807d5": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "uploadedBy_b32ff437243510000c2e443f3c8b0155": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the primary Role of the person who uploaded the Attachment."
+    },
+    "contentType_f1092a8e519710000a41ca17e2da02a3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Content type of the attachment"
+    },
+    "category_f1092a8e519710000a41ca421a3602a5": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the category of a Business Process Attachment."
+    },
+    "eventAttachmentsView_f1092a8e5197100009621afa37b9029b": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "fileName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "File name of the attachment",
+              "maxLength": 255,
+              "x-workday-type": "Text"
+            },
+            "uploadDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Returns Date the Business Process Attachment was updated.",
+              "x-workday-type": "Date"
+            },
+            "uploadedBy": {
+              "$ref": "#/definitions/uploadedBy_b32ff437243510000c2e443f3c8b0155"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Event attachment description",
+              "x-workday-type": "Text"
+            },
+            "contentType": {
+              "$ref": "#/definitions/contentType_f1092a8e519710000a41ca17e2da02a3"
+            },
+            "category": {
+              "$ref": "#/definitions/category_f1092a8e519710000a41ca421a3602a5"
+            },
+            "fileLength": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "File length of the attachment",
+              "x-workday-type": "Numeric"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "contentType_cfb1e71e5435100008e52b8894ef0709": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Content type of the attachment"
+    },
+    "questionnaireAttachment_cfb1e71e5435100008e52b3f011f0708": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "fileLength": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "File length of the attachment",
+              "x-workday-type": "Numeric"
+            },
+            "fileName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "File name of the attachment",
+              "maxLength": 255,
+              "x-workday-type": "Text"
+            },
+            "contentType": {
+              "$ref": "#/definitions/contentType_cfb1e71e5435100008e52b8894ef0709"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "securityGroupView_5abdf20568241000191b2a1b8cf502ea": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "subBusinessProcess_e72a50878598100007c686af2536000e": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "questionItem_670e7e9e117b10002790f46f3d9c07d1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Question Item for Questionnaire Answer. Question item represents the question in a questionnaire."
+    },
+    "questionnaireAttachments_69164aa4df9610001e17f32134be5429": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionnaireAttachment_cfb1e71e5435100008e52b3f011f0708"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Questionnaire Attachment Representation"
+            }
+          }
+        }
+      ]
+    },
+    "answerMultipleChoices_670e7e9e117b10002790f474903a07d2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionMultipleChoiceAnswerEmptyView_670e7e9e117b100027c36c757fb807d5"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Question Multiple Choice Answer Representation"
+            }
+          }
+        }
+      ]
+    },
+    "questionnaireAnswerCreate_670e7e9e117b1000276a34afc7b207cb": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "questionItem": {
+              "$ref": "#/definitions/questionItem_670e7e9e117b10002790f46f3d9c07d1"
+            },
+            "questionnaireAttachments": {
+              "type": "array",
+              "description": "Questionnaire Attachments for Questionnaire Response.",
+              "items": {
+                "$ref": "#/definitions/questionnaireAttachments_69164aa4df9610001e17f32134be5429"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "answerNumeric": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "The answer in a numeric format.",
+              "x-workday-type": "Numeric"
+            },
+            "answerMultipleChoices": {
+              "type": "array",
+              "description": "Question Multiple Choice Answers for question answer",
+              "items": {
+                "$ref": "#/definitions/answerMultipleChoices_670e7e9e117b10002790f474903a07d2"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "answerDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The answer in a date format.",
+              "x-workday-type": "Date"
+            },
+            "answerText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The text answer for a questionnaire.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "businessProcessStep_c7f1caa70f141000115398ce8d0800fd": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "questionnaireAnswers_670e7e9e117b10002734f5a0c9fd07c7": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/questionnaireAnswerCreate_670e7e9e117b1000276a34afc7b207cb"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Questionnaire Answer Representation"
+            }
+          }
+        }
+      ]
+    },
+    "questionnaireTargetContext_b73d92d470c7100012164155beb48425": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The applicable questionnaire or application for a student. Example: Student Application for Spring 2023. This is a new attribute as of 2021R2, and is currently only supported for Student."
+    },
+    "questionnaireTarget_b73d92d470c7100012164171eac28426": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The questionnaire subject. Example: The candidate for admission to a school. This is a new attribute as of 2021R2, and is currently only supported for Student."
+    },
+    "questionnaireResponseSubmit_177812e3e8b51000163a63c22b7a0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "questionnaireAnswers": {
+              "type": "array",
+              "description": "The set of answers for a questionnaire.",
+              "items": {
+                "$ref": "#/definitions/questionnaireAnswers_670e7e9e117b10002734f5a0c9fd07c7"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "questionnaireTargetContext": {
+              "$ref": "#/definitions/questionnaireTargetContext_b73d92d470c7100012164155beb48425"
+            },
+            "questionnaireTarget": {
+              "$ref": "#/definitions/questionnaireTarget_b73d92d470c7100012164171eac28426"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Questionnaire Response"
+            }
+          }
+        }
+      ]
+    },
+    "awaitingPerson_be45cf559398100006b982ad8c6d000e": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

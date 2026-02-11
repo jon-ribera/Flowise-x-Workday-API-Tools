@@ -1,0 +1,18 @@
+[
+  {
+    "name": "BenefitPartner-Programs-POST-postPrograms",
+    "description": "[Benefit Partner] POST /programs — Creates a single benefit program instance.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/programs",
+    "operationId": null,
+    "file": "BenefitPartner-Programs-POST-postPrograms.js"
+  }
+]

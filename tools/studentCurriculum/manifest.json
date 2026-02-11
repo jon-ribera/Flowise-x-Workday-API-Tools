@@ -1,0 +1,230 @@
+[
+  {
+    "name": "StudentCurriculum-Courses-GET-getCourses",
+    "description": "[Student Curriculum] GET /courses/{ID} — Retrieves a single course instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/courses/{ID}",
+    "operationId": null,
+    "file": "StudentCurriculum-Courses-GET-getCourses.js"
+  },
+  {
+    "name": "StudentCurriculum-CourseSections-GET-getCourseSections",
+    "description": "[Student Curriculum] GET /courseSections — Retrieves a collection of course sections.",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "The academic level used by the course section. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicLevels from studentAcademicFoundation service.",
+        "required": false
+      },
+      {
+        "name": "academicPeriod",
+        "type": "string",
+        "description": "The starting academic period of the course section. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicPeriods from studentAcademicFoundation service.",
+        "required": false
+      },
+      {
+        "name": "campusLocation",
+        "type": "string",
+        "description": "query parameter: campusLocation",
+        "required": false
+      },
+      {
+        "name": "course",
+        "type": "string",
+        "description": "The course for the course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courses.",
+        "required": false
+      },
+      {
+        "name": "courseSubject",
+        "type": "string",
+        "description": "The subject for the course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courseSubjects.",
+        "required": false
+      },
+      {
+        "name": "deliveryMode",
+        "type": "string",
+        "description": "The delivery mode for the course section.You can specify using the Workday ID or Reference ID. You can use the following values: Correspondence, Hybrid, In-Person, Online, Other Distance Mode.",
+        "required": false
+      },
+      {
+        "name": "instructionalFormat",
+        "type": "string",
+        "description": "The instructional format for the course section. You can specify using the Workday ID or Reference ID. You can use the following values: Clinical, Combination, Discussion, Experiential, Independent Study, Internship, Laboratory, Lecture, Recitation, Research, Seminar, Service Learning, Studio, Thesis, Workshop.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offeringAcademicUnit",
+        "type": "string",
+        "description": "The academic unit that offers this course section. You can specify multiple academicUnit query parameters using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "owningAcademicUnit",
+        "type": "string",
+        "description": "The academic unit that owns this course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+        "required": false
+      },
+      {
+        "name": "owningInstitutionalAcademicUnit",
+        "type": "string",
+        "description": "The institutional academic unit that owns this course section. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "The section status of the course section. You can specify using the Workday ID or Reference ID. You can use the following values: Preliminary, Open, Closed, Waitlist, Hold, Canceled.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/courseSections",
+    "operationId": null,
+    "file": "StudentCurriculum-CourseSections-GET-getCourseSections.js"
+  },
+  {
+    "name": "StudentCurriculum-CourseSections-GET-getCourseSections_1",
+    "description": "[Student Curriculum] GET /courseSections/{ID} — Retrieves a single course section instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/courseSections/{ID}",
+    "operationId": null,
+    "file": "StudentCurriculum-CourseSections-GET-getCourseSections_1.js"
+  },
+  {
+    "name": "StudentCurriculum-Courses-GET-getCourses_1",
+    "description": "[Student Curriculum] GET /courses — Retrieves a collection of courses.",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "The academic level used by the courses. You can specify using the Workday ID or Reference ID. You can use a returned id from GET /academicLevels from studentAcademicFoundation service.",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The academic unit used by the course. You can specify multiple academicUnit query parameters using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+        "required": false
+      },
+      {
+        "name": "courseSubject",
+        "type": "string",
+        "description": "The subject for the course. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /courseSubjects.",
+        "required": false
+      },
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "The effective date of the Course's effective-dated fields: competencies, academicLevel, typicalPeriodsOffered, academicUnits, allowedLocations, owningInstitutionalAcademicUnit, tags, description, eligibilityRule, instructionalFormats, learningOutcomes, and title. Format for input is as such: YYYY-MM-DD.",
+        "required": false
+      },
+      {
+        "name": "institutionalAcademicUnit",
+        "type": "string",
+        "description": "The institution academic unit used by the courses. You can specify by using the Workday ID or Reference ID. You can use a returned id from GET /academicUnits from studentAcademicFoundation service.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "description": "query parameter: search",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/courses",
+    "operationId": null,
+    "file": "StudentCurriculum-Courses-GET-getCourses_1.js"
+  },
+  {
+    "name": "StudentCurriculum-CourseSubjects-GET-getCourseSubjects",
+    "description": "[Student Curriculum] GET /courseSubjects — Retrieves a collection of course subjects.\n\n<b>Secured by:</b> Manage: Curriculum Management\n\n<b>Scope:</b> Student Records",
+    "schema": [
+      {
+        "name": "inactive",
+        "type": "boolean",
+        "description": "Indicates if a Course Subject is inactive.",
+        "required": false
+      },
+      {
+        "name": "institutionalAcademicUnit",
+        "type": "string",
+        "description": "The Institution Academic Units.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/courseSubjects",
+    "operationId": null,
+    "file": "StudentCurriculum-CourseSubjects-GET-getCourseSubjects.js"
+  },
+  {
+    "name": "StudentCurriculum-CourseSubjects-GET-getCourseSubjects_1",
+    "description": "[Student Curriculum] GET /courseSubjects/{ID} — Retrieves a collection of course subjects.\n\n<b>Secured by:</b> Manage: Curriculum Management\n\n<b>Scope:</b> Student Records",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/courseSubjects/{ID}",
+    "operationId": null,
+    "file": "StudentCurriculum-CourseSubjects-GET-getCourseSubjects_1.js"
+  }
+]

@@ -1,0 +1,136 @@
+[
+  {
+    "name": "Learning-Content-GET-getContent",
+    "description": "[Learning] GET /content — Retrieves a collection of learning content.",
+    "schema": [
+      {
+        "name": "contentType",
+        "type": "string",
+        "description": "The type of learning content. The learning catalog comprises programs, blended and digital courses, course offerings for blended courses, and stand-alone lessons.",
+        "required": false
+      },
+      {
+        "name": "lastUpdated",
+        "type": "string",
+        "description": "When specified, only Learning Content updated since the specified datetime will be returned in the response.",
+        "required": false
+      },
+      {
+        "name": "lifecycleStatus",
+        "type": "string",
+        "description": "The current status of the learning content. Possible value is Active or Inactive.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "skills",
+        "type": "string",
+        "description": "The skills associated with this learning content.",
+        "required": false
+      },
+      {
+        "name": "topics",
+        "type": "string",
+        "description": "The group of learning elements that this learning content belongs. Example: Compliance.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/content",
+    "operationId": null,
+    "file": "Learning-Content-GET-getContent.js"
+  },
+  {
+    "name": "Learning-Content-GET-getLessons",
+    "description": "[Learning] GET /content/{ID}/lessons — Retrieves a collection of lessons for a learning content.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/content/{ID}/lessons",
+    "operationId": null,
+    "file": "Learning-Content-GET-getLessons.js"
+  },
+  {
+    "name": "Learning-ManageDigitalCourses-POST-postManageDigitalCourses",
+    "description": "[Learning] POST /manageDigitalCourses — Provides the ability to create and update digital courses. These REST APIs are secured to the initiating actions of the BP.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/manageDigitalCourses",
+    "operationId": null,
+    "file": "Learning-ManageDigitalCourses-POST-postManageDigitalCourses.js"
+  },
+  {
+    "name": "Learning-Content-GET-getContent_1",
+    "description": "[Learning] GET /content/{ID} — Retrieves a single learning content instance",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/content/{ID}",
+    "operationId": null,
+    "file": "Learning-Content-GET-getContent_1.js"
+  },
+  {
+    "name": "Learning-Content-GET-getLessons_1",
+    "description": "[Learning] GET /content/{ID}/lessons/{subresourceID} — Retrieves a single lesson for a learning content instance",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/content/{ID}/lessons/{subresourceID}",
+    "operationId": null,
+    "file": "Learning-Content-GET-getLessons_1.js"
+  }
+]

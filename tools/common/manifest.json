@@ -1,0 +1,924 @@
+[
+  {
+    "name": "Common-Workers-GET-getTimeOffPlans",
+    "description": "[Common] GET /workers/{ID}/timeOffPlans/{subresourceID} — Retrieves a particular time off plan for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/timeOffPlans/{subresourceID}",
+    "operationId": null,
+    "file": "Common-Workers-GET-getTimeOffPlans.js"
+  },
+  {
+    "name": "Common-Organizations-GET-getOrganizations",
+    "description": "[Common] GET /organizations — Retrieves a collection of organizations.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "organizationType",
+        "type": "string",
+        "description": "Reference to an Organization Type. Example: Organization Type WID. Requests must provide an Organization Type.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/organizations",
+    "operationId": null,
+    "file": "Common-Organizations-GET-getOrganizations.js"
+  },
+  {
+    "name": "Common-JobChangeReasons-GET-getJobChangeReasons",
+    "description": "[Common] GET /jobChangeReasons — Retrieves a collection of job change reasons.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChangeReasons",
+    "operationId": null,
+    "file": "Common-JobChangeReasons-GET-getJobChangeReasons.js"
+  },
+  {
+    "name": "Common-Workers-GET-getBusinessTitleChanges",
+    "description": "[Common] GET /workers/{ID}/businessTitleChanges/{subresourceID} — Retrieves a business title change instance for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/businessTitleChanges/{subresourceID}",
+    "operationId": null,
+    "file": "Common-Workers-GET-getBusinessTitleChanges.js"
+  },
+  {
+    "name": "Common-BusinessTitleChanges-GET-getBusinessTitleChanges",
+    "description": "[Common] GET /businessTitleChanges/{ID} — Retrieves a business title change instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/businessTitleChanges/{ID}",
+    "operationId": null,
+    "file": "Common-BusinessTitleChanges-GET-getBusinessTitleChanges.js"
+  },
+  {
+    "name": "Common-Workers-POST-postBusinessTitleChanges_type_me",
+    "description": "[Common] POST /workers/{ID}/businessTitleChanges?type=me — \n\n<b>Secured by:</b> Change My Business Title\n\n<b>Scope:</b> Staffing",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/businessTitleChanges?type=me",
+    "operationId": null,
+    "file": "Common-Workers-POST-postBusinessTitleChanges_type_me.js"
+  },
+  {
+    "name": "Common-Currencies-GET-getCurrencies",
+    "description": "[Common] GET /currencies/{ID} — Retrieves a currency instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/currencies/{ID}",
+    "operationId": null,
+    "file": "Common-Currencies-GET-getCurrencies.js"
+  },
+  {
+    "name": "Common-Workers-GET-getInboxTasks",
+    "description": "[Common] GET /workers/{ID}/inboxTasks — Retrieves a collection of inbox tasks for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/inboxTasks",
+    "operationId": null,
+    "file": "Common-Workers-GET-getInboxTasks.js"
+  },
+  {
+    "name": "Common-Currencies-GET-getCurrencies_1",
+    "description": "[Common] GET /currencies — Retrieves a collection of currencies.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/currencies",
+    "operationId": null,
+    "file": "Common-Currencies-GET-getCurrencies_1.js"
+  },
+  {
+    "name": "Common-Customers-GET-getCustomers",
+    "description": "[Common] GET /customers/{ID} — Retrieves a customer instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/customers/{ID}",
+    "operationId": null,
+    "file": "Common-Customers-GET-getCustomers.js"
+  },
+  {
+    "name": "Common-Workers-GET-getOrganizations",
+    "description": "[Common] GET /workers/{ID}/organizations/{subresourceID} — Retrieves an organization instance for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/organizations/{subresourceID}",
+    "operationId": null,
+    "file": "Common-Workers-GET-getOrganizations.js"
+  },
+  {
+    "name": "Common-Workers-GET-getHistory",
+    "description": "[Common] GET /workers/{ID}/history — Retrieves a collection of history items for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/history",
+    "operationId": null,
+    "file": "Common-Workers-GET-getHistory.js"
+  },
+  {
+    "name": "Common-OrganizationTypes-GET-getOrganizationTypes",
+    "description": "[Common] GET /organizationTypes — Retrieves a collection of organization types.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationTypes",
+    "operationId": null,
+    "file": "Common-OrganizationTypes-GET-getOrganizationTypes.js"
+  },
+  {
+    "name": "Common-Workers-GET-getWorkers",
+    "description": "[Common] GET /workers — Retrieves a collection of workers.",
+    "schema": [
+      {
+        "name": "includeTerminatedWorkers",
+        "type": "boolean",
+        "description": "Include terminated workers in the output",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "description": "query parameter: search",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers",
+    "operationId": null,
+    "file": "Common-Workers-GET-getWorkers.js"
+  },
+  {
+    "name": "Common-Workers-GET-getHistory_1",
+    "description": "[Common] GET /workers/{ID}/history/{subresourceID} — Retrieves a history instance for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/history/{subresourceID}",
+    "operationId": null,
+    "file": "Common-Workers-GET-getHistory_1.js"
+  },
+  {
+    "name": "Common-Workers-GET-getOrganizations_1",
+    "description": "[Common] GET /workers/{ID}/organizations — Retrieves a collection of organizations for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/organizations",
+    "operationId": null,
+    "file": "Common-Workers-GET-getOrganizations_1.js"
+  },
+  {
+    "name": "Common-Workers-GET-getSupervisoryOrganizationsManaged",
+    "description": "[Common] GET /workers/{ID}/supervisoryOrganizationsManaged — Retrieves a collection of supervisory organizations managed by a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/supervisoryOrganizationsManaged",
+    "operationId": null,
+    "file": "Common-Workers-GET-getSupervisoryOrganizationsManaged.js"
+  },
+  {
+    "name": "Common-Workers-GET-getTimeOffEntries",
+    "description": "[Common] GET /workers/{ID}/timeOffEntries/{subresourceID} — Retrieves a time off entry for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/timeOffEntries/{subresourceID}",
+    "operationId": null,
+    "file": "Common-Workers-GET-getTimeOffEntries.js"
+  },
+  {
+    "name": "Common-Workers-POST-postJobChanges",
+    "description": "[Common] POST /workers/{ID}/jobChanges — Creates a job change instance with the specified data.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/jobChanges",
+    "operationId": null,
+    "file": "Common-Workers-POST-postJobChanges.js"
+  },
+  {
+    "name": "Common-Workers-GET-getPaySlips",
+    "description": "[Common] GET /workers/{ID}/paySlips — Retrieves a collection of pay slips for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/paySlips",
+    "operationId": null,
+    "file": "Common-Workers-GET-getPaySlips.js"
+  },
+  {
+    "name": "Common-Workers-GET-getDirectReports",
+    "description": "[Common] GET /workers/{ID}/directReports — Retrieves a collection of direct reports for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/directReports",
+    "operationId": null,
+    "file": "Common-Workers-GET-getDirectReports.js"
+  },
+  {
+    "name": "Common-ValidateWorktags-POST-postValidateWorktags",
+    "description": "[Common] POST /validateWorktags — (End of Life Date: 2025-08-03 ) Validates allowed and required worktag types and worktag combinations so that you can correct errors before you submit transactions.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/validateWorktags",
+    "operationId": null,
+    "file": "Common-ValidateWorktags-POST-postValidateWorktags.js"
+  },
+  {
+    "name": "Common-JobChangeReasons-GET-getJobChangeReasons_1",
+    "description": "[Common] GET /jobChangeReasons/{ID} — Retrieves a job change reason instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/jobChangeReasons/{ID}",
+    "operationId": null,
+    "file": "Common-JobChangeReasons-GET-getJobChangeReasons_1.js"
+  },
+  {
+    "name": "Common-SupervisoryOrganizations-GET-getSupervisoryOrganizations",
+    "description": "[Common] GET /supervisoryOrganizations — Retrieves a collection of supervisory organizations.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/supervisoryOrganizations",
+    "operationId": null,
+    "file": "Common-SupervisoryOrganizations-GET-getSupervisoryOrganizations.js"
+  },
+  {
+    "name": "Common-Workers-GET-getPaySlips_1",
+    "description": "[Common] GET /workers/{ID}/paySlips/{subresourceID} — Retrieves a pay slip instance for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/paySlips/{subresourceID}",
+    "operationId": null,
+    "file": "Common-Workers-GET-getPaySlips_1.js"
+  },
+  {
+    "name": "Common-Customers-GET-getActivities",
+    "description": "[Common] GET /customers/{ID}/activities/{subresourceID} — Retrieves an activity instance for a specific customer.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/customers/{ID}/activities/{subresourceID}",
+    "operationId": null,
+    "file": "Common-Customers-GET-getActivities.js"
+  },
+  {
+    "name": "Common-SupervisoryOrganizations-GET-getSupervisoryOrganizations_1",
+    "description": "[Common] GET /supervisoryOrganizations/{ID} — Retrieves a supervisory organization instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/supervisoryOrganizations/{ID}",
+    "operationId": null,
+    "file": "Common-SupervisoryOrganizations-GET-getSupervisoryOrganizations_1.js"
+  },
+  {
+    "name": "Common-Workers-GET-getInboxTasks_1",
+    "description": "[Common] GET /workers/{ID}/inboxTasks/{subresourceID} — Retrieves an inbox task instance for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/inboxTasks/{subresourceID}",
+    "operationId": null,
+    "file": "Common-Workers-GET-getInboxTasks_1.js"
+  },
+  {
+    "name": "Common-SupervisoryOrganizations-GET-getWorkers",
+    "description": "[Common] GET /supervisoryOrganizations/{ID}/workers/{subresourceID} — Retrieves a worker instance for a specific supervisory organization.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/supervisoryOrganizations/{ID}/workers/{subresourceID}",
+    "operationId": null,
+    "file": "Common-SupervisoryOrganizations-GET-getWorkers.js"
+  },
+  {
+    "name": "Common-Workers-GET-getDirectReports_1",
+    "description": "[Common] GET /workers/{ID}/directReports/{subresourceID} — Retrieves a direct report instance for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/directReports/{subresourceID}",
+    "operationId": null,
+    "file": "Common-Workers-GET-getDirectReports_1.js"
+  },
+  {
+    "name": "Common-Workers-GET-getTimeOffPlans_1",
+    "description": "[Common] GET /workers/{ID}/timeOffPlans — Retrieves a collection of time off plans for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/timeOffPlans",
+    "operationId": null,
+    "file": "Common-Workers-GET-getTimeOffPlans_1.js"
+  },
+  {
+    "name": "Common-SupervisoryOrganizations-GET-getWorkers_1",
+    "description": "[Common] GET /supervisoryOrganizations/{ID}/workers — Retrieves a collection of workers for a specific supervisory organization.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/supervisoryOrganizations/{ID}/workers",
+    "operationId": null,
+    "file": "Common-SupervisoryOrganizations-GET-getWorkers_1.js"
+  },
+  {
+    "name": "Common-Workers-GET-getBusinessTitleChanges_1",
+    "description": "[Common] GET /workers/{ID}/businessTitleChanges — Retrieves a collection of business title changes for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/businessTitleChanges",
+    "operationId": null,
+    "file": "Common-Workers-GET-getBusinessTitleChanges_1.js"
+  },
+  {
+    "name": "Common-Workers-POST-postBusinessTitleChanges",
+    "description": "[Common] POST /workers/{ID}/businessTitleChanges — Creates a business title change instance with the specified data.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/businessTitleChanges",
+    "operationId": null,
+    "file": "Common-Workers-POST-postBusinessTitleChanges.js"
+  },
+  {
+    "name": "Common-Workers-GET-getWorkers_1",
+    "description": "[Common] GET /workers/{ID} — Retrieves a worker instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}",
+    "operationId": null,
+    "file": "Common-Workers-GET-getWorkers_1.js"
+  },
+  {
+    "name": "Common-Organizations-GET-getOrganizations_1",
+    "description": "[Common] GET /organizations/{ID} — Retrieves an organization instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizations/{ID}",
+    "operationId": null,
+    "file": "Common-Organizations-GET-getOrganizations_1.js"
+  },
+  {
+    "name": "Common-Customers-GET-getActivities_1",
+    "description": "[Common] GET /customers/{ID}/activities — Retrieves a collection of activities for a specific customer.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "query parameter: fromDate",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "query parameter: toDate",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/customers/{ID}/activities",
+    "operationId": null,
+    "file": "Common-Customers-GET-getActivities_1.js"
+  },
+  {
+    "name": "Common-Workers-GET-getSupervisoryOrganizationsManaged_1",
+    "description": "[Common] GET /workers/{ID}/supervisoryOrganizationsManaged/{subresourceID} — Retrieves a supervisory organization managed by a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/supervisoryOrganizationsManaged/{subresourceID}",
+    "operationId": null,
+    "file": "Common-Workers-GET-getSupervisoryOrganizationsManaged_1.js"
+  },
+  {
+    "name": "Common-Workers-GET-getTimeOffEntries_1",
+    "description": "[Common] GET /workers/{ID}/timeOffEntries — Retrieves a collection of time off entries for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/timeOffEntries",
+    "operationId": null,
+    "file": "Common-Workers-GET-getTimeOffEntries_1.js"
+  },
+  {
+    "name": "Common-OrganizationTypes-GET-getOrganizationTypes_1",
+    "description": "[Common] GET /organizationTypes/{ID} — Retrieves an organization type instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/organizationTypes/{ID}",
+    "operationId": null,
+    "file": "Common-OrganizationTypes-GET-getOrganizationTypes_1.js"
+  }
+]

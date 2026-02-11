@@ -1,0 +1,364 @@
+[
+  {
+    "name": "StudentAcademicFoundation-ProgramsOfStudy-GET-getProgramsOfStudy",
+    "description": "[Student Academic Foundation] GET /programsOfStudy/{ID} — Retrieves the program of study with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/programsOfStudy/{ID}",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-ProgramsOfStudy-GET-getProgramsOfStudy.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-AcademicUnits-GET-getAcademicUnits",
+    "description": "[Student Academic Foundation] GET /academicUnits/{ID} — Retrieves the Academic Unit with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/academicUnits/{ID}",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-AcademicUnits-GET-getAcademicUnits.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-AcademicCalendars-GET-getAcademicYears",
+    "description": "[Student Academic Foundation] GET /academicCalendars/{ID}/academicYears/{subresourceID} — Retrieves the academic year associated with an academic calendar with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/academicCalendars/{ID}/academicYears/{subresourceID}",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-AcademicCalendars-GET-getAcademicYears.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-EducationalCredentials-GET-getEducationalCredentials",
+    "description": "[Student Academic Foundation] GET /educationalCredentials — Retrieves a collection of educational credentials.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/educationalCredentials",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-EducationalCredentials-GET-getEducationalCredentials.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-AcademicCalendars-GET-getAcademicCalendars",
+    "description": "[Student Academic Foundation] GET /academicCalendars — Retrieves a collection of academic calendars.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/academicCalendars",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-AcademicCalendars-GET-getAcademicCalendars.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-AcademicPeriods-GET-getAcademicPeriods",
+    "description": "[Student Academic Foundation] GET /academicPeriods/{ID} — Retrieves the academic period with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/academicPeriods/{ID}",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-AcademicPeriods-GET-getAcademicPeriods.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-AcademicCalendars-GET-getAcademicYears_1",
+    "description": "[Student Academic Foundation] GET /academicCalendars/{ID}/academicYears — Retrieves a collection of the academic years associated with an academic calendar.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/academicCalendars/{ID}/academicYears",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-AcademicCalendars-GET-getAcademicYears_1.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-AcademicLevels-GET-getAcademicLevels",
+    "description": "[Student Academic Foundation] GET /academicLevels/{ID} — Retrieves the academic level with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/academicLevels/{ID}",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-AcademicLevels-GET-getAcademicLevels.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-EducationalCredentials-GET-getEducationalCredentials_1",
+    "description": "[Student Academic Foundation] GET /educationalCredentials/{ID} — Retrieves the educational credential with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/educationalCredentials/{ID}",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-EducationalCredentials-GET-getEducationalCredentials_1.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-AcademicCalendars-GET-getAcademicCalendars_1",
+    "description": "[Student Academic Foundation] GET /academicCalendars/{ID} — Retrieves the academic calendar with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/academicCalendars/{ID}",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-AcademicCalendars-GET-getAcademicCalendars_1.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-AcademicUnits-GET-getAcademicUnits_1",
+    "description": "[Student Academic Foundation] GET /academicUnits — Retrieves a collection of academic units.",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "The effective date of the Academic Unit, using the yyyy-mm-dd format. The default is the current date.",
+        "required": false
+      },
+      {
+        "name": "inactive",
+        "type": "boolean",
+        "description": "If true, this method retrieves Academic Units that are inactive as of the effective date. The default is false.",
+        "required": false
+      },
+      {
+        "name": "institution",
+        "type": "boolean",
+        "description": "If true, this method retrieves Academic Units that are designated as institutions as of the effective date. The default is false.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "superior",
+        "type": "string",
+        "description": "The Workday ID of the immediate superior of the Academic Units, as of the effective date. You can use a returned id from GET /academicUnits.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/academicUnits",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-AcademicUnits-GET-getAcademicUnits_1.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-AcademicLevels-GET-getAcademicLevels_1",
+    "description": "[Student Academic Foundation] GET /academicLevels — Retrieves a collection of academic levels.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/academicLevels",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-AcademicLevels-GET-getAcademicLevels_1.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-ProgramsOfStudy-GET-getProgramsOfStudy_1",
+    "description": "[Student Academic Foundation] GET /programsOfStudy — Retrieves a collection of programs of study.",
+    "schema": [
+      {
+        "name": "academicLevel",
+        "type": "string",
+        "description": "The Workday ID of the owning academic level of the program of study, as of the effective date. You can use a return id from GET /academicLevels",
+        "required": false
+      },
+      {
+        "name": "academicUnit",
+        "type": "string",
+        "description": "The Workday ID of the owning academic unit of the program of study, as of the effective date. You can use a return id from GET /academicUnits",
+        "required": false
+      },
+      {
+        "name": "cipCode",
+        "type": "string",
+        "description": "The Workday ID of the CIP code for the program of study, as of the effective date.",
+        "required": false
+      },
+      {
+        "name": "educationalCredentials",
+        "type": "string",
+        "description": "The Workday IDs of the educational credentials of the program of study, as of the effective date. You can use the return id from GET /educationalCredentials. \n\nYou can filter programs of study by multiple educational credentials. Example: educationalCredentials=A&educationalCredentials=B&educationalCredentials=C. In this example, the method returns programs of study that have credentials A, B, AND C as of the the effectiveDate or current date.",
+        "required": false
+      },
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "The effective date of the Program of Study, using the yyyy-mm-dd format. The default is the current date.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "programType",
+        "type": "string",
+        "description": "The Workday ID of the program type of the program of study, as of the effective date.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/programsOfStudy",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-ProgramsOfStudy-GET-getProgramsOfStudy_1.js"
+  },
+  {
+    "name": "StudentAcademicFoundation-AcademicPeriods-GET-getAcademicPeriods_1",
+    "description": "[Student Academic Foundation] GET /academicPeriods — Retrieves a collection of academic periods.",
+    "schema": [
+      {
+        "name": "academicCalendar",
+        "type": "string",
+        "description": "The Workday ID of the academic calendar for the academic period. You can use a return id from GET /academicCalendars",
+        "required": false
+      },
+      {
+        "name": "academicYear",
+        "type": "string",
+        "description": "The Workday ID of the academic year for the academic period. You can use a return id from GET /academicCalendars/{ID}/academicYears",
+        "required": false
+      },
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "Filter academic periods by their start date using yyyy-mm-dd format. If used without toDate, returns all academic periods with start date on or after fromDate. If used with toDate, returns all academic periods whose start and/or end dates are within the inclusive date range specified by fromDate and toDate.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "Filter academic periods by their end date using yyyy-mm-dd format. If used without fromDate, returns all academic periods with end date on or before toDate. If used with fromDate, returns all academic periods whose start and/or end dates are within the inclusive date range specified by fromDate and toDate.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/academicPeriods",
+    "operationId": null,
+    "file": "StudentAcademicFoundation-AcademicPeriods-GET-getAcademicPeriods_1.js"
+  }
+]

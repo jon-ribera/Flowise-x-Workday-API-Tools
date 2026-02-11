@@ -1,0 +1,834 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The helpArticle service enables applications to access and return article data.",
+    "version": "v1",
+    "title": "helpArticle",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "0d75a5e37a411000167d21b9239f0001"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/helpArticle/v1",
+  "tags": [
+    {
+      "name": "articleStatuses",
+      "description": "Retrieves a list of statuses for article versions."
+    },
+    {
+      "name": "articleVersions",
+      "description": "Retrieves a list of article versions and content.\n\nThe resource will only return all instances when the user has access to the Help Article API domain. Specific instance retrieval is constrained by the following criteria:\n1. Service accounts and users with access to the HELP Article API domain have full access to retrieve any instance\n2. Users with access to the Manage: Help Articles domain will have access to retrieve specific instances they have access to edit.\n3. Users with access to the Manage: Article Version Sharing have access to specific instances they have shared access to. \n4. Users with access to the View: Help Articles domain will have access to specific instances they have access to based on the condition rules associated with the article version."
+    },
+    {
+      "name": "Prompt Values",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/articleVersions/{ID}": {
+      "get": {
+        "tags": [
+          "articleVersions"
+        ],
+        "summary": "Retrieve an article version and the plain text content for the article version.",
+        "description": "Retrieve an article version and the plain text content for the article version. Also includes: audience, category, created date, created by, last updated date, last updated by, language, location, status, tags, title, view link, and the parent article\n\n<b>Secured by:</b> Help Article REST API, Manage: Article Sharing Versions, Manage: Help Articles\n\n<b>Scope:</b> Help, People Experience",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/articleVersionDetails_0d75a5e37a41100016a8f2506df70000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/articleVersions": {
+      "get": {
+        "tags": [
+          "articleVersions"
+        ],
+        "summary": "Retrieves a list of article versions and the plain text content within each article version.",
+        "description": "Retrieves a list of article versions and the plain text content within each article version. Also includes: audience, category, created date, created by, last updated date, last updated by, language, location, status, tags, title, view link, and the parent article\n\n<b>Secured by:</b> Help Article REST API, Manage: Article Sharing Versions, Manage: Help Articles\n\n<b>Scope:</b> Help, People Experience",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "audience",
+            "in": "query",
+            "description": "The audience of the article version.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The status of the article version.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/articleVersionDetails_0d75a5e37a41100016a8f2506df70000"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/common/audiences/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Help Article REST API, Set Up: Help Knowledge Management\n\n<b>Scope:</b> Help, People Experience",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        }
+      ]
+    },
+    "/articleStatuses": {
+      "get": {
+        "tags": [
+          "articleStatuses"
+        ],
+        "summary": "Retrieves a list of article version statuses for all articles.",
+        "description": "Retrieves a list of article version statuses for all articles. An article version can have a status of Published, Draft, or Archived.\n\n<b>Secured by:</b> Help Article REST API\n\n<b>Scope:</b> Help",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/versionStatusDetails_8ed616626bb410000a7f55605fc20000"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/articleStatuses/{ID}": {
+      "get": {
+        "tags": [
+          "articleStatuses"
+        ],
+        "summary": "Retrieve an article version status for an article.",
+        "description": "Retrieve an article version status for an article. An article version can have a status of Published, Draft, or Archived.\n\n<b>Secured by:</b> Help Article REST API\n\n<b>Scope:</b> Help",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/versionStatusDetails_8ed616626bb410000a7f55605fc20000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "versionStatusDetails_8ed616626bb410000a7f55605fc20000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "location_6ee6774fa0f0100012c7164657f20000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The location of the article version."
+    },
+    "createdByWorker_5c74ffa1092310000ae8c69cc6a50000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/articleVersionWorker_3756770653d3100007c01379ac670000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for \\~Worker\\~"
+            }
+          }
+        }
+      ]
+    },
+    "language_6ee6774fa0f0100012a7c04fd8450000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The language of the article version."
+    },
+    "tags_6ee6774fa0f01000139edb3326760000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/articleVersionTag_6ee6774fa0f0100014d2f5169f340000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Knowledge Base Article Tag"
+            }
+          }
+        }
+      ]
+    },
+    "parentArticle_e557f584839f10000f2fdbaf70bc0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The article that the version relates to."
+    },
+    "audience_6ee6774fa0f01000123046a473530000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/articleVersionAudience_8ac3f16c1fff10000c53e90920940000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Article Audience"
+            }
+          }
+        }
+      ],
+      "x-workday-populated-by": {
+        "path": "/values/common/audiences",
+        "field": "id"
+      }
+    },
+    "lastUpdatedByWorker_3756770653d3100007f11cd104f50000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/articleVersionWorker_3756770653d3100007c01379ac670000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for \\~Worker\\~"
+            }
+          }
+        }
+      ]
+    },
+    "status_6ee6774fa0f0100013127030a8300000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of the article version."
+    },
+    "category_6ee6774fa0f010001256232e36660000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The category of the article version."
+    },
+    "articleVersionDetails_0d75a5e37a41100016a8f2506df70000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "location": {
+              "$ref": "#/definitions/location_6ee6774fa0f0100012c7164657f20000"
+            },
+            "createdByWorker": {
+              "type": "array",
+              "description": "The worker who created the article version.",
+              "items": {
+                "$ref": "#/definitions/createdByWorker_5c74ffa1092310000ae8c69cc6a50000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "latestPublishedVersionViewURL": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns a URL that links to the latest article version in Workday. This field only returns a value if the article is published.",
+              "x-workday-type": "Text"
+            },
+            "language": {
+              "$ref": "#/definitions/language_6ee6774fa0f0100012a7c04fd8450000"
+            },
+            "title": {
+              "type": "string",
+              "example": "Help Article",
+              "description": "The title of the article version.",
+              "x-workday-type": "Text"
+            },
+            "tags": {
+              "type": "array",
+              "description": "The tags added to the article version.",
+              "items": {
+                "$ref": "#/definitions/tags_6ee6774fa0f01000139edb3326760000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "version": {
+              "type": "integer",
+              "example": "1",
+              "description": "The version number of the article.",
+              "x-workday-type": "Numeric"
+            },
+            "parentArticle": {
+              "$ref": "#/definitions/parentArticle_e557f584839f10000f2fdbaf70bc0000"
+            },
+            "createdDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2023-10-30T07:00:00.000Z",
+              "description": "The created date of the article version.",
+              "x-workday-type": "Date"
+            },
+            "lastUpdatedDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2023-10-30T07:00:00.000Z",
+              "description": "The data that the article was last updated.",
+              "x-workday-type": "Date"
+            },
+            "viewLink": {
+              "type": "string",
+              "example": "https://workdaysuv/tenantName/d/inst/articleWID/rel-task/taskID.htmld",
+              "description": "Returns a URL that links to the article version in Workday. This field only returns a value if the article is published.",
+              "x-workday-type": "Text"
+            },
+            "audience": {
+              "type": "array",
+              "description": "The audiences that can view the article version.",
+              "items": {
+                "$ref": "#/definitions/audience_6ee6774fa0f01000123046a473530000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "lastUpdatedByWorker": {
+              "type": "array",
+              "description": "The worker who last updated the article version.",
+              "items": {
+                "$ref": "#/definitions/lastUpdatedByWorker_3756770653d3100007f11cd104f50000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "status": {
+              "$ref": "#/definitions/status_6ee6774fa0f0100013127030a8300000"
+            },
+            "category": {
+              "$ref": "#/definitions/category_6ee6774fa0f010001256232e36660000"
+            },
+            "content": {
+              "type": "string",
+              "example": "Here's an articles content",
+              "description": "The content of the article version displayed in plain text.",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Knowledge Base Article Data"
+            }
+          }
+        }
+      ]
+    },
+    "articleVersionTag_6ee6774fa0f0100014d2f5169f340000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "articleVersionWorker_3756770653d3100007c01379ac670000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "articleVersionAudience_8ac3f16c1fff10000c53e90920940000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

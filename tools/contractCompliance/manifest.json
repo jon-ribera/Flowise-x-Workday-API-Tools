@@ -1,0 +1,156 @@
+[
+  {
+    "name": "ContractCompliance-Values-GET-getCompaniesOrHierarchies",
+    "description": "[Contract Compliance] GET /values/contractComplianceGroup/companiesOrHierarchies/ — Retrieves all companies or company hierarchies the user has access to.\n\n<b>Secured by:</b> Process: Supplier Contract - Create/Edit, Scout Service\n\n<b>Scope:</b> Supplier Contracts",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/contractComplianceGroup/companiesOrHierarchies/",
+    "operationId": null,
+    "file": "ContractCompliance-Values-GET-getCompaniesOrHierarchies.js"
+  },
+  {
+    "name": "ContractCompliance-Values-GET-getContractTypes",
+    "description": "[Contract Compliance] GET /values/contractComplianceGroup/contractTypes/ — Retrieves all contract types the user has access to.\n\n<b>Secured by:</b> Process: Supplier Contract - Create/Edit, Scout Service\n\n<b>Scope:</b> Supplier Contracts",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/contractComplianceGroup/contractTypes/",
+    "operationId": null,
+    "file": "ContractCompliance-Values-GET-getContractTypes.js"
+  },
+  {
+    "name": "ContractCompliance-SupplierContracts-GET-getSupplierContracts",
+    "description": "[Contract Compliance] GET /supplierContracts — Retrieves all supplier contracts.",
+    "schema": [
+      {
+        "name": "companyOrHierarchy",
+        "type": "string",
+        "description": "Filters the contracts by company or company hierarchy. Specify the Workday ID of the company or company hierarchy.",
+        "required": false
+      },
+      {
+        "name": "contractSpecialist",
+        "type": "string",
+        "description": "Filters the contracts by the supplier contract specialist. Specify the Workday ID or reference ID of the specialist on the contract.",
+        "required": false
+      },
+      {
+        "name": "contractType",
+        "type": "string",
+        "description": "Filters the contracts by type. Specify the Workday ID of the contract type.",
+        "required": false
+      },
+      {
+        "name": "endDateOnOrAfter",
+        "type": "string",
+        "description": "Filters the contracts with an end date on or after the specified date. Use the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "endDateOnOrBefore",
+        "type": "string",
+        "description": "Filters the contracts with an end date on or before the specified date. Use the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "externalReferenceID",
+        "type": "string",
+        "description": "Filters the contracts by the External Reference ID",
+        "required": false
+      },
+      {
+        "name": "externalSystemReference",
+        "type": "string",
+        "description": "Filters the contracts with the external system reference ID.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "onHold",
+        "type": "boolean",
+        "description": "Filters the contracts that are on hold.",
+        "required": false
+      },
+      {
+        "name": "startDateOnOrAfter",
+        "type": "string",
+        "description": "Filters the contracts with a start date on or after the specified date. Use the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "startDateOnOrBefore",
+        "type": "string",
+        "description": "Filters the contracts with a start date on or before the specified date. Use the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "Filters the contracts by status. Specify the Workday ID of the status.",
+        "required": false
+      },
+      {
+        "name": "supplier",
+        "type": "string",
+        "description": "Filters the contracts by the supplier. Specify the Workday ID of the supplier.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/supplierContracts",
+    "operationId": null,
+    "file": "ContractCompliance-SupplierContracts-GET-getSupplierContracts.js"
+  },
+  {
+    "name": "ContractCompliance-SupplierContracts-GET-getSupplierContracts_1",
+    "description": "[Contract Compliance] GET /supplierContracts/{ID} — Retrieves a supplier contract.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/supplierContracts/{ID}",
+    "operationId": null,
+    "file": "ContractCompliance-SupplierContracts-GET-getSupplierContracts_1.js"
+  }
+]

@@ -1,0 +1,962 @@
+[
+  {
+    "name": "PerformanceEnablement-FeedbackBadges-GET-getFeedbackBadges",
+    "description": "[Performance Enablement] GET /feedbackBadges — Retrieves a collection of active Feedback Badges.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/feedbackBadges",
+    "operationId": null,
+    "file": "PerformanceEnablement-FeedbackBadges-GET-getFeedbackBadges.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getRequestedFeedbackOnSelfEvents",
+    "description": "[Performance Enablement] GET /workers/{ID}/requestedFeedbackOnSelfEvents/{subresourceID} — Retrieves a single self-requested feedback event instance for the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/requestedFeedbackOnSelfEvents/{subresourceID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getRequestedFeedbackOnSelfEvents.js"
+  },
+  {
+    "name": "PerformanceEnablement-GiveRequestedFeedbackEvents-GET-getGiveRequestedFeedbackEvents",
+    "description": "[Performance Enablement] GET /giveRequestedFeedbackEvents — Retrieves a collection of feedback given events about the user that responded to the feedback request.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/giveRequestedFeedbackEvents",
+    "operationId": null,
+    "file": "PerformanceEnablement-GiveRequestedFeedbackEvents-GET-getGiveRequestedFeedbackEvents.js"
+  },
+  {
+    "name": "PerformanceEnablement-FeedbackBadges-GET-getFeedbackBadges_1",
+    "description": "[Performance Enablement] GET /feedbackBadges/{ID} — Retrieves a Feedback Badge with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/feedbackBadges/{ID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-FeedbackBadges-GET-getFeedbackBadges_1.js"
+  },
+  {
+    "name": "PerformanceEnablement-WorkerGoalEvents-POST-postSubmit",
+    "description": "[Performance Enablement] POST /workerGoalEvents/{ID}/submit — Submits a worker goal event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workerGoalEvents/{ID}/submit",
+    "operationId": null,
+    "file": "PerformanceEnablement-WorkerGoalEvents-POST-postSubmit.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getGoals",
+    "description": "[Performance Enablement] GET /workers/{ID}/goals — Retrieves a collection of goals for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/goals",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getGoals.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getRequestedFeedbackOnSelfEvents_1",
+    "description": "[Performance Enablement] GET /workers/{ID}/requestedFeedbackOnSelfEvents — Retrieves a collection of self-requested feedback events for the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/requestedFeedbackOnSelfEvents",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getRequestedFeedbackOnSelfEvents_1.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-POST-postRequestedFeedbackOnSelfEvents",
+    "description": "[Performance Enablement] POST /workers/{ID}/requestedFeedbackOnSelfEvents — Creates a single self-requested feedback event instance for the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/requestedFeedbackOnSelfEvents",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-POST-postRequestedFeedbackOnSelfEvents.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getRequestedFeedbackOnWorkerEvents",
+    "description": "[Performance Enablement] GET /workers/{ID}/requestedFeedbackOnWorkerEvents/{subresourceID} — Retrieves a single requested feedback event instance for the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/requestedFeedbackOnWorkerEvents/{subresourceID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getRequestedFeedbackOnWorkerEvents.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getWorkersToNotify",
+    "description": "[Performance Enablement] GET /values/workersToNotify/workersToNotify/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Worker Data: Anytime Feedback\n\n<b>Scope:</b> Performance Enablement, Worker Profile an",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "workers",
+        "type": "string",
+        "description": "query parameter: workers",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/workersToNotify/workersToNotify/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getWorkersToNotify.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getCategories",
+    "description": "[Performance Enablement] GET /values/manageGoals/categories/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Employee Goals, Worker Data: Employee Goals\n\n<b>Scope:</b> Performance E",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/manageGoals/categories/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getCategories.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getFeedbackTemplate",
+    "description": "[Performance Enablement] GET /values/feedbackTemplate/feedbackTemplate/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Role Requested Feedback, Self-Service: Self Requested Feedback, Worker D",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "templateType",
+        "type": "string",
+        "description": "The feedback template type for this feedback event, either Feedback on Self, 133de7d11fea10001dbb45a701140098 or Feedback on Worker 133de7d11fea10001dbb45973dec0097. This field is required.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The worker WID. This field is required for the Feedback on Worker template and not supported for the Feedback on Self template. It can't be the processing worker.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/feedbackTemplate/feedbackTemplate/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getFeedbackTemplate.js"
+  },
+  {
+    "name": "PerformanceEnablement-OrganizationGoals-POST-postOrganizationGoals",
+    "description": "[Performance Enablement] POST /organizationGoals — \n\n<b>Secured by:</b> Worker Data: Organization Goals\n\n<b>Scope:</b> Performance Enablement",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/organizationGoals",
+    "operationId": null,
+    "file": "PerformanceEnablement-OrganizationGoals-POST-postOrganizationGoals.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getDevelopmentItems",
+    "description": "[Performance Enablement] GET /workers/{ID}/developmentItems — Retrieves a collection of \\~development items\\~ for the specified \\~worker\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/developmentItems",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getDevelopmentItems.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getRequestedFeedbackOnWorkerEvents_1",
+    "description": "[Performance Enablement] GET /workers/{ID}/requestedFeedbackOnWorkerEvents — Retrieves a collection of requested feedback events for the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/requestedFeedbackOnWorkerEvents",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getRequestedFeedbackOnWorkerEvents_1.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-POST-postRequestedFeedbackOnWorkerEvents",
+    "description": "[Performance Enablement] POST /workers/{ID}/requestedFeedbackOnWorkerEvents — Creates a single requested feedback event instance for the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/requestedFeedbackOnWorkerEvents",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-POST-postRequestedFeedbackOnWorkerEvents.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getFeedbackOnWorker",
+    "description": "[Performance Enablement] GET /values/feedbackOnWorker/feedbackOnWorker/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Worker Data: Role Requested Feedback, Worker Data: Self Requested Feedback\n\n<b>Scope:<",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/feedbackOnWorker/feedbackOnWorker/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getFeedbackOnWorker.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getFeedbackResponder",
+    "description": "[Performance Enablement] GET /values/feedbackResponder/feedbackResponder/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Role Requested Feedback, Self-Service: Self Requested Feedback, Worker D",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "templateType",
+        "type": "string",
+        "description": "The feedback template type for this feedback event, either Feedback on Self, 133de7d11fea10001dbb45a701140098 or Feedback on Worker 133de7d11fea10001dbb45973dec0097. This field is required.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The worker WID. This field is required for the Feedback on Worker templateType and not supported for the Feedback on Self templateType. It can't be the processing worker.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/feedbackResponder/feedbackResponder/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getFeedbackResponder.js"
+  },
+  {
+    "name": "PerformanceEnablement-CascadedGoalEvent-POST-postCascadedGoalEvent",
+    "description": "[Performance Enablement] POST /cascadedGoalEvent — \n\n<b>Secured by:</b> Cascade \\~Goal\\~ (REST)\n\n<b>Scope:</b> Performance Enablement",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/cascadedGoalEvent",
+    "operationId": null,
+    "file": "PerformanceEnablement-CascadedGoalEvent-POST-postCascadedGoalEvent.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getWorkers",
+    "description": "[Performance Enablement] GET /workers — Retrieves a collection of workers and current staffing information.",
+    "schema": [
+      {
+        "name": "includeTerminatedWorkers",
+        "type": "boolean",
+        "description": "Include terminated workers in the output",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "description": "Searches workers by name or worker ID. The search is case-insensitive. You can include space-delimited search strings for an OR search.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getWorkers.js"
+  },
+  {
+    "name": "PerformanceEnablement-WorkerGoalEvents-GET-getWorkerGoalEvents",
+    "description": "[Performance Enablement] GET /workerGoalEvents — Get Worker Goal Events",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workerGoalEvents",
+    "operationId": null,
+    "file": "PerformanceEnablement-WorkerGoalEvents-GET-getWorkerGoalEvents.js"
+  },
+  {
+    "name": "PerformanceEnablement-WorkerGoalEvents-POST-postWorkerGoalEvents",
+    "description": "[Performance Enablement] POST /workerGoalEvents — Creates a worker goal event, which eventually kicks off the Manage Goals business process for the specified worker.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workerGoalEvents",
+    "operationId": null,
+    "file": "PerformanceEnablement-WorkerGoalEvents-POST-postWorkerGoalEvents.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getOrganizations",
+    "description": "[Performance Enablement] GET /values/organizationGoal/organizations/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Organization Goals, Worker Data: Organization Goals\n\n<b>Scope:</b> Perfo",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationGoal/organizations/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getOrganizations.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getSupportingInitiatives",
+    "description": "[Performance Enablement] GET /values/organizationGoal/supportingInitiatives/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Organization Goals, Worker Data: Organization Goals\n\n<b>Scope:</b> Perfo",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationGoal/supportingInitiatives/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getSupportingInitiatives.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getTemplateForMyPerformanceReview",
+    "description": "[Performance Enablement] GET /values/reviewTemplate/templateForMyPerformanceReview/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Performance Reviews\n\n<b>Scope:</b> Performance Enablement",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/reviewTemplate/templateForMyPerformanceReview/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getTemplateForMyPerformanceReview.js"
+  },
+  {
+    "name": "PerformanceEnablement-WorkerGoalEvents-POST-postGoals",
+    "description": "[Performance Enablement] POST /workerGoalEvents/{ID}/goals — Creates a single goal instance with the specified data.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workerGoalEvents/{ID}/goals",
+    "operationId": null,
+    "file": "PerformanceEnablement-WorkerGoalEvents-POST-postGoals.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getDevelopmentItems_1",
+    "description": "[Performance Enablement] GET /workers/{ID}/developmentItems/{subresourceID} — Retrieves a single \\~development item\\~ for the specified \\~worker\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/developmentItems/{subresourceID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getDevelopmentItems_1.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-PATCH-patchDevelopmentItems",
+    "description": "[Performance Enablement] PATCH /workers/{ID}/developmentItems/{subresourceID} — Deletes an existing \\~development item\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workers/{ID}/developmentItems/{subresourceID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-PATCH-patchDevelopmentItems.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getTalentPools",
+    "description": "[Performance Enablement] GET /values/cascadeGoal/talentPools/ — Talent Pools the processing user has view and edit access for.\n\n<b>Secured by:</b> Talent Pool: View and Edit\n\n<b>Scope:</b> Talent Pipeline",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/cascadeGoal/talentPools/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getTalentPools.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getGoals_1",
+    "description": "[Performance Enablement] GET /workers/{ID}/goals/{subresourceID} — Retrieves a single goal instance for a specific worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/goals/{subresourceID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getGoals_1.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getGoalPeriods",
+    "description": "[Performance Enablement] GET /values/organizationGoal/goalPeriods/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Organization Goals, Worker Data: Organization Goals\n\n<b>Scope:</b> Perfo",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/organizationGoal/goalPeriods/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getGoalPeriods.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getAnytimeFeedbackEvents",
+    "description": "[Performance Enablement] GET /workers/{ID}/anytimeFeedbackEvents/{subresourceID} — Retrieves a feedback given event instance with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/anytimeFeedbackEvents/{subresourceID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getAnytimeFeedbackEvents.js"
+  },
+  {
+    "name": "PerformanceEnablement-OrganizationGoals-PATCH-patchOrganizationGoals",
+    "description": "[Performance Enablement] PATCH /organizationGoals/{ID} — Partially updates a single organization goal instance with the specified data.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/organizationGoals/{ID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-OrganizationGoals-PATCH-patchOrganizationGoals.js"
+  },
+  {
+    "name": "PerformanceEnablement-MyPerformanceReviews-POST-postMyPerformanceReviews",
+    "description": "[Performance Enablement] POST /myPerformanceReviews — Creates a single performance review instance with the specified data.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/myPerformanceReviews",
+    "operationId": null,
+    "file": "PerformanceEnablement-MyPerformanceReviews-POST-postMyPerformanceReviews.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getWorkers_1",
+    "description": "[Performance Enablement] GET /workers/{ID} — Retrieves a collection of workers and current staffing information.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getWorkers_1.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getStatus",
+    "description": "[Performance Enablement] GET /values/manageGoals/status/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Employee Goals, Worker Data: Employee Goals\n\n<b>Scope:</b> Performance E",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/manageGoals/status/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getStatus.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-GET-getAnytimeFeedbackEvents_1",
+    "description": "[Performance Enablement] GET /workers/{ID}/anytimeFeedbackEvents — Retrieves a collection of feedback given events about the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/anytimeFeedbackEvents",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-GET-getAnytimeFeedbackEvents_1.js"
+  },
+  {
+    "name": "PerformanceEnablement-Workers-POST-postAnytimeFeedbackEvents",
+    "description": "[Performance Enablement] POST /workers/{ID}/anytimeFeedbackEvents — Creates a single feedback given event instance about the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/anytimeFeedbackEvents",
+    "operationId": null,
+    "file": "PerformanceEnablement-Workers-POST-postAnytimeFeedbackEvents.js"
+  },
+  {
+    "name": "PerformanceEnablement-GiveRequestedFeedbackEvents-GET-getGiveRequestedFeedbackEvents_1",
+    "description": "[Performance Enablement] GET /giveRequestedFeedbackEvents/{ID} — Retrieves a single requested feedback given event instance with the specified ID of the user that responded to the feedback request.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/giveRequestedFeedbackEvents/{ID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-GiveRequestedFeedbackEvents-GET-getGiveRequestedFeedbackEvents_1.js"
+  },
+  {
+    "name": "PerformanceEnablement-GiveRequestedFeedbackEvents-PATCH-patchGiveRequestedFeedbackEvents",
+    "description": "[Performance Enablement] PATCH /giveRequestedFeedbackEvents/{ID} — Updates the existing Give Requested Feedback Event instance with the specified ID. The current authenticated user is a responder for the event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/giveRequestedFeedbackEvents/{ID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-GiveRequestedFeedbackEvents-PATCH-patchGiveRequestedFeedbackEvents.js"
+  },
+  {
+    "name": "PerformanceEnablement-WorkerGoalEvents-GET-getWorkerGoalEvents_1",
+    "description": "[Performance Enablement] GET /workerGoalEvents/{ID} — Get Worker Goal Events",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workerGoalEvents/{ID}",
+    "operationId": null,
+    "file": "PerformanceEnablement-WorkerGoalEvents-GET-getWorkerGoalEvents_1.js"
+  },
+  {
+    "name": "PerformanceEnablement-Values-GET-getRelatesTo",
+    "description": "[Performance Enablement] GET /values/relatesTo/relatesTo/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Role Requested Feedback, Self-Service: Self Requested Feedback, Worker D",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "relatesToTag",
+        "type": "string",
+        "description": "The talent tag linked to the feedback question.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/relatesTo/relatesTo/",
+    "operationId": null,
+    "file": "PerformanceEnablement-Values-GET-getRelatesTo.js"
+  }
+]

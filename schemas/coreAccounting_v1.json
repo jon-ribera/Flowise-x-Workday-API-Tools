@@ -1,0 +1,480 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Core Accounting service enables applications to access and configure common financial components that you use to manage your financial accounting.",
+    "version": "v1",
+    "title": "coreAccounting",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "c7b55638801810000680eea3ca1e0e55"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/coreAccounting/v1",
+  "tags": [
+    {
+      "name": "currencies",
+      "description": "Provides the ability to retrieve information on currencies in your tenant."
+    },
+    {
+      "name": "evaluateAccountPostingRules",
+      "description": "Retrieves the ledger account and resulting worktags of an account posting rule with specified parameters. To reduce performance impact to your tenant, Workday recommends that you use parallel calls for your integration and ensure that the parameters you specify are unique."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/currencies": {
+      "get": {
+        "tags": [
+          "currencies"
+        ],
+        "summary": "Retrieves the details on all currencies in your tenant.",
+        "description": "Retrieves the details on all currencies in your tenant. Workday retrieves the:\n* ID\n* Descriptor\n* Precision\n* Code\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/currencySummary_017e2512829b10003b1ae9c602fd2edd"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/currencies/{ID}": {
+      "get": {
+        "tags": [
+          "currencies"
+        ],
+        "summary": "Retrieves the details of a specified currency.",
+        "description": "Retrieves the details of a specified currency. Workday retrieves the:\n* ID\n* Descriptor\n* Precision\n* Code\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/currencySummary_017e2512829b10003b1ae9c602fd2edd"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/evaluateAccountPostingRules": {
+      "get": {
+        "tags": [
+          "evaluateAccountPostingRules"
+        ],
+        "summary": "Retrieves the ledger account and resulting worktags of a specified account posting rule.",
+        "description": "Retrieves the ledger account and resulting worktags of an account posting rule with specified parameters.\n\n<b>Secured by:</b> Set Up: Accounting Rules\n\n<b>Scope:</b> Common Financial Management",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accountPostingRuleSet",
+            "in": "query",
+            "description": "(Required) The Workday ID or reference ID for the account posting rule set. The reference ID uses the accountPostingRuleSet=sampleRefIdType=value format. Example: accountPostingRuleSet=Account_Posting_Rule_Set_ID=ACCOUNT_POSTING_RULE_SET-1",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountPostingRuleType",
+            "in": "query",
+            "description": "(Required) The Workday ID or reference ID for the account posting rule type. The reference ID uses the accountPostingRuleType=sampleRefIdType=value format. Example: accountPostingRuleType=Account_Posting_Rule_Type_ID=CASH",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dimensionValue",
+            "in": "query",
+            "description": "The Workday IDs or reference IDs for the dimension value of the account posting rule condition. The reference ID uses the dimensionValue=sampleRefIdType=value format format. Example: dimensionValue=Fund_ID=F03.1.3.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/viewLedgerAccount_c7b55638801810000c51c0b626e01109"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "resultingWorktags_c7b55638801810001418b78345641365": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagSummary_e8afdb9d2fab100005694a0d2456127f"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Accounting Worktag"
+            }
+          }
+        }
+      ]
+    },
+    "viewLedgerAccount_c7b55638801810000c51c0b626e01109": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "resultingWorktags": {
+              "type": "array",
+              "description": "The resulting worktags configured for an account posting rule.",
+              "items": {
+                "$ref": "#/definitions/resultingWorktags_c7b55638801810001418b78345641365"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "ledgerAccountName": {
+              "type": "string",
+              "example": "1050: Cash",
+              "description": "The name of the ledger account.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Ledger Account"
+            }
+          }
+        }
+      ]
+    },
+    "currencySummary_017e2512829b10003b1ae9c602fd2edd": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "precision": {
+              "type": "integer",
+              "example": "9",
+              "description": "Precision",
+              "x-workday-type": "Numeric"
+            },
+            "code": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "ID",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "worktagSummary_e8afdb9d2fab100005694a0d2456127f": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

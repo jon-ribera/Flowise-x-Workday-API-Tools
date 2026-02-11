@@ -1,0 +1,482 @@
+[
+  {
+    "name": "TalentManagement-Values-GET-getMembers",
+    "description": "[Talent Management] GET /values/successionPlan/members/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Worker Data: Succession\n\n<b>Scope:</b> Talent Pipeline",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/successionPlan/members/",
+    "operationId": null,
+    "file": "TalentManagement-Values-GET-getMembers.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlanEvents-POST-postSubmit",
+    "description": "[Talent Management] POST /successionPlanEvents/{ID}/submit — Submits a succession plan event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/successionPlanEvents/{ID}/submit",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlanEvents-POST-postSubmit.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlanEvents-GET-getCandidates",
+    "description": "[Talent Management] GET /successionPlanEvents/{ID}/candidates — Retrieves a collection of information for succession plan candidates for a succession plan event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/successionPlanEvents/{ID}/candidates",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlanEvents-GET-getCandidates.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlanEvents-POST-postCandidates",
+    "description": "[Talent Management] POST /successionPlanEvents/{ID}/candidates — Creates a single succession plan candidate instance with the specified data.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/successionPlanEvents/{ID}/candidates",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlanEvents-POST-postCandidates.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlans-GET-getSuccessionPlans",
+    "description": "[Talent Management] GET /successionPlans/{ID} — Get succession plans",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/successionPlans/{ID}",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlans-GET-getSuccessionPlans.js"
+  },
+  {
+    "name": "TalentManagement-CreateMentorshipForWorker-POST-postCreateMentorshipForWorker",
+    "description": "[Talent Management] POST /createMentorshipForWorker — Creates a mentorship between two workers.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/createMentorshipForWorker",
+    "operationId": null,
+    "file": "TalentManagement-CreateMentorshipForWorker-POST-postCreateMentorshipForWorker.js"
+  },
+  {
+    "name": "TalentManagement-Mentorships-GET-getMentorships",
+    "description": "[Talent Management] GET /mentorships — Get all mentorships",
+    "schema": [
+      {
+        "name": "closeMentorshipReason",
+        "type": "string",
+        "description": "query parameter: closeMentorshipReason",
+        "required": false
+      },
+      {
+        "name": "closed",
+        "type": "boolean",
+        "description": "query parameter: closed",
+        "required": false
+      },
+      {
+        "name": "inProgress",
+        "type": "boolean",
+        "description": "query parameter: inProgress",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "mentee",
+        "type": "string",
+        "description": "query parameter: mentee",
+        "required": false
+      },
+      {
+        "name": "mentor",
+        "type": "string",
+        "description": "query parameter: mentor",
+        "required": false
+      },
+      {
+        "name": "mentorType",
+        "type": "string",
+        "description": "query parameter: mentorType",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/mentorships",
+    "operationId": null,
+    "file": "TalentManagement-Mentorships-GET-getMentorships.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlanEvents-GET-getCandidates_1",
+    "description": "[Talent Management] GET /successionPlanEvents/{ID}/candidates/{subresourceID} — Retrieves succession plan candidates for the specified succession plan Event ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/successionPlanEvents/{ID}/candidates/{subresourceID}",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlanEvents-GET-getCandidates_1.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlanEvents-PATCH-patchCandidates",
+    "description": "[Talent Management] PATCH /successionPlanEvents/{ID}/candidates/{subresourceID} — Updates a new succession plan candidate instance associated to the succession plan event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/successionPlanEvents/{ID}/candidates/{subresourceID}",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlanEvents-PATCH-patchCandidates.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlanEvents-DELETE-deleteCandidates",
+    "description": "[Talent Management] DELETE /successionPlanEvents/{ID}/candidates/{subresourceID} — Removes a succession plan candidate instance associated to the succession plan event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/successionPlanEvents/{ID}/candidates/{subresourceID}",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlanEvents-DELETE-deleteCandidates.js"
+  },
+  {
+    "name": "TalentManagement-Values-GET-getStrategies",
+    "description": "[Talent Management] GET /values/successionPlan/strategies/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Worker Data: Succession\n\n<b>Scope:</b> Talent Pipeline",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/successionPlan/strategies/",
+    "operationId": null,
+    "file": "TalentManagement-Values-GET-getStrategies.js"
+  },
+  {
+    "name": "TalentManagement-Mentorships-POST-postClose",
+    "description": "[Talent Management] POST /mentorships/{ID}/close — Closes the mentorship.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/mentorships/{ID}/close",
+    "operationId": null,
+    "file": "TalentManagement-Mentorships-POST-postClose.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlanEvents-GET-getSuccessionPlanEvents",
+    "description": "[Talent Management] GET /successionPlanEvents/{ID} — Get Succession Plan Events",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/successionPlanEvents/{ID}",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlanEvents-GET-getSuccessionPlanEvents.js"
+  },
+  {
+    "name": "TalentManagement-Values-GET-getReadiness",
+    "description": "[Talent Management] GET /values/successionPlan/readiness/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Worker Data: Succession\n\n<b>Scope:</b> Talent Pipeline",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/successionPlan/readiness/",
+    "operationId": null,
+    "file": "TalentManagement-Values-GET-getReadiness.js"
+  },
+  {
+    "name": "TalentManagement-Mentorships-POST-postEdit",
+    "description": "[Talent Management] POST /mentorships/{ID}/edit — Edit the mentorship.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/mentorships/{ID}/edit",
+    "operationId": null,
+    "file": "TalentManagement-Mentorships-POST-postEdit.js"
+  },
+  {
+    "name": "TalentManagement-Mentorships-GET-getMentorships_1",
+    "description": "[Talent Management] GET /mentorships/{ID} — Get all mentorships",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/mentorships/{ID}",
+    "operationId": null,
+    "file": "TalentManagement-Mentorships-GET-getMentorships_1.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlanEvents-GET-getSuccessionPlanEvents_1",
+    "description": "[Talent Management] GET /successionPlanEvents — Get Succession Plan Events",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "successionPlan",
+        "type": "string",
+        "description": "The succession plan instance.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/successionPlanEvents",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlanEvents-GET-getSuccessionPlanEvents_1.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlanEvents-POST-postSuccessionPlanEvents",
+    "description": "[Talent Management] POST /successionPlanEvents — Creates a succession plan event instance for a succession plan. This roughly corresponds to submissions through the Manage Succession Plan task.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/successionPlanEvents",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlanEvents-POST-postSuccessionPlanEvents.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlans-GET-getSuccessionPlans_1",
+    "description": "[Talent Management] GET /successionPlans — Get succession plans.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "position",
+        "type": "string",
+        "description": "Postion Id",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/successionPlans",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlans-GET-getSuccessionPlans_1.js"
+  },
+  {
+    "name": "TalentManagement-SuccessionPlans-POST-postSuccessionPlans",
+    "description": "[Talent Management] POST /successionPlans — \n\n<b>Secured by:</b> Search: Find Succession Plans, Set Up: Succession\n\n<b>Scope:</b> Talent Pipeline",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/successionPlans",
+    "operationId": null,
+    "file": "TalentManagement-SuccessionPlans-POST-postSuccessionPlans.js"
+  },
+  {
+    "name": "TalentManagement-CreateMentorshipForMe-POST-postCreateMentorshipForMe",
+    "description": "[Talent Management] POST /createMentorshipForMe — Creates a mentorship for the current processing worker where the user is also the mentee.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/createMentorshipForMe",
+    "operationId": null,
+    "file": "TalentManagement-CreateMentorshipForMe-POST-postCreateMentorshipForMe.js"
+  }
+]

@@ -1,0 +1,60 @@
+[
+  {
+    "name": "Privacy-ActivityLogging-GET-getActivityLogging",
+    "description": "[Privacy] GET /activityLogging — Retrieves a collection of user activity log entries in a specified time frame.",
+    "schema": [
+      {
+        "name": "from",
+        "type": "string",
+        "description": "(Required) The date and time of the earliest log entry. The default timezone is UTC/GMT. The time format is \"{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z\".  Example:  \"2021-05-18T13:45:14Z\" indicates May 18, 2021, 1:45PM UTC.",
+        "required": false
+      },
+      {
+        "name": "instancesReturned",
+        "type": "number",
+        "description": "This number multiplied by 10,000 determines the total number of requested user activity instances. Example: A value of 5 requests a maximum of 50,000 instances. The default and maximum values are 25. By default, the method requests the maximum 250,000 instances. To fine-tune the performance, set this parameter to a lower number. While the instancesReturned parameter controls the total number of requested instances, the limit parameter controls the number of returned instances in a paginated response.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "returnUserActivityEntryCount",
+        "type": "boolean",
+        "description": "If true, returns only the total count of user activity instances for the specified parameters.",
+        "required": false
+      },
+      {
+        "name": "systemAccount",
+        "type": "string",
+        "description": "query parameter: systemAccount",
+        "required": false
+      },
+      {
+        "name": "taskId",
+        "type": "string",
+        "description": "query parameter: taskId",
+        "required": false
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "(Required) The date and time of the latest log entry. The default timezone is UTC/GMT. The time format is \"{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z\".  Example:  \"2021-05-18T13:45:14Z\" indicates May 18, 2021, 1:45PM UTC.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/activityLogging",
+    "operationId": null,
+    "file": "Privacy-ActivityLogging-GET-getActivityLogging.js"
+  }
+]

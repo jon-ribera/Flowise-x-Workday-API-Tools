@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Journeys-DistributionRequests-POST-postDistributionRequests",
+    "description": "[Journeys] POST /distributionRequests — Creates journey distribution.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/distributionRequests",
+    "operationId": null,
+    "file": "Journeys-DistributionRequests-POST-postDistributionRequests.js"
+  }
+]

@@ -1,0 +1,2215 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Compensation service enables applications to extend Workday's HCM Compensation features.",
+    "version": "v2",
+    "title": "compensation",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "2d8b79dba7251000105e1cc54b0a13e1"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/compensation/v2",
+  "tags": [
+    {
+      "name": "scorecardResults",
+      "description": "Provides the ability to set up and retrieve Scores on Scorecard Results."
+    },
+    {
+      "name": "scorecards",
+      "description": "Provides the ability to set up and retrieve Scores on Scorecard Results."
+    },
+    {
+      "name": "workers"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/scorecardResults": {
+      "get": {
+        "tags": [
+          "scorecardResults"
+        ],
+        "summary": "Provides the ability to set up and retrieve Scores on Scorecard Results.",
+        "description": "Retrieves the Scorecard Results.\n\n<b>Secured by:</b> Set Up: Merit and Bonus\n\n<b>Scope:</b> Advanced Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/scoresetContainer_9417ca9c97d910000b2cd7813b5b00fc"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      },
+      "post": {
+        "tags": [
+          "scorecardResults"
+        ],
+        "summary": "Creates a new Scorecard Result.",
+        "description": "In the request body, specify these required fields:\n\n* compensationScorecard  - The Workday ID of a Compensation Scorecard. You can use a returned id from the GET /scorecards method.\n* evaluationDate - The date when the Scorecard Result is evaluated. Use the yyyy-mm-dd format.\n\n<b>Secured by:</b> Set Up: Merit and Bonus\n\n<b>Scope:</b> Advanced Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createScorecardResults",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createScorecardResults_788fbbd8885d100009973168b6ea015e"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/createScorecardResults_788fbbd8885d100009973168b6ea015e"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nChange the Evaluation Date to a date that is on or after the Effective Date of the selected Scorecard. The specified Evaluation Date is before the earliest Effective Date of the selected Scorecard.\n\nEither specify a different Evaluation Date or edit the existing Scores. The Scorecard Result for the specified Scorecard and Evaluation Date already exists:([scores])",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/scorecards": {
+      "get": {
+        "tags": [
+          "scorecards"
+        ],
+        "summary": "Retrieves Compensation Scorecard information.",
+        "description": "Retrieves Compensation Scorecard information including the scorecardName, scorecardDescription, inactive status, defaultScorecardGoals, scorecardProfiles containing profileScorecardGoals as of the effective date. The default effective date is the request date.\n\n<b>Secured by:</b> Set Up: Merit and Bonus\n\n<b>Scope:</b> Advanced Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "effectiveDate",
+            "in": "query",
+            "description": "Effective date the scorecard task takes effect.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/scorecard_e8cffc5e0fe810000b26ce3a5d2200f4"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      },
+      "post": {
+        "tags": [
+          "scorecards"
+        ],
+        "summary": "Creates a Compensation Scorecard",
+        "description": "Creates a new Compensation Scorecard.\n\nIn the request body, specify these required fields: scorecardName, effectiveDate, and defaultScorecardGoals[ {goalName, goalWeight} ]. \nIf you specify the optional scorecardProfiles[], you must specify the eligibilityRule{id} and at least 1 goal in profileScorecardGoals[ {goalName, goalWeight} ].\n\n<b>Secured by:</b> Set Up: Merit and Bonus\n\n<b>Scope:</b> Advanced Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createScorecard",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createScorecard_e783e109d05a100008666e71ee9200c1"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/createScorecard_e783e109d05a100008666e71ee9200c1"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nA Default Scorecard \\~Goal\\~ is missing\n\nA \\~Goal\\~ is missing for a Scorecard Profile.\n\nScorecard Name entered has already been used.\n\nThe sum of the \\~goal\\~ weightings must equal 100%.\n\nThere are duplicate eligibility rules on this request.\n\n\\~Goal\\~ Weights must be greater than 0.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/scorecardResults/{ID}": {
+      "get": {
+        "tags": [
+          "scorecardResults"
+        ],
+        "summary": "Provides the ability to set up and retrieve Scores on Scorecard Results.",
+        "description": "Retrieves the Scorecard Results.\n\n<b>Secured by:</b> Set Up: Merit and Bonus\n\n<b>Scope:</b> Advanced Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/scoresetContainer_9417ca9c97d910000b2cd7813b5b00fc"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      },
+      "delete": {
+        "tags": [
+          "scorecardResults"
+        ],
+        "summary": "Deletes the Scorecard Results with the specified ID.",
+        "description": "Deletes the Scorecard Results with the specified ID.\n\n<b>Secured by:</b> Set Up: Merit and Bonus\n\n<b>Scope:</b> Advanced Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Deleting resource."
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nYou can’t delete the Scorecard Results used in a completed or in-progress compensation review process.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/workers/{ID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a worker instance.",
+        "description": "Retrieves a worker instance with the specific ID.\n\n<b>Secured by:</b> FLW Service, Self-Service: Current Staffing Information, Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/workerProfile_c0a0dce56eb142d39dbffeb505becf7a"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/workers": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of workers.",
+        "description": "Retrieves all workers. Use the search parameter to search for workers by name. The search is case-insensitive.\n\n<b>Secured by:</b> FLW Service, Self-Service: Current Staffing Information, Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "includeTerminatedWorkers",
+            "in": "query",
+            "description": "Include terminated workers in the output",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/workerSummary_a489aef739484c13a59e6d502a9e7b68"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/workers/{ID}/requestOneTimePayment": {
+      "post": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Request a one-time payment for a worker with the specified ID.",
+        "description": "Creates a one-time payment for a worker with the specified ID, and initiates the Request One-Time Payment business process. In the request body, specify at least these required fields: reason{id}, position{id}, oneTimePayments[ paymentCurrency{id}, oneTimePaymentPlan {id}].\n\nSample format for paymentAmount:\n\"payment Amount\": {\n         \"value\": \"2500\"\n}\n\n<b>Secured by:</b> Request One-Time Payment (REST Service)\n\n<b>Scope:</b> Core Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "oneTimePaymentPlanEventInput",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/oneTimePaymentPlanEventInput_ada36316d338100011ac2ed696990026"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/oneTimePaymentPlanEventInput_ada36316d338100011ac2ed696990026"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nA One-Time Payment plan is required.\n\nAt least 1 One-Time Payment is required.\n\nBased on the worktag type configuration following worktag types are not valid for taggable type [tt]: [awt]. Please remove all worktags for the invalid worktag types.\n\nCompensation Change cannot take place before \\~Employee\\~ Hire Date.\n\nCoverage Start Date and Coverage End Date can not be entered for a One-Time Payment Plan that does not have Coverage Dates enabled.\n\nEffective Date is required.\n\nEither an amount or a percent for the One-Time Payment is required.\n\nIf specifying a Coverage Date range, then both dates must be specified.\n\nMultiple One-Time Payment is not enabled. Please enable Multiple One-Time Payment in HCM Tenant Setup - Compensation.\n\nOnly one worktag for each type is allowed for each document line.\n\nPlease use a valid One-Time Payment plan.\n\nPosition submitted is not filled as of the effective date.\n\nScheduled Payment Date cannot take place before the One Time Payment Effective Date.\n\nScheduled Payment Date must be equal to Event Effective Date when Multiple One-Time Payment is not enabled in Edit Tenant Setup - HCM.\n\nSelect a balancing worktag for Worktags of the following type: [type]\n\nThe coverage period End Date must be on or after Start Date.\n\nThe following Accounting Worktags are required but have not been assigned: [missing].\n\nThe job is not valid for the \\~employee\\~.\n\nThe \\~Employee\\~ Visibility Date has been set to a value, but the \\~Employee\\~ Visibility Feature has not been activated in the HCM Tenant settings. Please leave the date blank or activate the feature in the tenant level settings.\n\nThe \\~Employee\\~ Visibility Date must be on or after the Effective Date.\n\nThe \\~employee\\~ you have selected has more than one job. You must supply the job to which this operation applies.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/scorecardResults/{ID}/scores/{subresourceID}": {
+      "patch": {
+        "tags": [
+          "scorecardResults"
+        ],
+        "summary": "Updates the Score for the specified Scorecard Result.",
+        "description": "Sets the achievement value for the specified Score in the specified Scorecard Result.\nSpecify the required achievement value as a percentage (1-100%).\n\n<b>Secured by:</b> Set Up: Merit and Bonus\n\n<b>Scope:</b> Advanced Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "scoreInput",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/scoreInput_b919a306ff7e10000e12a527cd2c0166"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/scoreInput_b919a306ff7e10000e12a527cd2c0166"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nYou can’t update Scorecard Results used in a completed compensation review process.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/scorecards/{ID}": {
+      "get": {
+        "tags": [
+          "scorecards"
+        ],
+        "summary": "Retrieves Compensation Scorecard information.",
+        "description": "Retrieves Compensation Scorecard information including the scorecardName, scorecardDescription, inactive status, defaultScorecardGoals, scorecardProfiles containing profileScorecardGoals as of the effective date. The default effective date is the request date.\n\n<b>Secured by:</b> Set Up: Merit and Bonus\n\n<b>Scope:</b> Advanced Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/scorecard_e8cffc5e0fe810000b26ce3a5d2200f4"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      },
+      "put": {
+        "tags": [
+          "scorecards"
+        ],
+        "summary": "Updates a Compensation Scorecard",
+        "description": "Replaces an existing Compensation Scorecard as of the specified effectiveDate. \nCall GET /scorecards/{ID} to initially populate the request body with the existing data. You can then update the scorecardName, scorecardDescription, and inactive fields. You can also add, update, and delete the existing data in defaultScorecardGoals[], scorecardProfiles[], and profileScorecardGoals[].\n\n<b>Secured by:</b> Set Up: Merit and Bonus\n\n<b>Scope:</b> Advanced Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "editScorecards",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/editScorecards_6316bca5e030100008492348577100af"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/editScorecards_6316bca5e030100008492348577100af"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nA Default Scorecard \\~Goal\\~ is missing\n\nA Scorecard Profile doesn't exist as of the Effective Date. Remove or replace the invalid Scorecard Profile or change the Effective Date.\n\nA Scorecard Profile is already in use on another Scorecard. Select a Scorecard Profile that's not already in use.\n\nA \\~Goal\\~ doesn't exist as of the Effective Date. Remove or replace the invalid \\~Goal\\~ or change the Effective Date.\n\nA \\~Goal\\~ is invalid. Enter a valid \\~Goal\\~.\n\nA \\~Goal\\~ is missing for a Scorecard Profile.\n\nEnter an Effective Date that is on or after the first Effective Date of the scorecard: [effectiveDate].\n\nScorecard Name entered has already been used.\n\nThe sum of the \\~goal\\~ weightings must equal 100%.\n\nThere are duplicate eligibility rules on this request.\n\nYou can't edit the compensation scorecard [scorecard] for the Effective Date [date] because the latest dated performance results associated with the scorecard is the date [latest date]. Enter an Effective Date for editing the scorecard that is after the following date: [latest date]\n\nYou entered duplicate Scorecard Profiles. Replace or remove the duplicates.\n\nYou entered duplicate \\~Goals\\~. Replace or remove the duplicates.\n\n\\~Goal\\~ Weights must be greater than 0.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "delete": {
+        "tags": [
+          "scorecards"
+        ],
+        "summary": "Deletes a Compensation Scorecard with the specified ID.",
+        "description": "Deletes Compensation Scorecards.\n\n<b>Secured by:</b> Set Up: Merit and Bonus\n\n<b>Scope:</b> Advanced Compensation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Deleting resource."
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nThe Compensation Scorecard cannot be deleted because it is in use.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "scorecardProfiles_5ec11e698afe10000c93771015820144": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/scorecardProfile_e8cffc5e0fe8100019d2980406830118"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Scorecard Profile"
+            }
+          }
+        }
+      ]
+    },
+    "defaultScorecardGoals_5ec11e698afe10000c0792b20d370140": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/scorecardGoalSummary_e8cffc5e0fe8100015e8c9f2a2a30110"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Performance Criteria"
+            }
+          }
+        }
+      ]
+    },
+    "scorecard_e8cffc5e0fe810000b26ce3a5d2200f4": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "scorecardProfiles": {
+              "type": "array",
+              "description": "The profiles for the Compensation Scorecard.",
+              "items": {
+                "$ref": "#/definitions/scorecardProfiles_5ec11e698afe10000c93771015820144"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "scorecardName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the Compensation Scorecard.",
+              "x-workday-type": "Text"
+            },
+            "effectiveDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The Effective Date of the Compensation Scorecard in format YYYY-MM-DD.",
+              "x-workday-type": "Date"
+            },
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicates whether the Scorecard is inactive using a value of true/false.",
+              "x-workday-type": "Boolean"
+            },
+            "scorecardDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the Compensation Scorecard.",
+              "x-workday-type": "Text"
+            },
+            "defaultScorecardGoals": {
+              "type": "array",
+              "description": "The goals for the Compensation Scorecard.",
+              "items": {
+                "$ref": "#/definitions/defaultScorecardGoals_5ec11e698afe10000c0792b20d370140"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "defaultScorecardGoals_e783e109d05a100008666ebe55a100c4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/createGoals_e783e109d05a10000add0e9d914f1817"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Performance Criteria"
+            }
+          }
+        }
+      ]
+    },
+    "scorecardProfiles_e783e109d05a100008666e9829b100c2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/createScorecardProfiles_e783e109d05a10000aa2f64beebf17df"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Scorecard Profile"
+            }
+          }
+        }
+      ]
+    },
+    "createScorecard_e783e109d05a100008666e71ee9200c1": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "defaultScorecardGoals",
+            "effectiveDate",
+            "scorecardName"
+          ],
+          "properties": {
+            "defaultScorecardGoals": {
+              "type": "array",
+              "description": "The \\~goals\\~ for the Compensation Scorecard.",
+              "items": {
+                "$ref": "#/definitions/defaultScorecardGoals_e783e109d05a100008666ebe55a100c4"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "scorecardName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the Compensation Scorecard.",
+              "x-workday-type": "Text"
+            },
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicates whether the Scorecard is inactive using a value of true/false.",
+              "x-workday-type": "Boolean"
+            },
+            "scorecardProfiles": {
+              "type": "array",
+              "description": "The profiles for the Compensation Scorecard.",
+              "items": {
+                "$ref": "#/definitions/scorecardProfiles_e783e109d05a100008666e9829b100c2"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "scorecardDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the Compensation Scorecard.",
+              "x-workday-type": "Text"
+            },
+            "effectiveDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The Effective Date of the Compensation Scorecard in format YYYY-MM-DD",
+              "x-workday-type": "Date"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "scorecardProfiles_ab761d753f94100006dd7a5a55e50192": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/scorecardProfiles_ab761d753f94100006db1f4fab80018c"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Scorecard Profile"
+            }
+          }
+        }
+      ]
+    },
+    "defaultScorecardGoals_fcedbf0ab58c10000983d0b90d360134": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/scorecardGoals_739602a83e141000065bcbec559400c4"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Performance Criteria"
+            }
+          }
+        }
+      ]
+    },
+    "editScorecards_6316bca5e030100008492348577100af": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "defaultScorecardGoals",
+            "effectiveDate",
+            "scorecardName"
+          ],
+          "properties": {
+            "scorecardProfiles": {
+              "type": "array",
+              "description": "Replaces the array of Profile Scorecard Goals and Eligibility Rules as of the specified effectiveDate.  Creates a new array if one does not exist.  Deletes the array if one exists as of the specified effectiveDate and the array is not included in the PUT.",
+              "items": {
+                "$ref": "#/definitions/scorecardProfiles_ab761d753f94100006dd7a5a55e50192"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "defaultScorecardGoals": {
+              "type": "array",
+              "description": "Replaces the array of Default Scorecard Goal fields as of the specified effectiveDate.",
+              "items": {
+                "$ref": "#/definitions/defaultScorecardGoals_fcedbf0ab58c10000983d0b90d360134"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "scorecardName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Replaces the name of the Compensation Scorecard as of the specified effectiveDate.",
+              "x-workday-type": "Text"
+            },
+            "inactive": {
+              "type": "boolean",
+              "example": true,
+              "description": "Replaces the inactive status of the Compensation Scorecard as of the specified effectiveDate.  Default value: false.",
+              "x-workday-type": "Boolean"
+            },
+            "effectiveDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2000-01-01T08:00:00.000Z",
+              "description": "The Effective Date of the updates to the Compensation Scorecard.  Date must be entered in format: YYYY-MM-DD.",
+              "x-workday-type": "Date"
+            },
+            "scorecardDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Replaces the description of the Compensation Scorecard as of the specified effectiveDate.  Deletes the description if a description exists as of the specified effectiveDate and this field is not included in the PUT.",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "scorecardID_788fbbd8885d1000099731d83fc70160": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/defaultScorecard_c04de7a15cc210000fc41acababf0019"
+        },
+        {}
+      ],
+      "description": "Returns the Default Scorecard for the Scorecard Result Instance"
+    },
+    "createScorecardResults_788fbbd8885d100009973168b6ea015e": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "evaluationDate",
+            "scorecardID"
+          ],
+          "properties": {
+            "scorecardName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The \\~goal\\~ name of the scorecard criteria result.",
+              "readOnly": true,
+              "x-workday-type": "Text"
+            },
+            "evaluationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Scorecard Result Evaluation Date",
+              "x-workday-type": "Date"
+            },
+            "scorecardID": {
+              "$ref": "#/definitions/scorecardID_788fbbd8885d1000099731d83fc70160"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "scorecardID_9417ca9c97d9100010b7515ebf9e010b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/defaultScorecard_c04de7a15cc210000fc41acababf0019"
+        },
+        {}
+      ],
+      "description": "Returns the Default Scorecard for the Scorecard Result Instance"
+    },
+    "defaultScorecardGoalsResult_9417ca9c97d91000112f60d761110113": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/scoreset_9417ca9c97d91000112e77cec5c70111"
+        },
+        {}
+      ],
+      "description": "Returns the Default Score for a Scorecard Result."
+    },
+    "profileScorecardGoalsResult_031a6cc942de1000135e69b35a4601cd": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/scoreset_9417ca9c97d91000112e77cec5c70111"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Compensation Scorecard Result"
+            }
+          }
+        }
+      ]
+    },
+    "scoresetContainer_9417ca9c97d910000b2cd7813b5b00fc": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "scorecardID": {
+              "$ref": "#/definitions/scorecardID_9417ca9c97d9100010b7515ebf9e010b"
+            },
+            "defaultScorecardGoalsResult": {
+              "$ref": "#/definitions/defaultScorecardGoalsResult_9417ca9c97d91000112f60d761110113"
+            },
+            "profileScorecardGoalsResult": {
+              "type": "array",
+              "description": "Returns the Scorecard Profiles for a Scorecard Result",
+              "items": {
+                "$ref": "#/definitions/profileScorecardGoalsResult_031a6cc942de1000135e69b35a4601cd"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "evaluationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Scorecard Result Evaluation Date",
+              "x-workday-type": "Date"
+            },
+            "scorecardDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the Scorecard's Description",
+              "x-workday-type": "Text"
+            },
+            "scorecardName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The \\~goal\\~ name of the scorecard criteria result.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "scoreInput_b919a306ff7e10000e12a527cd2c0166": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "achievement": {
+              "type": "number",
+              "example": 1,
+              "description": "The achievement percentage for the scorecard criteria result.",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "location_d6235be431f940598806053af7ba94ef": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Contains the location for the \\~worker\\~."
+    },
+    "primarySupervisoryOrganization_851e1342d4c2489c9680fb2a899227ca": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~supervisory organization\\~ for the \\~worker's\\~ primary position, if the \\~supervisory organization\\~ is viewable by everyone."
+    },
+    "workerProfile_c0a0dce56eb142d39dbffeb505becf7a": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "supervisoryOrganizationsManaged": {
+              "type": "string",
+              "format": "url",
+              "description": "All \\~supervisory organizations\\~, excluding inherited organizations, in which the \\~worker\\~ has a leadership role.",
+              "readOnly": true,
+              "x-workday-type": "Multi-instance"
+            },
+            "dateOfBirth": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The birth date of the \\~worker\\~.",
+              "x-workday-type": "Date"
+            },
+            "businessTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The business title for the \\~worker's\\~ primary position. If no business title is defined for a position, the position title is returned back.",
+              "x-workday-type": "Text"
+            },
+            "isManager": {
+              "type": "boolean",
+              "example": true,
+              "description": "Identifies if the \\~worker\\~ has a \\~manager\\~ role.",
+              "x-workday-type": "Boolean"
+            },
+            "primaryWorkEmail": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The primary work email address for the \\~worker\\~.",
+              "x-workday-type": "Text"
+            },
+            "location": {
+              "$ref": "#/definitions/location_d6235be431f940598806053af7ba94ef"
+            },
+            "primaryWorkPhone": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The primary work phone number for the \\~worker\\~ including the area code and \\~country\\~ code.",
+              "x-workday-type": "Text"
+            },
+            "primaryWorkAddressText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the primary work address for the \\~worker\\~, or from their default primary work location, full format on a single line.",
+              "x-workday-type": "Text"
+            },
+            "primarySupervisoryOrganization": {
+              "$ref": "#/definitions/primarySupervisoryOrganization_851e1342d4c2489c9680fb2a899227ca"
+            },
+            "yearsOfService": {
+              "type": "number",
+              "example": 99999999999.99,
+              "description": "The years of service for the \\~worker\\~.",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "primarySupervisoryOrganization_642d7497e69c48da946fc503f66d7da1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~supervisory organization\\~ for the \\~worker's\\~ primary position, if the \\~supervisory organization\\~ is viewable by everyone."
+    },
+    "workerSummary_a489aef739484c13a59e6d502a9e7b68": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "isManager": {
+              "type": "boolean",
+              "example": true,
+              "description": "Identifies if the \\~worker\\~ has a \\~manager\\~ role.",
+              "x-workday-type": "Boolean"
+            },
+            "primaryWorkPhone": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The primary work phone number for the \\~worker\\~ including the area code and \\~country\\~ code.",
+              "x-workday-type": "Text"
+            },
+            "primaryWorkEmail": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The primary work email address for the \\~worker\\~.",
+              "x-workday-type": "Text"
+            },
+            "primarySupervisoryOrganization": {
+              "$ref": "#/definitions/primarySupervisoryOrganization_642d7497e69c48da946fc503f66d7da1"
+            },
+            "businessTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The business title for the \\~worker's\\~ primary position. If no business title is defined for a position, the position title is returned back.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "oneTimePayments_74e74326e3da1000191f2a639d170046": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/oneTimePaymentInput_ada36316d338100012347e847126002d"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for One-Time Payment Representation"
+            }
+          }
+        }
+      ]
+    },
+    "position_aa655adbcee910002fcec09dadb70084": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Position Element"
+    },
+    "reason_ada36316d338100012078240be64002b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The business process type, reason category and reason associated with the business process (e.g. Hire \\~Employee\\~ > New Hire > New Position)."
+    },
+    "oneTimePaymentPlanEventInput_ada36316d338100011ac2ed696990026": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "oneTimePayments": {
+              "type": "array",
+              "description": "All one-time payments associated with the event.",
+              "items": {
+                "$ref": "#/definitions/oneTimePayments_74e74326e3da1000191f2a639d170046"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "position": {
+              "$ref": "#/definitions/position_aa655adbcee910002fcec09dadb70084"
+            },
+            "reason": {
+              "$ref": "#/definitions/reason_ada36316d338100012078240be64002b"
+            },
+            "effectiveDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date this business process takes effect.",
+              "x-workday-type": "Date"
+            },
+            "employeeVisibilityDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Returns the date that a compensation change is visible to a \\~worker\\~.",
+              "x-workday-type": "Date"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "goalID_031a6cc942de10001432e1711d9201d6": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/scoreGoal_99e36113850b10000c88dae09c9b00c0"
+        },
+        {}
+      ],
+      "description": "The criteria for the scorecard criteria result."
+    },
+    "scoresetScore_031a6cc942de10001432e156a86901d4": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "achievement": {
+              "type": "number",
+              "example": 999999.999999,
+              "description": "The achievement percentage for the scorecard criteria result.",
+              "x-workday-type": "Numeric"
+            },
+            "goalWeight": {
+              "type": "number",
+              "example": 999999.999999,
+              "description": "The criteria weighted percentage of the scorecard criteria result.",
+              "x-workday-type": "Numeric"
+            },
+            "goalID": {
+              "$ref": "#/definitions/goalID_031a6cc942de10001432e1711d9201d6"
+            },
+            "goalName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The \\~goal\\~ name of the scorecard criteria result.",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "scorecardGoalSummary_e8cffc5e0fe8100015e8c9f2a2a30110": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "goalWeight": {
+              "type": "number",
+              "example": 999999.9999,
+              "description": "The weight given to the Compensation Scorecard \\~Goal\\~. [90% will be displayed as 0.9]",
+              "x-workday-type": "Numeric"
+            },
+            "goalDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the Compensation Scorecard \\~Goal\\~.",
+              "x-workday-type": "Text"
+            },
+            "goalName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the Compensation Scorecard \\~Goal\\~.",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "profileScorecardGoals_ab761d753f94100006db1fc25c4a018d": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/scorecardGoals_739602a83e141000065bcbec559400c4"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Performance Criteria"
+            }
+          }
+        }
+      ]
+    },
+    "eligibilityRule_ab761d753f941000087efd5da96b01b0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Replaces the Eligibility Rule object as of the specified effectiveDate."
+    },
+    "scorecardProfiles_ab761d753f94100006db1f4fab80018c": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "eligibilityRule",
+            "profileScorecardGoals"
+          ],
+          "properties": {
+            "profileScorecardGoals": {
+              "type": "array",
+              "description": "Replaces the array of Profile Scorecard Goal fields as of the specified effectiveDate.  Creates a new array if one does not exist.  Deletes the array if one exists as of the specified effectiveDate and the scorecardProfiles array is not included in the PUT.",
+              "items": {
+                "$ref": "#/definitions/profileScorecardGoals_ab761d753f94100006db1fc25c4a018d"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "eligibilityRule": {
+              "$ref": "#/definitions/eligibilityRule_ab761d753f941000087efd5da96b01b0"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "createGoals_e783e109d05a10000add0e9d914f1817": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "goalName",
+            "goalWeight"
+          ],
+          "properties": {
+            "goalWeight": {
+              "type": "number",
+              "example": 999999.9999,
+              "description": "The weight given to the Compensation Scorecard Goal. [90% will be displayed as 0.9]",
+              "x-workday-type": "Numeric"
+            },
+            "goalName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the Compensation Scorecard Goal.",
+              "x-workday-type": "Text"
+            },
+            "goalDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the Compensation Scorecard Goal",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "defaultScorecard_c04de7a15cc210000fc41acababf0019": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Compensation Scorecard"
+            }
+          }
+        }
+      ]
+    },
+    "scorecardGoals_739602a83e141000065bcbec559400c4": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "goalName",
+            "goalWeight"
+          ],
+          "properties": {
+            "goalWeight": {
+              "type": "number",
+              "example": 999999.9999,
+              "description": "Replaces the weight of the Compensation Scorecard \\~Goal\\~ as of the specified effectiveDate.  [Weight should be entered as 0.9 for a goalWeight of 90%]",
+              "x-workday-type": "Numeric"
+            },
+            "goalName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Replaces the name of the Compensation Scorecard Goal as of the specified effectiveDate.",
+              "x-workday-type": "Text"
+            },
+            "goalDescription": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Replaces the description of the Compensation Scorecard Goal as of the specified effectiveDate.  Deletes the description if a description exists as of the specified effectiveDate and this field is not included in the PUT.",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "oneTimePaymentPlan_ada36316d33810001344646d1df60036": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The one-time payment plan name for this one-time payment. Displays only if the payment is a one-time payment."
+    },
+    "payrollWorktags_65d8813baebc100013a5391af084022b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/payrollWorktags_65d8813baebc100013a407fcbbc6021e"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Tenanted Payroll Worktag Representation"
+            }
+          }
+        }
+      ]
+    },
+    "paymentCurrency_ada36316d33810001344647d7c610037": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The currency for this compensation payment"
+    },
+    "oneTimePaymentInput_ada36316d338100012347e847126002d": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "additionalInformation": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Additional information for this compensation payment",
+              "x-workday-type": "Text"
+            },
+            "coverageEndDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The end date of the Coverage Period for the payment, which enables Workday Payroll or Payroll Integration to associate dates with the one-time payment for Fair Labor Standards Act (FLSA) reporting requirements.",
+              "x-workday-type": "Date"
+            },
+            "oneTimePaymentPlan": {
+              "$ref": "#/definitions/oneTimePaymentPlan_ada36316d33810001344646d1df60036"
+            },
+            "paymentPercent": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The actual amount for the \\~bonus\\~ payment represented as a percentage.  The percentage is usually calculated as a percentage of base pay, but on the \\~bonus\\~ plan setup it is possible to override the calculation basis to calculate as a percentage of a set of compensation elements.",
+              "x-workday-type": "Numeric"
+            },
+            "sendToPayroll": {
+              "type": "boolean",
+              "example": true,
+              "description": "This is true if you selected Send to Payroll on the \\~bonus\\~ payment, future payment, or one-time payment. If false, Workday Payroll doesn't process the payment.",
+              "x-workday-type": "Boolean"
+            },
+            "scheduledPaymentDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The payment date scheduled for the one-time payment request.",
+              "x-workday-type": "Date"
+            },
+            "payrollWorktags": {
+              "type": "array",
+              "description": "One-Time Payment Worktags for REST API",
+              "items": {
+                "$ref": "#/definitions/payrollWorktags_65d8813baebc100013a5391af084022b"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "coverageStartDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The start date of the Coverage Period for the payment, which enables Workday Payroll or Payroll Integration to associate dates with the one-time payment for Fair Labor Standards Act (FLSA) reporting requirements.",
+              "x-workday-type": "Date"
+            },
+            "paymentCurrency": {
+              "$ref": "#/definitions/paymentCurrency_ada36316d33810001344647d7c610037"
+            },
+            "paymentAmount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "Amount of compensation payment",
+              "x-workday-type": "Currency"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "payrollWorktags_65d8813baebc100013a407fcbbc6021e": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "scoreGoal_99e36113850b10000c88dae09c9b00c0": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "eligibilityRule_e783e109d05a10000aa2f66be77e17e2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The name of the Compensation Eligibility Rule assigned to the Compensation Scorecard Profile."
+    },
+    "profileScorecardGoals_e783e109d05a10000aa2f664cef617e1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/createGoals_e783e109d05a10000add0e9d914f1817"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Performance Criteria"
+            }
+          }
+        }
+      ]
+    },
+    "createScorecardProfiles_e783e109d05a10000aa2f64beebf17df": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "eligibilityRule",
+            "profileScorecardGoals"
+          ],
+          "properties": {
+            "eligibilityRule": {
+              "$ref": "#/definitions/eligibilityRule_e783e109d05a10000aa2f66be77e17e2"
+            },
+            "profileScorecardGoals": {
+              "type": "array",
+              "description": "The \\~goals\\~ for the Compensation Scorecard.",
+              "items": {
+                "$ref": "#/definitions/profileScorecardGoals_e783e109d05a10000aa2f664cef617e1"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Scorecard Profile"
+            }
+          }
+        }
+      ]
+    },
+    "eligibilityRule_e8cffc5e0fe8100019d298288b26011c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The name of the Compensation Eligibility Rule assigned to the Compensation Scorecard Profile."
+    },
+    "profileScorecardGoals_e8cffc5e0fe8100019d298117ae00119": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/scorecardGoalSummary_e8cffc5e0fe8100015e8c9f2a2a30110"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Performance Criteria"
+            }
+          }
+        }
+      ]
+    },
+    "scorecardProfile_e8cffc5e0fe8100019d2980406830118": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "eligibilityRule": {
+              "$ref": "#/definitions/eligibilityRule_e8cffc5e0fe8100019d298288b26011c"
+            },
+            "profileScorecardGoals": {
+              "type": "array",
+              "description": "The goals for the Compensation Scorecard.",
+              "items": {
+                "$ref": "#/definitions/profileScorecardGoals_e8cffc5e0fe8100019d298117ae00119"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Scorecard Profile"
+            }
+          }
+        }
+      ]
+    },
+    "performanceScores_031a6cc942de100013eade974c9a01d2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/scoresetScore_031a6cc942de10001432e156a86901d4"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Score"
+            }
+          }
+        }
+      ]
+    },
+    "eligibiltyRule_031a6cc942de100015833eaa47c701e4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Eligibility Rule for a Scorecard Profile."
+    },
+    "scoreset_9417ca9c97d91000112e77cec5c70111": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "performanceScores": {
+              "type": "array",
+              "description": "The set of Performance Scores for a Compensation Scorecard.",
+              "items": {
+                "$ref": "#/definitions/performanceScores_031a6cc942de100013eade974c9a01d2"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "weightedFundingPercent": {
+              "type": "number",
+              "example": 999999.999999,
+              "description": "Calculates the total Weighted Funding Percent for all the scores in the scorecard result set.",
+              "x-workday-type": "Numeric"
+            },
+            "eligibiltyRule": {
+              "$ref": "#/definitions/eligibiltyRule_031a6cc942de100015833eaa47c701e4"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

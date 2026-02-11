@@ -1,0 +1,1710 @@
+[
+  {
+    "name": "Projects-ResourceForecastLines-GET-getAllocations",
+    "description": "[Projects] GET /resourceForecastLines/{ID}/allocations — Retrieves a Resource Forecast Line Allocation for the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/resourceForecastLines/{ID}/allocations",
+    "operationId": null,
+    "file": "Projects-ResourceForecastLines-GET-getAllocations.js"
+  },
+  {
+    "name": "Projects-ResourceForecastLines-POST-postAllocations",
+    "description": "[Projects] POST /resourceForecastLines/{ID}/allocations — Creates resource forecast line allocations.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/resourceForecastLines/{ID}/allocations",
+    "operationId": null,
+    "file": "Projects-ResourceForecastLines-POST-postAllocations.js"
+  },
+  {
+    "name": "Projects-Values-GET-getWorkerGroups",
+    "description": "[Projects] GET /values/resourcePlan/workerGroups/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/workerGroups/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getWorkerGroups.js"
+  },
+  {
+    "name": "Projects-Values-GET-getCurrencies",
+    "description": "[Projects] GET /values/common/currencies/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/currencies/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getCurrencies.js"
+  },
+  {
+    "name": "Projects-Values-GET-getWorktagTypes",
+    "description": "[Projects] GET /values/common/worktagTypes/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/worktagTypes/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getWorktagTypes.js"
+  },
+  {
+    "name": "Projects-ResourceForecastLines-GET-getResourceForecastLines",
+    "description": "[Projects] GET /resourceForecastLines/{ID} — Retrieves a single resource forecast line instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/resourceForecastLines/{ID}",
+    "operationId": null,
+    "file": "Projects-ResourceForecastLines-GET-getResourceForecastLines.js"
+  },
+  {
+    "name": "Projects-ResourcePlanLines-POST-postEdit",
+    "description": "[Projects] POST /resourcePlanLines/{ID}/edit — Creates a Resource Plan Line Edit event and initiates the Project Resource Plan Line business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/resourcePlanLines/{ID}/edit",
+    "operationId": null,
+    "file": "Projects-ResourcePlanLines-POST-postEdit.js"
+  },
+  {
+    "name": "Projects-ResourcePlanLines-GET-getResourcePlanLines",
+    "description": "[Projects] GET /resourcePlanLines/{ID} — Retrieves a single resource plan line instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/resourcePlanLines/{ID}",
+    "operationId": null,
+    "file": "Projects-ResourcePlanLines-GET-getResourcePlanLines.js"
+  },
+  {
+    "name": "Projects-Values-GET-getUnnamedResources",
+    "description": "[Projects] GET /values/resourcePlan/unnamedResources/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/unnamedResources/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getUnnamedResources.js"
+  },
+  {
+    "name": "Projects-Values-GET-getWorkerToReplaceUnnamedResources",
+    "description": "[Projects] GET /values/resourcePlan/workerToReplaceUnnamedResources/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/workerToReplaceUnnamedResources/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getWorkerToReplaceUnnamedResources.js"
+  },
+  {
+    "name": "Projects-Values-GET-getSuccessRatings",
+    "description": "[Projects] GET /values/common/successRatings/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/successRatings/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getSuccessRatings.js"
+  },
+  {
+    "name": "Projects-Values-GET-getGroups",
+    "description": "[Projects] GET /values/common/groups/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/groups/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getGroups.js"
+  },
+  {
+    "name": "Projects-Projects-GET-getProjects",
+    "description": "[Projects] GET /projects — Retrieves a collection of Projects.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/projects",
+    "operationId": null,
+    "file": "Projects-Projects-GET-getProjects.js"
+  },
+  {
+    "name": "Projects-Projects-POST-postProjects",
+    "description": "[Projects] POST /projects — Creates Project Create Events and initiates the associated workflow to update the project.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/projects",
+    "operationId": null,
+    "file": "Projects-Projects-POST-postProjects.js"
+  },
+  {
+    "name": "Projects-Projects-GET-getProjects_1",
+    "description": "[Projects] GET /projects/{ID} — Retrieves a single project instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/projects/{ID}",
+    "operationId": null,
+    "file": "Projects-Projects-GET-getProjects_1.js"
+  },
+  {
+    "name": "Projects-AdHocProjectTimeTransactions-GET-getAdHocProjectTimeTransactions",
+    "description": "[Projects] GET /adHocProjectTimeTransactions — Retrieves a collection of ad hoc project time transactions.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "projectOrProjectHierarchy",
+        "type": "string",
+        "description": "The Workday ID or reference ID of a project or project hierarchy. You can use a returned project id or primaryHierarchy {id} from GET /projects.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/adHocProjectTimeTransactions",
+    "operationId": null,
+    "file": "Projects-AdHocProjectTimeTransactions-GET-getAdHocProjectTimeTransactions.js"
+  },
+  {
+    "name": "Projects-AdHocProjectTimeTransactions-POST-postAdHocProjectTimeTransactions",
+    "description": "[Projects] POST /adHocProjectTimeTransactions — Creates ad hoc project time transactions.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/adHocProjectTimeTransactions",
+    "operationId": null,
+    "file": "Projects-AdHocProjectTimeTransactions-POST-postAdHocProjectTimeTransactions.js"
+  },
+  {
+    "name": "Projects-ResourceForecastLines-GET-getAllocations_1",
+    "description": "[Projects] GET /resourceForecastLines/{ID}/allocations/{subresourceID} — Retrieve Resource Forecast Line Allocation.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/resourceForecastLines/{ID}/allocations/{subresourceID}",
+    "operationId": null,
+    "file": "Projects-ResourceForecastLines-GET-getAllocations_1.js"
+  },
+  {
+    "name": "Projects-ResourceForecastLines-PATCH-patchAllocations",
+    "description": "[Projects] PATCH /resourceForecastLines/{ID}/allocations/{subresourceID} — Update forecasted hours for Resource Forecast Line Allocation.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/resourceForecastLines/{ID}/allocations/{subresourceID}",
+    "operationId": null,
+    "file": "Projects-ResourceForecastLines-PATCH-patchAllocations.js"
+  },
+  {
+    "name": "Projects-Values-GET-getProjectPhases",
+    "description": "[Projects] GET /values/projectPlan/projectPhases/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Plan\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "query parameter: project",
+        "required": false
+      },
+      {
+        "name": "topLevelPhase",
+        "type": "boolean",
+        "description": "Indicates if the current ID is a top level Project Plan Phase.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/projectPlan/projectPhases/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getProjectPhases.js"
+  },
+  {
+    "name": "Projects-Values-GET-getRequirementCategories",
+    "description": "[Projects] GET /values/resourcePlan/requirementCategories/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/requirementCategories/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getRequirementCategories.js"
+  },
+  {
+    "name": "Projects-Values-GET-getRoles",
+    "description": "[Projects] GET /values/resourcePlan/roles/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/roles/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getRoles.js"
+  },
+  {
+    "name": "Projects-Values-GET-getHierarchies",
+    "description": "[Projects] GET /values/common/hierarchies/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/hierarchies/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getHierarchies.js"
+  },
+  {
+    "name": "Projects-Values-GET-getCustomers",
+    "description": "[Projects] GET /values/common/customers/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/customers/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getCustomers.js"
+  },
+  {
+    "name": "Projects-Values-GET-getWorktags",
+    "description": "[Projects] GET /values/common/worktags/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/worktags/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getWorktags.js"
+  },
+  {
+    "name": "Projects-Values-GET-getRoleCategories",
+    "description": "[Projects] GET /values/resourcePlan/roleCategories/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/roleCategories/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getRoleCategories.js"
+  },
+  {
+    "name": "Projects-Values-GET-getProjectTasks",
+    "description": "[Projects] GET /values/projectPlan/projectTasks/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Plan\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "query parameter: project",
+        "required": false
+      },
+      {
+        "name": "topLevelPhase",
+        "type": "boolean",
+        "description": "Indicates if the current ID is a top level Project Plan Phase.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/projectPlan/projectTasks/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getProjectTasks.js"
+  },
+  {
+    "name": "Projects-Values-GET-getOwners",
+    "description": "[Projects] GET /values/common/owners/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/owners/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getOwners.js"
+  },
+  {
+    "name": "Projects-PlanTasks-GET-getPlanTasks",
+    "description": "[Projects] GET /planTasks — Retrieves a collection of Project Plan Tasks for a specified Project or Project Plan Phase.",
+    "schema": [
+      {
+        "name": "filterBy",
+        "type": "string",
+        "description": "Accepts both Project Plan Phase or Project Plan Task WID. Query helps to filter results set based on filterCondition either to include or exclude WIDs.",
+        "required": false
+      },
+      {
+        "name": "filterCondition",
+        "type": "string",
+        "description": "query parameter: filterCondition",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "planPhase",
+        "type": "string",
+        "description": "query parameter: planPhase",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "query parameter: project",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/planTasks",
+    "operationId": null,
+    "file": "Projects-PlanTasks-GET-getPlanTasks.js"
+  },
+  {
+    "name": "Projects-PlanTasks-POST-postPlanTasks",
+    "description": "[Projects] POST /planTasks — Creates Project Plan tasks.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/planTasks",
+    "operationId": null,
+    "file": "Projects-PlanTasks-POST-postPlanTasks.js"
+  },
+  {
+    "name": "Projects-Values-GET-getWorkers",
+    "description": "[Projects] GET /values/resourcePlan/workers/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/workers/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getWorkers.js"
+  },
+  {
+    "name": "Projects-Values-GET-getStatuses",
+    "description": "[Projects] GET /values/common/statuses/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/statuses/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getStatuses.js"
+  },
+  {
+    "name": "Projects-Projects-POST-postEdit",
+    "description": "[Projects] POST /projects/{ID}/edit — Creates Project Edit Events and initiates the associated workflow to update the project.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/projects/{ID}/edit",
+    "operationId": null,
+    "file": "Projects-Projects-POST-postEdit.js"
+  },
+  {
+    "name": "Projects-TaskResources-GET-getTaskResources",
+    "description": "[Projects] GET /taskResources — Retrieves a collection of Task Resources.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "The project to retrieve the task resources from.",
+        "required": false
+      },
+      {
+        "name": "projectPlanTask",
+        "type": "string",
+        "description": "The project plan task to retrieve the task resources from.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/taskResources",
+    "operationId": null,
+    "file": "Projects-TaskResources-GET-getTaskResources.js"
+  },
+  {
+    "name": "Projects-TaskResources-POST-postTaskResources",
+    "description": "[Projects] POST /taskResources — Creates task resources.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/taskResources",
+    "operationId": null,
+    "file": "Projects-TaskResources-POST-postTaskResources.js"
+  },
+  {
+    "name": "Projects-ResourcePlanLines-GET-getResourcePlanLines_1",
+    "description": "[Projects] GET /resourcePlanLines — Retrieves a collection of Resource Plan Lines.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "query parameter: project",
+        "required": false
+      },
+      {
+        "name": "projectResourcePlan",
+        "type": "string",
+        "description": "query parameter: projectResourcePlan",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/resourcePlanLines",
+    "operationId": null,
+    "file": "Projects-ResourcePlanLines-GET-getResourcePlanLines_1.js"
+  },
+  {
+    "name": "Projects-ResourcePlanLines-POST-postResourcePlanLines",
+    "description": "[Projects] POST /resourcePlanLines — Creates a Resource Plan Line Create event and initiates the Project Resource Plan Line business process.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/resourcePlanLines",
+    "operationId": null,
+    "file": "Projects-ResourcePlanLines-POST-postResourcePlanLines.js"
+  },
+  {
+    "name": "Projects-TaskResources-GET-getTaskResources_1",
+    "description": "[Projects] GET /taskResources/{ID} — Retrieves a single task resource instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/taskResources/{ID}",
+    "operationId": null,
+    "file": "Projects-TaskResources-GET-getTaskResources_1.js"
+  },
+  {
+    "name": "Projects-TaskResources-PATCH-patchTaskResources",
+    "description": "[Projects] PATCH /taskResources/{ID} — Update Task Resource for specified Workday ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/taskResources/{ID}",
+    "operationId": null,
+    "file": "Projects-TaskResources-PATCH-patchTaskResources.js"
+  },
+  {
+    "name": "Projects-TaskResources-DELETE-deleteTaskResources",
+    "description": "[Projects] DELETE /taskResources/{ID} — Deletes an existing task resource instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/taskResources/{ID}",
+    "operationId": null,
+    "file": "Projects-TaskResources-DELETE-deleteTaskResources.js"
+  },
+  {
+    "name": "Projects-Values-GET-getOptionalHierarchies",
+    "description": "[Projects] GET /values/common/optionalHierarchies/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/optionalHierarchies/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getOptionalHierarchies.js"
+  },
+  {
+    "name": "Projects-Values-GET-getPriorities",
+    "description": "[Projects] GET /values/common/priorities/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/priorities/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getPriorities.js"
+  },
+  {
+    "name": "Projects-Values-GET-getResourceTypes",
+    "description": "[Projects] GET /values/resourcePlan/resourceTypes/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/resourceTypes/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getResourceTypes.js"
+  },
+  {
+    "name": "Projects-PlanPhases-GET-getPlanPhases",
+    "description": "[Projects] GET /planPhases/{ID} — Retrieves a single project plan phase instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/planPhases/{ID}",
+    "operationId": null,
+    "file": "Projects-PlanPhases-GET-getPlanPhases.js"
+  },
+  {
+    "name": "Projects-PlanPhases-PATCH-patchPlanPhases",
+    "description": "[Projects] PATCH /planPhases/{ID} — Updates the Project Plan Phase for the specified ID. Partially updates the existing Project Plan Phase with the specified data in the request body.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/planPhases/{ID}",
+    "operationId": null,
+    "file": "Projects-PlanPhases-PATCH-patchPlanPhases.js"
+  },
+  {
+    "name": "Projects-PlanPhases-DELETE-deletePlanPhases",
+    "description": "[Projects] DELETE /planPhases/{ID} — Deletes an existing project plan phase instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/planPhases/{ID}",
+    "operationId": null,
+    "file": "Projects-PlanPhases-DELETE-deletePlanPhases.js"
+  },
+  {
+    "name": "Projects-Values-GET-getProjectPlanPhases",
+    "description": "[Projects] GET /values/projectPlan/projectPlanPhases/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Plan\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "query parameter: project",
+        "required": false
+      },
+      {
+        "name": "topLevelPhase",
+        "type": "boolean",
+        "description": "Indicates if the current ID is a top level Project Plan Phase.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/projectPlan/projectPlanPhases/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getProjectPlanPhases.js"
+  },
+  {
+    "name": "Projects-Values-GET-getRequirements",
+    "description": "[Projects] GET /values/resourcePlan/requirements/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/requirements/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getRequirements.js"
+  },
+  {
+    "name": "Projects-Values-GET-getCostRateCurrencies",
+    "description": "[Projects] GET /values/resourcePlan/costRateCurrencies/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/costRateCurrencies/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getCostRateCurrencies.js"
+  },
+  {
+    "name": "Projects-PlanTasks-GET-getPlanTasks_1",
+    "description": "[Projects] GET /planTasks/{ID} — Retrieves a single project plan task instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/planTasks/{ID}",
+    "operationId": null,
+    "file": "Projects-PlanTasks-GET-getPlanTasks_1.js"
+  },
+  {
+    "name": "Projects-PlanTasks-PATCH-patchPlanTasks",
+    "description": "[Projects] PATCH /planTasks/{ID} — Partially updates an existing Project Plan Task instance with the specified ID and the specified data in the request body.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/planTasks/{ID}",
+    "operationId": null,
+    "file": "Projects-PlanTasks-PATCH-patchPlanTasks.js"
+  },
+  {
+    "name": "Projects-PlanTasks-DELETE-deletePlanTasks",
+    "description": "[Projects] DELETE /planTasks/{ID} — Deletes an existing project plan task instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/planTasks/{ID}",
+    "operationId": null,
+    "file": "Projects-PlanTasks-DELETE-deletePlanTasks.js"
+  },
+  {
+    "name": "Projects-Values-GET-getCompanies",
+    "description": "[Projects] GET /values/common/companies/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/companies/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getCompanies.js"
+  },
+  {
+    "name": "Projects-Values-GET-getRiskLevels",
+    "description": "[Projects] GET /values/common/riskLevels/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/riskLevels/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getRiskLevels.js"
+  },
+  {
+    "name": "Projects-Values-GET-getBookingStatus",
+    "description": "[Projects] GET /values/resourcePlan/bookingStatus/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Resources\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "requirementCategory",
+        "type": "string",
+        "description": "Requirement Category for Requirement",
+        "required": false
+      },
+      {
+        "name": "resourcePlanLine",
+        "type": "string",
+        "description": "The resource plan line for the project resource.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/resourcePlan/bookingStatus/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getBookingStatus.js"
+  },
+  {
+    "name": "Projects-ResourceForecastLines-GET-getResourceForecastLines_1",
+    "description": "[Projects] GET /resourceForecastLines — Retrieves a collection of Resource Forecast Lines.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "query parameter: project",
+        "required": false
+      },
+      {
+        "name": "projectResource",
+        "type": "string",
+        "description": "query parameter: projectResource",
+        "required": false
+      },
+      {
+        "name": "projectRole",
+        "type": "string",
+        "description": "query parameter: projectRole",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/resourceForecastLines",
+    "operationId": null,
+    "file": "Projects-ResourceForecastLines-GET-getResourceForecastLines_1.js"
+  },
+  {
+    "name": "Projects-Values-GET-getProjectPlanTasks",
+    "description": "[Projects] GET /values/projectPlan/projectPlanTasks/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Plan\n\n<b>Scope:</b> Project Tracking",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "query parameter: project",
+        "required": false
+      },
+      {
+        "name": "topLevelPhase",
+        "type": "boolean",
+        "description": "Indicates if the current ID is a top level Project Plan Phase.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/projectPlan/projectPlanTasks/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getProjectPlanTasks.js"
+  },
+  {
+    "name": "Projects-AdHocProjectTimeTransactions-GET-getAdHocProjectTimeTransactions_1",
+    "description": "[Projects] GET /adHocProjectTimeTransactions/{ID} — Retrieves an ad hoc project time transaction instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/adHocProjectTimeTransactions/{ID}",
+    "operationId": null,
+    "file": "Projects-AdHocProjectTimeTransactions-GET-getAdHocProjectTimeTransactions_1.js"
+  },
+  {
+    "name": "Projects-PlanPhases-GET-getPlanPhases_1",
+    "description": "[Projects] GET /planPhases — Retrieves a collection of Project Plan Phases for a specified Project.",
+    "schema": [
+      {
+        "name": "filterBy",
+        "type": "string",
+        "description": "Accepts both Project Plan Phase or Project Plan Task WID. Query helps to filter results set based on filterCondition either to include or exclude WIDs.",
+        "required": false
+      },
+      {
+        "name": "filterCondition",
+        "type": "string",
+        "description": "To be used along with filterBy Query field to include or exclude instances in the GET response. Valid values are \"Is\" and \"Not Equal to\" (case-insensitive).",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "parent",
+        "type": "string",
+        "description": "query parameter: parent",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "query parameter: project",
+        "required": false
+      },
+      {
+        "name": "topLevelPhase",
+        "type": "boolean",
+        "description": "query parameter: topLevelPhase",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/planPhases",
+    "operationId": null,
+    "file": "Projects-PlanPhases-GET-getPlanPhases_1.js"
+  },
+  {
+    "name": "Projects-PlanPhases-POST-postPlanPhases",
+    "description": "[Projects] POST /planPhases — Creates project plan phases.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/planPhases",
+    "operationId": null,
+    "file": "Projects-PlanPhases-POST-postPlanPhases.js"
+  },
+  {
+    "name": "Projects-Values-GET-getImportanceRatings",
+    "description": "[Projects] GET /values/common/importanceRatings/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/importanceRatings/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getImportanceRatings.js"
+  },
+  {
+    "name": "Projects-Values-GET-getProjects",
+    "description": "[Projects] GET /values/common/projects/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/projects/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getProjects.js"
+  },
+  {
+    "name": "Projects-Values-GET-getProjectStates",
+    "description": "[Projects] GET /values/common/projectStates/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/projectStates/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getProjectStates.js"
+  },
+  {
+    "name": "Projects-Values-GET-getProjectDependencies",
+    "description": "[Projects] GET /values/common/projectDependencies/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Manage: Project Details, Self-Service: Project, View: Project\n\n<b>Scope:</b> Project T",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worktagType",
+        "type": "string",
+        "description": "query parameter: worktagType",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/common/projectDependencies/",
+    "operationId": null,
+    "file": "Projects-Values-GET-getProjectDependencies.js"
+  }
+]

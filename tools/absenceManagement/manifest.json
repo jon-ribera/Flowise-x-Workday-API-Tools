@@ -1,0 +1,452 @@
+[
+  {
+    "name": "AbsenceManagement-Workers-GET-getLeavesOfAbsence",
+    "description": "[Absence Management] GET /workers/{ID}/leavesOfAbsence/{subresourceID} — Retrieves the leave of absence for the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/leavesOfAbsence/{subresourceID}",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-GET-getLeavesOfAbsence.js"
+  },
+  {
+    "name": "AbsenceManagement-Values-GET-getStatus",
+    "description": "[Absence Management] GET /values/leave/status/ — The status of the event that tracks the requested time off.\n\n<b>Secured by:</b> Self-Service: Leave of Absence, Worker Data: Leave of Absence\n\n<b>Scope:</b> Time Off and Leave",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/leave/status/",
+    "operationId": null,
+    "file": "AbsenceManagement-Values-GET-getStatus.js"
+  },
+  {
+    "name": "AbsenceManagement-Workers-POST-postCorrectTimeOffEntry",
+    "description": "[Absence Management] POST /workers/{ID}/correctTimeOffEntry — Creates a time off correction for the specified worker ID and initiates the business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/correctTimeOffEntry",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-POST-postCorrectTimeOffEntry.js"
+  },
+  {
+    "name": "AbsenceManagement-Balances-GET-getBalances",
+    "description": "[Absence Management] GET /balances/{ID} — Retrieves the specified balance of all absence plan and leave of absence types.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/balances/{ID}",
+    "operationId": null,
+    "file": "AbsenceManagement-Balances-GET-getBalances.js"
+  },
+  {
+    "name": "AbsenceManagement-Values-GET-getStatus_1",
+    "description": "[Absence Management] GET /values/timeOff/status/ — The possible statuses for a worker's time off entry request event. They include:\n* Approved, 0391102bd1b542538d996936c8fa2fa7\n* Not Submitted, eddf5968e6d4430ca4bce9a4cfaba337\n* Sent Back, 070b249867f",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/timeOff/status/",
+    "operationId": null,
+    "file": "AbsenceManagement-Values-GET-getStatus_1.js"
+  },
+  {
+    "name": "AbsenceManagement-Workers-GET-getEligibleAbsenceTypes",
+    "description": "[Absence Management] GET /workers/{ID}/eligibleAbsenceTypes — Retrieves a collection of eligible absence types for the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "category",
+        "type": "string",
+        "description": "The Workday ID of the absence type category. Valid values:\n* Leave of Absence Type: 17bd6531c90c100016d74f8dfae007d0 \n\n* Absence Table: 17bd6531c90c100016da3f5b554007d2\n\n* Time Off: 17bd6531c90c100016d4b06f2b8a07ce",
+        "required": false
+      },
+      {
+        "name": "effective",
+        "type": "string",
+        "description": "The effective date for which eligible absence types need to be returned for the worker.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/eligibleAbsenceTypes",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-GET-getEligibleAbsenceTypes.js"
+  },
+  {
+    "name": "AbsenceManagement-Workers-GET-getLeavesOfAbsence_1",
+    "description": "[Absence Management] GET /workers/{ID}/leavesOfAbsence — Retrieves the Leaves Of Absence for a specified worker ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "The start of a date range filter using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "leaveType",
+        "type": "string",
+        "description": "The Workday ID of the type of leave of absence. You can specify multiple leaveType query parameters.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "The Workday ID of the status of the leave of absence. The valid statuses are Successfully Completed, In Progress, Canceled, Rescinded, and Process Terminated. To get valid values, call the GET /values/leave/status endpoint. You can specify multiple status query parameters.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "The end of a date range filter using the yyyy-mm-dd format.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/leavesOfAbsence",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-GET-getLeavesOfAbsence_1.js"
+  },
+  {
+    "name": "AbsenceManagement-Balances-GET-getBalances_1",
+    "description": "[Absence Management] GET /balances — Retrieves the balance of all absence plan and leave of absence type for the specified worker ID.",
+    "schema": [
+      {
+        "name": "category",
+        "type": "string",
+        "description": "The Workday ID of the time off, leave type, or absence table.",
+        "required": false
+      },
+      {
+        "name": "effective",
+        "type": "string",
+        "description": "The absence balances as of the specified date using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker for which balances are returned. This is a required query parameter.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/balances",
+    "operationId": null,
+    "file": "AbsenceManagement-Balances-GET-getBalances_1.js"
+  },
+  {
+    "name": "AbsenceManagement-Workers-POST-postRequestTimeOff",
+    "description": "[Absence Management] POST /workers/{ID}/requestTimeOff — Creates a time off request for the specified worker ID and initiates the business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/requestTimeOff",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-POST-postRequestTimeOff.js"
+  },
+  {
+    "name": "AbsenceManagement-Workers-GET-getWorkers",
+    "description": "[Absence Management] GET /workers/{ID} — Retrieves a collection of workers and current staffing information.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-GET-getWorkers.js"
+  },
+  {
+    "name": "AbsenceManagement-Workers-GET-getTimeOffDetails",
+    "description": "[Absence Management] GET /workers/{ID}/timeOffDetails/{subresourceID} — Retrieves details of a specified time off entry for a specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/timeOffDetails/{subresourceID}",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-GET-getTimeOffDetails.js"
+  },
+  {
+    "name": "AbsenceManagement-Workers-GET-getTimeOffDetails_1",
+    "description": "[Absence Management] GET /workers/{ID}/timeOffDetails — Retrieves a collection of time off details for a specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "The start of a date range filter using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "The Workday ID of the time off status. You can specify multiple status query parameters. This method returns the most recent instance of a time off entry based on this query parameter. \n\nThe valid statuses are Approved, Submitted, Not Submitted, and Sent Back. This method does not return Canceled and Denied Time Off Entries. To get the Workday ID of a status, call the GET /values/timeOff/status endpoint. You can specify multiple status query parameters.\n\nExample:\nAn approved Time Off Entry for Vacation 8 hours was corrected to Vacation 4 hours and is not in submitted status. If the query parameter is status = approved, the Time Off Entry of Vacation, 8 hours, Approved is returned. If query parameter status = submitted, the Time Off Entry of Vacation, 4 hours, Submitted is returned. If no query parameter is passed, the Time Off Entry of Vacation, 4 hours, Submitted is returned.",
+        "required": false
+      },
+      {
+        "name": "timeOffType",
+        "type": "string",
+        "description": "The Workday ID of the Time Off Type. You can specify multiple timeOffType query parameters.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "The end of a date range filter using the yyyy-mm-dd format.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/timeOffDetails",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-GET-getTimeOffDetails_1.js"
+  },
+  {
+    "name": "AbsenceManagement-Workers-GET-getValidTimeOffDates",
+    "description": "[Absence Management] GET /workers/{ID}/validTimeOffDates — Retrieves the valid time off dates for the specified worker ID for the given dates.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "date",
+        "type": "string",
+        "description": "The dates being requested for which to validate. It should be in the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "position",
+        "type": "string",
+        "description": "The Workday ID of the position.",
+        "required": false
+      },
+      {
+        "name": "timeOff",
+        "type": "string",
+        "description": "The Workday ID of the time off.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/validTimeOffDates",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-GET-getValidTimeOffDates.js"
+  },
+  {
+    "name": "AbsenceManagement-Workers-GET-getWorkers_1",
+    "description": "[Absence Management] GET /workers — Retrieves a collection of workers and current staffing information.",
+    "schema": [
+      {
+        "name": "includeTerminatedWorkers",
+        "type": "boolean",
+        "description": "Include terminated workers in the output",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "description": "Searches workers by name or worker ID. The search is case-insensitive. You can include space-delimited search strings for an OR search.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-GET-getWorkers_1.js"
+  },
+  {
+    "name": "AbsenceManagement-Workers-GET-getEligibleAbsenceTypes_1",
+    "description": "[Absence Management] GET /workers/{ID}/eligibleAbsenceTypes/{subresourceID} — Retrieves the eligible absence type for the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/eligibleAbsenceTypes/{subresourceID}",
+    "operationId": null,
+    "file": "AbsenceManagement-Workers-GET-getEligibleAbsenceTypes_1.js"
+  }
+]

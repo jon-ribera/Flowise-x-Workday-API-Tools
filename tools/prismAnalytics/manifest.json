@@ -1,0 +1,451 @@
+[
+  {
+    "name": "PrismAnalytics-Tables-GET-GetTables",
+    "description": "[Prism Analytics] GET /tables — Get tables that the current user has permission on",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of object data entries included in the response.\n- default: 20\n- max: 100\n",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "description": "The API name of the table to retrieve a single table.\n",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The offset to the first object in a collection to include in the response.\ndefault: 0\n",
+        "required": false
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "How much information to be returned in response JSON.\nThe value for type dictates the response fields that are excluded.\n- default: summary\n- full : Returns tableResponse, excluding user permissions\n- permissions : Returns tableResponse with user permissions. Schema fields are excluded\n- summary : Returns summarized tableResponse, excluding schema fields and user permissions\nNote: The HTTP 200 response below is for type \"full\"\n",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/tables",
+    "operationId": "GetTables",
+    "file": "PrismAnalytics-Tables-GET-GetTables.js"
+  },
+  {
+    "name": "PrismAnalytics-Tables-POST-PostTable",
+    "description": "[Prism Analytics] POST /tables — Create a new table with the specified name",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body for this operation.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/tables",
+    "operationId": "PostTable",
+    "file": "PrismAnalytics-Tables-POST-PostTable.js"
+  },
+  {
+    "name": "PrismAnalytics-Tables-GET-GetTable",
+    "description": "[Prism Analytics] GET /tables/{id} — Get the description of a table by ID",
+    "schema": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+        "required": true
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "How much information to be returned in response JSON.\nThe value for type dictates the response fields that are excluded.\n- default: full\n- full : Returns tableResponse, excluding user permissions\n- permissions : Returns tableResponse with user permissions. Schema fields are excluded\n- summary : Returns summarized tableResponse, excluding schema fields and user permissions\nNote: The HTTP 200 response below is for \"type\" full\n",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/tables/{id}",
+    "operationId": "GetTable",
+    "file": "PrismAnalytics-Tables-GET-GetTable.js"
+  },
+  {
+    "name": "PrismAnalytics-Tables-PUT-PutTable",
+    "description": "[Prism Analytics] PUT /tables/{id} — Edit an existing table with the specified name",
+    "schema": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body for this operation.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/tables/{id}",
+    "operationId": "PutTable",
+    "file": "PrismAnalytics-Tables-PUT-PutTable.js"
+  },
+  {
+    "name": "PrismAnalytics-Tables-PATCH-PatchTable",
+    "description": "[Prism Analytics] PATCH /tables/{id} — Edit the specified attributes of an existing table with the specified id. If an attribute is not provided in the request, it will not be changed.",
+    "schema": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body for this operation.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/tables/{id}",
+    "operationId": "PatchTable",
+    "file": "PrismAnalytics-Tables-PATCH-PatchTable.js"
+  },
+  {
+    "name": "PrismAnalytics-Buckets-GET-GetBuckets",
+    "description": "[Prism Analytics] GET /buckets — Get the buckets permitted by the security profile of the current user",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of object data entries to be included in the response.\n- default: 20\n- max: 100\n",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "description": "The name of bucket.\n",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The offset to the first object in a collection to include in the response.\n- default: 0\n",
+        "required": false
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "How much information to be returned.\n",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/buckets",
+    "operationId": "GetBuckets",
+    "file": "PrismAnalytics-Buckets-GET-GetBuckets.js"
+  },
+  {
+    "name": "PrismAnalytics-Buckets-POST-PostBucket",
+    "description": "[Prism Analytics] POST /buckets — Create a new bucket for a table or dataset",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body for this operation.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/buckets",
+    "operationId": "PostBucket",
+    "file": "PrismAnalytics-Buckets-POST-PostBucket.js"
+  },
+  {
+    "name": "PrismAnalytics-Buckets-GET-GetBucket",
+    "description": "[Prism Analytics] GET /buckets/{id} — Get bucket by ID",
+    "schema": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "A reference to a Prism Analytics table. Example: The ID of the bucket.\n",
+        "required": true
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "How much information to be returned.\n- default: full\n",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/buckets/{id}",
+    "operationId": "GetBucket",
+    "file": "PrismAnalytics-Buckets-GET-GetBucket.js"
+  },
+  {
+    "name": "PrismAnalytics-Buckets-PUT-PutBucket",
+    "description": "[Prism Analytics] PUT /buckets/{id} — Edit an existing bucket with the specified name",
+    "schema": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body for this operation.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/buckets/{id}",
+    "operationId": "PutBucket",
+    "file": "PrismAnalytics-Buckets-PUT-PutBucket.js"
+  },
+  {
+    "name": "PrismAnalytics-Buckets-POST-BucketFiles",
+    "description": "[Prism Analytics] POST /buckets/{id}/files — Upload a single file to a bucket for a table or dataset",
+    "schema": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body for this operation.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/buckets/{id}/files",
+    "operationId": "BucketFiles",
+    "file": "PrismAnalytics-Buckets-POST-BucketFiles.js"
+  },
+  {
+    "name": "PrismAnalytics-Buckets-POST-BucketComplete",
+    "description": "[Prism Analytics] POST /buckets/{id}/complete — Commit data contained in a bucket into the associated table or dataset",
+    "schema": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+        "required": true
+      }
+    ],
+    "method": "POST",
+    "path": "/buckets/{id}/complete",
+    "operationId": "BucketComplete",
+    "file": "PrismAnalytics-Buckets-POST-BucketComplete.js"
+  },
+  {
+    "name": "PrismAnalytics-Buckets-GET-GetBucketErrorFile",
+    "description": "[Prism Analytics] GET /buckets/{id}/errorFile — Get bucket error file by ID",
+    "schema": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "A reference to a Prism Analytics bucket. Example: The ID of the bucket.\n",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/buckets/{id}/errorFile",
+    "operationId": "GetBucketErrorFile",
+    "file": "PrismAnalytics-Buckets-GET-GetBucketErrorFile.js"
+  },
+  {
+    "name": "PrismAnalytics-DataChanges-GET-GetDataChanges",
+    "description": "[Prism Analytics] GET /dataChanges — Get data changes accessible by a user",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of object data entries to be included in the response.\n- default: 20\n- max: 500\n",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "description": "The name of a data change.\n\nNote: Either \"type\" or \"name\" query parameter must be set in order to receive the response as object \"dataChangeResponseList\" below.\n- default: -- (empty)\n",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The offset to the first object in a collection to include in the response.\ndefault: 0\n",
+        "required": false
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "How much data change information to be returned. Note: The model response for HTTP 200 below is for type \"summary\"\n\nNote: Either \"type\" or \"name\" query parameter needs to be set in order to receive the HTTP 200 response below.\n- default: -- (empty)\n- full: Every element in type \"summary\", plus description, application, categories, tags, mappings\n- summary: Returns summarized data change details specified in the model \"dataChangeSummary\"\n",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/dataChanges",
+    "operationId": "GetDataChanges",
+    "file": "PrismAnalytics-DataChanges-GET-GetDataChanges.js"
+  },
+  {
+    "name": "PrismAnalytics-DataChanges-GET-GetDataChange",
+    "description": "[Prism Analytics] GET /dataChanges/{dataChangeID} — Gets data change associated with ID",
+    "schema": [
+      {
+        "name": "dataChangeID",
+        "type": "string",
+        "description": "A reference to a Prism Analytics table. Example: The ID of the table.\n",
+        "required": true
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "How much information to be returned.\n- default: -- (empty)\n",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/dataChanges/{dataChangeID}",
+    "operationId": "GetDataChange",
+    "file": "PrismAnalytics-DataChanges-GET-GetDataChange.js"
+  },
+  {
+    "name": "PrismAnalytics-DataChanges-POST-ExecDataChangeActivity",
+    "description": "[Prism Analytics] POST /dataChanges/{dataChangeID}/activities — Execute data change by ID",
+    "schema": [
+      {
+        "name": "dataChangeID",
+        "type": "string",
+        "description": "A reference to a Prism Analytics data change.\n",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body for this operation.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/dataChanges/{dataChangeID}/activities",
+    "operationId": "ExecDataChangeActivity",
+    "file": "PrismAnalytics-DataChanges-POST-ExecDataChangeActivity.js"
+  },
+  {
+    "name": "PrismAnalytics-DataChanges-GET-ExecDataChangeActivityStatus",
+    "description": "[Prism Analytics] GET /dataChanges/{dataChangeID}/activities/{activityID} — Get details of the activity specified by activityID",
+    "schema": [
+      {
+        "name": "activityID",
+        "type": "string",
+        "description": "A reference to a Prism Analytics data change activity.\n",
+        "required": true
+      },
+      {
+        "name": "dataChangeID",
+        "type": "string",
+        "description": "A reference to a Prism Analytics data change.\n",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/dataChanges/{dataChangeID}/activities/{activityID}",
+    "operationId": "ExecDataChangeActivityStatus",
+    "file": "PrismAnalytics-DataChanges-GET-ExecDataChangeActivityStatus.js"
+  },
+  {
+    "name": "PrismAnalytics-DataChanges-GET-ValidateDataChange",
+    "description": "[Prism Analytics] GET /dataChanges/{dataChangeID}/validate — Validate data change specified by dataChangeID",
+    "schema": [
+      {
+        "name": "dataChangeID",
+        "type": "string",
+        "description": "A reference to a Prism Analytics data change.\n",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/dataChanges/{dataChangeID}/validate",
+    "operationId": "ValidateDataChange",
+    "file": "PrismAnalytics-DataChanges-GET-ValidateDataChange.js"
+  },
+  {
+    "name": "PrismAnalytics-DataChanges-POST-CancelDataChangeActivity",
+    "description": "[Prism Analytics] POST /dataChanges/{dataChangeID}/cancel/{activityID} — Cancel data change specified by dataChangeID and activityID",
+    "schema": [
+      {
+        "name": "activityID",
+        "type": "string",
+        "description": "A reference to a Prism Analytics data change activity.\n",
+        "required": true
+      },
+      {
+        "name": "dataChangeID",
+        "type": "string",
+        "description": "A reference to a Prism Analytics data change.\n",
+        "required": true
+      }
+    ],
+    "method": "POST",
+    "path": "/dataChanges/{dataChangeID}/cancel/{activityID}",
+    "operationId": "CancelDataChangeActivity",
+    "file": "PrismAnalytics-DataChanges-POST-CancelDataChangeActivity.js"
+  },
+  {
+    "name": "PrismAnalytics-FileContainers-POST-PostFileContainer",
+    "description": "[Prism Analytics] POST /fileContainers — Create new fileContainer",
+    "schema": [],
+    "method": "POST",
+    "path": "/fileContainers",
+    "operationId": "PostFileContainer",
+    "file": "PrismAnalytics-FileContainers-POST-PostFileContainer.js"
+  },
+  {
+    "name": "PrismAnalytics-FileContainers-GET-GetFileContainerFiles",
+    "description": "[Prism Analytics] GET /fileContainers/{fileContainerID}/files — Get all files for a file container",
+    "schema": [
+      {
+        "name": "fileContainerID",
+        "type": "string",
+        "description": "A reference to a Prism Analytics File Container.\n",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/fileContainers/{fileContainerID}/files",
+    "operationId": "GetFileContainerFiles",
+    "file": "PrismAnalytics-FileContainers-GET-GetFileContainerFiles.js"
+  },
+  {
+    "name": "PrismAnalytics-FileContainers-POST-PostFileContainerFile",
+    "description": "[Prism Analytics] POST /fileContainers/{fileContainerID}/files — Load file into file container",
+    "schema": [
+      {
+        "name": "fileContainerID",
+        "type": "string",
+        "description": "A reference to a Prism Analytics File Container.\n",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body for this operation.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/fileContainers/{fileContainerID}/files",
+    "operationId": "PostFileContainerFile",
+    "file": "PrismAnalytics-FileContainers-POST-PostFileContainerFile.js"
+  }
+]

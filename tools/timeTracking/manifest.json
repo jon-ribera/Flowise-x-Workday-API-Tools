@@ -1,0 +1,904 @@
+[
+  {
+    "name": "TimeTracking-WorkerTimeAttestation-GET-getFollowupWorkerTimeAttestation",
+    "description": "[Time Tracking] GET /workerTimeAttestation/{ID}/followupWorkerTimeAttestation — \n\n<b>Secured by:</b> Process: Time Clock Event REST API's\n\n<b>Scope:</b> Time Tracking",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workerTimeAttestation/{ID}/followupWorkerTimeAttestation",
+    "operationId": null,
+    "file": "TimeTracking-WorkerTimeAttestation-GET-getFollowupWorkerTimeAttestation.js"
+  },
+  {
+    "name": "TimeTracking-TimeValidations-GET-getTimeValidations",
+    "description": "[Time Tracking] GET /timeValidations — Retrieves a collection of time entry validations.",
+    "schema": [
+      {
+        "name": "date",
+        "type": "string",
+        "description": "The required date that determines the time entry validations. The method validates the time entries within week or time period of the specified date.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The required Workday ID of the worker who entered the time entries.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/timeValidations",
+    "operationId": null,
+    "file": "TimeTracking-TimeValidations-GET-getTimeValidations.js"
+  },
+  {
+    "name": "TimeTracking-Values-GET-getTimeEntryCodes",
+    "description": "[Time Tracking] GET /values/timeTypes/timeEntryCodes/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Time Block REST APIs, Process: Time Clock Event REST API's\n\n<b>Scope:</b> Tim",
+    "schema": [
+      {
+        "name": "date",
+        "type": "string",
+        "description": "The effective date to look up time types for a given worker.",
+        "required": false
+      },
+      {
+        "name": "inOutCodeOnly",
+        "type": "boolean",
+        "description": "If true, returns only Time Entry Codes of the type In/Out. You must use these types with POST Time Clock Event.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "The Workday ID of a project, used to filter the projectPlanTasks resource down to project plan tasks from a given project.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker to look up time types for.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/timeTypes/timeEntryCodes/",
+    "operationId": null,
+    "file": "TimeTracking-Values-GET-getTimeEntryCodes.js"
+  },
+  {
+    "name": "TimeTracking-Values-GET-getPositions",
+    "description": "[Time Tracking] GET /values/timeValues/positions/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Time Block REST APIs, Process: Time Clock Event REST API's\n\n<b>Scope:</b> Tim",
+    "schema": [
+      {
+        "name": "date",
+        "type": "string",
+        "description": "The effective date to look up time values for a given worker.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker to look up time values for.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/timeValues/positions/",
+    "operationId": null,
+    "file": "TimeTracking-Values-GET-getPositions.js"
+  },
+  {
+    "name": "TimeTracking-Values-GET-getTimeTypeNested",
+    "description": "[Time Tracking] GET /values/enterTimeByType/timeTypeNested/ — Provides a nested prompt for Time Tracking Time Types, similar prompt structure to the one provided in UI prompts. Currently does not support Time Offs.\n\n<b>Secured by:</b> Process: Time Block REST AP",
+    "schema": [
+      {
+        "name": "endDate",
+        "type": "string",
+        "description": "End date of the time period the worker is creating a time entry for.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "startDate",
+        "type": "string",
+        "description": "Start date of the time period the worker is creating a time entry for.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "Worker for which Time Type is needed.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/enterTimeByType/timeTypeNested/",
+    "operationId": null,
+    "file": "TimeTracking-Values-GET-getTimeTypeNested.js"
+  },
+  {
+    "name": "TimeTracking-Values-GET-getDefaultTimeEntryCode",
+    "description": "[Time Tracking] GET /values/timeTypes/defaultTimeEntryCode/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Time Block REST APIs, Process: Time Clock Event REST API's\n\n<b>Scope:</b> Tim",
+    "schema": [
+      {
+        "name": "date",
+        "type": "string",
+        "description": "The effective date to look up time types for a given worker.",
+        "required": false
+      },
+      {
+        "name": "inOutCodeOnly",
+        "type": "boolean",
+        "description": "If true, returns only Time Entry Codes of the type In/Out. You must use these types with POST Time Clock Event.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "The Workday ID of a project, used to filter the projectPlanTasks resource down to project plan tasks from a given project.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker to look up time types for.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/timeTypes/defaultTimeEntryCode/",
+    "operationId": null,
+    "file": "TimeTracking-Values-GET-getDefaultTimeEntryCode.js"
+  },
+  {
+    "name": "TimeTracking-Workers-POST-postWorkerTimeBlock",
+    "description": "[Time Tracking] POST /workers/{ID}/workerTimeBlock — Creates a worker time block.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/workerTimeBlock",
+    "operationId": null,
+    "file": "TimeTracking-Workers-POST-postWorkerTimeBlock.js"
+  },
+  {
+    "name": "TimeTracking-Workers-GET-getWorkers",
+    "description": "[Time Tracking] GET /workers — Retrieves a collection of workers and current staffing information.",
+    "schema": [
+      {
+        "name": "includeTerminatedWorkers",
+        "type": "boolean",
+        "description": "Include terminated workers in the output",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "description": "Searches workers by name or worker ID. The search is case-insensitive. You can include space-delimited search strings for an OR search.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers",
+    "operationId": null,
+    "file": "TimeTracking-Workers-GET-getWorkers.js"
+  },
+  {
+    "name": "TimeTracking-Workers-PATCH-patchWorkerTimeBlock",
+    "description": "[Time Tracking] PATCH /workers/{ID}/workerTimeBlock/{subresourceID} — Updates a specified worker time block.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workers/{ID}/workerTimeBlock/{subresourceID}",
+    "operationId": null,
+    "file": "TimeTracking-Workers-PATCH-patchWorkerTimeBlock.js"
+  },
+  {
+    "name": "TimeTracking-Workers-DELETE-deleteWorkerTimeBlock",
+    "description": "[Time Tracking] DELETE /workers/{ID}/workerTimeBlock/{subresourceID} — Deletes a specified worker time block.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/workers/{ID}/workerTimeBlock/{subresourceID}",
+    "operationId": null,
+    "file": "TimeTracking-Workers-DELETE-deleteWorkerTimeBlock.js"
+  },
+  {
+    "name": "TimeTracking-Workers-GET-getTimeTotals",
+    "description": "[Time Tracking] GET /workers/{ID}/timeTotals — Retrieves a summary of reported hours for a worker over a period.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "periodDate",
+        "type": "string",
+        "description": "Contains the specified date used to match to a period containing the date. The default is today's date.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/timeTotals",
+    "operationId": null,
+    "file": "TimeTracking-Workers-GET-getTimeTotals.js"
+  },
+  {
+    "name": "TimeTracking-WorkerTimeBlocks-GET-getWorkerTimeBlocks",
+    "description": "[Time Tracking] GET /workerTimeBlocks/{ID} — Retrieves a worker time block.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workerTimeBlocks/{ID}",
+    "operationId": null,
+    "file": "TimeTracking-WorkerTimeBlocks-GET-getWorkerTimeBlocks.js"
+  },
+  {
+    "name": "TimeTracking-TimeClockEvents-GET-getTimeClockEvents",
+    "description": "[Time Tracking] GET /timeClockEvents — Retrieves a collection of time clock events for a worker for a date range.",
+    "schema": [
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "The start date of the time event using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "The end date of the time event using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker for the time block or clock event. You can specify multiple worker query parameters.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/timeClockEvents",
+    "operationId": null,
+    "file": "TimeTracking-TimeClockEvents-GET-getTimeClockEvents.js"
+  },
+  {
+    "name": "TimeTracking-TimeClockEvents-POST-postTimeClockEvents",
+    "description": "[Time Tracking] POST /timeClockEvents — Adds time clock events for the specified workers. This endpoint is used for both check in and check out.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/timeClockEvents",
+    "operationId": null,
+    "file": "TimeTracking-TimeClockEvents-POST-postTimeClockEvents.js"
+  },
+  {
+    "name": "TimeTracking-Workers-POST-postTimeReviewEvents",
+    "description": "[Time Tracking] POST /workers/{ID}/timeReviewEvents — Adds time review events for the specified worker.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/timeReviewEvents",
+    "operationId": null,
+    "file": "TimeTracking-Workers-POST-postTimeReviewEvents.js"
+  },
+  {
+    "name": "TimeTracking-WorkerTimeAttestation-GET-getWorkerTimeAttestation",
+    "description": "[Time Tracking] GET /workerTimeAttestation/{ID} — Retrieves a worker time attestation.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workerTimeAttestation/{ID}",
+    "operationId": null,
+    "file": "TimeTracking-WorkerTimeAttestation-GET-getWorkerTimeAttestation.js"
+  },
+  {
+    "name": "TimeTracking-Values-GET-getWorkerTimeZone",
+    "description": "[Time Tracking] GET /values/timeValues/workerTimeZone/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Time Block REST APIs, Process: Time Clock Event REST API's\n\n<b>Scope:</b> Tim",
+    "schema": [
+      {
+        "name": "date",
+        "type": "string",
+        "description": "The effective date to look up time values for a given worker.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker to look up time values for.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/timeValues/workerTimeZone/",
+    "operationId": null,
+    "file": "TimeTracking-Values-GET-getWorkerTimeZone.js"
+  },
+  {
+    "name": "TimeTracking-Workers-GET-getTimeTotals_1",
+    "description": "[Time Tracking] GET /workers/{ID}/timeTotals/{subresourceID} — Retrieves a summary of reported hours for a worker over a period.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/timeTotals/{subresourceID}",
+    "operationId": null,
+    "file": "TimeTracking-Workers-GET-getTimeTotals_1.js"
+  },
+  {
+    "name": "TimeTracking-TimeClockEvents-GET-getTimeClockEvents_1",
+    "description": "[Time Tracking] GET /timeClockEvents/{ID} — Retrieves a time clock event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/timeClockEvents/{ID}",
+    "operationId": null,
+    "file": "TimeTracking-TimeClockEvents-GET-getTimeClockEvents_1.js"
+  },
+  {
+    "name": "TimeTracking-TimeClockEvents-PUT-putTimeClockEvents",
+    "description": "[Time Tracking] PUT /timeClockEvents/{ID} — Updates the time clock event for the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/timeClockEvents/{ID}",
+    "operationId": null,
+    "file": "TimeTracking-TimeClockEvents-PUT-putTimeClockEvents.js"
+  },
+  {
+    "name": "TimeTracking-TimeClockEvents-DELETE-deleteTimeClockEvents",
+    "description": "[Time Tracking] DELETE /timeClockEvents/{ID} — Deletes a time clock event.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/timeClockEvents/{ID}",
+    "operationId": null,
+    "file": "TimeTracking-TimeClockEvents-DELETE-deleteTimeClockEvents.js"
+  },
+  {
+    "name": "TimeTracking-Values-GET-getProjectPlanTasks",
+    "description": "[Time Tracking] GET /values/timeTypes/projectPlanTasks/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Time Block REST APIs, Process: Time Clock Event REST API's\n\n<b>Scope:</b> Tim",
+    "schema": [
+      {
+        "name": "date",
+        "type": "string",
+        "description": "The effective date to look up time types for a given worker.",
+        "required": false
+      },
+      {
+        "name": "inOutCodeOnly",
+        "type": "boolean",
+        "description": "If true, returns only Time Entry Codes of the type In/Out. You must use these types with POST Time Clock Event.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "The Workday ID of a project, used to filter the projectPlanTasks resource down to project plan tasks from a given project.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker to look up time types for.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/timeTypes/projectPlanTasks/",
+    "operationId": null,
+    "file": "TimeTracking-Values-GET-getProjectPlanTasks.js"
+  },
+  {
+    "name": "TimeTracking-Workers-GET-getPeriod",
+    "description": "[Time Tracking] GET /workers/{ID}/period — Retrieves a period from the period schedule the worker is eligible for.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "date",
+        "type": "string",
+        "description": "The date on which the worker is eligible, using the yyyy-mm-dd format. If date isn't given it will default to the current Date.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}/period",
+    "operationId": null,
+    "file": "TimeTracking-Workers-GET-getPeriod.js"
+  },
+  {
+    "name": "TimeTracking-Values-GET-getProjects",
+    "description": "[Time Tracking] GET /values/timeTypes/projects/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Time Block REST APIs, Process: Time Clock Event REST API's\n\n<b>Scope:</b> Tim",
+    "schema": [
+      {
+        "name": "date",
+        "type": "string",
+        "description": "The effective date to look up time types for a given worker.",
+        "required": false
+      },
+      {
+        "name": "inOutCodeOnly",
+        "type": "boolean",
+        "description": "If true, returns only Time Entry Codes of the type In/Out. You must use these types with POST Time Clock Event.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "The Workday ID of a project, used to filter the projectPlanTasks resource down to project plan tasks from a given project.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker to look up time types for.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/timeTypes/projects/",
+    "operationId": null,
+    "file": "TimeTracking-Values-GET-getProjects.js"
+  },
+  {
+    "name": "TimeTracking-Workers-GET-getWorkers_1",
+    "description": "[Time Tracking] GET /workers/{ID} — Retrieves a collection of workers and current staffing information.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}",
+    "operationId": null,
+    "file": "TimeTracking-Workers-GET-getWorkers_1.js"
+  },
+  {
+    "name": "TimeTracking-WorkerTimeAttestation-GET-getFollowupTimeAttestationPrompt",
+    "description": "[Time Tracking] GET /workerTimeAttestation/{ID}/followupTimeAttestationPrompt — \n\n<b>Secured by:</b> Process: Time Clock Event REST API's\n\n<b>Scope:</b> Time Tracking",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workerTimeAttestation/{ID}/followupTimeAttestationPrompt",
+    "operationId": null,
+    "file": "TimeTracking-WorkerTimeAttestation-GET-getFollowupTimeAttestationPrompt.js"
+  },
+  {
+    "name": "TimeTracking-Values-GET-getOutReason",
+    "description": "[Time Tracking] GET /values/timeValues/outReason/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Time Block REST APIs, Process: Time Clock Event REST API's\n\n<b>Scope:</b> Tim",
+    "schema": [
+      {
+        "name": "date",
+        "type": "string",
+        "description": "The effective date to look up time values for a given worker.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker to look up time values for.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/timeValues/outReason/",
+    "operationId": null,
+    "file": "TimeTracking-Values-GET-getOutReason.js"
+  },
+  {
+    "name": "TimeTracking-WorkerTimeBlocks-GET-getWorkerTimeBlocks_1",
+    "description": "[Time Tracking] GET /workerTimeBlocks — Retrieves time blocks for specified workers over a date range.",
+    "schema": [
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "The start date of the time block date range, using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "phase",
+        "type": "string",
+        "description": "The Workday ID of the project plan phase for the time block.\nYou can specify 1 or more project plan phase query parameters. \nYou can use a returned id from the GET /planPhases endpoint in the Projects REST web service.",
+        "required": false
+      },
+      {
+        "name": "project",
+        "type": "string",
+        "description": "The Workday ID of the project for the time block.\nYou can specify 1 or more project query parameters.\nYou can use a returned id from the GET /projects endpoint in the Projects REST web service.",
+        "required": false
+      },
+      {
+        "name": "projectPlanTask",
+        "type": "string",
+        "description": "The Workday ID of the project plan task for the time block.\nYou can specify 1 or more project plan task query parameters.\nYou can use a returned id from the GET /planTasks endpoint in the Projects REST web service.",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "The Workday ID of the approval status of the worker time block. Valid IDs are:\n\n* Submitted: dd817fe688db4ac7bf84e3ef79f72948\n\n* Unsubmitted (Not Submitted): ddf5968e6d4430ca4bce9a4cfaba337\n\n* Approved: 0391102bd1b542538d996936c8fa2fa7\n\n* Denied: 8fee8e9d07554b968bb1f19e679e5a05\n\n* Sent Back: 070b249867f747a19bca64f73eafc9b8\n\nYou can specify 1 or more status query parameters.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "The end date of the time block date range, using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker for the time block. Specify workers that the user has permission to access.\nYou can specify 1 or more worker query parameters.\nYou can use returned ids from GET /workers.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workerTimeBlocks",
+    "operationId": null,
+    "file": "TimeTracking-WorkerTimeBlocks-GET-getWorkerTimeBlocks_1.js"
+  },
+  {
+    "name": "TimeTracking-TimeAttestationPrompts-GET-getTimeAttestationPrompts",
+    "description": "[Time Tracking] GET /timeAttestationPrompts — Retrieves a collection of time attestation prompts for a time clock event.",
+    "schema": [
+      {
+        "name": "dateTime",
+        "type": "string",
+        "description": "The date and time of the simulated time clock event using the yyyy-mm-ddThh:mm:ss.sss format.",
+        "required": false
+      },
+      {
+        "name": "eventType",
+        "type": "string",
+        "description": "The Workday ID of the event type for the simulated time clock event.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "timeZone",
+        "type": "string",
+        "description": "The Workday ID of the time zone for the simulated time clock event.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The Workday ID of the worker for the simulated time clock event.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/timeAttestationPrompts",
+    "operationId": null,
+    "file": "TimeTracking-TimeAttestationPrompts-GET-getTimeAttestationPrompts.js"
+  }
+]

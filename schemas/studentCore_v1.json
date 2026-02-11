@@ -1,0 +1,4291 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Student Core service enables you to get core information about students.",
+    "version": "v1",
+    "title": "studentCore",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "de37943cec3c100021cbe10cc2f60505"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/studentCore/v1",
+  "tags": [
+    {
+      "name": "holds",
+      "description": "This resource returns all Student Hold Assignments or a collection of Student Hold Assignments filtered by query parameters.",
+      "x-workday-confidence-level": "Production"
+    },
+    {
+      "name": "immigrationEvents",
+      "description": "Provides the ability to access immigration information and dependent information about international pre-matriculants. You can also use these REST APIs to submit immigration data for international pre-matriculants. \n\nTo submit immigration data for an international pre-matriculant:\n\n1. Get the immigration event ID for the student applicant by calling the GET /students/{ID}/immigrationEvents endpoint.\n\n2. Get any existing information by calling the GET ​/immigrationEvents​/{ID}​/immigrationData​ and GET /immigrationEvents/{ID}/dependentImmigrationData endpoints.\n\n3. Create immigration data by calling the POST /immigrationEvents/{ID}/immigrationData endpoint.\n\n4. Create dependent immigration data by calling the POST ​/immigrationEvents​/{ID}​/dependentImmigrationData endpoint.\n\n5. Optionally update related data by calling the PUT /immigrationEvents/{ID}/immigrationData and PUT /immigrationEvents/{ID}/dependentImmigrationData endpoints.\n\n6. Submit the immigration data by calling the POST /immigrationEvents/{ID}/submit endpoint, which advances the Student Applicant Immigration Event business process to the next step. The data you submitted can be viewed on the International tab of the Student and Student Prospect profiles. \n\nFor matriculated students, submit the Student Immigration Event in the Workday UI instead."
+    },
+    {
+      "name": "students",
+      "description": "This resource returns all matriculated students or a collection of matriculated students filtered by query parameters.\nScope: Student Core"
+    },
+    {
+      "name": "Prompt Values",
+      "description": "Retrieves instances that can be used as values for other endpoint parameters in this service."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/students/{ID}/residencies": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves a collection of residence information for the specified student ID.",
+        "description": "Retrieves a collection of residence information for the specified student ID. You can filter residence information by their institutionalAcademicUnit.\n\n<b>Secured by:</b> Manage: Student Residency, Self-Service: Student External Site User Access\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "institutionalAcademicUnit",
+            "in": "query",
+            "description": "The Institutions.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/residencySummary_b68d565b8eb610001987381601cf0144"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/holds/awardYears/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Valid financial aid award years.\n\n<b>Secured by:</b> Access Hold Reasons, Manage: Apply Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicRecord",
+          "in": "query",
+          "description": "The academic record of the student the hold applies to.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the hold reason.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "reason",
+          "in": "query",
+          "description": "The hold reason for the hold.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "student",
+          "in": "query",
+          "description": "The student to apply the hold to.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/students/{ID}/applyHoldEvents": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves a collection of Apply Student Hold Events.",
+        "description": "Retrieves a collection of Apply Student Hold Events for the specified student.\n\n<b>Secured by:</b> Apply Student Hold (REST Service), Manage: Apply Holds, Self-Service: Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/applyHoldEvent_f55a9d594b521000fbe6a0e17e750000"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/students/{ID}": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves a student instance.",
+        "description": "Retrieves a student with the specified ID.\n\n<b>Secured by:</b> Reports: Students, Self-Service: Student External Site User Access, Self-Service: Student Profile, Set Up: Student Sites, Student Data: Student Profile\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/studentDetail_6393b5f0dcfa10000f524d62761400f4"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/holds/academicRecords/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Valid academic records filtered by student and hold reason. Call the GET /values/holds/academicRecords?student=id&reason=id endpoint.\n\n<b>Secured by:</b> Access Hold Reasons, Manage: Apply Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicRecord",
+          "in": "query",
+          "description": "The academic record of the student the hold applies to.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the hold reason.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "reason",
+          "in": "query",
+          "description": "The hold reason for the hold.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "student",
+          "in": "query",
+          "description": "The student to apply the hold to.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/immigrationEvents/{ID}/submit": {
+      "post": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "summary": "Submits an immigration event.",
+        "description": "Submits an immigration event, which advances the Student Applicant Immigration Event business process to the next step. Specify an empty request body: {}\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "immigrationEventDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/immigrationEventDetail_3e053c863f49100016bd44139c6a0051"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/immigrationEventDetail_3e053c863f49100016bd44139c6a0051"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA6 | Student has no Immigration Data\n- | Ensure that the Student Applicant Immigration Event is awaiting action on the currently logged in user.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/immigrationEvents/{ID}/immigrationData/{subresourceID}": {
+      "get": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "summary": "Retrieves an immigration data instance for the specified immigration event.",
+        "description": "Retrieves immigration data with the specified ID for the specified immigration event.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/immigrationDataDetail_afb50f4769c2100025899c714c875a39"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "put": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "description": "\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "immigrationDataDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/immigrationDataDetail_afb50f4769c2100025899c714c875a39"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/immigrationDataDetail_afb50f4769c2100025899c714c875a39"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nEnsure that the active visa type is for the institution of the application for the event.\n\nEnsure that the associated Student Applicant Immigration Event is assigned to the currently logged in user.\n\nThe active SEVIS ID must contain 9-11 alphanumeric characters.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/holds/{ID}": {
+      "get": {
+        "tags": [
+          "holds"
+        ],
+        "summary": "This resource returns all Student Hold Assignments or a collection of Student Hold Assignments filtered by query parameters.",
+        "description": "This resource returns all Student Hold Assignments or a collection of Student Hold Assignments filtered by query parameters.\n\n<b>Secured by:</b> Apply Student Hold (REST Service), Manage: Holds, Self-Service: Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/holdDetails_9da0d4910b0110002800422c63e20000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/holds/{ID}/overrideHold": {
+      "post": {
+        "tags": [
+          "holds"
+        ],
+        "description": "\n\n<b>Secured by:</b> Override Student Hold (REST Service)\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "overrideEvent",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/overrideEvent_f55a9d594b521000fbf9ba11df960000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/overrideEvent_f55a9d594b521000fbf9ba11df960000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA2319 | This hold has already been removed. Specify an active hold.\nA2322 | You can't override a hold with a Workday-delivered hold reason.\nA2323 | You can't override a hold on yourself.\nA2346 | Specify an End Date that occurs after the Start Date.\nA2347 | Specify Hold Types that are valid for override.\nA2348 | Specify a Start Date on or after today's date.\nA2349 | You can't override a Hold with Hold Types that aren't applicable for this hold assignment.\nA2350 | You can't override a hold assignment that already has an active override.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/immigrationEvents": {
+      "get": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "summary": "Retrieves a collection of immigration events.",
+        "description": "Retrieves all immigration events.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/immigrationEventDetail_3e053c863f49100016bd44139c6a0051"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/students/{ID}/applyHold": {
+      "post": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Creates an Apply Student Hold Event.",
+        "description": "Creates a single Apply Student Hold Event instance with the specified data. In the request body, specify these required fields: reason, typeContext.\n\n<b>Secured by:</b> Apply Student Hold (REST Service)\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "applyHoldEvent",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/applyHoldEvent_f55a9d594b521000fbe6a0e17e750000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/applyHoldEvent_f55a9d594b521000fbe6a0e17e750000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1897 | You can't apply a hold on yourself.\nA1898 | You can't apply a hold with a Workday-delivered hold reason.\nA1899 | You can't select the same Hold Type more than once.\nA1900 | Specify a hold reason for the student's institution.\nA1901 | You can't apply a duplicate hold.\nA1916 | Your tenant configuration prevents you from using the Applies to All hold context. Specify a student hold context.\nA1917 | The student is associated with multiple institutions. To submit this hold type, specify a hold type context.\nA1918 | Specify a Federal School Code that’s associated with the Academic Unit and Academic Level of the student.\nA1919 | Specify a hold type context that corresponds to the institution of the Student Hold Reason.\nA1921 | Specify a valid context for the selected hold type.\nA1922 | Specify a valid financial aid award year context for the selected hold type.\nA1923 | Specify a valid academic period context for the selected hold type.\nA1926 | Specify the same Institution for each Hold Type.\nA1927 | Specify the same Academic Record for each Hold Type.\nA1928 | Specify the same Academic Period for each Hold Type.\nA1929 | Specify the same Federal School Code Rule Set for each Hold Type.\nA1930 | Specify the same Financial Aid Award Year for each Hold Type.\nA1943 | You can only use an academic period that is on the academic calendar for the primary program of study on the academic record.\nA1944 | The Award Year needs to be current, in the future, or 1 year prior.\nA1945 | The Hold Type is not a valid Hold Type for this Hold Reason.\nA1949 | Specify a valid Academic Record for the student.\nA1950 | Specify an Academic Period that is current or in the future.\nA1951 | Specify an Institution. The provided value isn't an institution.\nA1971 | Specify an academic period that corresponds to the institution of the Student Hold Reason.\nA2060 | Specify only one hold type context for each hold type, or leave it blank.\nA2395 | Specify an award item that's in the student's financial aid package and configured with the Disbursement Hold Exists eligibility condition.\nA2407 | Select an award item associated with the specified award year.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/immigrationEvents/{ID}/immigrationData": {
+      "get": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "summary": "Retrieves a collection of immigration data for the specified immigration event ID.",
+        "description": "Retrieves a collection of immigration data for the specified immigration event ID.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/immigrationDataDetail_afb50f4769c2100025899c714c875a39"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "summary": "Creates an immigration data with the specified ID.",
+        "description": "Creates immigration data for the immigration event with the specified data.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "immigrationDataDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/immigrationDataDetail_afb50f4769c2100025899c714c875a39"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/immigrationDataDetail_afb50f4769c2100025899c714c875a39"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nEnsure that the active visa type is for the institution of the application for the event.\n\nEnsure that the associated Student Applicant Immigration Event is assigned to the currently logged in user.\n\nThe active SEVIS ID must contain 9-11 alphanumeric characters.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/holds/reasons/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "All of the active hold reasons, optionally filtered by student and academic unit query parms. Call these endpoints for valid filter values:\n- GET /values/holds/reasons?student={id}\n- GET /values/holds/reasons?academicUnit={id}\n- GET /values/holds/reasons?student={id}&academicUnit={id}\n\n<b>Secured by:</b> Access Hold Reasons, Manage: Apply Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/reasons_8bc05d1bce1c1000254dedd4c0cc0001"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicRecord",
+          "in": "query",
+          "description": "The academic record of the student the hold applies to.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the hold reason.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "reason",
+          "in": "query",
+          "description": "The hold reason for the hold.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "student",
+          "in": "query",
+          "description": "The student to apply the hold to.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/students/{ID}/applyHoldEvents/{subresourceID}": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves an Apply Student Hold Event instance for the specified student.",
+        "description": "Retrieves an Apply Student Hold Event with the specified ID.\n\n<b>Secured by:</b> Apply Student Hold (REST Service), Manage: Apply Holds, Self-Service: Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/applyHoldEvent_f55a9d594b521000fbe6a0e17e750000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/holds/awardItems/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Valid student award items for the student and academic unit specified. Call the GET /values/holds/awardItems?student={id}&academicUnit={id} endpoint.\n\n<b>Secured by:</b> Access Hold Reasons, Manage: Apply Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicRecord",
+          "in": "query",
+          "description": "The academic record of the student the hold applies to.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the hold reason.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "reason",
+          "in": "query",
+          "description": "The hold reason for the hold.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "student",
+          "in": "query",
+          "description": "The student to apply the hold to.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/immigrationEvents/{ID}/immigrationPages": {
+      "get": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "description": "\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/studentConfigurablePage_0e76987593aa1000157deb21922e51f7"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/holds/institution/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "The institution of the hold reason. Call the following endpoint for the correct institution:\nGET /values/holds/institution?reason={id}\n\n<b>Secured by:</b> Access Hold Reasons, Manage: Apply Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicRecord",
+          "in": "query",
+          "description": "The academic record of the student the hold applies to.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the hold reason.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "reason",
+          "in": "query",
+          "description": "The hold reason for the hold.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "student",
+          "in": "query",
+          "description": "The student to apply the hold to.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/immigrationEvents/{ID}/immigrationPages/{subresourceID}": {
+      "get": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "description": "\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/studentConfigurablePage_0e76987593aa1000157deb21922e51f7"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/holds/{ID}/updateHold": {
+      "post": {
+        "tags": [
+          "holds"
+        ],
+        "summary": "Creates an Update Student Hold Event.",
+        "description": "Creates a single Update Student Hold Event instance with the specified data. In the request body, specify typeContext\n\n<b>Secured by:</b> Update Student Hold (REST Service)\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "updateHoldEvent",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateHoldEvent_b610a24b4eb4100015accf45e9670000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/updateHoldEvent_b610a24b4eb4100015accf45e9670000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1899 | You can't select the same Hold Type more than once.\nA1916 | Your tenant configuration prevents you from using the Applies to All hold context. Specify a student hold context.\nA1917 | The student is associated with multiple institutions. To submit this hold type, specify a hold type context.\nA1918 | Specify a Federal School Code that’s associated with the Academic Unit and Academic Level of the student.\nA1919 | Specify a hold type context that corresponds to the institution of the Student Hold Reason.\nA1921 | Specify a valid context for the selected hold type.\nA1922 | Specify a valid financial aid award year context for the selected hold type.\nA1923 | Specify a valid academic period context for the selected hold type.\nA1926 | Specify the same Institution for each Hold Type.\nA1927 | Specify the same Academic Record for each Hold Type.\nA1928 | Specify the same Academic Period for each Hold Type.\nA1929 | Specify the same Federal School Code Rule Set for each Hold Type.\nA1930 | Specify the same Financial Aid Award Year for each Hold Type.\nA1943 | You can only use an academic period that is on the academic calendar for the primary program of study on the academic record.\nA1944 | The Award Year needs to be current, in the future, or 1 year prior.\nA1949 | Specify a valid Academic Record for the student.\nA1950 | Specify an Academic Period that is current or in the future.\nA1951 | Specify an Institution. The provided value isn't an institution.\nA1971 | Specify an academic period that corresponds to the institution of the Student Hold Reason.\nA2060 | Specify only one hold type context for each hold type, or leave it blank.\nA2395 | Specify an award item that's in the student's financial aid package and configured with the Disbursement Hold Exists eligibility condition.\nA2407 | Select an award item associated with the specified award year.\nA2769 | You can't update a hold for yourself.\nA2770 | You can't update the Hold Type for this hold.\nA2789 | You can’t update a hold on a prospective student.\nA2793 | You can't update this hold because one or more events is in progress: [in progress events]. Complete or cancel all events before updating.\nA2794 | You can't update a hold with a Workday-delivered hold reason.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/immigrationEvents/{ID}": {
+      "get": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "summary": "Retrieves an immigration event.",
+        "description": "Retrieves an immigration event with the specified ID.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/immigrationEventDetail_3e053c863f49100016bd44139c6a0051"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/holds": {
+      "get": {
+        "tags": [
+          "holds"
+        ],
+        "summary": "This resource returns all Student Hold Assignments or a collection of Student Hold Assignments filtered by query parameters.",
+        "description": "This resource returns all Student Hold Assignments or a collection of Student Hold Assignments filtered by query parameters.\n\n<b>Secured by:</b> Apply Student Hold (REST Service), Manage: Holds, Self-Service: Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "active",
+            "in": "query",
+            "description": "Whether the holds are active or not.",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "holdReason",
+            "in": "query",
+            "description": "The hold reason to filter on.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "holdType",
+            "in": "query",
+            "description": "The hold types to filter on.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "student",
+            "in": "query",
+            "description": "The student to filter on.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/holdDetails_9da0d4910b0110002800422c63e20000"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/students": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves a collection of students.",
+        "description": "Retrieves all students. You can filter by academicLevel, academicUnit, programOfStudy etc.\n\n<b>Secured by:</b> Reports: Students, Self-Service: Student External Site User Access, Self-Service: Student Profile, Set Up: Student Sites, Student Data: Student Profile\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "academicLevel",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "academicUnit",
+            "in": "query",
+            "description": "Derived Academic Units.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "activeOnly",
+            "in": "query",
+            "description": "Only return active students.",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "programOfStudy",
+            "in": "query",
+            "description": "For students who haven't matriculated, the program of study they either applied to or have been admitted to. For matriculated students, the primary program of study from their reporting record.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "A fuzzy search string that matches student IDs and names. Example: search=bri%20book returns the student Brian Booker.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/studentSummary_53782cb2f04e10001976f95b3edd0121"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/immigrationEvents/{ID}/dependentImmigrationData/{subresourceID}": {
+      "get": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "summary": "Retrieves a dependent immigration data instance for the specified student ID.",
+        "description": "Retrieves a dependent immigration data for the specified student ID.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/dependentImmigrationDataDetail_b17cfb440705100014e346cba80c0123"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "put": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "description": "\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "dependentImmigrationDataDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dependentImmigrationDataDetail_b17cfb440705100014e346cba80c0123"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/dependentImmigrationDataDetail_b17cfb440705100014e346cba80c0123"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nEnsure that the Student Dependent Immigration Data is associated with a Student Immigration Data.\n\nEnsure that the associated Student Applicant Immigration Event is assigned to the currently logged in user.\n\nEnsure that the immigration status is for the institution of the application for the event.\n\nThe SEVIS ID must contain 9-11 alphanumeric characters.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "delete": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "summary": "Delete immigration event dependent immigration data.",
+        "description": "Delete immigration event dependent immigration data.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Deleting resource."
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nEnsure that the associated Student Applicant Immigration Event is assigned to the currently logged in user.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/holds/schoolCodes/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "All federal school codes, optionally filtered by student and hold reason query parms. Call these endpoints for valid filter values:\n- GET /values/holds/schoolCodes?student={id}\n- GET /values/holds/schoolCodes?reason={id}\n- GET /values/holds/schoolCodes?student={id}&reason={id}\n\n<b>Secured by:</b> Access Hold Reasons, Manage: Apply Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicRecord",
+          "in": "query",
+          "description": "The academic record of the student the hold applies to.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the hold reason.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "reason",
+          "in": "query",
+          "description": "The hold reason for the hold.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "student",
+          "in": "query",
+          "description": "The student to apply the hold to.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/immigrationEvents/{ID}/dependentImmigrationData": {
+      "get": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "summary": "Retrieves a collection of dependent immigration data for the specified student ID.",
+        "description": "Retrieves a collection of dependent immigration data for the specified student ID.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/dependentImmigrationDataDetail_b17cfb440705100014e346cba80c0123"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "immigrationEvents"
+        ],
+        "summary": "Creates dependent immigration data for the specified immigration event.",
+        "description": "Creates dependent immigration data for the immigration event with the specified data.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "dependentImmigrationDataDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dependentImmigrationDataDetail_b17cfb440705100014e346cba80c0123"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/dependentImmigrationDataDetail_b17cfb440705100014e346cba80c0123"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nEnsure that the Student Dependent Immigration Data is associated with a Student Immigration Data.\n\nEnsure that the associated Student Applicant Immigration Event is assigned to the currently logged in user.\n\nEnsure that the immigration status is for the institution of the application for the event.\n\nThe SEVIS ID must contain 9-11 alphanumeric characters.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/students/{ID}/immigrationEvents": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves a collection of immigration events.",
+        "description": "Retrieves a collection of immigration events for the specified student ID.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Set Up: Student Sites, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "institution",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/immigrationEventDetail_3e053c863f49100016bd44139c6a0051"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/students/{ID}/immigrationEvents/{subresourceID}": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves an immigration event for the specified student.",
+        "description": "Retrieves an immigration event for the specified student ID.\n\n<b>Secured by:</b> Self-Service: Student External Site User Access, Set Up: Student Sites, Student Data: Immigration\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/immigrationEventDetail_3e053c863f49100016bd44139c6a0051"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/values/holds/academicPeriods/": {
+      "get": {
+        "tags": [
+          "Prompt Values"
+        ],
+        "description": "Valid academic periods filtered by student, academic record, or academic unit. Call these endpoints for valid filter values:\nGET /values/holds/academicPeriods?student={id}\nGET /values/holds/academicPeriods?student={id}&academicUnit={id} \nGET /values/holds/academicPeriods?academicRecord={id}\n\n<b>Secured by:</b> Access Hold Reasons, Manage: Apply Holds\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-protected-usage-enabled": false,
+        "x-workday-internal-try-enabled": "false"
+      },
+      "parameters": [
+        {
+          "name": "academicRecord",
+          "in": "query",
+          "description": "The academic record of the student the hold applies to.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "academicUnit",
+          "in": "query",
+          "description": "The academic unit of the hold reason.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "name": "reason",
+          "in": "query",
+          "description": "The hold reason for the hold.",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "student",
+          "in": "query",
+          "description": "The student to apply the hold to.",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "x-workday-confidence-level": "Production"
+    },
+    "/holds/{ID}/removeHold": {
+      "post": {
+        "tags": [
+          "holds"
+        ],
+        "description": "\n\n<b>Secured by:</b> Remove Student Hold (REST Service)\n\n<b>Scope:</b> Action Items and Holds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "removeEvent",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/removeEvent_f55a9d594b521000fc0fc5cdf30b0000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/removeEvent_f55a9d594b521000fc0fc5cdf30b0000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA2319 | This hold has already been removed. Specify an active hold.\nA2320 | You can't remove a hold on yourself.\nA2321 | You can't remove a hold with a Workday-delivered hold reason.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/students/{ID}/residencies/{subresourceID}": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves residence information for the specified student.",
+        "description": "Retrieves a residence information for the student with the specified ID.\n\n<b>Secured by:</b> Manage: Student Residency, Self-Service: Student External Site User Access\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/residencySummary_b68d565b8eb610001987381601cf0144"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "person_15308ff39d95100018213f71d8a60183": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The person who has this role."
+    },
+    "primaryStudentRecord_4502a49c080f10001e71132cb35b0109": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/studentRecordSummary_4502a49c080f10001e6f44d7a4ec0104"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Record"
+            }
+          }
+        }
+      ]
+    },
+    "location_6393b5f0dcfa10000fe069e4a5620102": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The location associated with the student's earliest active institutional reporting record."
+    },
+    "studentDetail_6393b5f0dcfa10000f524d62761400f4": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "internationalStudent": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the student is not a citizen of the United States or one of its territories and is a citizen of another \\~country\\~.",
+              "x-workday-type": "Boolean"
+            },
+            "person": {
+              "$ref": "#/definitions/person_15308ff39d95100018213f71d8a60183"
+            },
+            "firstGeneration": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicator for first generation student.",
+              "x-workday-type": "Boolean"
+            },
+            "primaryStudentRecord": {
+              "type": "array",
+              "description": "Returns all Academic Records for the Student.",
+              "items": {
+                "$ref": "#/definitions/primaryStudentRecord_4502a49c080f10001e71132cb35b0109"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "preferredName": {
+              "type": "string",
+              "example": "Sally Student",
+              "description": "Returns the fully formatted preferred name for the Student.",
+              "x-workday-type": "Text"
+            },
+            "militaryRelationship": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns students that have a military relationship (e.g. veteran, military spouse)",
+              "x-workday-type": "Boolean"
+            },
+            "location": {
+              "$ref": "#/definitions/location_6393b5f0dcfa10000fe069e4a5620102"
+            },
+            "Student_ID": {
+              "type": "string",
+              "example": "627272",
+              "description": "The student ID of the student.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Student"
+            }
+          }
+        }
+      ]
+    },
+    "primaryStudentRecord_53782cb2f04e10001976f967bc200122": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/studentRecordSummary_4502a49c080f10001e6f44d7a4ec0104"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Record"
+            }
+          }
+        }
+      ]
+    },
+    "studentSummary_53782cb2f04e10001976f95b3edd0121": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "primaryStudentRecord": {
+              "type": "array",
+              "description": "Returns all Academic Records for the Student.",
+              "items": {
+                "$ref": "#/definitions/primaryStudentRecord_53782cb2f04e10001976f967bc200122"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "Student_ID": {
+              "type": "string",
+              "example": "627272",
+              "description": "The student ID of the student.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Student"
+            }
+          }
+        }
+      ]
+    },
+    "application_6dfd42806c9f10001814d5b6fbf67680": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The student application."
+    },
+    "immigrationData_3e053c863f49100016bd442f71fb0052": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/immigrationDataDetail_afb50f4769c2100025899c714c875a39"
+        },
+        {}
+      ],
+      "description": "The student immigration data instance."
+    },
+    "dependentImmigrationData_bd3e58cff51b10003c50b37a890866a1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/dependentImmigrationDataDetail_b17cfb440705100014e346cba80c0123"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Dependent Immigration Data"
+            }
+          }
+        }
+      ]
+    },
+    "immigrationEventDetail_3e053c863f49100016bd44139c6a0051": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The status of the immigration event.",
+              "x-workday-type": "Text"
+            },
+            "application": {
+              "$ref": "#/definitions/application_6dfd42806c9f10001814d5b6fbf67680"
+            },
+            "immigrationData": {
+              "$ref": "#/definitions/immigrationData_3e053c863f49100016bd442f71fb0052"
+            },
+            "dependentImmigrationData": {
+              "type": "array",
+              "description": "The student dependent immigration data instances for the student immigration data.",
+              "items": {
+                "$ref": "#/definitions/dependentImmigrationData_bd3e58cff51b10003c50b37a890866a1"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Student Applicant Immigration Event"
+            }
+          }
+        }
+      ]
+    },
+    "student_044e3a5e845710000d6474e7f81f0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The student of the apply student hold event.",
+      "x-readOnly": true
+    },
+    "reason_044e3a5e845710000b39891ae92a0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The hold reason of the apply student hold event."
+    },
+    "hold_4db98438061810001e175c998e030000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The hold of the apply student hold event.",
+      "x-readOnly": true
+    },
+    "typeContext_044e3a5e845710000e2f0a802de50000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/typeContext_a22e090c4bf8100017c08dbf74060000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Hold Type Context"
+            }
+          }
+        }
+      ]
+    },
+    "applyHoldEvent_f55a9d594b521000fbe6a0e17e750000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "reason",
+            "typeContext"
+          ],
+          "properties": {
+            "student": {
+              "$ref": "#/definitions/student_044e3a5e845710000d6474e7f81f0000"
+            },
+            "reason": {
+              "$ref": "#/definitions/reason_044e3a5e845710000b39891ae92a0000"
+            },
+            "hold": {
+              "$ref": "#/definitions/hold_4db98438061810001e175c998e030000"
+            },
+            "typeContext": {
+              "type": "array",
+              "description": "The hold type of the apply student hold event.",
+              "items": {
+                "$ref": "#/definitions/typeContext_044e3a5e845710000e2f0a802de50000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Apply Student Hold Event"
+            }
+          }
+        }
+      ]
+    },
+    "status_b68d565b8eb6100019873838ec930146": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The student's current residency status."
+    },
+    "events_b68d565b8eb610001987382e73fe0145": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/residencyEvent_2d9e3128b5ff10000fedaefb4fdd0113"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Residency Event"
+            }
+          }
+        }
+      ]
+    },
+    "effectiveAcademicPeriod_42148ec8f5c51000110201db1e0e0136": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The academic period in which this student residency record took effect."
+    },
+    "documents_42148ec8f5c51000110201c70b0c0134": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/studentDocument_42148ec8f5c51000113499b7a5f8013a"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Document"
+            }
+          }
+        }
+      ]
+    },
+    "detail_42148ec8f5c51000110201e54d680138": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Indicates whether the student is in or out of district (for residents only)."
+    },
+    "reason_42148ec8f5c51000110201e068d30137": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The residency reason for the student residency record."
+    },
+    "institutionalAcademicUnits_b68d565b8eb610001987385b0aa10148": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_2d9e3128b5ff10000f66e7609e070111"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Unit"
+            }
+          }
+        }
+      ]
+    },
+    "residencySummary_b68d565b8eb610001987381601cf0144": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "$ref": "#/definitions/status_b68d565b8eb6100019873838ec930146"
+            },
+            "events": {
+              "type": "array",
+              "description": "All student residency events associated with this student residency record.",
+              "items": {
+                "$ref": "#/definitions/events_b68d565b8eb610001987382e73fe0145"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "effectiveAcademicPeriod": {
+              "$ref": "#/definitions/effectiveAcademicPeriod_42148ec8f5c51000110201db1e0e0136"
+            },
+            "documents": {
+              "type": "array",
+              "description": "The documents that the student provided through the residency determination questionnaire for this applicant's residency status as of the end date of the academic period (or dynamic date).",
+              "items": {
+                "$ref": "#/definitions/documents_42148ec8f5c51000110201c70b0c0134"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "detail": {
+              "$ref": "#/definitions/detail_42148ec8f5c51000110201e54d680138"
+            },
+            "effective": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date on which this residency status became (or will become) effective.",
+              "x-workday-type": "Date"
+            },
+            "reason": {
+              "$ref": "#/definitions/reason_42148ec8f5c51000110201e068d30137"
+            },
+            "declaration": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date on which this student declared residency.",
+              "x-workday-type": "Date"
+            },
+            "institutionalAcademicUnits": {
+              "type": "array",
+              "description": "The Institution Academic Units.",
+              "items": {
+                "$ref": "#/definitions/institutionalAcademicUnits_b68d565b8eb610001987385b0aa10148"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Student Residency Record"
+            }
+          }
+        }
+      ]
+    },
+    "studentConfigurablePage_0e76987593aa1000157deb21922e51f7": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Name of this Student Configurable Page",
+              "x-workday-type": "Text"
+            },
+            "type": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The derived type of the page.",
+              "x-workday-type": "Text"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description for a student configurable page.",
+              "x-workday-type": "Rich Text"
+            },
+            "hidden": {
+              "type": "boolean",
+              "example": true,
+              "description": "Student Configurable Tab Configuration Hidden",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "relationshipToStudent_b17cfb4407051000151c9128a3db0126": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The dependent’s relationship to the student."
+    },
+    "countryOfBirth_1268a0522897100026d34fb71c108be4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The dependent’s country of birth"
+    },
+    "countryOfCitizenship_b17cfb4407051000151c91b18236012c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~Country\\~ of citizenship for the student’s dependent."
+    },
+    "immigrationStatus_0e76987593aa100027c506341600599c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The immigration status of the student’s dependent."
+    },
+    "dependentImmigrationDataDetail_b17cfb440705100014e346cba80c0123": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "relationshipToStudent": {
+              "$ref": "#/definitions/relationshipToStudent_b17cfb4407051000151c9128a3db0126"
+            },
+            "sevisIssueDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The issue date of the SEVIS ID for the student’s dependent.",
+              "x-workday-type": "Date"
+            },
+            "middleName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The middle name of the student’s dependent.",
+              "x-workday-type": "Text"
+            },
+            "lastName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The last name of the student’s dependent.",
+              "x-workday-type": "Text"
+            },
+            "sevisExpirationDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The expiration date of the SEVIS ID for the student’s dependent.",
+              "x-workday-type": "Date"
+            },
+            "firstName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The first name of the student’s dependent.",
+              "x-workday-type": "Text"
+            },
+            "countryOfBirth": {
+              "$ref": "#/definitions/countryOfBirth_1268a0522897100026d34fb71c108be4"
+            },
+            "sevisId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The SEVIS ID of the student’s dependent.",
+              "x-workday-type": "Text"
+            },
+            "dateOfBirth": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The student dependent’s date of birth.",
+              "x-workday-type": "Date"
+            },
+            "countryOfCitizenship": {
+              "$ref": "#/definitions/countryOfCitizenship_b17cfb4407051000151c91b18236012c"
+            },
+            "immigrationStatus": {
+              "$ref": "#/definitions/immigrationStatus_0e76987593aa100027c506341600599c"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "issuingInstitution_afb50f4769c2100025899cf03ed15a3c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The issuing institution of the current active SEVIS ID for the student immigration data."
+    },
+    "activeVisaType_afb50f4769c2100025899c9836165a3a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The visa type from the student application. Returns the student immigration status the student will be as an international student."
+    },
+    "immigrationDataDetail_afb50f4769c2100025899c714c875a39": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "activeSevisId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The current active SEVIS ID for the student immigration data.",
+              "x-workday-type": "Text"
+            },
+            "issuingInstitution": {
+              "$ref": "#/definitions/issuingInstitution_afb50f4769c2100025899cf03ed15a3c"
+            },
+            "activeVisaType": {
+              "$ref": "#/definitions/activeVisaType_afb50f4769c2100025899c9836165a3a"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Student Immigration Data"
+            }
+          }
+        }
+      ]
+    },
+    "overrideEvent_3ac81763d2c010002d9525561e9a0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/overrideEvent_f55a9d594b521000fbf9ba11df960000"
+        },
+        {}
+      ],
+      "description": "The hold override details."
+    },
+    "typeContexts_3ac81763d2c010002d9525561e9a0003": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/typeContext_a22e090c4bf8100017c08dbf74060000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Hold Type Context"
+            }
+          }
+        }
+      ]
+    },
+    "reason_699d2fd12d27100014b2eadd670d0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/reason_3ac81763d2c010002e56f31ac1c50000"
+        },
+        {}
+      ],
+      "description": "The reason for a hold."
+    },
+    "student_8a10bba1cae81000198a65bb1c700000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The student to which the hold is assigned."
+    },
+    "holdDetails_9da0d4910b0110002800422c63e20000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "overrideEvent": {
+              "$ref": "#/definitions/overrideEvent_3ac81763d2c010002d9525561e9a0000"
+            },
+            "typeContexts": {
+              "type": "array",
+              "description": "The contextual information for the hold type.",
+              "items": {
+                "$ref": "#/definitions/typeContexts_3ac81763d2c010002d9525561e9a0003"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "removedOn": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the hold will be removed from the student.",
+              "x-workday-type": "Date"
+            },
+            "reason": {
+              "$ref": "#/definitions/reason_699d2fd12d27100014b2eadd670d0000"
+            },
+            "student": {
+              "$ref": "#/definitions/student_8a10bba1cae81000198a65bb1c700000"
+            },
+            "createdOn": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the hold was created.",
+              "x-workday-type": "Date"
+            },
+            "createdBy": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The assigner of the hold.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Student Hold"
+            }
+          }
+        }
+      ]
+    },
+    "removeEvent_f55a9d594b521000fc0fc5cdf30b0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "typeContexts_b610a24b4eb4100015accf45e9670001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/typeContext_a22e090c4bf8100017c08dbf74060000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Hold Type Context"
+            }
+          }
+        }
+      ]
+    },
+    "updateHoldEvent_b610a24b4eb4100015accf45e9670000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "typeContexts"
+          ],
+          "properties": {
+            "typeContexts": {
+              "type": "array",
+              "description": "The hold type context of the update student hold event.",
+              "items": {
+                "$ref": "#/definitions/typeContexts_b610a24b4eb4100015accf45e9670001"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Update Student Hold Event"
+            }
+          }
+        }
+      ]
+    },
+    "holdTypes_bb66d62f7d1b10001428a8723a3a0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/holdType_3ac81763d2c010002e402a6cd6df0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Hold (All)"
+            }
+          }
+        }
+      ]
+    },
+    "overrideEvent_f55a9d594b521000fbf9ba11df960000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "endDate",
+            "holdTypes",
+            "startDate"
+          ],
+          "properties": {
+            "appliedOn": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the hold override was applied.",
+              "x-workday-type": "Date"
+            },
+            "createdBy": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The user who applied the override.",
+              "x-workday-type": "Text"
+            },
+            "endDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the override ends.",
+              "x-workday-type": "Date"
+            },
+            "holdTypes": {
+              "type": "array",
+              "description": "The hold types the override applies to.",
+              "items": {
+                "$ref": "#/definitions/holdTypes_bb66d62f7d1b10001428a8723a3a0001"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date the override starts.",
+              "x-workday-type": "Date"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Student Hold Assignment Override Event"
+            }
+          }
+        }
+      ]
+    },
+    "academicUnit_4db98438061810001daf71ea2cfb0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The academic unit associated with the reason."
+    },
+    "holdType_4db98438061810001ba6108cc0de0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/holdTypeData_ebc1e807575b10001d00123bc62a0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Student Hold (Workday Delivered)"
+            }
+          }
+        }
+      ]
+    },
+    "holdReason_4db98438061810001ba6108cc0de0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "academicUnit": {
+              "$ref": "#/definitions/academicUnit_4db98438061810001daf71ea2cfb0000"
+            },
+            "holdType": {
+              "type": "array",
+              "description": "The hold types that can be associated with the reason.",
+              "items": {
+                "$ref": "#/definitions/holdType_4db98438061810001ba6108cc0de0001"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Student Hold Reason"
+            }
+          }
+        }
+      ]
+    },
+    "reasons_8bc05d1bce1c1000254dedd4c0cc0001": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/holdReason_4db98438061810001ba6108cc0de0000"
+          }
+        }
+      }
+    },
+    "academicUnit_2d9e3128b5ff10000f66e7609e070111": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "residencyEvent_2d9e3128b5ff10000fedaefb4fdd0113": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "holdTypeData_ebc1e807575b10001d00123bc62a0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "validForAcademicPeriod": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the academic period context is valid for this hold type.",
+              "x-workday-type": "Boolean"
+            },
+            "validForAppliesToAll": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the applies to all context is valid for this hold type.",
+              "x-workday-type": "Boolean"
+            },
+            "validForInstitution": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the institution context is valid for this hold type.",
+              "x-workday-type": "Boolean"
+            },
+            "validForAwardYear": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the financial aid award year context is valid for this hold type.",
+              "x-workday-type": "Boolean"
+            },
+            "validForAwardItem": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the financial aid award year context is valid for this hold type.",
+              "x-workday-type": "Boolean"
+            },
+            "validForFederalSchoolCode": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the federal school code context is valid for this hold type.",
+              "x-workday-type": "Boolean"
+            },
+            "validForAcademicRecord": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the academic record context is valid for this hold type.",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "status_382d56cb804d100012f64e43e6120147": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the current designation of Active or Inactive for the Student. A Student is considered Active if they are actively pursuing at least one Program of Study, as determined by the status on their Student Program of Study Record."
+    },
+    "academicUnit_4502a49c080f10001e6f44f3a80e0106": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Academic Unit of the Primary Program of Study of the Reporting Record (for Matriculated Student) or Primary Program of Study of the Application (for Applicant) as of the standard start date for the financial aid period record."
+    },
+    "programOfStudy_4502a49c080f10001e6f44f976050107": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the primary Program of Study for the Student Record."
+    },
+    "academicLevel_4502a49c080f10001e6f44e9fb670105": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Academic Level for Student Record"
+    },
+    "classStanding_59952eb034cb1000233e0341ccce4d5b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Retired. The latest class standing of the student on this academic record. This value is either the Workday-calculated or the assigned class standing, if overridden. We retire this report field and recommend you use use the Latest Class Standing report field instead."
+    },
+    "studentRecordSummary_4502a49c080f10001e6f44d7a4ec0104": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "$ref": "#/definitions/status_382d56cb804d100012f64e43e6120147"
+            },
+            "academicUnit": {
+              "$ref": "#/definitions/academicUnit_4502a49c080f10001e6f44f3a80e0106"
+            },
+            "programOfStudy": {
+              "$ref": "#/definitions/programOfStudy_4502a49c080f10001e6f44f976050107"
+            },
+            "academicLevel": {
+              "$ref": "#/definitions/academicLevel_4502a49c080f10001e6f44e9fb670105"
+            },
+            "classStanding": {
+              "$ref": "#/definitions/classStanding_59952eb034cb1000233e0341ccce4d5b"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "holdType_3ac81763d2c010002e402a6cd6df0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "studentDocument_42148ec8f5c51000113499b7a5f8013a": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "federalSchoolCode_a22e090c4bf8100017c08e5916660002": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Federal school code of the student hold type context."
+    },
+    "studentAwardItem_502208d9f9b0100021257ac3bc840000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The award item of the student hold context."
+    },
+    "academicRecord_a22e090c4bf8100017c08e5916660003": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The academic record of the student hold type context."
+    },
+    "financialAidAwardYear_a22e090c4bf8100017c08e5916660000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The financial aid award year of the student hold type context."
+    },
+    "academicPeriod_a22e090c4bf8100017c08e5916660001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The academic period of the student hold type context."
+    },
+    "institution_a22e090c4bf8100017c08e5916660004": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The institution of the student hold type context."
+    },
+    "holdType_044e3a5e845710000df22ca1c62d0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The hold type of the student hold type context."
+    },
+    "typeContext_a22e090c4bf8100017c08dbf74060000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "holdType"
+          ],
+          "properties": {
+            "federalSchoolCode": {
+              "$ref": "#/definitions/federalSchoolCode_a22e090c4bf8100017c08e5916660002"
+            },
+            "studentAwardItem": {
+              "$ref": "#/definitions/studentAwardItem_502208d9f9b0100021257ac3bc840000"
+            },
+            "academicRecord": {
+              "$ref": "#/definitions/academicRecord_a22e090c4bf8100017c08e5916660003"
+            },
+            "financialAidAwardYear": {
+              "$ref": "#/definitions/financialAidAwardYear_a22e090c4bf8100017c08e5916660000"
+            },
+            "academicPeriod": {
+              "$ref": "#/definitions/academicPeriod_a22e090c4bf8100017c08e5916660001"
+            },
+            "institution": {
+              "$ref": "#/definitions/institution_a22e090c4bf8100017c08e5916660004"
+            },
+            "holdType": {
+              "$ref": "#/definitions/holdType_044e3a5e845710000df22ca1c62d0000"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "reason_3ac81763d2c010002e56f31ac1c50000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "resolutionInstructions": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The instructions to resolve the hold.",
+              "x-workday-type": "Rich Text"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The description of the hold reason.",
+              "x-workday-type": "Rich Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

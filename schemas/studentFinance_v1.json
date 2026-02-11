@@ -1,0 +1,1145 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Student Finance service enables you to access the Student Financials functional area and student payment data in Workday. \n\nRelated Information:\n* Administrator Guide: Setup Considerations: Student Payments",
+    "version": "v1",
+    "title": "studentFinance",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "de37943cec3c100022183e03645b0523"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/studentFinance/v1",
+  "tags": [
+    {
+      "name": "students"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/students": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves a collection of students.",
+        "description": "Retrieves all students. You can filter by academicLevel, academicUnit, programOfStudy etc.\n\n<b>Secured by:</b> Reports: Students, Self-Service: Student External Site User Access, Self-Service: Student Profile, Set Up: Student Sites, Student Data: Student Profile\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "academicLevel",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "academicUnit",
+            "in": "query",
+            "description": "Derived Academic Units.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "activeOnly",
+            "in": "query",
+            "description": "Only return active students.",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "programOfStudy",
+            "in": "query",
+            "description": "For students who haven't matriculated, the program of study they either applied to or have been admitted to. For matriculated students, the primary program of study from their reporting record.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "A fuzzy search string that matches student IDs and names. Example: search=bri%20book returns the student Brian Booker.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/studentSummary_53782cb2f04e10001976f95b3edd0121"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/students/{ID}": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves a student instance.",
+        "description": "Retrieves a student with the specified ID.\n\n<b>Secured by:</b> Reports: Students, Self-Service: Student External Site User Access, Self-Service: Student Profile, Set Up: Student Sites, Student Data: Student Profile\n\n<b>Scope:</b> Academic Foundation, Student Core",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/studentDetail_6393b5f0dcfa10000f524d62761400f4"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/students/{ID}/payments/{subresourceID}": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves a single student payment instance for the specified student ID.",
+        "description": "Retrieves a student payment for the specified student ID.\n\n<b>Secured by:</b> Manage: Student Payment Processing\n\n<b>Scope:</b> Student Financials",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/paymentDetail_19886c04bbbc1000186c04303b7e00ff"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "patch": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Partially updates an existing student payment for the student instance.",
+        "description": "Partially updates an existing student payment instance for the specified student ID with the specified data in the request body.  In the request body, specify at least this required field: reason{id}\n\n<b>Secured by:</b> Manage: Student Payment Adjustment Processing\n\n<b>Scope:</b> Student Financials",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "paymentAdjustmentDetails",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/paymentAdjustmentDetails_9ca9c20affad100008e425a4db61015f"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/paymentAdjustmentDetails_9ca9c20affad100008e425a4db61015f"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nPayment Adjustment Reason is required.\n\nTo change the adjustment reason, you must also change the adjustment amount.\n\nYou can't adjust this student payment because it has another adjustment in progress. Complete the previous adjustment before creating another adjustment.\n\nYou can't adjust this student payment because it is not approved. Approve the payment and resubmit the adjustment.\n\nYou cannot adjust this student payment because it has been deposited, canceled, returned or refunded.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/students/{ID}/payments": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Retrieves a collection of student payments.",
+        "description": "Retrieves a collection of payment information. You can filter the payments by institutional academic unit, payment type, payment reference, or payment transaction date.\n\n<b>Secured by:</b> Manage: Student Payment Processing\n\n<b>Scope:</b> Student Financials",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "academicPeriod",
+            "in": "query",
+            "description": "The academic period associated with this object. When the object is associated with both a starting and an ending academic period, such as a financial aid period record, this report field returns the starting academic period.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "description": "Limit student payments to payments made on or after this date, using the yyyy-mm-dd format.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "institutionalAcademicUnit",
+            "in": "query",
+            "description": "The academic unit, an organizational type for academic appointments.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "paymentItem",
+            "in": "query",
+            "description": "The student payment item that is associated with the student payment.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "paymentReference",
+            "in": "query",
+            "description": "The check number or EFT number associated with a student payment.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "paymentType",
+            "in": "query",
+            "description": "The payment type for the reporting transaction.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "description": "Limit student payments to payments made on or before this date, using the yyyy-mm-dd format.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/paymentDetail_19886c04bbbc1000186c04303b7e00ff"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      },
+      "post": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Creates a student payment.",
+        "description": "Creates a single student payment instance with the specified data.  In the request body, specify at least these required fields: academicPeriod{id}, institutionalAcademicUnit{id}, paymentType{id}, amount.   You can call GET /students/{ID}/payments or GET /students/{ID}/payments/{subresourceID} to get existing payment information that helps you specify the required data in the request body.\n\n<b>Secured by:</b> Manage: Student Payment Processing\n\n<b>Scope:</b> Student Financials",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "paymentDetail",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/paymentDetail_19886c04bbbc1000186c04303b7e00ff"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/paymentDetail_19886c04bbbc1000186c04303b7e00ff"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nChange the Currency to match the default currency for the student's academic unit: [currency]\n\nPayment Type must be one of the Payment Types allowed for the Payment Item.\n\nProvide an Academic Period valid for the student\n\nSubmit a payment amount that is greater than zero.\n\nSubmit an institutional academic unit that the student belongs to.\n\nThe Item used for the Student Payment cannot be marked Inactive.\n\nThe student record no longer exists because it has been merged with another student record. Post the payment for the new student record instead.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "person_15308ff39d95100018213f71d8a60183": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The person who has this role."
+    },
+    "primaryStudentRecord_4502a49c080f10001e71132cb35b0109": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/studentRecordSummary_4502a49c080f10001e6f44d7a4ec0104"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Record"
+            }
+          }
+        }
+      ]
+    },
+    "location_6393b5f0dcfa10000fe069e4a5620102": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The location associated with the student's earliest active institutional reporting record."
+    },
+    "studentDetail_6393b5f0dcfa10000f524d62761400f4": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "internationalStudent": {
+              "type": "boolean",
+              "example": true,
+              "description": "True if the student is not a citizen of the United States or one of its territories and is a citizen of another \\~country\\~.",
+              "x-workday-type": "Boolean"
+            },
+            "person": {
+              "$ref": "#/definitions/person_15308ff39d95100018213f71d8a60183"
+            },
+            "firstGeneration": {
+              "type": "boolean",
+              "example": true,
+              "description": "Indicator for first generation student.",
+              "x-workday-type": "Boolean"
+            },
+            "primaryStudentRecord": {
+              "type": "array",
+              "description": "Returns all Academic Records for the Student.",
+              "items": {
+                "$ref": "#/definitions/primaryStudentRecord_4502a49c080f10001e71132cb35b0109"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "preferredName": {
+              "type": "string",
+              "example": "Sally Student",
+              "description": "Returns the fully formatted preferred name for the Student.",
+              "x-workday-type": "Text"
+            },
+            "militaryRelationship": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns students that have a military relationship (e.g. veteran, military spouse)",
+              "x-workday-type": "Boolean"
+            },
+            "location": {
+              "$ref": "#/definitions/location_6393b5f0dcfa10000fe069e4a5620102"
+            },
+            "Student_ID": {
+              "type": "string",
+              "example": "627272",
+              "description": "The student ID of the student.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "primaryStudentRecord_53782cb2f04e10001976f967bc200122": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/studentRecordSummary_4502a49c080f10001e6f44d7a4ec0104"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Academic Record"
+            }
+          }
+        }
+      ]
+    },
+    "studentSummary_53782cb2f04e10001976f95b3edd0121": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "primaryStudentRecord": {
+              "type": "array",
+              "description": "Returns all Academic Records for the Student.",
+              "items": {
+                "$ref": "#/definitions/primaryStudentRecord_53782cb2f04e10001976f967bc200122"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "Student_ID": {
+              "type": "string",
+              "example": "627272",
+              "description": "The student ID of the student.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "reason_9ca9c20affad100008e426bd73d30161": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/adjustmentReason_19886c04bbbc10001180c36a81b600fc"
+        },
+        {}
+      ],
+      "description": "Student Payment Adjustment Reason for REST."
+    },
+    "paymentAdjustmentDetails_9ca9c20affad100008e425a4db61015f": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "reason"
+          ],
+          "properties": {
+            "amount": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "Payment Adjustment Amount attribute for use with REST.",
+              "x-workday-type": "Currency"
+            },
+            "reason": {
+              "$ref": "#/definitions/reason_9ca9c20affad100008e426bd73d30161"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "academicPeriod_19886c04bbbc1000186c04729b1f0105": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicPeriod_bf8e8cebf5b8100039d7a3bbe1630115"
+        },
+        {}
+      ],
+      "description": "The academic period associated with this object. When the object is associated with both a starting and an ending academic period, such as a financial aid period record, this report field returns the starting academic period."
+    },
+    "paymentItem_19886c04bbbc1000186c0466ff160103": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/paymentItem_bf8e8cebf5b810003b72de34e59e011c"
+        },
+        {}
+      ],
+      "description": "The Student Payment Items"
+    },
+    "paymentType_19886c04bbbc1000186c04575b100102": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/paymentType_bf8e8cebf5b810003b68664a928e011a"
+        },
+        {}
+      ],
+      "description": "The payment type for the reporting transaction."
+    },
+    "institutionalAcademicUnit_723327ee3f1510000fe10ff808185277": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/academicUnit_bf8e8cebf5b810003b590572ff2d0118"
+        },
+        {}
+      ],
+      "description": "The institutional academic unit for the transaction."
+    },
+    "paymentDetail_19886c04bbbc1000186c04303b7e00ff": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "academicPeriod",
+            "amount",
+            "institutionalAcademicUnit",
+            "paymentType"
+          ],
+          "properties": {
+            "academicPeriod": {
+              "$ref": "#/definitions/academicPeriod_19886c04bbbc1000186c04729b1f0105"
+            },
+            "studentFinanceTransactionDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The start and end date of a date range that filters payments by the student payment transaction date, using the yyyy-mm-dd format.",
+              "x-workday-type": "Date"
+            },
+            "paymentItem": {
+              "$ref": "#/definitions/paymentItem_19886c04bbbc1000186c0466ff160103"
+            },
+            "paymentType": {
+              "$ref": "#/definitions/paymentType_19886c04bbbc1000186c04575b100102"
+            },
+            "reference": {
+              "type": "string",
+              "example": "G48W342",
+              "description": "The reference to a customer payment that's processed through a settlement run. This field is blank when the Payment Status is In Progress or when the Payment Type is Check or ETF.",
+              "x-workday-type": "Text"
+            },
+            "institutionalAcademicUnit": {
+              "$ref": "#/definitions/institutionalAcademicUnit_723327ee3f1510000fe10ff808185277"
+            },
+            "paymentDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2019-11-20T20:00:00.000Z",
+              "description": "The transaction date for the reporting transaction. If you used a filtering criteria for expense reports, use the Expense Report Date report field instead.",
+              "x-workday-type": "Date"
+            },
+            "amount": {
+              "type": "object",
+              "example": "1000",
+              "description": "The amount of the customer payment in transaction currency.",
+              "x-workday-type": "Currency"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "paymentItem_bf8e8cebf5b810003b72de34e59e011c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "academicUnit_bf8e8cebf5b810003b590572ff2d0118": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "paymentType_bf8e8cebf5b810003b68664a928e011a": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "status_382d56cb804d100012f64e43e6120147": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the current designation of Active or Inactive for the Student. A Student is considered Active if they are actively pursuing at least one Program of Study, as determined by the status on their Student Program of Study Record."
+    },
+    "academicUnit_4502a49c080f10001e6f44f3a80e0106": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the Academic Unit of the Primary Program of Study of the Reporting Record (for Matriculated Student) or Primary Program of Study of the Application (for Applicant) as of the standard start date for the financial aid period record."
+    },
+    "programOfStudy_4502a49c080f10001e6f44f976050107": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the primary Program of Study for the Student Record."
+    },
+    "academicLevel_4502a49c080f10001e6f44e9fb670105": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Academic Level for Student Record"
+    },
+    "classStanding_59952eb034cb1000233e0341ccce4d5b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Retired. The latest class standing of the student on this academic record. This value is either the Workday-calculated or the assigned class standing, if overridden. We retire this report field and recommend you use use the Latest Class Standing report field instead."
+    },
+    "studentRecordSummary_4502a49c080f10001e6f44d7a4ec0104": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "$ref": "#/definitions/status_382d56cb804d100012f64e43e6120147"
+            },
+            "academicUnit": {
+              "$ref": "#/definitions/academicUnit_4502a49c080f10001e6f44f3a80e0106"
+            },
+            "programOfStudy": {
+              "$ref": "#/definitions/programOfStudy_4502a49c080f10001e6f44f976050107"
+            },
+            "academicLevel": {
+              "$ref": "#/definitions/academicLevel_4502a49c080f10001e6f44e9fb670105"
+            },
+            "classStanding": {
+              "$ref": "#/definitions/classStanding_59952eb034cb1000233e0341ccce4d5b"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "academicPeriod_bf8e8cebf5b8100039d7a3bbe1630115": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "adjustmentReason_19886c04bbbc10001180c36a81b600fc": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

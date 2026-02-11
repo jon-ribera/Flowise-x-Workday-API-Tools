@@ -1,0 +1,34 @@
+[
+  {
+    "name": "OAuthClient-ClientDetails-GET-getClientDetails",
+    "description": "[O Auth Client] GET /clientDetails — Returns a valid OAuth Client Details for OCFR Clients",
+    "schema": [
+      {
+        "name": "client_name",
+        "type": "string",
+        "description": "Client Name",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/clientDetails",
+    "operationId": null,
+    "file": "OAuthClient-ClientDetails-GET-getClientDetails.js"
+  },
+  {
+    "name": "OAuthClient-ClientDetails-GET-getClientDetails_1",
+    "description": "[O Auth Client] GET /clientDetails/{ID} — Returns a valid OAuth Client Details for OCFR Clients",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/clientDetails/{ID}",
+    "operationId": null,
+    "file": "OAuthClient-ClientDetails-GET-getClientDetails_1.js"
+  }
+]

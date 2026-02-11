@@ -1,0 +1,136 @@
+[
+  {
+    "name": "CustomObjectDataMultiInstance-CustomObjects-GET-getCustomObjects",
+    "description": "[Custom Object Data (multi-instance)] GET /{businessObjectResource}/{businessObjectId}/customObjects/{customObjectAlias} — Retrieves a collection of multi-instance custom objects.",
+    "schema": [
+      {
+        "name": "businessObjectResource",
+        "type": "string",
+        "description": "The resource name of the Workday business object that has been extended by the multi-instance custom object.",
+        "required": true
+      },
+      {
+        "name": "businessObjectId",
+        "type": "string",
+        "description": "The Workday ID of the extended business object instance.",
+        "required": true
+      },
+      {
+        "name": "customObjectAlias",
+        "type": "string",
+        "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task. ",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/{businessObjectResource}/{businessObjectId}/customObjects/{customObjectAlias}",
+    "operationId": null,
+    "file": "CustomObjectDataMultiInstance-CustomObjects-GET-getCustomObjects.js"
+  },
+  {
+    "name": "CustomObjectDataMultiInstance-CustomObjects-POST-postCustomObjects",
+    "description": "[Custom Object Data (multi-instance)] POST /customObjects/{customObjectAlias} — Creates instances of multi-instance custom objects.",
+    "schema": [
+      {
+        "name": "customObjectAlias",
+        "type": "string",
+        "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task.",
+        "required": true
+      },
+      {
+        "name": "updateIfExists",
+        "type": "boolean",
+        "description": "If true, updates the custom object instance if it exists. If false, returns an error if the object exists. The default is false. If the object does not exist, a new object is created regardless of this setting.",
+        "required": false
+      },
+      {
+        "name": "bulk",
+        "type": "boolean",
+        "description": "If true, creates or updates the specified array of custom object instances in the request body. If false, specify a single object (without an array). The default is false. ",
+        "required": false
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "The custom object instance to be persisted. If bulk=true, specify an array containing the custom object instances, with a maximum of 100. If bulk=false (default), specify a JSON object.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/customObjects/{customObjectAlias}",
+    "operationId": null,
+    "file": "CustomObjectDataMultiInstance-CustomObjects-POST-postCustomObjects.js"
+  },
+  {
+    "name": "CustomObjectDataMultiInstance-CustomObjects-GET-getCustomObjects_1",
+    "description": "[Custom Object Data (multi-instance)] GET /customObjects/{customObjectAlias}/{customObjectID} — Get a specific instance of a multi-instance custom object",
+    "schema": [
+      {
+        "name": "customObjectAlias",
+        "type": "string",
+        "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task.",
+        "required": true
+      },
+      {
+        "name": "customObjectID",
+        "type": "string",
+        "description": "If the multi-instance custom object definition uses a reference ID, specify a semicolon-delimited concatenation of the business object Workday ID and reference ID using the format {businessObjectWID};{referenceIdAlias}={referenceIdValue}.\n\nIf the multi-instance custom object definition doesn't use a reference ID, specify the Workday ID of the custom object instance. \nUse a returned id from GET /{extendedBusinessObjectResource}/{extendedBusinessObjectId}/customObjects/{customObjectAlias}.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/customObjects/{customObjectAlias}/{customObjectID}",
+    "operationId": null,
+    "file": "CustomObjectDataMultiInstance-CustomObjects-GET-getCustomObjects_1.js"
+  },
+  {
+    "name": "CustomObjectDataMultiInstance-CustomObjects-PUT-putCustomObjects",
+    "description": "[Custom Object Data (multi-instance)] PUT /customObjects/{customObjectAlias}/{customObjectID} — Updates an instance of a multi-instance custom object. ",
+    "schema": [
+      {
+        "name": "customObjectAlias",
+        "type": "string",
+        "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task.",
+        "required": true
+      },
+      {
+        "name": "customObjectID",
+        "type": "string",
+        "description": "If the multi-instance custom object definition uses a reference ID, specify a semicolon-delimited concatenation of the business object Workday ID and reference ID using the format {businessObjectWID};{referenceIdAlias}={referenceIdValue}.\n\nIf the multi-instance custom object definition doesn't use a reference ID, specify the Workday ID of the custom object instance. \nUse a returned id from GET /{extendedBusinessObjectResource}/{extendedBusinessObjectId}/customObjects/{customObjectAlias}.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "The custom object fields to be updated.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/customObjects/{customObjectAlias}/{customObjectID}",
+    "operationId": null,
+    "file": "CustomObjectDataMultiInstance-CustomObjects-PUT-putCustomObjects.js"
+  },
+  {
+    "name": "CustomObjectDataMultiInstance-CustomObjects-DELETE-deleteCustomObjects",
+    "description": "[Custom Object Data (multi-instance)] DELETE /customObjects/{customObjectAlias}/{customObjectID} — Deletes an instance of a custom object.",
+    "schema": [
+      {
+        "name": "customObjectAlias",
+        "type": "string",
+        "description": "The web service alias of the custom object. To determine the web service alias of the custom object definition in Workday, run the View Custom Object task.",
+        "required": true
+      },
+      {
+        "name": "customObjectID",
+        "type": "string",
+        "description": "If the multi-instance custom object definition uses a reference ID, specify a semicolon-delimited concatenation of the business object Workday ID and reference ID using the format {businessObjectWID};{referenceIdAlias}={referenceIdValue}.\n\nIf the multi-instance custom object definition doesn't use a reference ID, specify the Workday ID of the custom object instance. \nUse a returned id from GET /{extendedBusinessObjectResource}/{extendedBusinessObjectId}/customObjects/{customObjectAlias}.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/customObjects/{customObjectAlias}/{customObjectID}",
+    "operationId": null,
+    "file": "CustomObjectDataMultiInstance-CustomObjects-DELETE-deleteCustomObjects.js"
+  }
+]

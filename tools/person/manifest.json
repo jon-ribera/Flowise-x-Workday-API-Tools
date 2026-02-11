@@ -1,0 +1,3226 @@
+[
+  {
+    "name": "Person-People-GET-getPersonalInformation",
+    "description": "[Person] GET /people/{ID}/personalInformation — Retrieves a collection of personal information.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "description": "Specifies the set of personal information by country that will be returned. If empty, the most recently updated set of personal information will be returned.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/personalInformation",
+    "operationId": null,
+    "file": "Person-People-GET-getPersonalInformation.js"
+  },
+  {
+    "name": "Person-PhoneValidation-POST-postPhoneValidation",
+    "description": "[Person] POST /phoneValidation — Validates phone number data to ensure it is valid for Workday.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/phoneValidation",
+    "operationId": null,
+    "file": "Person-PhoneValidation-POST-postPhoneValidation.js"
+  },
+  {
+    "name": "Person-People-GET-getHomeAddresses",
+    "description": "[Person] GET /people/{ID}/homeAddresses/{subresourceID} — Retrieves a home address.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/homeAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getHomeAddresses.js"
+  },
+  {
+    "name": "Person-Countries-GET-getCountries",
+    "description": "[Person] GET /countries/{ID} — Retrieves information about a country.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/countries/{ID}",
+    "operationId": null,
+    "file": "Person-Countries-GET-getCountries.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getWebAddresses",
+    "description": "[Person] GET /homeContactInformationChanges/{ID}/webAddresses — Retrieve all existing web addresses staged for update by the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary web addresses.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public web addresses.",
+        "required": false
+      },
+      {
+        "name": "usageType",
+        "type": "string",
+        "description": "Specifies usage type, such as home or work. Only used if the service provides access to multiple usage types from the same endpoint.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}/webAddresses",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getWebAddresses.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-POST-postWebAddresses",
+    "description": "[Person] POST /homeContactInformationChanges/{ID}/webAddresses — Creates a new web address staged by the parent business process event.\n\n<b>Secured by:</b> Person Data: Home Web Address, Self-Service: Home Web Address\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/homeContactInformationChanges/{ID}/webAddresses",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-POST-postWebAddresses.js"
+  },
+  {
+    "name": "Person-People-GET-getAdditionalNames",
+    "description": "[Person] GET /people/{ID}/additionalNames/{subresourceID} — Retrieves an additional name.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/additionalNames/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getAdditionalNames.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getPhoneNumbers",
+    "description": "[Person] GET /workContactInformationChanges/{ID}/phoneNumbers/{subresourceID} — A phone number as it exists staged for update by the parent business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}/phoneNumbers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getPhoneNumbers.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-PATCH-patchPhoneNumbers",
+    "description": "[Person] PATCH /workContactInformationChanges/{ID}/phoneNumbers/{subresourceID} — Partially update an existing phone number that is staged for update by the parent business process event.\n\n<b>Secured by:</b> Person Data: Work Phone, Self-Service: Work Phone\n\n<b>Scope:</b> Contact I",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workContactInformationChanges/{ID}/phoneNumbers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-PATCH-patchPhoneNumbers.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-DELETE-deletePhoneNumbers",
+    "description": "[Person] DELETE /workContactInformationChanges/{ID}/phoneNumbers/{subresourceID} — Remove the specified phone number. If this address existed before the start of the current business process, it won't be removed from the target Person until the parent business process completes.\n\n<b",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/workContactInformationChanges/{ID}/phoneNumbers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-DELETE-deletePhoneNumbers.js"
+  },
+  {
+    "name": "Person-Values-GET-getHereditary",
+    "description": "[Person] GET /values/nameComponents/hereditary/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Person Data:  Name\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "query parameter: country",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/nameComponents/hereditary/",
+    "operationId": null,
+    "file": "Person-Values-GET-getHereditary.js"
+  },
+  {
+    "name": "Person-People-GET-getAudioNamePronunciation",
+    "description": "[Person] GET /people/{ID}/audioNamePronunciation — Retrieves a collection of Audio Name Pronunciations",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "currentAudio",
+        "type": "boolean",
+        "description": "Download only the currently active audio",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/audioNamePronunciation",
+    "operationId": null,
+    "file": "Person-People-GET-getAudioNamePronunciation.js"
+  },
+  {
+    "name": "Person-People-GET-getPersonalInformation_1",
+    "description": "[Person] GET /people/{ID}/personalInformation/{subresourceID} — Retrieves a person's personal information.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/personalInformation/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getPersonalInformation_1.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getInstantMessengers",
+    "description": "[Person] GET /workContactInformationChanges/{ID}/instantMessengers/{subresourceID} — An instant messenger as it exists staged for update by the parent business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}/instantMessengers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getInstantMessengers.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-PATCH-patchInstantMessengers",
+    "description": "[Person] PATCH /workContactInformationChanges/{ID}/instantMessengers/{subresourceID} — Partially update an existing instant messenger that is staged for update by the parent business process event.\n\n<b>Secured by:</b> Person Data: Work Instant Messenger, Self-Service: Work Instant Messe",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workContactInformationChanges/{ID}/instantMessengers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-PATCH-patchInstantMessengers.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-DELETE-deleteInstantMessengers",
+    "description": "[Person] DELETE /workContactInformationChanges/{ID}/instantMessengers/{subresourceID} — Remove the specified instant messenger. If this instant messenger existed before the start of the current business process, it won't be removed from the target Person until the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/workContactInformationChanges/{ID}/instantMessengers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-DELETE-deleteInstantMessengers.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getHomeContactInformationChanges",
+    "description": "[Person] GET /homeContactInformationChanges/{ID} — Returns basic information about the home contact change event.\n\n<b>Secured by:</b> Change Home Contact Information (REST Service), Person Data: Home Contact Information, Self-Service: Home Contact Inf",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getHomeContactInformationChanges.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getPhoneNumbers",
+    "description": "[Person] GET /homeContactInformationChanges/{ID}/phoneNumbers — Retrieve all existing phone numbers staged for update by the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary phone numbers.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public phone numbers.",
+        "required": false
+      },
+      {
+        "name": "usageType",
+        "type": "string",
+        "description": "Specifies usage type, such as home or work. Only used if the service provides access to multiple usage types from the same endpoint.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}/phoneNumbers",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getPhoneNumbers.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-POST-postPhoneNumbers",
+    "description": "[Person] POST /homeContactInformationChanges/{ID}/phoneNumbers — Creates a new phone number staged by the parent business process event.\n\n<b>Secured by:</b> Person Data: Home Phone, Self-Service: Home Phone\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/homeContactInformationChanges/{ID}/phoneNumbers",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-POST-postPhoneNumbers.js"
+  },
+  {
+    "name": "Person-People-GET-getPhotos",
+    "description": "[Person] GET /people/{ID}/photos — Retrieves a collection of personal photos.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/photos",
+    "operationId": null,
+    "file": "Person-People-GET-getPhotos.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-POST-postSubmit",
+    "description": "[Person] POST /workContactInformationChanges/{ID}/submit — Submit the specified contact change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workContactInformationChanges/{ID}/submit",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-POST-postSubmit.js"
+  },
+  {
+    "name": "Person-Values-GET-getReligious",
+    "description": "[Person] GET /values/nameComponents/religious/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Person Data:  Name\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "query parameter: country",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/nameComponents/religious/",
+    "operationId": null,
+    "file": "Person-Values-GET-getReligious.js"
+  },
+  {
+    "name": "Person-Values-GET-getHonorary",
+    "description": "[Person] GET /values/nameComponents/honorary/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Person Data:  Name\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "query parameter: country",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/nameComponents/honorary/",
+    "operationId": null,
+    "file": "Person-Values-GET-getHonorary.js"
+  },
+  {
+    "name": "Person-People-GET-getPreferredName",
+    "description": "[Person] GET /people/{ID}/preferredName — Retrieves the preferred name instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/preferredName",
+    "operationId": null,
+    "file": "Person-People-GET-getPreferredName.js"
+  },
+  {
+    "name": "Person-Values-GET-getRoyal",
+    "description": "[Person] GET /values/nameComponents/royal/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Person Data:  Name\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "query parameter: country",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/nameComponents/royal/",
+    "operationId": null,
+    "file": "Person-Values-GET-getRoyal.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getWorkContactInformationChanges",
+    "description": "[Person] GET /workContactInformationChanges/{ID} — Returns basic information about the work contact change event, as well as the Alternate Work Location staged by the event, if there is one.\n\n<b>Secured by:</b> Change Work Contact Information (REST Se",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getWorkContactInformationChanges.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-PATCH-patchWorkContactInformationChanges",
+    "description": "[Person] PATCH /workContactInformationChanges/{ID} — Update the Alternate Work Location staged by this business process event.   Any Home or Work address for the target Person is valid for use as an Alternate Work Location.\n\n<b>Secured by:</b> Person Da",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workContactInformationChanges/{ID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-PATCH-patchWorkContactInformationChanges.js"
+  },
+  {
+    "name": "Person-Countries-GET-getAddressComponents",
+    "description": "[Person] GET /countries/{ID}/addressComponents — Retrieves the allowed address components and their configuration for the Country and a given Address Configuration Format.\nThe webServiceAlias of the returned address components map to the enterable fields when submitting address data in other POST/PUT/PATCH operations.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "addressConfigurationFormat",
+        "type": "string",
+        "description": "The Address Configuration Format to return values for. \nRequired. Failure to provide this will result in no address components being returned.\nAvailable values are:\n- DEFAULT_AREAS\n- RECRUITING_FORMAT",
+        "required": false
+      },
+      {
+        "name": "currentAddress",
+        "type": "string",
+        "description": "The existing address being updated. \nRequired when you use Default Format and a Country using Local Script to get component data for an existing address. Failure to provide this when appropriate may result in incorrect address component data being returned.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "useWesternScript",
+        "type": "boolean",
+        "description": "When applicable, setting this value to false will enable Local Script components only. Local Components that are requireable will be enforced as required.  When set to true, Local Script and Western Script components are enabled. Western Script Components that are requireable will be enforced as required.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/countries/{ID}/addressComponents",
+    "operationId": null,
+    "file": "Person-Countries-GET-getAddressComponents.js"
+  },
+  {
+    "name": "Person-People-GET-getPhotos_1",
+    "description": "[Person] GET /people/{ID}/photos/{subresourceID} — Retrieves a personal photo.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/photos/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getPhotos_1.js"
+  },
+  {
+    "name": "Person-People-GET-getWorkInstantMessengers",
+    "description": "[Person] GET /people/{ID}/workInstantMessengers — Retrieves a collection of work instant messenger accounts usernames.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary instant messenger account usernames.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public instant messenger usernames.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/workInstantMessengers",
+    "operationId": null,
+    "file": "Person-People-GET-getWorkInstantMessengers.js"
+  },
+  {
+    "name": "Person-People-GET-getLegalName",
+    "description": "[Person] GET /people/{ID}/legalName/{subresourceID} — Retrieves the legal name instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/legalName/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getLegalName.js"
+  },
+  {
+    "name": "Person-People-GET-getWorkEmails",
+    "description": "[Person] GET /people/{ID}/workEmails — Retrieves a collection of work email addresses.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary email addresses.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public email addresses.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/workEmails",
+    "operationId": null,
+    "file": "Person-People-GET-getWorkEmails.js"
+  },
+  {
+    "name": "Person-People-GET-getHomeAddresses_1",
+    "description": "[Person] GET /people/{ID}/homeAddresses — Retrieves a collection of home addresses.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "effective",
+        "type": "string",
+        "description": "The effective date of the person's addresses using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary addresses.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public addresses.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/homeAddresses",
+    "operationId": null,
+    "file": "Person-People-GET-getHomeAddresses_1.js"
+  },
+  {
+    "name": "Person-People-GET-getHomePhones",
+    "description": "[Person] GET /people/{ID}/homePhones/{subresourceID} — Retrieves a home phone number.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/homePhones/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getHomePhones.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getEmailAddresses",
+    "description": "[Person] GET /homeContactInformationChanges/{ID}/emailAddresses — Retrieve all existing addresses staged for update by the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary email addresses.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public email addresses.",
+        "required": false
+      },
+      {
+        "name": "usageType",
+        "type": "string",
+        "description": "Specifies usage type, such as home or work. Only used if the service provides access to multiple usage types from the same endpoint.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}/emailAddresses",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getEmailAddresses.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-POST-postEmailAddresses",
+    "description": "[Person] POST /homeContactInformationChanges/{ID}/emailAddresses — Creates a new email address staged by the parent business process event.\n\n<b>Secured by:</b> Person Data: Home Email, Self-Service: Home Email\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/homeContactInformationChanges/{ID}/emailAddresses",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-POST-postEmailAddresses.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getInstantMessengers_1",
+    "description": "[Person] GET /workContactInformationChanges/{ID}/instantMessengers — Retrieve all existing instant messengers staged for update by the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary instant messenger account usernames.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public instant messenger account usernames.",
+        "required": false
+      },
+      {
+        "name": "usageType",
+        "type": "string",
+        "description": "Specifies usage type, such as home or work. Only used if the service provides access to multiple usage types from the same endpoint.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}/instantMessengers",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getInstantMessengers_1.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-POST-postInstantMessengers",
+    "description": "[Person] POST /workContactInformationChanges/{ID}/instantMessengers — Creates a new instant messenger staged by the parent business process event.\n\n<b>Secured by:</b> Person Data: Work Instant Messenger, Self-Service: Work Instant Messenger\n\n<b>Scope:</b> Contact Inform",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workContactInformationChanges/{ID}/instantMessengers",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-POST-postInstantMessengers.js"
+  },
+  {
+    "name": "Person-Values-GET-getTitle",
+    "description": "[Person] GET /values/nameComponents/title/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Person Data:  Name\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "query parameter: country",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/nameComponents/title/",
+    "operationId": null,
+    "file": "Person-Values-GET-getTitle.js"
+  },
+  {
+    "name": "Person-Countries-GET-getNameComponents",
+    "description": "[Person] GET /countries/{ID}/nameComponents — Retrieves a collection of configuration information about name components.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "currentName",
+        "type": "string",
+        "description": "The Workday ID of the person's current name being updated. \nRequired when you use Default Format and a Country using Local Script to get component data for an existing name. Failure to provide this when appropriate may result in incorrect name component data being returned.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "nameConfigurationFormat",
+        "type": "string",
+        "description": "The Name Configuration Format for which to return values. \nRequired. Failure to provide this will result in no name components being returned.\nAvailable values are:\n- RECRUITING_FORMAT - The name components specific to Recruiting.\n- OTHER_FUNCTIONAL_AREAS - The name components for all other functional areas in Workday.\nExample: nameConfigurationFormat=Name_Configuration_Format_ID=OTHER_FUNCTIONAL_AREAS",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "useWesternScript",
+        "type": "boolean",
+        "description": "When applicable, setting this value to false will enable Local Script components only. Local Components that are requireable will be enforced as required.  When set to true, Local Script and Western Script components are enabled. Western Script Components that are requireable will be enforced as required.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/countries/{ID}/nameComponents",
+    "operationId": null,
+    "file": "Person-Countries-GET-getNameComponents.js"
+  },
+  {
+    "name": "Person-People-GET-getWorkInstantMessengers_1",
+    "description": "[Person] GET /people/{ID}/workInstantMessengers/{subresourceID} — Retrieves a work instant messenger account username.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/workInstantMessengers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getWorkInstantMessengers_1.js"
+  },
+  {
+    "name": "Person-People-GET-getWorkAddresses",
+    "description": "[Person] GET /people/{ID}/workAddresses/{subresourceID} — Retrieves a work address.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/workAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getWorkAddresses.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getAddresses",
+    "description": "[Person] GET /homeContactInformationChanges/{ID}/addresses — Retrieve all existing addresses staged for update by the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "query parameter: primaryOnly",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "query parameter: usedFor",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}/addresses",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getAddresses.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-POST-postAddresses",
+    "description": "[Person] POST /homeContactInformationChanges/{ID}/addresses — Creates a new address staged by the parent business process event.\n\n<b>Secured by:</b> Person Data: Home Address, Self-Service: Home Address\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/homeContactInformationChanges/{ID}/addresses",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-POST-postAddresses.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getInstantMessengers",
+    "description": "[Person] GET /homeContactInformationChanges/{ID}/instantMessengers/{subresourceID} — An instant messenger as it exists staged for update by the parent business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}/instantMessengers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getInstantMessengers.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-PATCH-patchInstantMessengers",
+    "description": "[Person] PATCH /homeContactInformationChanges/{ID}/instantMessengers/{subresourceID} — Partially update an existing instant messenger that is staged for update by the parent business process event.\n\n<b>Secured by:</b> Person Data: Home Instant Messenger, Self-Service: Home Instant Messe",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/homeContactInformationChanges/{ID}/instantMessengers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-PATCH-patchInstantMessengers.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-DELETE-deleteInstantMessengers",
+    "description": "[Person] DELETE /homeContactInformationChanges/{ID}/instantMessengers/{subresourceID} — Remove the specified instant messenger. If this instant messenger existed before the start of the current business process, it won't be removed from the target Person until the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/homeContactInformationChanges/{ID}/instantMessengers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-DELETE-deleteInstantMessengers.js"
+  },
+  {
+    "name": "Person-Values-GET-getCountryPhoneCodes",
+    "description": "[Person] GET /values/commonPhone/countryPhoneCodes/ — Exposes prompting for country phone codes, which are used during the collection of phone numbers.\n\n<b>Secured by:</b> REST API Public",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/commonPhone/countryPhoneCodes/",
+    "operationId": null,
+    "file": "Person-Values-GET-getCountryPhoneCodes.js"
+  },
+  {
+    "name": "Person-People-GET-getWorkPhones",
+    "description": "[Person] GET /people/{ID}/workPhones — Retrieves a collection of work phone numbers.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary phone numbers.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public phone numbers.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/workPhones",
+    "operationId": null,
+    "file": "Person-People-GET-getWorkPhones.js"
+  },
+  {
+    "name": "Person-Values-GET-getCountryCity",
+    "description": "[Person] GET /values/countryComponents/countryCity/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> REST API Public",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/countryComponents/countryCity/",
+    "operationId": null,
+    "file": "Person-Values-GET-getCountryCity.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getWebAddresses_1",
+    "description": "[Person] GET /homeContactInformationChanges/{ID}/webAddresses/{subresourceID} — A web address as it exists staged for update by the parent business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}/webAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getWebAddresses_1.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-PATCH-patchWebAddresses",
+    "description": "[Person] PATCH /homeContactInformationChanges/{ID}/webAddresses/{subresourceID} — Partially update an existing web address that is staged for update by the parent business process event.\n\n<b>Secured by:</b> Person Data: Home Web Address, Self-Service: Home Web Address\n\n<b>Scope:</b",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/homeContactInformationChanges/{ID}/webAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-PATCH-patchWebAddresses.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-DELETE-deleteWebAddresses",
+    "description": "[Person] DELETE /homeContactInformationChanges/{ID}/webAddresses/{subresourceID} — Remove the specified web address. If this address existed before the start of the current business process, it won't be removed from the target Person until the parent business process completes.\n\n<b>",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/homeContactInformationChanges/{ID}/webAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-DELETE-deleteWebAddresses.js"
+  },
+  {
+    "name": "Person-Values-GET-getSalutation",
+    "description": "[Person] GET /values/nameComponents/salutation/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Person Data:  Name\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "query parameter: country",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/nameComponents/salutation/",
+    "operationId": null,
+    "file": "Person-Values-GET-getSalutation.js"
+  },
+  {
+    "name": "Person-People-GET-getAudioNamePronunciation_1",
+    "description": "[Person] GET /people/{ID}/audioNamePronunciation/{subresourceID} — Retrieves an Audio Name Pronunciation",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/audioNamePronunciation/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getAudioNamePronunciation_1.js"
+  },
+  {
+    "name": "Person-People-GET-getWorkWebAddresses",
+    "description": "[Person] GET /people/{ID}/workWebAddresses/{subresourceID} — Retrieves a work web address.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/workWebAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getWorkWebAddresses.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getPhoneNumbers_1",
+    "description": "[Person] GET /homeContactInformationChanges/{ID}/phoneNumbers/{subresourceID} — A phone number as it exists staged for update by the parent business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}/phoneNumbers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getPhoneNumbers_1.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-PATCH-patchPhoneNumbers",
+    "description": "[Person] PATCH /homeContactInformationChanges/{ID}/phoneNumbers/{subresourceID} — Partially update an existing phone number that is staged for update by the parent business process event.\n\n<b>Secured by:</b> Person Data: Home Phone, Self-Service: Home Phone\n\n<b>Scope:</b> Contact I",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/homeContactInformationChanges/{ID}/phoneNumbers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-PATCH-patchPhoneNumbers.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-DELETE-deletePhoneNumbers",
+    "description": "[Person] DELETE /homeContactInformationChanges/{ID}/phoneNumbers/{subresourceID} — Remove the specified phone number. If this address existed before the start of the current business process, it won't be removed from the target Person until the parent business process completes.\n\n<b",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/homeContactInformationChanges/{ID}/phoneNumbers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-DELETE-deletePhoneNumbers.js"
+  },
+  {
+    "name": "Person-Values-GET-getActiveMartialStatuses",
+    "description": "[Person] GET /values/maritalStatus/activeMartialStatuses/ — Marital Statuses that are Active and configured for the Country or Country Region.\n\n<b>Secured by:</b> REST API Public",
+    "schema": [
+      {
+        "name": "countryOrRegion",
+        "type": "string",
+        "description": "The Country or Country Region to retrieve Marital Status values for.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/maritalStatus/activeMartialStatuses/",
+    "operationId": null,
+    "file": "Person-Values-GET-getActiveMartialStatuses.js"
+  },
+  {
+    "name": "Person-People-GET-getPublicContactInformation",
+    "description": "[Person] GET /people/{ID}/publicContactInformation/{subresourceID} — Retrieves a person's public contact information.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/publicContactInformation/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getPublicContactInformation.js"
+  },
+  {
+    "name": "Person-People-GET-getHomePhones_1",
+    "description": "[Person] GET /people/{ID}/homePhones — Retrieves a collection of home phone numbers.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary phone numbers.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public phone numbers.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/homePhones",
+    "operationId": null,
+    "file": "Person-People-GET-getHomePhones_1.js"
+  },
+  {
+    "name": "Person-People-GET-getPeople",
+    "description": "[Person] GET /people/{ID} — Retrieves a person in your Workday tenant.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}",
+    "operationId": null,
+    "file": "Person-People-GET-getPeople.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-POST-postSubmit",
+    "description": "[Person] POST /homeContactInformationChanges/{ID}/submit — Submit the specified contact change ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/homeContactInformationChanges/{ID}/submit",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-POST-postSubmit.js"
+  },
+  {
+    "name": "Person-People-GET-getPublicContactInformation_1",
+    "description": "[Person] GET /people/{ID}/publicContactInformation — Retrieves a collection of public contact information.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/publicContactInformation",
+    "operationId": null,
+    "file": "Person-People-GET-getPublicContactInformation_1.js"
+  },
+  {
+    "name": "Person-Values-GET-getPopulatedCountry",
+    "description": "[Person] GET /values/personalInformationCountry/populatedCountry/ — The set of countries a person has populated with country specific data.\n\n<b>Secured by:</b> Person Data: Personal Information, Self-Service: Personal Information\n\n<b>Scope:</b> Personal Data",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "person",
+        "type": "string",
+        "description": "query parameter: person",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/personalInformationCountry/populatedCountry/",
+    "operationId": null,
+    "file": "Person-Values-GET-getPopulatedCountry.js"
+  },
+  {
+    "name": "Person-Values-GET-getSocial",
+    "description": "[Person] GET /values/nameComponents/social/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Person Data:  Name\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "query parameter: country",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/nameComponents/social/",
+    "operationId": null,
+    "file": "Person-Values-GET-getSocial.js"
+  },
+  {
+    "name": "Person-People-GET-getLegalName_1",
+    "description": "[Person] GET /people/{ID}/legalName — Retrieves the legal name instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/legalName",
+    "operationId": null,
+    "file": "Person-People-GET-getLegalName_1.js"
+  },
+  {
+    "name": "Person-Values-GET-getProfessional",
+    "description": "[Person] GET /values/nameComponents/professional/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Person Data:  Name\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "query parameter: country",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/nameComponents/professional/",
+    "operationId": null,
+    "file": "Person-Values-GET-getProfessional.js"
+  },
+  {
+    "name": "Person-People-GET-getPeople_1",
+    "description": "[Person] GET /people — Retrieves a person in your Workday tenant.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "universal_ID",
+        "type": "string",
+        "description": "The Universal ID of the person you want to retrieve.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people",
+    "operationId": null,
+    "file": "Person-People-GET-getPeople_1.js"
+  },
+  {
+    "name": "Person-People-GET-getHomeWebAddresses",
+    "description": "[Person] GET /people/{ID}/homeWebAddresses — Retrieves a collection of home web addresses.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary web addresses.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public web addresses.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/homeWebAddresses",
+    "operationId": null,
+    "file": "Person-People-GET-getHomeWebAddresses.js"
+  },
+  {
+    "name": "Person-People-GET-getPreferredName_1",
+    "description": "[Person] GET /people/{ID}/preferredName/{subresourceID} — Retrieves the preferred name instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/preferredName/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getPreferredName_1.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getInstantMessengers_1",
+    "description": "[Person] GET /homeContactInformationChanges/{ID}/instantMessengers — Retrieve all existing instant messengers staged for update by the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary instant messenger account usernames.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public instant messenger account usernames.",
+        "required": false
+      },
+      {
+        "name": "usageType",
+        "type": "string",
+        "description": "Specifies usage type, such as home or work. Only used if the service provides access to multiple usage types from the same endpoint.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}/instantMessengers",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getInstantMessengers_1.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-POST-postInstantMessengers",
+    "description": "[Person] POST /homeContactInformationChanges/{ID}/instantMessengers — Creates a new instant messenger staged by the parent business process event.\n\n<b>Secured by:</b> Person Data: Home Instant Messenger, Self-Service: Home Instant Messenger\n\n<b>Scope:</b> Contact Inform",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/homeContactInformationChanges/{ID}/instantMessengers",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-POST-postInstantMessengers.js"
+  },
+  {
+    "name": "Person-Values-GET-getCountry",
+    "description": "[Person] GET /values/countryComponents/country/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> REST API Public",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/countryComponents/country/",
+    "operationId": null,
+    "file": "Person-Values-GET-getCountry.js"
+  },
+  {
+    "name": "Person-Values-GET-getAcademic",
+    "description": "[Person] GET /values/nameComponents/academic/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Person Data:  Name\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "country",
+        "type": "string",
+        "description": "query parameter: country",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/nameComponents/academic/",
+    "operationId": null,
+    "file": "Person-Values-GET-getAcademic.js"
+  },
+  {
+    "name": "Person-People-GET-getAdditionalNames_1",
+    "description": "[Person] GET /people/{ID}/additionalNames — Retrieves a collection of additional names.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/additionalNames",
+    "operationId": null,
+    "file": "Person-People-GET-getAdditionalNames_1.js"
+  },
+  {
+    "name": "Person-People-GET-getWorkAddresses_1",
+    "description": "[Person] GET /people/{ID}/workAddresses — Retrieves a collection of work addresses.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "effective",
+        "type": "string",
+        "description": "The effective date of the person's addresses using the yyyy-mm-dd format.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary addresses.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public addresses.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/workAddresses",
+    "operationId": null,
+    "file": "Person-People-GET-getWorkAddresses_1.js"
+  },
+  {
+    "name": "Person-People-GET-getWorkWebAddresses_1",
+    "description": "[Person] GET /people/{ID}/workWebAddresses — Retrieves a collection of work web addresses.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary web addresses.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public web addresses.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/workWebAddresses",
+    "operationId": null,
+    "file": "Person-People-GET-getWorkWebAddresses_1.js"
+  },
+  {
+    "name": "Person-People-GET-getHomeEmails",
+    "description": "[Person] GET /people/{ID}/homeEmails/{subresourceID} — Retrieves a home email address.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/homeEmails/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getHomeEmails.js"
+  },
+  {
+    "name": "Person-People-GET-getWorkPhones_1",
+    "description": "[Person] GET /people/{ID}/workPhones/{subresourceID} — Retrieves a work phone number.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/workPhones/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getWorkPhones_1.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getWebAddresses",
+    "description": "[Person] GET /workContactInformationChanges/{ID}/webAddresses/{subresourceID} — A web address as it exists staged for update by the parent business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}/webAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getWebAddresses.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-PATCH-patchWebAddresses",
+    "description": "[Person] PATCH /workContactInformationChanges/{ID}/webAddresses/{subresourceID} — Partially update an existing web address that is staged for update by the parent business process event.\n\n<b>Secured by:</b> Person Data: Work Web Address, Self-Service: Work Web Address\n\n<b>Scope:</b",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workContactInformationChanges/{ID}/webAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-PATCH-patchWebAddresses.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-DELETE-deleteWebAddresses",
+    "description": "[Person] DELETE /workContactInformationChanges/{ID}/webAddresses/{subresourceID} — Remove the specified web address. If this address existed before the start of the current business process, it won't be removed from the target Person until the parent business process completes.\n\n<b>",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/workContactInformationChanges/{ID}/webAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-DELETE-deleteWebAddresses.js"
+  },
+  {
+    "name": "Person-People-GET-getHomeInstantMessengers",
+    "description": "[Person] GET /people/{ID}/homeInstantMessengers/{subresourceID} — Retrieves a home instant messenger account username.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/homeInstantMessengers/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getHomeInstantMessengers.js"
+  },
+  {
+    "name": "Person-People-GET-getWorkEmails_1",
+    "description": "[Person] GET /people/{ID}/workEmails/{subresourceID} — Retrieves a work email address.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/workEmails/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getWorkEmails_1.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getEmailAddresses_1",
+    "description": "[Person] GET /homeContactInformationChanges/{ID}/emailAddresses/{subresourceID} — An email address as it exists staged for update by the parent business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}/emailAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getEmailAddresses_1.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-PATCH-patchEmailAddresses",
+    "description": "[Person] PATCH /homeContactInformationChanges/{ID}/emailAddresses/{subresourceID} — Partially update an existing email address that is staged for update by the parent business process event.\n\n<b>Secured by:</b> Person Data: Home Email, Self-Service: Home Email\n\n<b>Scope:</b> Contact ",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/homeContactInformationChanges/{ID}/emailAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-PATCH-patchEmailAddresses.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-DELETE-deleteEmailAddresses",
+    "description": "[Person] DELETE /homeContactInformationChanges/{ID}/emailAddresses/{subresourceID} — Remove the specified email address. If this address existed before the start of the current business process, it won't be removed from the target Person until the parent business process completes.\n\n<",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/homeContactInformationChanges/{ID}/emailAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-DELETE-deleteEmailAddresses.js"
+  },
+  {
+    "name": "Person-Values-GET-getAllowedCountry",
+    "description": "[Person] GET /values/personalInformationCountry/allowedCountry/ — The set of countries a person is allowed to populated with country specific data.\n\n<b>Secured by:</b> Person Data: Personal Information, Self-Service: Personal Information\n\n<b>Scope:</b> Personal Data",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "person",
+        "type": "string",
+        "description": "query parameter: person",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/personalInformationCountry/allowedCountry/",
+    "operationId": null,
+    "file": "Person-Values-GET-getAllowedCountry.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getPhoneNumbers_1",
+    "description": "[Person] GET /workContactInformationChanges/{ID}/phoneNumbers — Retrieve all existing phone numbers staged for update by the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary phone numbers.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public phone numbers.",
+        "required": false
+      },
+      {
+        "name": "usageType",
+        "type": "string",
+        "description": "Specifies usage type, such as home or work. Only used if the service provides access to multiple usage types from the same endpoint.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}/phoneNumbers",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getPhoneNumbers_1.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-POST-postPhoneNumbers",
+    "description": "[Person] POST /workContactInformationChanges/{ID}/phoneNumbers — Creates a new phone number staged by the parent business process event.\n\n<b>Secured by:</b> Person Data: Work Phone, Self-Service: Work Phone\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workContactInformationChanges/{ID}/phoneNumbers",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-POST-postPhoneNumbers.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getEmailAddresses",
+    "description": "[Person] GET /workContactInformationChanges/{ID}/emailAddresses — Retrieve all existing addresses staged for update by the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary email addresses.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public email addresses.",
+        "required": false
+      },
+      {
+        "name": "usageType",
+        "type": "string",
+        "description": "Specifies usage type, such as home or work. Only used if the service provides access to multiple usage types from the same endpoint.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}/emailAddresses",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getEmailAddresses.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-POST-postEmailAddresses",
+    "description": "[Person] POST /workContactInformationChanges/{ID}/emailAddresses — Creates a new email address staged by the parent business process event.\n\n<b>Secured by:</b> Person Data: Work Email, Self-Service: Work Email\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workContactInformationChanges/{ID}/emailAddresses",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-POST-postEmailAddresses.js"
+  },
+  {
+    "name": "Person-People-GET-getHomeWebAddresses_1",
+    "description": "[Person] GET /people/{ID}/homeWebAddresses/{subresourceID} — Retrieves a home web address.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/homeWebAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-People-GET-getHomeWebAddresses_1.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getEmailAddresses_1",
+    "description": "[Person] GET /workContactInformationChanges/{ID}/emailAddresses/{subresourceID} — An email address as it exists staged for update by the parent business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}/emailAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getEmailAddresses_1.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-PATCH-patchEmailAddresses",
+    "description": "[Person] PATCH /workContactInformationChanges/{ID}/emailAddresses/{subresourceID} — Partially update an existing email address that is staged for update by the parent business process event.\n\n<b>Secured by:</b> Person Data: Work Email, Self-Service: Work Email\n\n<b>Scope:</b> Contact ",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/workContactInformationChanges/{ID}/emailAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-PATCH-patchEmailAddresses.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-DELETE-deleteEmailAddresses",
+    "description": "[Person] DELETE /workContactInformationChanges/{ID}/emailAddresses/{subresourceID} — Remove the specified email address. If this address existed before the start of the current business process, it won't be removed from the target Person until the parent business process completes.\n\n<",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/workContactInformationChanges/{ID}/emailAddresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-DELETE-deleteEmailAddresses.js"
+  },
+  {
+    "name": "Person-People-GET-getHomeInstantMessengers_1",
+    "description": "[Person] GET /people/{ID}/homeInstantMessengers — Retrieves a collection of home instant messenger account usernames.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary instant messenger account usernames.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public instant messenger usernames.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/homeInstantMessengers",
+    "operationId": null,
+    "file": "Person-People-GET-getHomeInstantMessengers_1.js"
+  },
+  {
+    "name": "Person-People-GET-getHomeEmails_1",
+    "description": "[Person] GET /people/{ID}/homeEmails — Retrieves a collection of home email addresses.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary email addresses.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public email addresses.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/people/{ID}/homeEmails",
+    "operationId": null,
+    "file": "Person-People-GET-getHomeEmails_1.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getWebAddresses_1",
+    "description": "[Person] GET /workContactInformationChanges/{ID}/webAddresses — Retrieve all existing web addresses staged for update by the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "primaryOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's primary web addresses.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "If true, returns only the IDs of the person's public web addresses.",
+        "required": false
+      },
+      {
+        "name": "usageType",
+        "type": "string",
+        "description": "Specifies usage type, such as home or work. Only used if the service provides access to multiple usage types from the same endpoint.",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "Specifies usage behavior, such as mailing, billing, or shipping.\nOptional.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}/webAddresses",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getWebAddresses_1.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-POST-postWebAddresses",
+    "description": "[Person] POST /workContactInformationChanges/{ID}/webAddresses — Creates a new web address staged by the parent business process event.\n\n<b>Secured by:</b> Person Data: Work Web Address, Self-Service: Work Web Address\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workContactInformationChanges/{ID}/webAddresses",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-POST-postWebAddresses.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-GET-getAddresses_1",
+    "description": "[Person] GET /homeContactInformationChanges/{ID}/addresses/{subresourceID} — An address as it exists staged for update by the parent business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/homeContactInformationChanges/{ID}/addresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-GET-getAddresses_1.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-PUT-putAddresses",
+    "description": "[Person] PUT /homeContactInformationChanges/{ID}/addresses/{subresourceID} — Update an existing address that is staged for update by the parent business process event.\n\n<b>Secured by:</b> Person Data: Home Address, Self-Service: Home Address\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/homeContactInformationChanges/{ID}/addresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-PUT-putAddresses.js"
+  },
+  {
+    "name": "Person-HomeContactInformationChanges-DELETE-deleteAddresses",
+    "description": "[Person] DELETE /homeContactInformationChanges/{ID}/addresses/{subresourceID} — Remove the specified address. If this address existed before the start of the current business process, it won't be removed from the target Person until the parent business process completes.\n\n<b>Secu",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/homeContactInformationChanges/{ID}/addresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-HomeContactInformationChanges-DELETE-deleteAddresses.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getAddresses",
+    "description": "[Person] GET /workContactInformationChanges/{ID}/addresses/{subresourceID} — An address as it exists staged for update by the parent business process.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}/addresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getAddresses.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-PUT-putAddresses",
+    "description": "[Person] PUT /workContactInformationChanges/{ID}/addresses/{subresourceID} — Update an existing address that is staged for update by the parent business process event.\n\n<b>Secured by:</b> Person Data: Work Address, Self-Service: Work Address\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/workContactInformationChanges/{ID}/addresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-PUT-putAddresses.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-DELETE-deleteAddresses",
+    "description": "[Person] DELETE /workContactInformationChanges/{ID}/addresses/{subresourceID} — Remove the specified address. If this address existed before the start of the current business process, it won't be removed from the target Person until the parent business process completes.\n\n<b>Secu",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/workContactInformationChanges/{ID}/addresses/{subresourceID}",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-DELETE-deleteAddresses.js"
+  },
+  {
+    "name": "Person-Values-GET-getCountryRegion",
+    "description": "[Person] GET /values/countryComponents/countryRegion/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> REST API Public",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/countryComponents/countryRegion/",
+    "operationId": null,
+    "file": "Person-Values-GET-getCountryRegion.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-GET-getAddresses_1",
+    "description": "[Person] GET /workContactInformationChanges/{ID}/addresses — Retrieve all existing addresses staged for update by the parent business process",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "publicOnly",
+        "type": "boolean",
+        "description": "query parameter: publicOnly",
+        "required": false
+      },
+      {
+        "name": "usedFor",
+        "type": "string",
+        "description": "query parameter: usedFor",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workContactInformationChanges/{ID}/addresses",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-GET-getAddresses_1.js"
+  },
+  {
+    "name": "Person-WorkContactInformationChanges-POST-postAddresses",
+    "description": "[Person] POST /workContactInformationChanges/{ID}/addresses — Creates a new address staged by the parent business process event.\n\n<b>Secured by:</b> Person Data: Work Address, Self-Service: Work Address\n\n<b>Scope:</b> Contact Information",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workContactInformationChanges/{ID}/addresses",
+    "operationId": null,
+    "file": "Person-WorkContactInformationChanges-POST-postAddresses.js"
+  },
+  {
+    "name": "Person-Countries-GET-getCountries_1",
+    "description": "[Person] GET /countries — Retrieves a collection of information about countries.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/countries",
+    "operationId": null,
+    "file": "Person-Countries-GET-getCountries_1.js"
+  },
+  {
+    "name": "Person-Values-GET-getPhoneDeviceTypes",
+    "description": "[Person] GET /values/commonPhone/phoneDeviceTypes/ — Exposes prompting for phone device types, which are used during the collection of phone numbers.\n\n<b>Secured by:</b> REST API Public",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/commonPhone/phoneDeviceTypes/",
+    "operationId": null,
+    "file": "Person-Values-GET-getPhoneDeviceTypes.js"
+  }
+]

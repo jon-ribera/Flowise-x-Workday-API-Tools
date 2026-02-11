@@ -1,0 +1,280 @@
+[
+  {
+    "name": "CustomerAccounts-Payments-GET-getRemittanceDetails",
+    "description": "[Customer Accounts] GET /payments/{ID}/remittanceDetails/{subresourceID} — Retrieves a single customer invoice payment remittance line instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/payments/{ID}/remittanceDetails/{subresourceID}",
+    "operationId": null,
+    "file": "CustomerAccounts-Payments-GET-getRemittanceDetails.js"
+  },
+  {
+    "name": "CustomerAccounts-Customers-GET-getCustomers",
+    "description": "[Customer Accounts] GET /customers/{ID} — Retrieves a single customer instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/customers/{ID}",
+    "operationId": null,
+    "file": "CustomerAccounts-Customers-GET-getCustomers.js"
+  },
+  {
+    "name": "CustomerAccounts-Payments-GET-getPayments",
+    "description": "[Customer Accounts] GET /payments/{ID} — Retrieves a single customer invoice payment instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/payments/{ID}",
+    "operationId": null,
+    "file": "CustomerAccounts-Payments-GET-getPayments.js"
+  },
+  {
+    "name": "CustomerAccounts-Invoices-GET-getInvoices",
+    "description": "[Customer Accounts] GET /invoices/{ID} — Retrieves a single customer invoice or adjustment instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/invoices/{ID}",
+    "operationId": null,
+    "file": "CustomerAccounts-Invoices-GET-getInvoices.js"
+  },
+  {
+    "name": "CustomerAccounts-Payments-POST-postPayments",
+    "description": "[Customer Accounts] POST /payments — Creates customer invoice payments.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/payments",
+    "operationId": null,
+    "file": "CustomerAccounts-Payments-POST-postPayments.js"
+  },
+  {
+    "name": "CustomerAccounts-InvoicePDFs-GET-getInvoicePDFs",
+    "description": "[Customer Accounts] GET /invoicePDFs/{ID} — Retrieves a single customer invoice PDF instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/invoicePDFs/{ID}",
+    "operationId": null,
+    "file": "CustomerAccounts-InvoicePDFs-GET-getInvoicePDFs.js"
+  },
+  {
+    "name": "CustomerAccounts-Invoices-GET-getInvoices_1",
+    "description": "[Customer Accounts] GET /invoices — Retrieves a collection of customer invoices and adjustments.",
+    "schema": [
+      {
+        "name": "billToCustomer",
+        "type": "string",
+        "description": "The customer on the invoice.",
+        "required": false
+      },
+      {
+        "name": "company",
+        "type": "string",
+        "description": "query parameter: company",
+        "required": false
+      },
+      {
+        "name": "fromDueDate",
+        "type": "string",
+        "description": "The due date of the customer invoice or invoice adjustment as of the defined reporting date, formatted as YYYY-MM-DD.",
+        "required": false
+      },
+      {
+        "name": "fromInvoiceDate",
+        "type": "string",
+        "description": "The date of the customer invoice, formatted as YYYY-MM-DD.",
+        "required": false
+      },
+      {
+        "name": "invoiceStatus",
+        "type": "string",
+        "description": "The current status of an invoice document.\n\nInclude invoices with these invoice statuses:\nApproved (91b0d382d50848e898733757caa9f84a), \nCanceled (dc76c9b6446c11de98360015c5e6daf6), \nDenied (dc76c7cc446c11de98360015c5e6daf6), \nDraft (dc76c4fc446c11de98360015c5e6daf6), \nIncomplete(e264bc68581342baa70ab61bf71032fe), \nIn Progress (dc76c8bc446c11de98360015c5e6daf6).",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "paymentStatus",
+        "type": "string",
+        "description": "The payment status of an invoice document. \n\nInclude invoices with these payments statuses:\nPaid (d9e4362a446c11de98360015c5e6daf6), \nUnpaid (d9e43940446c11de98360015c5e6daf6), \nPartially Paid (d9e43706446c11de98360015c5e6daf6).",
+        "required": false
+      },
+      {
+        "name": "toDueDate",
+        "type": "string",
+        "description": "The due date of the customer invoice or invoice adjustment as of the defined reporting date, formatted as YYYY-MM-DD.",
+        "required": false
+      },
+      {
+        "name": "toInvoiceDate",
+        "type": "string",
+        "description": "The date of the customer invoice, formatted as YYYY-MM-DD.",
+        "required": false
+      },
+      {
+        "name": "transactionType",
+        "type": "string",
+        "description": "The transaction type of this customer transaction. Use the string \"invoice\" or \"adjustment\" to filter to retrieve either only invoices or adjustments.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/invoices",
+    "operationId": null,
+    "file": "CustomerAccounts-Invoices-GET-getInvoices_1.js"
+  },
+  {
+    "name": "CustomerAccounts-Invoices-GET-getPrintRuns",
+    "description": "[Customer Accounts] GET /invoices/{ID}/printRuns/{subresourceID} — Retrieves a single customer invoice print run.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/invoices/{ID}/printRuns/{subresourceID}",
+    "operationId": null,
+    "file": "CustomerAccounts-Invoices-GET-getPrintRuns.js"
+  },
+  {
+    "name": "CustomerAccounts-Invoices-GET-getPrintRuns_1",
+    "description": "[Customer Accounts] GET /invoices/{ID}/printRuns — Retrieves a collection of customer invoice print runs for the specified customer invoice or adjustment.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/invoices/{ID}/printRuns",
+    "operationId": null,
+    "file": "CustomerAccounts-Invoices-GET-getPrintRuns_1.js"
+  },
+  {
+    "name": "CustomerAccounts-Customers-GET-getCustomers_1",
+    "description": "[Customer Accounts] GET /customers — Retrieves a collection of customers.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "description": "query parameter: name",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/customers",
+    "operationId": null,
+    "file": "CustomerAccounts-Customers-GET-getCustomers_1.js"
+  },
+  {
+    "name": "CustomerAccounts-Payments-POST-postRemittanceDetails",
+    "description": "[Customer Accounts] POST /payments/{ID}/remittanceDetails — Creates customer invoice payment remittance lines.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/payments/{ID}/remittanceDetails",
+    "operationId": null,
+    "file": "CustomerAccounts-Payments-POST-postRemittanceDetails.js"
+  }
+]

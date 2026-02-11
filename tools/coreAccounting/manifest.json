@@ -1,0 +1,55 @@
+[
+  {
+    "name": "CoreAccounting-Currencies-GET-getCurrencies",
+    "description": "[Core Accounting] GET /currencies — Retrieves the details on all currencies in your tenant.",
+    "schema": [],
+    "method": "GET",
+    "path": "/currencies",
+    "operationId": null,
+    "file": "CoreAccounting-Currencies-GET-getCurrencies.js"
+  },
+  {
+    "name": "CoreAccounting-Currencies-GET-getCurrencies_1",
+    "description": "[Core Accounting] GET /currencies/{ID} — Retrieves the details of a specified currency.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/currencies/{ID}",
+    "operationId": null,
+    "file": "CoreAccounting-Currencies-GET-getCurrencies_1.js"
+  },
+  {
+    "name": "CoreAccounting-EvaluateAccountPostingRules-GET-getEvaluateAccountPostingRules",
+    "description": "[Core Accounting] GET /evaluateAccountPostingRules — Retrieves the ledger account and resulting worktags of a specified account posting rule.",
+    "schema": [
+      {
+        "name": "accountPostingRuleSet",
+        "type": "string",
+        "description": "(Required) The Workday ID or reference ID for the account posting rule set. The reference ID uses the accountPostingRuleSet=sampleRefIdType=value format. Example: accountPostingRuleSet=Account_Posting_Rule_Set_ID=ACCOUNT_POSTING_RULE_SET-1",
+        "required": false
+      },
+      {
+        "name": "accountPostingRuleType",
+        "type": "string",
+        "description": "(Required) The Workday ID or reference ID for the account posting rule type. The reference ID uses the accountPostingRuleType=sampleRefIdType=value format. Example: accountPostingRuleType=Account_Posting_Rule_Type_ID=CASH",
+        "required": false
+      },
+      {
+        "name": "dimensionValue",
+        "type": "string",
+        "description": "The Workday IDs or reference IDs for the dimension value of the account posting rule condition. The reference ID uses the dimensionValue=sampleRefIdType=value format format. Example: dimensionValue=Fund_ID=F03.1.3.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/evaluateAccountPostingRules",
+    "operationId": null,
+    "file": "CoreAccounting-EvaluateAccountPostingRules-GET-getEvaluateAccountPostingRules.js"
+  }
+]

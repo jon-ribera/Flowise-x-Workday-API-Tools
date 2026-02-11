@@ -1,0 +1,365 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The benefitPartner service enables third-party benefit providers to import benefit programs into Workday.  Benefit programs can be announcements or other messages the customer wants the software partner to import into Workday. The program can include a title, description, links, and an image and appears as a card on the worker's home screen.\n\nExample: A wellness week event, Benefits and Pay Hub announcement, or hosted meeting for speaker with a financial or insurance advisor.",
+    "version": "v1",
+    "title": "benefitPartner",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "0216b21ecae410002b4146a0410b0001"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/benefitPartner/v1",
+  "tags": [
+    {
+      "name": "programs",
+      "description": "Provides the ability to import benefits program cards into Workday."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/programs": {
+      "post": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "Creates a single benefit program instance.",
+        "description": "Creates a single benefit program instance with the specified data. \n\nIn the request body, specify at least these required fields: url, startDate, endDate, description, title, urlAlias, and programPartner\n\n<b>Secured by:</b> Manage: Benefit Program Software Partner\n\n<b>Scope:</b> Benefits\n\nContains attachment(s)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "benefitProgramsView",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/benefitProgramsView_0216b21ecae410002d4cc96bee440000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/benefitProgramsView_0216b21ecae410002d4cc96bee440000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1586 | End Date can't be before the Start Date.\nA1587 | Some of the required fields are missing : [fields]\nA1588 | URL Address must start with \"http://\" or \"https://\"\nA1624 | You don't have access to the web service. Request access from your Workday customer.\nA1625 | This image file type is unsupported. Use 1 of the following file types: JPG, JPEG, PNG, BMP or TIFF.\nA1626 | Use an image file with a size 5 MB or less.\nA1627 | Description: 120 character maximum.\nA1655 | Specify an image description in the Alternative Text field for workers that use assistive technology. Character limit: 60.\nA1655 | Title: 60 character maximum.\nA1656 | URL Alias: 24 character maximum.\nA1848 | Specify either the Wellbeing Interest or Wellbeing Category for the Benefit Programs, but not both.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "wellbeingInterest_385dba18341910000a58c69aa2730000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Wellbeing Interest implementing the Benefit Program on behalf of the customer."
+    },
+    "programPartner_cc61b1e2830310000c6b33d908470000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The name of the software partner implementing the benefit program on behalf of the customer. To get the program partner ID, use the Benefit Provider Report in Workday."
+    },
+    "image_0216b21ecae410002d4cca0591140004": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/benefitProgramImageData_1fb0576459ce100013ab27700b0e0000"
+        },
+        {}
+      ],
+      "description": "The image for the benefit program card.   Supported file types: jpeg, png, bmp, and tiff.  Size maximum: 5 MB.  Width and height limits: w 528 X h 276 pixels."
+    },
+    "benefitProgramsView_0216b21ecae410002d4cc96bee440000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "wellbeingInterest": {
+              "$ref": "#/definitions/wellbeingInterest_385dba18341910000a58c69aa2730000"
+            },
+            "programPartner": {
+              "$ref": "#/definitions/programPartner_cc61b1e2830310000c6b33d908470000"
+            },
+            "description": {
+              "type": "string",
+              "example": "New Benefit Program for Aetna PPO customers",
+              "description": "The text description of the benefit program that the employee sees on the program card.  Charater limit: 375 or less.",
+              "x-workday-type": "Text"
+            },
+            "adminNotes": {
+              "type": "string",
+              "example": "Enable this program for salaried group that are eligible for Medical Aetna PPO",
+              "description": "Descriptive text from the benefit program partner to Workday administrators about the benefit program.",
+              "x-workday-type": "Text"
+            },
+            "image": {
+              "$ref": "#/definitions/image_0216b21ecae410002d4cca0591140004"
+            },
+            "endDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2023-01-23T08:00:00.000Z",
+              "description": "The date when the benefit program ends. Must be after the start date.",
+              "x-workday-type": "Date"
+            },
+            "title": {
+              "type": "string",
+              "example": "Aetna PPO Perks",
+              "description": "The title of the benefit program card.   Character limit: 40 or less.",
+              "x-workday-type": "Text"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2023-12-31T08:00:00.000Z",
+              "description": "The date when the benefit program begins. Must be before the end date.",
+              "x-workday-type": "Date"
+            },
+            "urlAlias": {
+              "type": "string",
+              "example": "Aetna.com",
+              "description": "A text string that masks the URL to simplify the URL, making it shorter and easier to use.",
+              "x-workday-type": "Text"
+            },
+            "url": {
+              "type": "string",
+              "example": "https://www.Aetna.com",
+              "description": "A external or internal web link to the benefit program that must begin with http or https.",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "contentType_1fb0576459ce100013ab2834e1a50000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Image content Type"
+    },
+    "benefitProgramImageData_1fb0576459ce100013ab27700b0e0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "alternativeText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Specify a description of the image in the Alternative Text field for users of assistive technology.",
+              "x-workday-type": "Text"
+            },
+            "fileLength": {
+              "type": "integer",
+              "example": "99999999999",
+              "description": "length of the file",
+              "x-workday-type": "Numeric"
+            },
+            "fileName": {
+              "type": "string",
+              "example": "image.png",
+              "description": "Name of the file",
+              "maxLength": 255,
+              "x-workday-type": "Text"
+            },
+            "contentType": {
+              "$ref": "#/definitions/contentType_1fb0576459ce100013ab2834e1a50000"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

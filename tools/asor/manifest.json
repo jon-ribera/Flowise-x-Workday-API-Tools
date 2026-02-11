@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Asor-AgentDefinition-GET-getAgentDefinition",
+    "description": "[Asor] GET /agentDefinition — This operation returns the specific Agent Definition including Skills and certain Tools used in those Skills.",
+    "schema": [],
+    "method": "GET",
+    "path": "/agentDefinition",
+    "operationId": null,
+    "file": "Asor-AgentDefinition-GET-getAgentDefinition.js"
+  },
+  {
+    "name": "Asor-AgentDefinition-POST-postAgentDefinition",
+    "description": "[Asor] POST /agentDefinition — Based on the A2A Agent Card specification, this REST operation allows you to create an Agent Definition in Workday.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/agentDefinition",
+    "operationId": null,
+    "file": "Asor-AgentDefinition-POST-postAgentDefinition.js"
+  }
+]

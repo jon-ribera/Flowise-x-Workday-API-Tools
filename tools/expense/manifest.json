@@ -1,0 +1,390 @@
+[
+  {
+    "name": "Expense-Values-GET-getExpenseGroup",
+    "description": "[Expense] GET /values/bespokePrompt/expenseGroup/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Automated Expenses+TG-TG, Self-Service: Automated Expenses.\n\n<b>Scope:</",
+    "schema": [
+      {
+        "name": "expenseReportLine",
+        "type": "string",
+        "description": "Specifies the Expense Report Line instance that can be applied as a restriction to expense items.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/bespokePrompt/expenseGroup/",
+    "operationId": null,
+    "file": "Expense-Values-GET-getExpenseGroup.js"
+  },
+  {
+    "name": "Expense-Reports-GET-getReports",
+    "description": "[Expense] GET /reports/{ID} — Retrieves a single instance of an Expense Report.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/reports/{ID}",
+    "operationId": null,
+    "file": "Expense-Reports-GET-getReports.js"
+  },
+  {
+    "name": "Expense-ExpenseItems-GET-getExpenseItems",
+    "description": "[Expense] GET /expenseItems/{ID} — Retrieves a single instance of an expense item.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/expenseItems/{ID}",
+    "operationId": null,
+    "file": "Expense-ExpenseItems-GET-getExpenseItems.js"
+  },
+  {
+    "name": "Expense-Entries-GET-getEntries",
+    "description": "[Expense] GET /entries/{ID} — Retrieves a single instance of a Quick Expense.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/entries/{ID}",
+    "operationId": null,
+    "file": "Expense-Entries-GET-getEntries.js"
+  },
+  {
+    "name": "Expense-Entries-PUT-putEntries",
+    "description": "[Expense] PUT /entries/{ID} — Updates an existing Quick Expense instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/entries/{ID}",
+    "operationId": null,
+    "file": "Expense-Entries-PUT-putEntries.js"
+  },
+  {
+    "name": "Expense-Entries-PATCH-patchEntries",
+    "description": "[Expense] PATCH /entries/{ID} — Partially updates an existing Quick Expense with the specified WID for the fields provided in the request body.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses\n\nContains attac",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/entries/{ID}",
+    "operationId": null,
+    "file": "Expense-Entries-PATCH-patchEntries.js"
+  },
+  {
+    "name": "Expense-Entries-DELETE-deleteEntries",
+    "description": "[Expense] DELETE /entries/{ID} — Deletes a Quick Expense with the specified WID.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/entries/{ID}",
+    "operationId": null,
+    "file": "Expense-Entries-DELETE-deleteEntries.js"
+  },
+  {
+    "name": "Expense-Values-GET-getExpenseItem",
+    "description": "[Expense] GET /values/bespokePrompt/expenseItem/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Self-Service: Automated Expenses+TG-TG, Self-Service: Automated Expenses.\n\n<b>Scope:</",
+    "schema": [
+      {
+        "name": "expenseReportLine",
+        "type": "string",
+        "description": "Specifies the Expense Report Line instance that can be applied as a restriction to expense items.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/bespokePrompt/expenseItem/",
+    "operationId": null,
+    "file": "Expense-Values-GET-getExpenseItem.js"
+  },
+  {
+    "name": "Expense-Reports-GET-getReports_1",
+    "description": "[Expense] GET /reports — Retrieves a collection of expense reports.",
+    "schema": [
+      {
+        "name": "expenseReportMemo",
+        "type": "string",
+        "description": "query parameter: expenseReportMemo",
+        "required": false
+      },
+      {
+        "name": "expenseReportStatus",
+        "type": "string",
+        "description": "query parameter: expenseReportStatus",
+        "required": false
+      },
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "query parameter: fromDate",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "query parameter: toDate",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/reports",
+    "operationId": null,
+    "file": "Expense-Reports-GET-getReports_1.js"
+  },
+  {
+    "name": "Expense-Reports-POST-postReports",
+    "description": "[Expense] POST /reports — \n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/reports",
+    "operationId": null,
+    "file": "Expense-Reports-POST-postReports.js"
+  },
+  {
+    "name": "Expense-Reports-POST-postLines",
+    "description": "[Expense] POST /reports/{ID}/lines — Creates a collection of expense report lines.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/reports/{ID}/lines",
+    "operationId": null,
+    "file": "Expense-Reports-POST-postLines.js"
+  },
+  {
+    "name": "Expense-Reports-POST-postSubmit",
+    "description": "[Expense] POST /reports/{ID}/submit — \n\n<b>Secured by:</b> Submit Expense Report (REST API)\n\n<b>Scope:</b> Expenses",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/reports/{ID}/submit",
+    "operationId": null,
+    "file": "Expense-Reports-POST-postSubmit.js"
+  },
+  {
+    "name": "Expense-Entries-GET-getEntries_1",
+    "description": "[Expense] GET /entries — Retrieves a collection of Quick Expenses.",
+    "schema": [
+      {
+        "name": "entryType",
+        "type": "string",
+        "description": "query parameter: entryType",
+        "required": false
+      },
+      {
+        "name": "expenseEntryStatus",
+        "type": "string",
+        "description": "query parameter: expenseEntryStatus",
+        "required": false
+      },
+      {
+        "name": "fromDate",
+        "type": "string",
+        "description": "query parameter: fromDate",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "toDate",
+        "type": "string",
+        "description": "query parameter: toDate",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/entries",
+    "operationId": null,
+    "file": "Expense-Entries-GET-getEntries_1.js"
+  },
+  {
+    "name": "Expense-Entries-POST-postEntries",
+    "description": "[Expense] POST /entries — Creates a Quick Expense instance. In the request body, you must specify the required TransactionDate field.\n\n<b>Secured by:</b> Self-Service: Expense Report\n\n<b>Scope:</b> Expenses\n\nContains attachmen",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/entries",
+    "operationId": null,
+    "file": "Expense-Entries-POST-postEntries.js"
+  },
+  {
+    "name": "Expense-Entries-POST-postAttachments",
+    "description": "[Expense] POST /entries/{ID}/attachments — Creates new attachments for the existing expense entry.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/entries/{ID}/attachments",
+    "operationId": null,
+    "file": "Expense-Entries-POST-postAttachments.js"
+  },
+  {
+    "name": "Expense-ExpenseItems-GET-getExpenseItems_1",
+    "description": "[Expense] GET /expenseItems — Retrieves a collection of expense items.",
+    "schema": [
+      {
+        "name": "disallowFixedItems",
+        "type": "boolean",
+        "description": "query parameter: disallowFixedItems",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "searchString",
+        "type": "string",
+        "description": "query parameter: searchString",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/expenseItems",
+    "operationId": null,
+    "file": "Expense-ExpenseItems-GET-getExpenseItems_1.js"
+  }
+]

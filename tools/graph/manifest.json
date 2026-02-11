@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Graph-Versions-GET-getVersions",
+    "description": "[Graph] GET /versions — Retrieves all supported Graph API versions.",
+    "schema": [
+      {
+        "name": "includeTest",
+        "type": "boolean",
+        "description": "For Internal Use Only",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/versions",
+    "operationId": null,
+    "file": "Graph-Versions-GET-getVersions.js"
+  },
+  {
+    "name": "Graph-Versions-GET-getVersions_1",
+    "description": "[Graph] GET /versions/{ID} — Retrieves all supported Graph API versions.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/versions/{ID}",
+    "operationId": null,
+    "file": "Graph-Versions-GET-getVersions_1.js"
+  }
+]

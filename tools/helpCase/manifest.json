@@ -1,0 +1,844 @@
+[
+  {
+    "name": "HelpCase-ExternalRecords-PUT-putExternalRecords",
+    "description": "[Help Case] PUT /externalRecords/{ID} — Deletes an existing link instance between an external record and case.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/externalRecords/{ID}",
+    "operationId": null,
+    "file": "HelpCase-ExternalRecords-PUT-putExternalRecords.js"
+  },
+  {
+    "name": "HelpCase-ServiceCategories-GET-getServiceCategories",
+    "description": "[Help Case] GET /serviceCategories/{ID} — Retrieves a service category with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/serviceCategories/{ID}",
+    "operationId": null,
+    "file": "HelpCase-ServiceCategories-GET-getServiceCategories.js"
+  },
+  {
+    "name": "HelpCase-Cases-POST-postReopen",
+    "description": "[Help Case] POST /cases/{ID}/reopen — Updates an existing resolved case instance",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/cases/{ID}/reopen",
+    "operationId": null,
+    "file": "HelpCase-Cases-POST-postReopen.js"
+  },
+  {
+    "name": "HelpCase-Cases-GET-getTimeline",
+    "description": "[Help Case] GET /cases/{ID}/timeline — Retrieves a list of comment timeline items for a case.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/cases/{ID}/timeline",
+    "operationId": null,
+    "file": "HelpCase-Cases-GET-getTimeline.js"
+  },
+  {
+    "name": "HelpCase-Cases-GET-getComment",
+    "description": "[Help Case] GET /cases/{ID}/comment/{subresourceID} — Retrieves a comment timeline item for a \\~case\\~ with the specified comment timeline ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/cases/{ID}/comment/{subresourceID}",
+    "operationId": null,
+    "file": "HelpCase-Cases-GET-getComment.js"
+  },
+  {
+    "name": "HelpCase-Configuration-GET-getConfiguration",
+    "description": "[Help Case] GET /configuration — Retrieves tenant setup configurations related to Help Case Management.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/configuration",
+    "operationId": null,
+    "file": "HelpCase-Configuration-GET-getConfiguration.js"
+  },
+  {
+    "name": "HelpCase-CaseSuggestions-GET-getCaseSuggestions",
+    "description": "[Help Case] GET /caseSuggestions — Retrieves a list of suggestions based on case type.",
+    "schema": [
+      {
+        "name": "caseType",
+        "type": "string",
+        "description": "The Workday ID of the case type to retrieve suggestions for. You can use GET /helpCase/caseTypes/view to retrieve a list of case types and their IDs.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/caseSuggestions",
+    "operationId": null,
+    "file": "HelpCase-CaseSuggestions-GET-getCaseSuggestions.js"
+  },
+  {
+    "name": "HelpCase-Attachments-GET-getAttachments",
+    "description": "[Help Case] GET /attachments/{ID} — Will return attachments",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/attachments/{ID}",
+    "operationId": null,
+    "file": "HelpCase-Attachments-GET-getAttachments.js"
+  },
+  {
+    "name": "HelpCase-CaseSuggestions-GET-getCaseSuggestions_1",
+    "description": "[Help Case] GET /caseSuggestions/{ID} — Retrieves a list of suggestions based on case type.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/caseSuggestions/{ID}",
+    "operationId": null,
+    "file": "HelpCase-CaseSuggestions-GET-getCaseSuggestions_1.js"
+  },
+  {
+    "name": "HelpCase-ExternalCreators-GET-getExternalCreators",
+    "description": "[Help Case] GET /externalCreators — Retrieves a collection of external contact details.",
+    "schema": [
+      {
+        "name": "email",
+        "type": "string",
+        "description": "The email address that identifies the external \\~case\\~ contact.",
+        "required": false
+      },
+      {
+        "name": "hideBlockedCreators",
+        "type": "boolean",
+        "description": "If true, blocked contacts are excluded from the response.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/externalCreators",
+    "operationId": null,
+    "file": "HelpCase-ExternalCreators-GET-getExternalCreators.js"
+  },
+  {
+    "name": "HelpCase-ExternalCreators-POST-postExternalCreators",
+    "description": "[Help Case] POST /externalCreators — Creates external \\~case\\~ contacts.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/externalCreators",
+    "operationId": null,
+    "file": "HelpCase-ExternalCreators-POST-postExternalCreators.js"
+  },
+  {
+    "name": "HelpCase-Values-GET-getSource",
+    "description": "[Help Case] GET /values/externalRecords/source/ — Get all sources for External Records\n\n<b>Secured by:</b> Help External Records\n\n<b>Scope:</b> Help",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/externalRecords/source/",
+    "operationId": null,
+    "file": "HelpCase-Values-GET-getSource.js"
+  },
+  {
+    "name": "HelpCase-Values-GET-getCaseStatuses",
+    "description": "[Help Case] GET /values/caseStatusesGroup/caseStatuses/ — Get all \\~case\\~ statuses.\n\n<b>Secured by:</b> Process: Help Cases\n\n<b>Scope:</b> Help",
+    "schema": [
+      {
+        "name": "caseStatus",
+        "type": "string",
+        "description": "The Workday ID of the \\~case\\~ status to return data for.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/caseStatusesGroup/caseStatuses/",
+    "operationId": null,
+    "file": "HelpCase-Values-GET-getCaseStatuses.js"
+  },
+  {
+    "name": "HelpCase-Values-GET-getServiceTeams",
+    "description": "[Help Case] GET /values/serviceTeamsGroup/serviceTeams/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Help Cases\n\n<b>Scope:</b> Help",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "serviceTeam",
+        "type": "string",
+        "description": "The Workday ID of the service team to return data for.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/serviceTeamsGroup/serviceTeams/",
+    "operationId": null,
+    "file": "HelpCase-Values-GET-getServiceTeams.js"
+  },
+  {
+    "name": "HelpCase-Cases-GET-getTimeline_1",
+    "description": "[Help Case] GET /cases/{ID}/timeline/{subresourceID} — Retrieves a comment timeline item for a case with the specified timeline ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/cases/{ID}/timeline/{subresourceID}",
+    "operationId": null,
+    "file": "HelpCase-Cases-GET-getTimeline_1.js"
+  },
+  {
+    "name": "HelpCase-Cases-GET-getCases",
+    "description": "[Help Case] GET /cases — Retrieves a list of cases that the user is secured to view.",
+    "schema": [
+      {
+        "name": "desc",
+        "type": "boolean",
+        "description": "If true, sorts results in descending order.",
+        "required": false
+      },
+      {
+        "name": "flag",
+        "type": "string",
+        "description": "Retrieves cases with the assigned flag(s).",
+        "required": false
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "description": "Retrieves cases with the assigned label(s).",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "myCases",
+        "type": "boolean",
+        "description": "Retrieves cases owned by the processing user.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "openCases",
+        "type": "boolean",
+        "description": "Retrieves open cases and cases that were resolved or canceled less than 7 days ago.",
+        "required": false
+      },
+      {
+        "name": "sort",
+        "type": "string",
+        "description": "The field to sort results by. The default is creationDate. Note: Currently supports creationDate only.",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "Retrieves cases with the specified status(es).",
+        "required": false
+      },
+      {
+        "name": "substatus",
+        "type": "string",
+        "description": "Retrieves cases with the specified substatus(es).",
+        "required": false
+      },
+      {
+        "name": "team",
+        "type": "string",
+        "description": "Retrieves cases with the specified service team(s).",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/cases",
+    "operationId": null,
+    "file": "HelpCase-Cases-GET-getCases.js"
+  },
+  {
+    "name": "HelpCase-Cases-POST-postCases",
+    "description": "[Help Case] POST /cases — Creates a case.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/cases",
+    "operationId": null,
+    "file": "HelpCase-Cases-POST-postCases.js"
+  },
+  {
+    "name": "HelpCase-Cases-GET-getInternalNoteTimeline",
+    "description": "[Help Case] GET /cases/{ID}/internalNoteTimeline/{subresourceID} — Retrieves an internal note timeline item for a \\~case\\~ with the specified internal note timeline ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/cases/{ID}/internalNoteTimeline/{subresourceID}",
+    "operationId": null,
+    "file": "HelpCase-Cases-GET-getInternalNoteTimeline.js"
+  },
+  {
+    "name": "HelpCase-Cases-PATCH-patchInternalNoteTimeline",
+    "description": "[Help Case] PATCH /cases/{ID}/internalNoteTimeline/{subresourceID} — Edits an internal note.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/cases/{ID}/internalNoteTimeline/{subresourceID}",
+    "operationId": null,
+    "file": "HelpCase-Cases-PATCH-patchInternalNoteTimeline.js"
+  },
+  {
+    "name": "HelpCase-Cases-DELETE-deleteInternalNoteTimeline",
+    "description": "[Help Case] DELETE /cases/{ID}/internalNoteTimeline/{subresourceID} — Deletes an internal note.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/cases/{ID}/internalNoteTimeline/{subresourceID}",
+    "operationId": null,
+    "file": "HelpCase-Cases-DELETE-deleteInternalNoteTimeline.js"
+  },
+  {
+    "name": "HelpCase-Cases-GET-getComment_1",
+    "description": "[Help Case] GET /cases/{ID}/comment — Retrieves a list of comment timeline items for a \\~case\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/cases/{ID}/comment",
+    "operationId": null,
+    "file": "HelpCase-Cases-GET-getComment_1.js"
+  },
+  {
+    "name": "HelpCase-Cases-POST-postComment",
+    "description": "[Help Case] POST /cases/{ID}/comment — \n\n<b>Secured by:</b> Process: Help Cases, Self Service: Help Case Management\n\n<b>Scope:</b> Help",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/cases/{ID}/comment",
+    "operationId": null,
+    "file": "HelpCase-Cases-POST-postComment.js"
+  },
+  {
+    "name": "HelpCase-Cases-GET-getInternalNoteTimeline_1",
+    "description": "[Help Case] GET /cases/{ID}/internalNoteTimeline — Retrieves a list of internal note timeline items for a \\~case\\~.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/cases/{ID}/internalNoteTimeline",
+    "operationId": null,
+    "file": "HelpCase-Cases-GET-getInternalNoteTimeline_1.js"
+  },
+  {
+    "name": "HelpCase-Cases-POST-postInternalNoteTimeline",
+    "description": "[Help Case] POST /cases/{ID}/internalNoteTimeline — \n\n<b>Secured by:</b> Help Case Internal Notes\n\n<b>Scope:</b> Help\n\nContains attachment(s)",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/cases/{ID}/internalNoteTimeline",
+    "operationId": null,
+    "file": "HelpCase-Cases-POST-postInternalNoteTimeline.js"
+  },
+  {
+    "name": "HelpCase-Values-GET-getCaseLabelCategories",
+    "description": "[Help Case] GET /values/caseLabelCategoriesGroup/caseLabelCategories/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Help Cases\n\n<b>Scope:</b> Help",
+    "schema": [
+      {
+        "name": "caseLabelCategory",
+        "type": "string",
+        "description": "The Workday ID of the \\~case\\~ label to return data for.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/caseLabelCategoriesGroup/caseLabelCategories/",
+    "operationId": null,
+    "file": "HelpCase-Values-GET-getCaseLabelCategories.js"
+  },
+  {
+    "name": "HelpCase-CaseTypes-GET-getCaseTypes",
+    "description": "[Help Case] GET /caseTypes/{ID} — Retrieves a list of case types that a worker has access to.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/caseTypes/{ID}",
+    "operationId": null,
+    "file": "HelpCase-CaseTypes-GET-getCaseTypes.js"
+  },
+  {
+    "name": "HelpCase-ExternalCreators-GET-getExternalCreators_1",
+    "description": "[Help Case] GET /externalCreators/{ID} — Retrieves contact details for a single external \\~case\\~ contact instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/externalCreators/{ID}",
+    "operationId": null,
+    "file": "HelpCase-ExternalCreators-GET-getExternalCreators_1.js"
+  },
+  {
+    "name": "HelpCase-Attachments-POST-postAttachments",
+    "description": "[Help Case] POST /attachments — Uploads an attachment when creating a case.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/attachments",
+    "operationId": null,
+    "file": "HelpCase-Attachments-POST-postAttachments.js"
+  },
+  {
+    "name": "HelpCase-Cases-GET-getCases_1",
+    "description": "[Help Case] GET /cases/{ID} — Retrieves a case with the specified ID that the user is secured to view.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/cases/{ID}",
+    "operationId": null,
+    "file": "HelpCase-Cases-GET-getCases_1.js"
+  },
+  {
+    "name": "HelpCase-Cases-PATCH-patchCases",
+    "description": "[Help Case] PATCH /cases/{ID} — Edits a case.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/cases/{ID}",
+    "operationId": null,
+    "file": "HelpCase-Cases-PATCH-patchCases.js"
+  },
+  {
+    "name": "HelpCase-Values-GET-getCaseFlags",
+    "description": "[Help Case] GET /values/caseFlagsGroup/caseFlags/ — Retrieves instances that can be used as values for other endpoint parameters in this service.\n\n<b>Secured by:</b> Process: Help Cases\n\n<b>Scope:</b> Help",
+    "schema": [
+      {
+        "name": "caseFlag",
+        "type": "string",
+        "description": "The Workday ID of the \\~case\\~ flag to return data for.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/values/caseFlagsGroup/caseFlags/",
+    "operationId": null,
+    "file": "HelpCase-Values-GET-getCaseFlags.js"
+  },
+  {
+    "name": "HelpCase-CaseTypes-GET-getCaseTypes_1",
+    "description": "[Help Case] GET /caseTypes — Retrieves a list of case types that a worker has access to.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The worker to use to determine access to case types.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/caseTypes",
+    "operationId": null,
+    "file": "HelpCase-CaseTypes-GET-getCaseTypes_1.js"
+  },
+  {
+    "name": "HelpCase-ServiceCategories-GET-getServiceCategories_1",
+    "description": "[Help Case] GET /serviceCategories — Retrieves all parent service categories.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "q",
+        "type": "string",
+        "description": "The name to search for. Use this parameter to return only: service categories with a name that matches or is similar to this string; service categories that have child categories with names that match or are similar to this string; and case types with names or descriptions that are similar to this string. The default value is empty.",
+        "required": false
+      },
+      {
+        "name": "worker",
+        "type": "string",
+        "description": "The ID of an alternate worker to use instead of the processing worker when determining access to case types. The default value is empty.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/serviceCategories",
+    "operationId": null,
+    "file": "HelpCase-ServiceCategories-GET-getServiceCategories_1.js"
+  },
+  {
+    "name": "HelpCase-Configuration-GET-getConfiguration_1",
+    "description": "[Help Case] GET /configuration/{ID} — Retrieves tenant setup configurations related to Help Case Management.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/configuration/{ID}",
+    "operationId": null,
+    "file": "HelpCase-Configuration-GET-getConfiguration_1.js"
+  },
+  {
+    "name": "HelpCase-ExternalRecords-POST-postExternalRecords",
+    "description": "[Help Case] POST /externalRecords — Creates and links external records to a Help case.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/externalRecords",
+    "operationId": null,
+    "file": "HelpCase-ExternalRecords-POST-postExternalRecords.js"
+  }
+]

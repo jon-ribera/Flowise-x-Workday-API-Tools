@@ -1,0 +1,2411 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Public REST APIs for Payroll Interface",
+    "version": "v1",
+    "title": "globalPayroll",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "3599998a16331000198291e459220114"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/globalPayroll/v1",
+  "tags": [
+    {
+      "name": "authorizations",
+      "description": "For each target id check whether subjectId has access to that target for the specified featureId",
+      "x-workday-confidence-level": "Production"
+    },
+    {
+      "name": "effectiveChanges",
+      "description": "Generates effective change data for organizations or workers based on request parameters.",
+      "x-workday-confidence-level": "Production"
+    },
+    {
+      "name": "eventDrivenIntegrationVendorResponse",
+      "description": "Provides access to get and post Event Driven Integration Vendor Response information",
+      "x-workday-confidence-level": "Production"
+    },
+    {
+      "name": "notifications",
+      "description": "Inbound Notifications",
+      "x-workday-confidence-level": "Production"
+    },
+    {
+      "name": "payGroups",
+      "description": "Provides access to Payroll Interface pay group information and management of their payroll periods."
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/payGroups/{ID}": {
+      "get": {
+        "tags": [
+          "payGroups"
+        ],
+        "summary": "Retrieves a Payroll Interface pay group.",
+        "description": "Retrieves a Payroll Interface pay group with the specified ID.\n\n<b>Secured by:</b> Set Up: Payroll Interface (Update Pay Period Status)\n\n<b>Scope:</b> Payroll Interface",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/payGroupSummary_3599998a1633100019df46f324530118"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/authorizations": {
+      "post": {
+        "tags": [
+          "authorizations"
+        ],
+        "summary": "Check subjectId permissions against featureId for each target Id",
+        "description": "Check subjectId permissions against featureId for each target Id\n\n<b>Secured by:</b> View: Global Payroll Authorizations\n\n<b>Scope:</b> Global Payroll Connect",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "globalPayrollAuthorization",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/globalPayrollAuthorization_a2e1c2e680561000b99ea4b611000000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/globalPayrollAuthorization_a2e1c2e680561000b99ea4b611000000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA2378 | Specify a valid featureId ([feature]).\nA2379 | Specify a valid worker ID for subjectId ([subject]).\nA2380 | Specify a valid id for [targets]",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/eventDrivenIntegrationVendorResponse": {
+      "post": {
+        "tags": [
+          "eventDrivenIntegrationVendorResponse"
+        ],
+        "summary": "Updates a specific vendor response instance of Event-Driven Integration with the specified data after the third-party payroll system completes processing of the worker changes.",
+        "description": "Updates a specific vendor response instance of Event-Driven Integration with the specified data after the third-party payroll system completes processing of the worker changes. The third-party payroll system updates the overall status of the processing and payroll error messages and warnings, if any.\n\n<b>Secured by:</b> Set Up: Payroll Interface (Update Vendor Response for Event-Driven Integration)\n\n<b>Scope:</b> Payroll Interface",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "eventDrivenIntegrationVendorResponse",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eventDrivenIntegrationVendorResponse_8c3b1d133c4810000c214bf9084a201b"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/eventDrivenIntegrationVendorResponse_8c3b1d133c4810000c214bf9084a201b"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA917 | Could not find Event Driven Integration Event for id provided in request.\nA918 | Event Driven Integration event is no longer valid for update.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/payGroups/{ID}/periods": {
+      "get": {
+        "tags": [
+          "payGroups"
+        ],
+        "summary": "Retrieves a collection of payroll periods for the specified Payroll Interface pay group ID.",
+        "description": "Retrieves all payroll periods for the specified Payroll Interface pay group ID and sorts in descending order by the period end date.\n\n<b>Secured by:</b> REST API Public",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "periodEndDate",
+            "in": "query",
+            "description": "The end date of a payroll period using the yyyy-mm-dd format. This should not be used with the showMostRecentOnly query parameter. If both periodEndDate and showMostRecentOnly query parameters are provided, the API will only consider the periodEndDate query parameter.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "showMostRecentOnly",
+            "in": "query",
+            "description": "If true, the operation returns the 5 most recent pay periods. This should not be used with periodEndDate query parameter. If both showMostRecentOnly and periodEndDate query parameters are provided, the API will ignore showMostRecentOnly query parameter.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/periodSummary_3599998a1633100031c88652879b021c"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/eventDrivenIntegrationVendorResponse/{ID}": {
+      "get": {
+        "tags": [
+          "eventDrivenIntegrationVendorResponse"
+        ],
+        "summary": "Retrieves a single Event-Driven Integration vendor response.",
+        "description": "Retrieves an Event-Driven Integration vendor response with the specified ID.\n\n<b>Secured by:</b> Global Payroll System, Set Up: Payroll Interface (Update Vendor Response for Event-Driven Integration)\n\n<b>Scope:</b> Payroll Interface",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/eventDrivenIntegrationVendorResponse_8c3b1d133c4810000c214bf9084a201b"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/notifications": {
+      "post": {
+        "tags": [
+          "notifications"
+        ],
+        "summary": "POST Inbound Notifications request.",
+        "description": "POST Inbound Notifications request.\n\n<b>Secured by:</b> Manage: Global Payroll Inbound Notifications\n\n<b>Scope:</b> Global Payroll Connect",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "notification",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/notification_43d2652dbec810001267eb701be80000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/notification_43d2652dbec810001267eb701be80000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1857 | Use the Integration System User (ISU) account associated with the external payroll vendor mapping.\nA2262 | Specify either workerRecipients or organizationsRecipients.\nA2263 | Specify valid workerRecipients or valid organizationRecipients. If you specify organizationRecipients, also specify at least 1 organization and role.\nA2302 | Specify a valid feature property value for [featurePropertyList]\nA2404 | If you specify a translation, also specify a unique non-english translation title, translation body, and translation language. Invalid languages:  [Invalids]\nA2405 | If you specify featureConfiguration, also specify 1 valid feature.\nA2406 | Specify valid feature properties for [feature]. Valid feature properties are [validPropertyNames].",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/payGroups/{ID}/periods/{subresourceID}": {
+      "get": {
+        "tags": [
+          "payGroups"
+        ],
+        "summary": "Retrieves a payroll period for the specified Payroll Interface pay group ID.",
+        "description": "Retrieves a payroll period with the specified Payroll Interface pay group ID.\n\n<b>Secured by:</b> REST API Public",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/periodSummary_3599998a1633100031c88652879b021c"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      },
+      "patch": {
+        "tags": [
+          "payGroups"
+        ],
+        "summary": "Partially updates an existing pay period by the specified pay group ID.",
+        "description": "Partially updates an existing payroll period for the specified Payroll Interface pay group ID and the provided data in the request body.\n\n<b>Secured by:</b> REST API Public",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "periodSummary",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/periodSummary_3599998a1633100031c88652879b021c"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data. Updating resource.",
+            "schema": {
+              "$ref": "#/definitions/periodSummary_3599998a1633100031c88652879b021c"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA543 | Invalid status. Must be one of the following: Not Yet Started, In Progress, Complete\nA544 | Missing 'status' field. Must be one of the following: Not Yet Started, In Progress, Complete",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/effectiveChanges": {
+      "post": {
+        "tags": [
+          "effectiveChanges"
+        ],
+        "summary": "Generates effective change data for organizations or workers based on request parameters.",
+        "description": "Generates effective change data for organizations or workers based on request parameters.\n\n<b>Secured by:</b> Manage: Data Changes On Demand\n\n<b>Scope:</b> Global Payroll Connect",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dataChangesOnDemand",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dataChangesOnDemand_bd14481f741d1000236beb3ff7c20000"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/dataChangesOnDemand_bd14481f741d1000236beb3ff7c20000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA1670 | Specify these pay groups for the Data Changes on Demand feature on the Maintain Pay Group Vendor Associations task for the external payroll vendor associated to the Integration System User: [pgs]\nA1704 | When you set schemaOnly to false, you must specify these fields: organizations, effectiveTo, effectiveFrom, entryMomentTo, entryMomentFrom, fieldSetVersion and changeDetection.\nA1705 | When you set schemaOnly to true, you can't specify any other fields.\nA1709 | Specify an effectiveTo date that's on or after the effectiveFrom date.\nA1710 | Specify an integration system with the Data Changes on Demand integration template.\nA1711 | Specify an entryMomentTo datetime that's after the entryMomentFrom datetime.\nA1712 | Specify active payroll interface pay groups. These organizations aren't active payroll interface pay groups: [pgs]\nA1749 | Specify fieldSetVersion with a value of v1 or greater.\nA1792 | Specify countryRegionNameFormat with a value of COUNTRY_REGION_ID, COUNTRY_REGION_NAME, ISO_3166-2_CODE, or ISO_3166-2_COUNTRY_REGION_CODE. If no value supplied, the default is ISO_3166-2_CODE.\nA1793 | Specify countryNameFormat with a value of COUNTRY_NAME, ISO_3166-1_ALPHA-2_CODE, or ISO_3166-1_ALPHA-3_CODE. If no value supplied, the default is ISO_3166-1_ALPHA-2_CODE.\nA1851 | A prior record with the same entry parameters must exist when setting forceRerun to true.\nA1857 | Use the Integration System User (ISU) account associated with the external payroll vendor mapping.\nA1857 | Use the Integration System User (ISU) account associated with the external payroll vendor mapping.\nA2260 | You can't run a Data Changes on Demand integration event because the number of workers for all of the processing pay groups exceeds the maximum worker count. Work with your implementation partner to split up the pay groups.\nA2264 | Specify an entryMomentFromOverride datetime that is before the entryMomentTo datetime.\nA2265 | If you specify workerOverrides, specify a valid ID for a \\~worker\\~ and entryMomentFromOverride.\nA2266 | If you specify workerOverrides, specify a unique \\~worker\\~ ID for each \\~worker\\~. You can't have duplicate \\~workers\\~ within the workerOverrides request parameter.\nA2285 | Specify a different entryMomentFrom value or an entryMomentTo value so the range is less than 2 months.\nA2285 | Specify a different entryMomentFromOverride value or an entryMomentTo value for these workers so the range is less than 2 months: [workers]\nA2293 | The effectiveFrom date you specified doesn't have an associated pay period. Either specify a different effectiveFrom date or create a pay period for these organizations: [pgs]\nA2295 | Specify 1 or more valid field path IDs for requestCriteria.fields.onlyInclude.\nA2318 | You can only have 1 Data Changes on Demand integration system for all third-party payroll systems in the target tenant. Remove any additional Data Changes on Demand integration systems in the Workday target tenant.\nA2353 | If you set allEffective as true, remove the extendedAllEffectiveTo request parameter.\nA2354 | Specify the range for effectiveTo and extendedAllEffectiveTo to 93 days or less.\nA2355 | Specify an extendedAllEffectiveTo that is equal to or greater than effectiveTo.\nA2356 | If you set allEffective as true, specify the range for effectiveFrom and effectiveTo to 93 days or less.\nA2486 | Specify an effectiveFrom date that's within 186 days of the entryMomentTo date if the effective range is greater than 403 days.\nA2519 | You have reached the maximum of 25 in-progress events for jobs containing 1 worker for this vendor. Wait for 1 of the events to complete before launching another.\nA2520 | You have reached the maximum of 5 in-progress events for jobs containing 2 or more workers for this vendor. Wait for 1 of the events to complete before launching another.\nA2557 | You can't specify both time off and grouped time off in the same request. Specify the request parameter requestCriteria.fields.onlyInclude for either timeOffEarningsAndDeductions or groupedTimeOffEarningsAndDeductions.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    },
+    "/payGroups": {
+      "get": {
+        "tags": [
+          "payGroups"
+        ],
+        "summary": "Retrieves a collection of Payroll Interface pay groups.",
+        "description": "Retrieves all Payroll Interface pay groups and sorts by name in ascending alphabetical order.\n\n<b>Secured by:</b> Set Up: Payroll Interface (Update Pay Period Status)\n\n<b>Scope:</b> Payroll Interface",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/payGroupSummary_3599998a1633100019df46f324530118"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true"
+      }
+    },
+    "/effectiveChanges/{ID}": {
+      "get": {
+        "tags": [
+          "effectiveChanges"
+        ],
+        "summary": "Retrieves a specific Data Changes on Demand event.",
+        "description": "Retrieves a specific Data Changes on Demand event.\n\n<b>Secured by:</b> Manage: Data Changes On Demand\n\n<b>Scope:</b> Global Payroll Connect",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/dataChangesOnDemandGet_924d4075948e1000159a8c6b5e6e0000"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-confidence-level": "Production",
+        "x-workday-internal-try-enabled": "false"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "featureConfiguration_43d2652dbec810001e9a753327950000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/featureConfiguration_43d2652dbec810001e6bf58246f90000"
+        },
+        {}
+      ],
+      "description": "The Feature Configuration for the Global Payroll Notification Event."
+    },
+    "recipient_eeab4c12d19c100020b13ca491cf0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/recipient_946d43119418100012fbe29781d80000"
+        },
+        {}
+      ],
+      "description": "The Recipient of the Global Payroll Notification."
+    },
+    "message_946d4311941810001d3de8ed98460000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/message_946d4311941810001d65b0066fea0000"
+        },
+        {}
+      ],
+      "description": "The Message content of the Global Payroll Notification."
+    },
+    "notification_43d2652dbec810001267eb701be80000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "message",
+            "recipient"
+          ],
+          "properties": {
+            "featureConfiguration": {
+              "$ref": "#/definitions/featureConfiguration_43d2652dbec810001e9a753327950000"
+            },
+            "recipient": {
+              "$ref": "#/definitions/recipient_eeab4c12d19c100020b13ca491cf0000"
+            },
+            "message": {
+              "$ref": "#/definitions/message_946d4311941810001d3de8ed98460000"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Global Payroll Notification Group"
+            }
+          }
+        }
+      ]
+    },
+    "requestCriteria_924d4075948e100015ee70d906e80000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/requestCriteria_29662595d2d310002e8a9d9ff53e0000"
+        },
+        {}
+      ],
+      "description": "Criteria used to generate effective changes"
+    },
+    "responseData_924d4075948e1000159a8d04a0630000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/responseData_29662595d2d310003026c3f2dbb40000"
+        },
+        {}
+      ],
+      "description": "Data response"
+    },
+    "dataChangesOnDemandGet_924d4075948e1000159a8c6b5e6e0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "requestCriteria": {
+              "$ref": "#/definitions/requestCriteria_924d4075948e100015ee70d906e80000"
+            },
+            "responseData": {
+              "$ref": "#/definitions/responseData_924d4075948e1000159a8d04a0630000"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Data Changes on Demand"
+            }
+          }
+        }
+      ]
+    },
+    "requestCriteria_29662595d2d310002cc5756811f10000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/requestCriteria_29662595d2d310002e8a9d9ff53e0000"
+        },
+        {}
+      ],
+      "description": "Criteria used to generate effective changes"
+    },
+    "responseData_29662595d2d310002d21ae24e9980000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/responseData_29662595d2d310003026c3f2dbb40000"
+        },
+        {}
+      ],
+      "description": "Data Response",
+      "x-readOnly": true
+    },
+    "dataChangesOnDemand_bd14481f741d1000236beb3ff7c20000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "requestCriteria": {
+              "$ref": "#/definitions/requestCriteria_29662595d2d310002cc5756811f10000"
+            },
+            "responseData": {
+              "$ref": "#/definitions/responseData_29662595d2d310002d21ae24e9980000"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Data Changes on Demand"
+            }
+          }
+        }
+      ]
+    },
+    "targets_a2e1c2e680561000bab44ac7b8d00000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/globalPayrollAuthorizationTarget_a2e1c2e680561000bb1bae0b9d930000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Global Payroll Authorization Target (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "globalPayrollAuthorization_a2e1c2e680561000b99ea4b611000000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "featureId",
+            "subjectId",
+            "targets"
+          ],
+          "properties": {
+            "featureId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Context External Payroll Feature to evaluate authorization against",
+              "x-workday-type": "Text"
+            },
+            "subjectId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Subject for which authorization is performed against",
+              "x-workday-type": "Text"
+            },
+            "targets": {
+              "type": "array",
+              "description": "Targets to check whether Subject is authorized for",
+              "items": {
+                "$ref": "#/definitions/targets_a2e1c2e680561000bab44ac7b8d00000"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "errorMessageSet_8c3b1d133c4810000c7b576db8fc28e3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/integrationEventErrorMessageSet_8c3b1d133c4810000cd2e45ca5dd29c2"
+        },
+        {}
+      ],
+      "description": "A container for Third Party Payroll Errors returned for the worker changes sent through Event-Driven Integration."
+    },
+    "overallStatus_8c3b1d133c4810000c3756365452201f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID or reference ID of the processing status the third-party payroll vendor returns for the worker changes sent to the third-party payroll system with the Event-Driven Integration. The reference ID uses the referenceIdType=sampleRefId format. Example: SUCCESSFULLY_SENT_TO_PAYROLL."
+    },
+    "eventDrivenIntegrationVendorResponse_8c3b1d133c4810000c214bf9084a201b": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "overallStatus",
+            "relaunchable",
+            "setLsrd",
+            "skipReview"
+          ],
+          "properties": {
+            "errorMessageSet": {
+              "$ref": "#/definitions/errorMessageSet_8c3b1d133c4810000c7b576db8fc28e3"
+            },
+            "setLsrd": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, Workday updates the LSRD for that particular worker. The next time you run the batch PECI integration, only changes that occurred after running the Event-Driven Integration is included for the worker. If false, Workday sends the original data again during the next transmission, either through the event-driven integration or the Payroll Effective Change Interface integration.",
+              "x-workday-type": "Boolean"
+            },
+            "skipReviewReason": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The reason that gives guidance whether or not to complete the Maintain Local Payroll Data step after the Review Event Driven Integration for Third Party Payroll step. This field applies when you configured the Hire business process with the Maintain Local Payroll Data step right after the Review Event Driven Integration for Third Party Payroll step. Workday displays this reason on the Maintain Local Payroll Data task after the Review Event Driven Integration for Third Party Payroll step.",
+              "x-workday-type": "Text"
+            },
+            "overallStatus": {
+              "$ref": "#/definitions/overallStatus_8c3b1d133c4810000c3756365452201f"
+            },
+            "id": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Required Workday ID for the Event-Driven Integration. Workday provides this to the third-party payroll vendor as part of the initial file delivery.",
+              "maxLength": 36,
+              "x-workday-type": "Text"
+            },
+            "skipReview": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, Workday displays the Review Event Driven Integration for Third Party Payroll step on the Maintain Local Payroll Data task.",
+              "x-workday-type": "Boolean"
+            },
+            "relaunchable": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, Workday displays the Resend to Payroll button on the Review Event Driven Integration for Third Party Payroll step to resubmit worker changes after making any corrections. If false, Workday doesn't display the button. The field might be set to false if there isn’t anything the user can do to fix the errors and resubmitting the changes will result in the same errors.",
+              "x-workday-type": "Boolean"
+            }
+          }
+        }
+      ]
+    },
+    "country_e33b5490647810002766c91a0dae0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/country_e33b54906478100027856b76a8710000"
+        },
+        {}
+      ],
+      "description": "country"
+    },
+    "payGroupSummary_3599998a1633100019df46f324530118": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "country": {
+              "$ref": "#/definitions/country_e33b5490647810002766c91a0dae0000"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Pay Group"
+            }
+          }
+        }
+      ]
+    },
+    "periodSummary_3599998a1633100031c88652879b021c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "periodIsEarliestOpen": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns true if this period is the earliest open pay period.",
+              "x-workday-type": "Boolean"
+            },
+            "periodStartDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The start date of a payroll period.",
+              "x-workday-type": "Date"
+            },
+            "periodEndDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The end date of a payroll period.",
+              "x-workday-type": "Date"
+            },
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The status of a payroll period.",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "worker_bd14481f741d100022bc5b2538380000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "country_e33b54906478100027856b76a8710000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for \\~Country\\~  \nExample(s): ISO_3166-1_Alpha-3_Code=Sample_Value, ISO_3166-1_Numeric-3_Code=Sample_Value, ISO_3166-1_Alpha-2_Code=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "feature_43d2652dbec810001d0e3ff6731f0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for External Payroll Feature  \nExample(s): Feature_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "globalPayrollField_bd14481f741d1000235b250ccf6d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "properties_43d2652dbec810001e6bf61be6270000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/properties_43d2652dbec810001d262b7e953d0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Global Payroll Notification Feature Property"
+            }
+          }
+        }
+      ]
+    },
+    "feature_43d2652dbec810001e6bf58246f90001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/feature_43d2652dbec810001d0e3ff6731f0000"
+        },
+        {}
+      ],
+      "description": "The feature that is selected for the incoming Global Payroll Notification Event."
+    },
+    "featureConfiguration_43d2652dbec810001e6bf58246f90000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "feature"
+          ],
+          "properties": {
+            "properties": {
+              "type": "array",
+              "description": "The properties that are provided for the incoming Global Payroll Notification Event Feature.",
+              "items": {
+                "$ref": "#/definitions/properties_43d2652dbec810001e6bf61be6270000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "feature": {
+              "$ref": "#/definitions/feature_43d2652dbec810001e6bf58246f90001"
+            }
+          }
+        }
+      ]
+    },
+    "groupData_8c3b1d133c4810000e9f9441867e4b35": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/integrationEventErrorMessageDataGroupData_8c3b1d133c4810000eb33d3afd9b4b37"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Payroll Integration Event Message Data Group Data (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "integrationEventErrorMessageDataGroup_8c3b1d133c4810000e8df25cbccb4b30": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "groupValue": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The specific name of the type of data being provided by the third-party payroll system. Examples: Car Allowance, Home Address.",
+              "x-workday-type": "Text"
+            },
+            "groupName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The group category holding the data being provided by the third-party payroll system. Examples: Allowance, Address.",
+              "x-workday-type": "Text"
+            },
+            "groupData": {
+              "type": "array",
+              "description": "Attribute data supplementing the category of the main reported error.",
+              "items": {
+                "$ref": "#/definitions/groupData_8c3b1d133c4810000e9f9441867e4b35"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "role_946d4311941810001594a2de97420000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "onlyInclude_707e08b37b9810001c8dc9fc72db0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/globalPayrollField_bd14481f741d1000235b250ccf6d0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Global Payroll Field (Metadata) (Derived)  \nExample(s): Field_Path_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "fieldsContainer_41cd92ebb26a100021df5cc72c2c0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "onlyInclude": {
+              "type": "array",
+              "description": "A list of fields that changes are requested for.",
+              "items": {
+                "$ref": "#/definitions/onlyInclude_707e08b37b9810001c8dc9fc72db0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "fieldSetVersion": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Version of fields that changes are requested for.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "documentTag_a399911b55fe10013200bbf159ba0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "properties_43d2652dbec810001d262b7e953d0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The property id.",
+              "x-workday-type": "Text"
+            },
+            "value": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The property value.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "permissions_a2e1c2e680561000bba9ec7b7c120000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/globalPayrollAttributeWrapper_a2e1c2e680561000bc8d397094210000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Attribute Wrapper Instance (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "globalPayrollAuthorizationTarget_a2e1c2e680561000bb1bae0b9d930000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "permissions": {
+              "type": "array",
+              "description": "Target permissions for featureId and subjectId",
+              "readOnly": true,
+              "items": {
+                "$ref": "#/definitions/permissions_a2e1c2e680561000bba9ec7b7c120000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "id": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Target ID",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "workerRecipients_946d43119418100013690f3cf2f30000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worker_bd14481f741d100022bc5b2538380000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for \\~Worker\\~ Wrapper (REST)"
+            }
+          }
+        }
+      ]
+    },
+    "organizationRecipients_946d43119418100013690fd6f1310000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/organizationRecipient_946d43119418100014ee6d47c73c0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Organization Recipient"
+            }
+          }
+        }
+      ]
+    },
+    "recipient_946d43119418100012fbe29781d80000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "workerRecipients": {
+              "type": "array",
+              "description": "The list of Workers to receive the Global Payroll Notification",
+              "items": {
+                "$ref": "#/definitions/workerRecipients_946d43119418100013690f3cf2f30000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "organizationRecipients": {
+              "type": "array",
+              "description": "The Organization Recipient who will receive the Global Payroll Notification",
+              "items": {
+                "$ref": "#/definitions/organizationRecipients_946d43119418100013690fd6f1310000"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "severity_8c3b1d133c4810000e7c63c7288e4b2c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The Workday ID or reference ID of the severity level for the error message. The reference ID uses the referenceIdType=sampleRefId format. Examples: CRITICAL, ERROR, WARNING, INFO."
+    },
+    "group_8c3b1d133c4810000e7c63b18f5a4b2a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/integrationEventErrorMessageDataGroup_8c3b1d133c4810000e8df25cbccb4b30"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Payroll Integration Event Message Data Group (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "integrationEventErrorMessageData_8c3b1d133c4810000e4c4be00ea04ad8": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "severity",
+            "vendorErrorMessage"
+          ],
+          "properties": {
+            "who": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Lists the names, positions, or roles of the concerned audience for handling the error resolution.",
+              "x-workday-type": "Text"
+            },
+            "functionalArea": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The functional area that was impacted by the error reported. Examples: Position, Compensation, Personal data.",
+              "x-workday-type": "Text"
+            },
+            "severity": {
+              "$ref": "#/definitions/severity_8c3b1d133c4810000e7c63c7288e4b2c"
+            },
+            "diagnosis": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "An explanation for the root cause of the error.",
+              "x-workday-type": "Text"
+            },
+            "recordType": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The type of error being recorded. Examples: Data error, Configuration error.",
+              "x-workday-type": "Text"
+            },
+            "group": {
+              "type": "array",
+              "description": "A group of optional data supplementing the main error being reported (Additional information).",
+              "items": {
+                "$ref": "#/definitions/group_8c3b1d133c4810000e7c63b18f5a4b2a"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "messageCategory": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The category for where the error occurred. Examples: Worker Data, Organization, Supervisory, Staffing.",
+              "x-workday-type": "Text"
+            },
+            "messageNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "An integer number identifying the error reported.",
+              "x-workday-type": "Text"
+            },
+            "vendorErrorMessage": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Required detailed error message that explains what occurred in the third-party payroll system while processing the worker changes sent through event-driven integration.",
+              "x-workday-type": "Text"
+            },
+            "procedure": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The steps to fix the error.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "translations_f4ae47b7709910003169bed8e45b0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/translations_f4ae47b77099100031c18ddbb4160000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Global Payroll Notification Message"
+            }
+          }
+        }
+      ]
+    },
+    "message_946d4311941810001d65b0066fea0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "body",
+            "title"
+          ],
+          "properties": {
+            "translations": {
+              "type": "array",
+              "description": "The list of language translations for the Global Payroll Notification Message.",
+              "items": {
+                "$ref": "#/definitions/translations_f4ae47b7709910003169bed8e45b0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "link": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The external link for the Global Payroll Notification Message.",
+              "x-workday-type": "Text"
+            },
+            "body": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The body text of the Global Payroll Notification Message.",
+              "x-workday-type": "Text"
+            },
+            "title": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The title of the Global Payroll Notification Message.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "status_29662595d2d310003026c3f2dbb40001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Status of job generating data for request parameters."
+    },
+    "documents_29662595d2d310003026c48d3e9d0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/outputDocument_bd14481f741d100022fe559982d40000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Repository Document (Abstract)"
+            }
+          }
+        }
+      ]
+    },
+    "responseData_29662595d2d310003026c3f2dbb40000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "$ref": "#/definitions/status_29662595d2d310003026c3f2dbb40001"
+            },
+            "documents": {
+              "type": "array",
+              "description": "IDs of documents containing data produced with the parameters of the request. One can use the Blobitory REST API to retrieve the documents.",
+              "items": {
+                "$ref": "#/definitions/documents_29662595d2d310003026c48d3e9d0000"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "organizationRoles_66c27a39e90810002b90d07658210000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/dataChangesOnDemandFilterInstance_9ec52ffec9a01000649c3690f35f0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Data Changes on Demand Instance Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "paymentElectionRules_66c27a39e90810002b00b41727e90000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/dataChangesOnDemandFilterInstance_9ec52ffec9a01000649c3690f35f0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Data Changes on Demand Instance Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "additionalNameTypes_66c27a39e90810002a387b9b57010000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/dataChangesOnDemandFilterInstance_9ec52ffec9a01000649c3690f35f0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Data Changes on Demand Instance Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "configurableCompensationBasis_3f82a5cae4f210001aef6f053bd50000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Filter Compensation Basis by Configurable Compensation Basis to include in output."
+    },
+    "organizationTypes_9ec52ffec9a0100064abe73b04070000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/dataChangesOnDemandFilterInstance_9ec52ffec9a01000649c3690f35f0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Data Changes on Demand Instance Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "responseFilterContainer_9ec52ffec9a0100015ab0bd869ab0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "organizationRoles": {
+              "type": "array",
+              "description": "Organization Roles to include in Position data section.",
+              "items": {
+                "$ref": "#/definitions/organizationRoles_66c27a39e90810002b90d07658210000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "countryNameFormat": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Format for Country Name.",
+              "x-workday-type": "Text"
+            },
+            "includeEndedContracts": {
+              "type": "boolean",
+              "example": true,
+              "description": "Include Ended Contracts in output.",
+              "x-workday-type": "Boolean"
+            },
+            "paymentElectionRules": {
+              "type": "array",
+              "description": "Filter Payment Elections by Payment Election Rules to include in output.",
+              "items": {
+                "$ref": "#/definitions/paymentElectionRules_66c27a39e90810002b00b41727e90000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "additionalNameTypes": {
+              "type": "array",
+              "description": "Filter Additional Names by Additional Name Types to include in output.",
+              "items": {
+                "$ref": "#/definitions/additionalNameTypes_66c27a39e90810002a387b9b57010000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "configurableCompensationBasis": {
+              "$ref": "#/definitions/configurableCompensationBasis_3f82a5cae4f210001aef6f053bd50000"
+            },
+            "fullSnapshot": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, returns all \\~workers\\~ in the request regardless if the \\~worker\\~ has changes to report or not.",
+              "x-workday-type": "Boolean"
+            },
+            "reportPostTermCompensation": {
+              "type": "boolean",
+              "example": true,
+              "description": "Include Post Termination compensation changes in output.",
+              "x-workday-type": "Boolean"
+            },
+            "organizationTypes": {
+              "type": "array",
+              "description": "Filter Organizations by Organization Types.",
+              "items": {
+                "$ref": "#/definitions/organizationTypes_9ec52ffec9a0100064abe73b04070000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "excludeAdditionalJobs": {
+              "type": "boolean",
+              "example": true,
+              "description": "Exclude Additional Job data from output.",
+              "x-workday-type": "Boolean"
+            },
+            "countryRegionNameFormat": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Format for Country Region Name.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "workerOverride_d17352e89e4b100098e3385427e40000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The \\~worker\\~ to override.",
+              "maxLength": 36,
+              "x-workday-type": "Text"
+            },
+            "entryMomentFromOverride": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Entry Moment override for the \\~Worker\\~.",
+              "x-workday-type": "Date"
+            }
+          }
+        }
+      ]
+    },
+    "errors_8c3b1d133c4810000e358e7c5ad54ad6": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/integrationEventErrorMessageData_8c3b1d133c4810000e4c4be00ea04ad8"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Payroll Integration Event Error Message (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "integrationEventErrorMessageSet_8c3b1d133c4810000cd2e45ca5dd29c2": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "errors": {
+              "type": "array",
+              "description": "A data set containing a group of payroll messages and exceptions returned by payroll vendor for the worker changes sent by Event Driven Integration.",
+              "items": {
+                "$ref": "#/definitions/errors_8c3b1d133c4810000e358e7c5ad54ad6"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "documentTags_a399911b55fe100131e3d3561e960000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/documentTag_a399911b55fe10013200bbf159ba0000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Document Tag"
+            }
+          }
+        }
+      ]
+    },
+    "organization_a399911b55fe10013143d3da775b0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/organization_bd14481f741d1000236a60a3ec070000"
+        },
+        {}
+      ],
+      "description": "Organization for document."
+    },
+    "outputDocument_bd14481f741d100022fe559982d40000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "documentTags": {
+              "type": "array",
+              "description": "Document Tags for document.",
+              "items": {
+                "$ref": "#/definitions/documentTags_a399911b55fe100131e3d3561e960000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "organization": {
+              "$ref": "#/definitions/organization_a399911b55fe10013143d3da775b0000"
+            },
+            "fileName": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "File name for document.",
+              "x-workday-type": "Text"
+            },
+            "documentId": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Document ID for document. Can be used in conjunction with Blobitory API to retrieve the document.",
+              "maxLength": 513,
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "globalPayrollAttributeWrapper_a2e1c2e680561000bc8d397094210000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Permission ID",
+              "readOnly": true,
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "integrationEventErrorMessageDataGroupData_8c3b1d133c4810000eb33d3afd9b4b37": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the reported field attribute. Examples: Amount, Currency, Status.",
+              "x-workday-type": "Text"
+            },
+            "value": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The value of the reported field attribute. Examples: 2000, USD, Active.",
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "organizationInboundNotification_a241e16bef3210002cb413fbaf540000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Organization  \nExample(s): Organization_Reference_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "languages_0be14766258a1000162a16b48b050000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/languages_0be14766258a100016289e2a04b60000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for User Language Wrapper (REST)  \nExample(s): User_Language_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "translations_f4ae47b77099100031c18ddbb4160000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "body",
+            "languages",
+            "title"
+          ],
+          "properties": {
+            "title": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The title of the Global Payroll Notification Translation.",
+              "x-workday-type": "Text"
+            },
+            "body": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The body of the Global Payroll Notification Translation.",
+              "x-workday-type": "Text"
+            },
+            "languages": {
+              "type": "array",
+              "description": "The languages of the Global Payroll Notification Translation.",
+              "items": {
+                "$ref": "#/definitions/languages_0be14766258a1000162a16b48b050000"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "languages_0be14766258a100016289e2a04b60000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "organization_946d43119418100014ee6d47c73c0001": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/organizationInboundNotification_a241e16bef3210002cb413fbaf540000"
+        },
+        {}
+      ],
+      "description": "The Organization that will receive the Global Payroll Notification."
+    },
+    "roles_946d43119418100015721b36a5090000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/role_946d4311941810001594a2de97420000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Assignable Role Wrapper (REST)  \nExample(s): Organization_Role_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "organizationRecipient_946d43119418100014ee6d47c73c0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "organization",
+            "roles"
+          ],
+          "properties": {
+            "organization": {
+              "$ref": "#/definitions/organization_946d43119418100014ee6d47c73c0001"
+            },
+            "roles": {
+              "type": "array",
+              "description": "The Assignable Role for the Organization that will receive the Global Payroll Notification.",
+              "items": {
+                "$ref": "#/definitions/roles_946d43119418100015721b36a5090000"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "dataChangesOnDemandFilterInstance_9ec52ffec9a01000649c3690f35f0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "organization_bd14481f741d1000236a60a3ec070000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "workers_29662595d2d310002ebec12b431b0000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worker_bd14481f741d100022bc5b2538380000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for \\~Worker\\~ Wrapper (REST)"
+            }
+          }
+        }
+      ]
+    },
+    "fields_29662595d2d310002e8a9e39e2380004": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/fieldsContainer_41cd92ebb26a100021df5cc72c2c0000"
+        },
+        {}
+      ],
+      "description": "A list of fields that changes are requested for."
+    },
+    "organizations_29662595d2d310002e8a9e39e2380003": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/organization_bd14481f741d1000236a60a3ec070000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Organization Representation  \nExample(s): Organization_Reference_ID=Sample_Value"
+            }
+          }
+        }
+      ]
+    },
+    "workerOverrides_d17352e89e4b1000983bdc7a0bf50000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/workerOverride_d17352e89e4b100098e3385427e40000"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Data Changes on Demand Worker Override (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "responseFilter_9ec52ffec9a0100015ac1c8cc6e80000": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/responseFilterContainer_9ec52ffec9a0100015ab0bd869ab0000"
+        },
+        {}
+      ],
+      "description": "Response Filter for Data Changes on Demand Request."
+    },
+    "requestCriteria_29662595d2d310002e8a9d9ff53e0000": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "extendedAllEffectiveTo": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "Upper limit of the optional extended all effective range.",
+              "x-workday-type": "Date",
+              "x-workday-confidence-level": "Production"
+            },
+            "workers": {
+              "type": "array",
+              "description": "Workers for data request.",
+              "items": {
+                "$ref": "#/definitions/workers_29662595d2d310002ebec12b431b0000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "includeRequestCriteriaInResponse": {
+              "type": "boolean",
+              "example": true,
+              "description": "Default is false. When true, the original request will be shown in the response.",
+              "x-workday-type": "Boolean"
+            },
+            "fields": {
+              "$ref": "#/definitions/fields_29662595d2d310002e8a9e39e2380004"
+            },
+            "entryMomentTo": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date up until which the entry moment for the request should query data for.",
+              "x-workday-type": "Date"
+            },
+            "entryMomentFrom": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date from which the entry moment for the request should query data for.",
+              "x-workday-type": "Date"
+            },
+            "effectiveTo": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date up until which the entry moment for the request should query data for.",
+              "x-workday-type": "Date"
+            },
+            "forceRerun": {
+              "type": "boolean",
+              "example": true,
+              "description": "This boolean is used to force a new request to be generated even if the same parameters as a prior request are sent. Force Rerun should only be used if the previous request is complete or has failed for some reason.",
+              "x-workday-type": "Boolean"
+            },
+            "excludeWorkers": {
+              "type": "boolean",
+              "example": true,
+              "description": "If set to true, \\~workers\\~ in the \"workers\" request parameter will be excluded from the output. By default, the parameter is inclusive.",
+              "x-workday-type": "Boolean"
+            },
+            "allEffective": {
+              "type": "boolean",
+              "example": true,
+              "description": "Default is false. Only set to true if you want all effective changes in the effective range. Otherwise, it will only give incremental changes entered within the entry range.",
+              "x-workday-type": "Boolean"
+            },
+            "organizations": {
+              "type": "array",
+              "description": "Organization for external data request (e.g. pay group).",
+              "items": {
+                "$ref": "#/definitions/organizations_29662595d2d310002e8a9e39e2380003"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "effectiveFrom": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-02-07T08:00:00.000Z",
+              "description": "The date from which the effective moment for the request should query data for.",
+              "x-workday-type": "Date"
+            },
+            "schemaOnly": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, the API only returns the schema file. If false, the API returns the schema file and other output files. Use this option to identify available API fields and map to external vendor fields as needed.",
+              "x-workday-type": "Boolean"
+            },
+            "workerOverrides": {
+              "type": "array",
+              "description": "Worker Overrides for data request.",
+              "items": {
+                "$ref": "#/definitions/workerOverrides_d17352e89e4b1000983bdc7a0bf50000"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "responseFilter": {
+              "$ref": "#/definitions/responseFilter_9ec52ffec9a0100015ac1c8cc6e80000"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

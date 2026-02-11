@@ -1,0 +1,116 @@
+[
+  {
+    "name": "SystemMetrics-ActiveTasks-GET-getActiveTasks",
+    "description": "[System Metrics] GET /activeTasks/{ID} — \n\n<b>Secured by:</b> System Monitor Administrator, System Monitor Support\n\n<b>Scope:</b> System, System Health Dashboard, Tenant Non-Configurable",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/activeTasks/{ID}",
+    "operationId": null,
+    "file": "SystemMetrics-ActiveTasks-GET-getActiveTasks.js"
+  },
+  {
+    "name": "SystemMetrics-ActiveUserSessions-GET-getActiveUserSessions",
+    "description": "[System Metrics] GET /activeUserSessions — Retrieves a collection of active user sessions.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/activeUserSessions",
+    "operationId": null,
+    "file": "SystemMetrics-ActiveUserSessions-GET-getActiveUserSessions.js"
+  },
+  {
+    "name": "SystemMetrics-ActiveTasks-GET-getActiveTasks_1",
+    "description": "[System Metrics] GET /activeTasks — \n\n<b>Secured by:</b> System Monitor Administrator, System Monitor Support\n\n<b>Scope:</b> System, System Health Dashboard, Tenant Non-Configurable",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/activeTasks",
+    "operationId": null,
+    "file": "SystemMetrics-ActiveTasks-GET-getActiveTasks_1.js"
+  },
+  {
+    "name": "SystemMetrics-ActiveUserSessions-GET-getActiveUserSessions_1",
+    "description": "[System Metrics] GET /activeUserSessions/{ID} — Retrieves an active user session.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/activeUserSessions/{ID}",
+    "operationId": null,
+    "file": "SystemMetrics-ActiveUserSessions-GET-getActiveUserSessions_1.js"
+  },
+  {
+    "name": "SystemMetrics-SystemMetricsOverview-GET-getSystemMetricsOverview",
+    "description": "[System Metrics] GET /systemMetricsOverview — Retrieves system metrics with the specified ID, including queued tasks, running tasks, and active user sessions.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/systemMetricsOverview",
+    "operationId": null,
+    "file": "SystemMetrics-SystemMetricsOverview-GET-getSystemMetricsOverview.js"
+  },
+  {
+    "name": "SystemMetrics-SystemMetricsOverview-GET-getSystemMetricsOverview_1",
+    "description": "[System Metrics] GET /systemMetricsOverview/{ID} — Retrieves system metrics.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/systemMetricsOverview/{ID}",
+    "operationId": null,
+    "file": "SystemMetrics-SystemMetricsOverview-GET-getSystemMetricsOverview_1.js"
+  }
+]

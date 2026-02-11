@@ -1,0 +1,188 @@
+[
+  {
+    "name": "Request-Requests-GET-getRequests",
+    "description": "[Request] GET /requests/{ID} — Retrieves the request with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/requests/{ID}",
+    "operationId": null,
+    "file": "Request-Requests-GET-getRequests.js"
+  },
+  {
+    "name": "Request-Types-GET-getTypes",
+    "description": "[Request] GET /types — Retrieves a collection of request types.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/types",
+    "operationId": null,
+    "file": "Request-Types-GET-getTypes.js"
+  },
+  {
+    "name": "Request-Requests-POST-postClose",
+    "description": "[Request] POST /requests/{ID}/close — Closes a request.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/requests/{ID}/close",
+    "operationId": null,
+    "file": "Request-Requests-POST-postClose.js"
+  },
+  {
+    "name": "Request-Requests-GET-getRequests_1",
+    "description": "[Request] GET /requests — Retrieves a collection of in progress requests based on the specified parameters.",
+    "schema": [
+      {
+        "name": "completedOnOrAfter",
+        "type": "string",
+        "description": "query parameter: completedOnOrAfter",
+        "required": false
+      },
+      {
+        "name": "completedOnOrBefore",
+        "type": "string",
+        "description": "query parameter: completedOnOrBefore",
+        "required": false
+      },
+      {
+        "name": "initiatedOnOrAfter",
+        "type": "string",
+        "description": "query parameter: initiatedOnOrAfter",
+        "required": false
+      },
+      {
+        "name": "initiatedOnOrBefore",
+        "type": "string",
+        "description": "query parameter: initiatedOnOrBefore",
+        "required": false
+      },
+      {
+        "name": "initiator",
+        "type": "string",
+        "description": "The WID for the person who initiated the request. You can GET /workers in the /common service to retrieve a worker's WID.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "onBehalfOf",
+        "type": "string",
+        "description": "The Workday ID of the person this request is being initiated on behalf of.",
+        "required": false
+      },
+      {
+        "name": "requestId",
+        "type": "string",
+        "description": "The ID of the request based on the ID generator format.",
+        "required": false
+      },
+      {
+        "name": "requestSubtype",
+        "type": "string",
+        "description": "The Workday ID of the request subtype. You can specify more than 1 requestSubtype query parameter. \nYou can call GET /requests/query/values/requestSubtype to retrieve a valid ID.",
+        "required": false
+      },
+      {
+        "name": "requestType",
+        "type": "string",
+        "description": "The Workday ID of the request type. You can specify more than 1 requestType query parameter.\nYou can call GET /requests/query/values/requestType to retrieve a valid ID.",
+        "required": false
+      },
+      {
+        "name": "resolution",
+        "type": "string",
+        "description": "The Workday ID of the resolution of the request. You can specify more than 1 resolution query parameter.\nValid values:\n\n* 47fa99d9ed671000111f2f4d1d6f37ea - Done\n\n* be256002ae2010000c0b9b59ca1d014b - Duplicate\n\n* be256002ae2010000c0b9c817aea014c - Denied\n\n* be256002ae2010000bfd6ae5ea5b0148 - Canceled",
+        "required": false
+      },
+      {
+        "name": "resolutionDetails",
+        "type": "string",
+        "description": "The Workday ID of the resolution details. You can specify more than 1 resolutionDetails query parameter.\nYou can call GET /requests/query/values/resolutionDetails to retrieve a valid ID.",
+        "required": false
+      },
+      {
+        "name": "workdayObjectValue",
+        "type": "string",
+        "description": "The Workday ID of the business object associated with the request. \nCall the corresponding GET endpoint on the business object resource in the appropriate REST service to get a valid ID.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/requests",
+    "operationId": null,
+    "file": "Request-Requests-GET-getRequests_1.js"
+  },
+  {
+    "name": "Request-Requests-POST-postRequests",
+    "description": "[Request] POST /requests — Creates a request.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/requests",
+    "operationId": null,
+    "file": "Request-Requests-POST-postRequests.js"
+  },
+  {
+    "name": "Request-Types-GET-getTypes_1",
+    "description": "[Request] GET /types/{ID} — Retrieves a request type.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/types/{ID}",
+    "operationId": null,
+    "file": "Request-Types-GET-getTypes_1.js"
+  }
+]

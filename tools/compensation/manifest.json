@@ -1,0 +1,270 @@
+[
+  {
+    "name": "Compensation-ScorecardResults-GET-getScorecardResults",
+    "description": "[Compensation] GET /scorecardResults — Provides the ability to set up and retrieve Scores on Scorecard Results.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/scorecardResults",
+    "operationId": null,
+    "file": "Compensation-ScorecardResults-GET-getScorecardResults.js"
+  },
+  {
+    "name": "Compensation-ScorecardResults-POST-postScorecardResults",
+    "description": "[Compensation] POST /scorecardResults — Creates a new Scorecard Result.",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/scorecardResults",
+    "operationId": null,
+    "file": "Compensation-ScorecardResults-POST-postScorecardResults.js"
+  },
+  {
+    "name": "Compensation-Scorecards-GET-getScorecards",
+    "description": "[Compensation] GET /scorecards — Retrieves Compensation Scorecard information.",
+    "schema": [
+      {
+        "name": "effectiveDate",
+        "type": "string",
+        "description": "Effective date the scorecard task takes effect.",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/scorecards",
+    "operationId": null,
+    "file": "Compensation-Scorecards-GET-getScorecards.js"
+  },
+  {
+    "name": "Compensation-Scorecards-POST-postScorecards",
+    "description": "[Compensation] POST /scorecards — Creates a Compensation Scorecard",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/scorecards",
+    "operationId": null,
+    "file": "Compensation-Scorecards-POST-postScorecards.js"
+  },
+  {
+    "name": "Compensation-ScorecardResults-GET-getScorecardResults_1",
+    "description": "[Compensation] GET /scorecardResults/{ID} — Provides the ability to set up and retrieve Scores on Scorecard Results.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/scorecardResults/{ID}",
+    "operationId": null,
+    "file": "Compensation-ScorecardResults-GET-getScorecardResults_1.js"
+  },
+  {
+    "name": "Compensation-ScorecardResults-DELETE-deleteScorecardResults",
+    "description": "[Compensation] DELETE /scorecardResults/{ID} — Deletes the Scorecard Results with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/scorecardResults/{ID}",
+    "operationId": null,
+    "file": "Compensation-ScorecardResults-DELETE-deleteScorecardResults.js"
+  },
+  {
+    "name": "Compensation-Workers-GET-getWorkers",
+    "description": "[Compensation] GET /workers/{ID} — Retrieves a worker instance.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/workers/{ID}",
+    "operationId": null,
+    "file": "Compensation-Workers-GET-getWorkers.js"
+  },
+  {
+    "name": "Compensation-Workers-GET-getWorkers_1",
+    "description": "[Compensation] GET /workers — Retrieves a collection of workers.",
+    "schema": [
+      {
+        "name": "includeTerminatedWorkers",
+        "type": "boolean",
+        "description": "Include terminated workers in the output",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "description": "query parameter: search",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/workers",
+    "operationId": null,
+    "file": "Compensation-Workers-GET-getWorkers_1.js"
+  },
+  {
+    "name": "Compensation-Workers-POST-postRequestOneTimePayment",
+    "description": "[Compensation] POST /workers/{ID}/requestOneTimePayment — Request a one-time payment for a worker with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/workers/{ID}/requestOneTimePayment",
+    "operationId": null,
+    "file": "Compensation-Workers-POST-postRequestOneTimePayment.js"
+  },
+  {
+    "name": "Compensation-ScorecardResults-PATCH-patchScores",
+    "description": "[Compensation] PATCH /scorecardResults/{ID}/scores/{subresourceID} — Updates the Score for the specified Scorecard Result.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PATCH",
+    "path": "/scorecardResults/{ID}/scores/{subresourceID}",
+    "operationId": null,
+    "file": "Compensation-ScorecardResults-PATCH-patchScores.js"
+  },
+  {
+    "name": "Compensation-Scorecards-GET-getScorecards_1",
+    "description": "[Compensation] GET /scorecards/{ID} — Retrieves Compensation Scorecard information.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/scorecards/{ID}",
+    "operationId": null,
+    "file": "Compensation-Scorecards-GET-getScorecards_1.js"
+  },
+  {
+    "name": "Compensation-Scorecards-PUT-putScorecards",
+    "description": "[Compensation] PUT /scorecards/{ID} — Updates a Compensation Scorecard",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/scorecards/{ID}",
+    "operationId": null,
+    "file": "Compensation-Scorecards-PUT-putScorecards.js"
+  },
+  {
+    "name": "Compensation-Scorecards-DELETE-deleteScorecards",
+    "description": "[Compensation] DELETE /scorecards/{ID} — Deletes a Compensation Scorecard with the specified ID.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/scorecards/{ID}",
+    "operationId": null,
+    "file": "Compensation-Scorecards-DELETE-deleteScorecards.js"
+  }
+]

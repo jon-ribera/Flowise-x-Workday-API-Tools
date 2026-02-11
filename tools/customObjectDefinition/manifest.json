@@ -1,0 +1,664 @@
+[
+  {
+    "name": "CustomObjectDefinition-Definitions-GET-getValidations",
+    "description": "[Custom Object Definition] GET /definitions/{ID}/validations — Retrieves a collection of validations in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/definitions/{ID}/validations",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-GET-getValidations.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-POST-postValidations",
+    "description": "[Custom Object Definition] POST /definitions/{ID}/validations — \n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/definitions/{ID}/validations",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-POST-postValidations.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-GET-getValidations_1",
+    "description": "[Custom Object Definition] GET /definitions/{ID}/validations/{subresourceID} — Retrieves a validation in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/definitions/{ID}/validations/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-GET-getValidations_1.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-PUT-putValidations",
+    "description": "[Custom Object Definition] PUT /definitions/{ID}/validations/{subresourceID} — Updates an existing validation in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/definitions/{ID}/validations/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-PUT-putValidations.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-DELETE-deleteValidations",
+    "description": "[Custom Object Definition] DELETE /definitions/{ID}/validations/{subresourceID} — Deletes a validation in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/definitions/{ID}/validations/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-DELETE-deleteValidations.js"
+  },
+  {
+    "name": "CustomObjectDefinition-FieldTypes-GET-getFieldTypes",
+    "description": "[Custom Object Definition] GET /fieldTypes — Retrieves a collection of custom field types.",
+    "schema": [
+      {
+        "name": "fieldType",
+        "type": "string",
+        "description": "query parameter: fieldType",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/fieldTypes",
+    "operationId": null,
+    "file": "CustomObjectDefinition-FieldTypes-GET-getFieldTypes.js"
+  },
+  {
+    "name": "CustomObjectDefinition-FieldTypes-POST-postFieldTypes",
+    "description": "[Custom Object Definition] POST /fieldTypes — \n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/fieldTypes",
+    "operationId": null,
+    "file": "CustomObjectDefinition-FieldTypes-POST-postFieldTypes.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-POST-postActivate",
+    "description": "[Custom Object Definition] POST /definitions/{ID}/activate — \n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/definitions/{ID}/activate",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-POST-postActivate.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-GET-getDefinitions",
+    "description": "[Custom Object Definition] GET /definitions/{ID} — Retrieves a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/definitions/{ID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-GET-getDefinitions.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-PUT-putDefinitions",
+    "description": "[Custom Object Definition] PUT /definitions/{ID} — Updates an existing custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/definitions/{ID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-PUT-putDefinitions.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-DELETE-deleteDefinitions",
+    "description": "[Custom Object Definition] DELETE /definitions/{ID} — Deletes a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/definitions/{ID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-DELETE-deleteDefinitions.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-GET-getDefinitions_1",
+    "description": "[Custom Object Definition] GET /definitions — Retrieves a collection of custom object definitions.",
+    "schema": [
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/definitions",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-GET-getDefinitions_1.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-POST-postDefinitions",
+    "description": "[Custom Object Definition] POST /definitions — \n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+    "schema": [
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/definitions",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-POST-postDefinitions.js"
+  },
+  {
+    "name": "CustomObjectDefinition-FieldTypes-GET-getListValues",
+    "description": "[Custom Object Definition] GET /fieldTypes/{ID}/listValues/{subresourceID} — Retrieves a list value for a custom lists in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/fieldTypes/{ID}/listValues/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-FieldTypes-GET-getListValues.js"
+  },
+  {
+    "name": "CustomObjectDefinition-FieldTypes-PUT-putListValues",
+    "description": "[Custom Object Definition] PUT /fieldTypes/{ID}/listValues/{subresourceID} — Updates an existing list value in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/fieldTypes/{ID}/listValues/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-FieldTypes-PUT-putListValues.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-GET-getConditionRules",
+    "description": "[Custom Object Definition] GET /definitions/{ID}/conditionRules — Retrieves a collection of condition rules in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/definitions/{ID}/conditionRules",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-GET-getConditionRules.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-POST-postConditionRules",
+    "description": "[Custom Object Definition] POST /definitions/{ID}/conditionRules — \n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/definitions/{ID}/conditionRules",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-POST-postConditionRules.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-GET-getConditionRules_1",
+    "description": "[Custom Object Definition] GET /definitions/{ID}/conditionRules/{subresourceID} — Retrieves a condition rule in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/definitions/{ID}/conditionRules/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-GET-getConditionRules_1.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-PUT-putConditionRules",
+    "description": "[Custom Object Definition] PUT /definitions/{ID}/conditionRules/{subresourceID} — Updates an existing condition rule in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/definitions/{ID}/conditionRules/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-PUT-putConditionRules.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-DELETE-deleteConditionRules",
+    "description": "[Custom Object Definition] DELETE /definitions/{ID}/conditionRules/{subresourceID} — Deletes a condition rule in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/definitions/{ID}/conditionRules/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-DELETE-deleteConditionRules.js"
+  },
+  {
+    "name": "CustomObjectDefinition-FieldTypes-GET-getFieldTypes_1",
+    "description": "[Custom Object Definition] GET /fieldTypes/{ID} — Retrieves a custom field type.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/fieldTypes/{ID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-FieldTypes-GET-getFieldTypes_1.js"
+  },
+  {
+    "name": "CustomObjectDefinition-FieldTypes-PUT-putFieldTypes",
+    "description": "[Custom Object Definition] PUT /fieldTypes/{ID} — Updates an existing custom field type.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/fieldTypes/{ID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-FieldTypes-PUT-putFieldTypes.js"
+  },
+  {
+    "name": "CustomObjectDefinition-FieldTypes-GET-getListValues_1",
+    "description": "[Custom Object Definition] GET /fieldTypes/{ID}/listValues — Retrieves a collection of list values for a custom list in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/fieldTypes/{ID}/listValues",
+    "operationId": null,
+    "file": "CustomObjectDefinition-FieldTypes-GET-getListValues_1.js"
+  },
+  {
+    "name": "CustomObjectDefinition-FieldTypes-POST-postListValues",
+    "description": "[Custom Object Definition] POST /fieldTypes/{ID}/listValues — \n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/fieldTypes/{ID}/listValues",
+    "operationId": null,
+    "file": "CustomObjectDefinition-FieldTypes-POST-postListValues.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-GET-getFields",
+    "description": "[Custom Object Definition] GET /definitions/{ID}/fields/{subresourceID} — Retrieves a field in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "GET",
+    "path": "/definitions/{ID}/fields/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-GET-getFields.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-PUT-putFields",
+    "description": "[Custom Object Definition] PUT /definitions/{ID}/fields/{subresourceID} — Updates an existing field in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "PUT",
+    "path": "/definitions/{ID}/fields/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-PUT-putFields.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-DELETE-deleteFields",
+    "description": "[Custom Object Definition] DELETE /definitions/{ID}/fields/{subresourceID} — Deletes a field in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "subresourceID",
+        "type": "string",
+        "description": "The Workday ID of the subresource.",
+        "required": true
+      }
+    ],
+    "method": "DELETE",
+    "path": "/definitions/{ID}/fields/{subresourceID}",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-DELETE-deleteFields.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-GET-getFields_1",
+    "description": "[Custom Object Definition] GET /definitions/{ID}/fields — Retrieves a collection of fields in a custom object definition.",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "required": false
+      }
+    ],
+    "method": "GET",
+    "path": "/definitions/{ID}/fields",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-GET-getFields_1.js"
+  },
+  {
+    "name": "CustomObjectDefinition-Definitions-POST-postFields",
+    "description": "[Custom Object Definition] POST /definitions/{ID}/fields — \n\n<b>Secured by:</b> Custom Object Management\n\n<b>Scope:</b> System",
+    "schema": [
+      {
+        "name": "ID",
+        "type": "string",
+        "description": "The Workday ID of the resource.",
+        "required": true
+      },
+      {
+        "name": "requestBody",
+        "type": "string",
+        "description": "JSON request body.",
+        "required": false
+      }
+    ],
+    "method": "POST",
+    "path": "/definitions/{ID}/fields",
+    "operationId": null,
+    "file": "CustomObjectDefinition-Definitions-POST-postFields.js"
+  }
+]
